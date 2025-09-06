@@ -220,7 +220,7 @@ function App() {
   return (
     <div className="app-container">
       <header className="app-header">
-        <h1>Sivi AI API Explorer</h1>
+        <h1>Sivi API Explorer</h1>
         <div className="header-controls">
           <div className="preset-selector">
             <label htmlFor="preset-dropdown" className="preset-label">Load Example:</label>
