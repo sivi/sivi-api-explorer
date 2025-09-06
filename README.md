@@ -56,8 +56,8 @@ cp .env.example .env
 Edit `.env` file with your Sivi API credentials:
 
 ```env
-SIVI_API_URL=https://api.sivi.ai
-SIVI_API_KEY=your_sivi_api_key_here
+SIVI_API_URL=https://connect.sivi.ai/api/prod/v2
+SIVI_API_KEY=your_api_key_here
 ```
 
 Start the server:
@@ -78,11 +78,6 @@ yarn install
 cp .env.example .env
 ```
 
-Edit client `.env` file:
-
-```env
-VITE_API_BASE_URL=http://localhost:4000
-```
 
 Start the client:
 
@@ -101,7 +96,7 @@ The application provides comprehensive logging:
 
 - **Request Timing**: Measures API response times
 - **Status Updates**: Real-time status of design generation
-- **Error Handling**: Detailed error messages and stack traces
+- **Error Handling**: Detailed error messages
 - **Request History**: Persistent storage of API interactions
 
 ### Console Output
@@ -135,15 +130,13 @@ The application includes predefined presets for quick testing:
 
 ### Server (.env)
 ```env
-SIVI_API_URL=https://api.sivi.ai
+SIVI_API_URL=https://connect.sivi.ai/api/prod/v2
 SIVI_API_KEY=your_api_key_here
-PORT=4000
 ```
 
 ### Client (.env)
 ```env
-VITE_API_BASE_URL=http://localhost:4000
-VITE_APP_NAME=Sivi API Explorer
+MY_SERVER_ENDPOINT=http://localhost:4000
 ```
 
 ## 🚀 Deployment
