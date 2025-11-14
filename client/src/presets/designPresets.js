@@ -13,14 +13,24 @@ export const designPresets = {
         images: [],
         logos: []
       },
-      colors: [],
-      fonts: [],
       language: 'english',
       numOfVariants: 3,
-      outputFormat: ['jpg']
+      outputFormat: ['jpg'],
+      settings: {
+        mode: 'brand',
+        currentbId: 'sivi_sample_1',
+        // Styles
+        colors: [],
+        fontGroups: [],
+        theme: [],
+        frameStyle: [],
+        backdropStyle: [],
+        focus: [],
+        imageStyle: [],
+      }
     }
   },
-  
+
   ecommerceCategory: {
     name: "E-commerce Category",
     data: {
@@ -50,14 +60,24 @@ export const designPresets = {
         ],
         logos: []
       },
-      colors: ['#668135', '#D6DEC1', '#0E1A01'],
-      fonts: [],
       language: 'english',
       numOfVariants: 3,
-      outputFormat: ['jpg']
+      outputFormat: ['jpg'],
+      settings: {
+        mode: 'custom',
+        currentbId: 'sivi_sample_2',
+        // Styles
+        colors: ['#668135', '#D6DEC1', '#0E1A01'],
+        fontGroups: [],
+        theme: ['light'],
+        frameStyle: [],
+        backdropStyle: [],
+        focus: ['image'],
+        imageStyle: [],
+      }
     }
   },
-  
+
   socialMedia: {
     name: "Social Media",
     data: {
@@ -80,14 +100,25 @@ export const designPresets = {
         ],
         logos: []
       },
-      colors: ['#00B8A4', '#0679AB', '#FFFFFF'],
       fonts: [],
       language: 'english',
       numOfVariants: 3,
-      outputFormat: ['jpg']
+      outputFormat: ['jpg'],
+      settings: {
+        mode: 'custom',
+        currentbId:'sivi_sample_1',
+        // Styles
+        colors: ['#00B8A4', '#0679AB', '#FFFFFF'],
+        fontGroups: [],
+        theme: [],
+        frameStyle: [],
+        backdropStyle: [],
+        focus: [],
+        imageStyle: [],
+      }
     }
   },
-  
+
   brandAwareness: {
     name: "Brand Awareness",
     data: {
@@ -115,14 +146,24 @@ export const designPresets = {
           }
         ]
       },
-      colors: ['#C31E2E'],
-      fonts: [],
       language: 'english',
       numOfVariants: 4,
-      outputFormat: ['jpg']
+      outputFormat: ['jpg'],
+      settings: {
+        mode: 'custom',
+        currentbId: 'sivi_sample_1',
+        // Styles
+        colors: ['#C31E2E'],
+        fontGroups: [],
+        theme: ['dark'],
+        frameStyle: [],
+        backdropStyle: [],
+        focus: [],
+        imageStyle: [],
+      }
     }
   },
-  
+
   videoThumbnail: {
     name: "Video Thumbnail",
     data: {
@@ -145,14 +186,25 @@ export const designPresets = {
         ],
         logos: []
       },
-      colors: [],
       fonts: [],
       language: 'english',
       numOfVariants: 4,
-      outputFormat: ['jpg']
+      outputFormat: ['jpg'],
+      settings: {
+        mode: 'brand',
+        currentbId: 'sivi_sample_1',
+        // Styles
+        colors: [],
+        fontGroups: [],
+        theme: [],
+        frameStyle: [],
+        backdropStyle: [],
+        focus: [],
+        imageStyle: [],
+      }
     }
   },
-  
+
   profileCover: {
     name: "Profile Cover",
     data: {
@@ -175,11 +227,22 @@ export const designPresets = {
         ],
         logos: []
       },
-      colors: [],
       fonts: [],
       language: 'english',
       numOfVariants: 3,
-      outputFormat: ['jpg']
+      outputFormat: ['jpg'],
+      settings: {
+        mode: 'brand',
+        currentbId: 'sivi_sample_1',
+        // Styles
+        colors: [],
+        fontGroups: [],
+        theme: [],
+        frameStyle: [],
+        backdropStyle: [],
+        focus: [],
+        imageStyle: [],
+      }
     }
   }
 };

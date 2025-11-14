@@ -56,8 +56,9 @@ export const SelectInput = ({ label, value, onChange, options, placeholder }) =>
 };
 
 // Multi-select list component
-export const MultiSelectList = ({ label, values, onChange, options }) => {
+export const MultiSelectList = ({ label, values, onChange, options, disabled = false }) => {
   const handleToggle = (value) => {
+    if (disabled) return;
     const newValues = values.includes(value)
       ? values.filter(v => v !== value)
       : [...values, value];
@@ -67,7 +68,7 @@ export const MultiSelectList = ({ label, values, onChange, options }) => {
   return (
     <div className="form-field">
       <label className="form-label">{label}</label>
-      <div className="multi-select-list">
+      <div className={`multi-select-list ${disabled ? 'disabled' : ''}`}>
         {options.map((option, index) => (
           <div key={index} className="checkbox-item">
             <input
@@ -76,6 +77,7 @@ export const MultiSelectList = ({ label, values, onChange, options }) => {
               checked={values.includes(option.value)}
               onChange={() => handleToggle(option.value)}
               className="checkbox-input"
+              disabled={disabled}
             />
             <label htmlFor={`${label}-${index}`} className="checkbox-label">
               {option.label}
@@ -88,7 +90,7 @@ export const MultiSelectList = ({ label, values, onChange, options }) => {
 };
 
 // Color picker component
-export const ColorInput = ({ label, value, onChange }) => {
+export const ColorInput = ({ label, value, onChange, disabled = false }) => {
   return (
     <div className="form-field">
       <label className="form-label">{label}</label>
@@ -98,6 +100,7 @@ export const ColorInput = ({ label, value, onChange }) => {
           value={value}
           onChange={(e) => onChange(e.target.value)}
           className="color-input"
+          disabled={disabled}
         />
         <input
           type="text"
@@ -105,6 +108,7 @@ export const ColorInput = ({ label, value, onChange }) => {
           onChange={(e) => onChange(e.target.value)}
           placeholder="#000000"
           className="color-text-input"
+          disabled={disabled}
         />
       </div>
     </div>

@@ -52,6 +52,18 @@
   padding-right: 40px;
 }
 
+.form-select option {
+  background: #2a2a2a;
+  color: #ffffff;
+  padding: 8px;
+}
+
+.form-select option:hover,
+.form-select option:checked {
+  background: #5662EC;
+  color: #ffffff;
+}
+
 .form-input::placeholder {
   color: rgba(255, 255, 255, 0.6);
 }
@@ -90,6 +102,11 @@
   gap: 8px;
 }
 
+.multi-select-list.disabled {
+  opacity: 1.5;
+  pointer-events: none;
+}
+
 .checkbox-item {
   display: flex;
   align-items: center;
@@ -108,6 +125,16 @@
   cursor: pointer;
 }
 
+.checkbox-input:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.checkbox-input:disabled + .checkbox-label {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
 .color-input-wrapper {
   display: flex;
   gap: 8px;
@@ -124,6 +151,11 @@
   flex-shrink: 0;
 }
 
+.color-input:disabled {
+  opacity: 0.9;
+  cursor: not-allowed;
+}
+
 .color-text-input {
   flex: 1;
   padding: 8px 12px;
@@ -133,6 +165,11 @@
   color: #fff;
   font-size: 14px;
   min-width: 0;
+}
+
+.color-text-input:disabled {
+  opacity: 0.9;
+  cursor: not-allowed;
 }
 
 .dynamic-list {
@@ -277,6 +314,17 @@
   line-height: 1;
   flex-shrink: 0;
   margin-top: 10px;
+  transition: all 0.3s ease;
+}
+
+.remove-color-button:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.remove-color-button:disabled {
+  opacity: 0.9;
+  cursor: not-allowed;
+  background: rgba(255, 255, 255, 0.2);
 }
 
 .add-color-button {
@@ -288,6 +336,19 @@
   cursor: pointer;
   font-size: 14px;
   align-self: flex-start;
+  transition: all 0.3s ease;
+}
+
+.add-color-button:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.add-color-button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.1);
 }
 
 .url-preview {
