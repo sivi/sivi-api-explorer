@@ -18,6 +18,7 @@ function App() {
   const [history, setHistory] = useState([]);
   const [selectedHistoryId, setSelectedHistoryId] = useState('');
 
+  
   useEffect(() => {
     setHistory(getHistory());
   }, []);
