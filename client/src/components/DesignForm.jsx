@@ -29,8 +29,8 @@ const DesignForm = ({ onSubmit, initialData }) => {
     numOfVariants: 4,
     outputFormat: ['jpg'],
     settings: {
-      mode: 'brand',
-      currentbId: 'sivi_sample_1',
+      mode: 'custom',
+      // currentbId: 'sivi_sample_1',
       // Styles
       colors: [],
       fontGroups: [],
@@ -253,7 +253,7 @@ const DesignForm = ({ onSubmit, initialData }) => {
         ]}
       />
 
-      <SelectInput
+      {/* <SelectInput
         label="Brand"
         value={formData.settings.mode}
         onChange={(value) => updateField('settings.mode', value)}
@@ -261,7 +261,7 @@ const DesignForm = ({ onSubmit, initialData }) => {
           { value: 'sivi_sample_1', label: 'Sivi Sample 1' },
           { value: 'sivi_sample_2', label: 'Sivi Sample 2' },
         ]}
-      />
+      /> */}
 
       <div className="colors-section">
         <label className="form-label">Colors</label>

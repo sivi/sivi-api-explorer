@@ -18,7 +18,6 @@ export const designPresets = {
       outputFormat: ['jpg'],
       settings: {
         mode: 'brand',
-        currentbId: 'sivi_sample_1',
         // Styles
         colors: [],
         fontGroups: [],
@@ -65,7 +64,6 @@ export const designPresets = {
       outputFormat: ['jpg'],
       settings: {
         mode: 'custom',
-        currentbId: 'sivi_sample_2',
         // Styles
         colors: ['#668135', '#D6DEC1', '#0E1A01'],
         fontGroups: [],
@@ -106,7 +104,6 @@ export const designPresets = {
       outputFormat: ['jpg'],
       settings: {
         mode: 'custom',
-        currentbId:'sivi_sample_1',
         // Styles
         colors: ['#00B8A4', '#0679AB', '#FFFFFF'],
         fontGroups: [],
@@ -151,7 +148,6 @@ export const designPresets = {
       outputFormat: ['jpg'],
       settings: {
         mode: 'custom',
-        currentbId: 'sivi_sample_1',
         // Styles
         colors: ['#C31E2E'],
         fontGroups: [],
@@ -192,7 +188,6 @@ export const designPresets = {
       outputFormat: ['jpg'],
       settings: {
         mode: 'brand',
-        currentbId: 'sivi_sample_1',
         // Styles
         colors: [],
         fontGroups: [],
@@ -233,7 +228,6 @@ export const designPresets = {
       outputFormat: ['jpg'],
       settings: {
         mode: 'brand',
-        currentbId: 'sivi_sample_1',
         // Styles
         colors: [],
         fontGroups: [],
