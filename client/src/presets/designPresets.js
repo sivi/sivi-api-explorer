@@ -19,8 +19,15 @@ export const designPresets = {
       settings: {
         mode: 'brand',
         // Styles
-        colors: [],
-        fontGroups: [],
+        colorsPreference: {
+          mode: 'brand',
+          customColors: [],
+          paletteStyle: []
+        },
+        fontGroupPreference: {
+          mode: 'brand',
+          fontGroups: []
+        },
         theme: [],
         frameStyle: [],
         backdropStyle: [],
@@ -65,8 +72,19 @@ export const designPresets = {
       settings: {
         mode: 'custom',
         // Styles
-        colors: ['#668135', '#D6DEC1', '#0E1A01'],
-        fontGroups: [],
+        colorsPreference: {
+          mode: 'custom',
+          customColors: [
+            { primary: false, color: '#668135', addedBy: 'user' },
+            { primary: false, color: '#D6DEC1', addedBy: 'user' },
+            { primary: false, color: '#0E1A01', addedBy: 'user' }
+          ],
+          paletteStyle: []
+        },
+        fontGroupPreference: {
+          mode: 'brand',
+          fontGroups: []
+        },
         theme: ['light'],
         frameStyle: [],
         backdropStyle: [],
@@ -105,8 +123,19 @@ export const designPresets = {
       settings: {
         mode: 'custom',
         // Styles
-        colors: ['#00B8A4', '#0679AB', '#FFFFFF'],
-        fontGroups: [],
+        colorsPreference: {
+          mode: 'custom',
+          customColors: [
+            { primary: false, color: '#00B8A4', addedBy: 'user' },
+            { primary: false, color: '#0679AB', addedBy: 'user' },
+            { primary: false, color: '#FFFFFF', addedBy: 'user' }
+          ],
+          paletteStyle: []
+        },
+        fontGroupPreference: {
+          mode: 'brand',
+          fontGroups: []
+        },
         theme: [],
         frameStyle: [],
         backdropStyle: [],
@@ -149,8 +178,17 @@ export const designPresets = {
       settings: {
         mode: 'custom',
         // Styles
-        colors: ['#C31E2E'],
-        fontGroups: [],
+        colorsPreference: {
+          mode: 'custom',
+          customColors: [
+            { primary: false, color: '#C31E2E', addedBy: 'user' }
+          ],
+          paletteStyle: []
+        },
+        fontGroupPreference: {
+          mode: 'brand',
+          fontGroups: []
+        },
         theme: ['dark'],
         frameStyle: [],
         backdropStyle: [],
@@ -189,8 +227,15 @@ export const designPresets = {
       settings: {
         mode: 'brand',
         // Styles
-        colors: [],
-        fontGroups: [],
+        colorsPreference: {
+          mode: 'brand',
+          customColors: [],
+          paletteStyle: []
+        },
+        fontGroupPreference: {
+          mode: 'brand',
+          fontGroups: []
+        },
         theme: [],
         frameStyle: [],
         backdropStyle: [],
@@ -229,8 +274,15 @@ export const designPresets = {
       settings: {
         mode: 'brand',
         // Styles
-        colors: [],
-        fontGroups: [],
+        colorsPreference: {
+          mode: 'brand',
+          customColors: [],
+          paletteStyle: []
+        },
+        fontGroupPreference: {
+          mode: 'brand',
+          fontGroups: []
+        },
         theme: [],
         frameStyle: [],
         backdropStyle: [],

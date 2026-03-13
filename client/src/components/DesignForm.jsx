@@ -32,8 +32,15 @@ const DesignForm = ({ onSubmit, initialData }) => {
       mode: 'custom',
       // currentbId: 'sivi_sample_1',
       // Styles
-      colors: [],
-      fontGroups: [],
+      colorsPreference: {
+        mode: 'custom',
+        customColors: [],
+        paletteStyle: []
+      },
+      fontGroupPreference: {
+        mode: 'custom',
+        fontGroups: []
+      },
       theme: [],
       frameStyle: [],
       backdropStyle: [],
@@ -87,7 +94,10 @@ const DesignForm = ({ onSubmit, initialData }) => {
       ...prev,
       settings: {
         ...prev.settings,
-        colors: [...prev.colors, '#bb3df5'],
+        colorsPreference: {
+          ...prev.settings.colorsPreference,
+          customColors: [...prev.settings.colorsPreference.customColors, { primary: false, color: '#bb3df5', addedBy: 'user' }],
+        }
       }
     }));
   };
@@ -95,7 +105,13 @@ const DesignForm = ({ onSubmit, initialData }) => {
   const updateColor = (index, color) => {
     setFormData(prev => ({
       ...prev,
-      colors: prev.colors.map((c, i) => i === index ? color : c)
+      settings: {
+        ...prev.settings,
+        colorsPreference: {
+          ...prev.settings.colorsPreference,
+          customColors: prev.settings.colorsPreference.customColors.map((c, i) => i === index ? { ...c, color } : c),
+        }
+      }
     }));
   };
 
@@ -104,7 +120,10 @@ const DesignForm = ({ onSubmit, initialData }) => {
       ...prev,
       settings: {
         ...prev.settings,
-      colors: prev.settings.colors.filter((_, i) => i !== index),
+        colorsPreference: {
+          ...prev.settings.colorsPreference,
+          customColors: prev.settings.colorsPreference.customColors.filter((_, i) => i !== index),
+        }
       }
     }));
   };
@@ -274,14 +293,14 @@ const DesignForm = ({ onSubmit, initialData }) => {
           >
             Add Color
           </button>
-          {formData.settings.colors.map((color, index) => (
+          {formData.settings.colorsPreference.customColors.map((colorObj, index) => (
             <div key={index} className="color-item">
               <ColorInput
-                value={color}
+                value={colorObj.color}
                 onChange={(newColor) => updateColor(index, newColor)}
                 disabled={formData.settings.mode !== 'custom'}
               />
-              {formData.settings.colors.length > 0 && (
+              {formData.settings.colorsPreference.customColors.length > 0 && (
                 <button
                   type="button"
                   onClick={() => removeColor(index)}
