@@ -1,10 +1,14 @@
 import './App.css'
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import DesignForm from './components/DesignForm'
 import ApiMonitor from './components/ApiMonitor'
+import WebhookModal from './components/WebhookModal'
+import useWebhookEvents from './hooks/useWebhookEvents'
 import { designPresets } from './presets/designPresets'
 import { getDimensionFromInput } from './utils/dimensionMapping'
 import { saveToHistory, getHistory, getHistoryItem, formatHistoryLabel } from './utils/historyStorage'
+
+const WEBHOOK_URL_KEY = 'webhookUrl';
 
 function App() {
   const [selectedPreset, setSelectedPreset] = useState('');
@@ -17,10 +21,17 @@ function App() {
   const [isPolling, setIsPolling] = useState(false);
   const [history, setHistory] = useState([]);
   const [selectedHistoryId, setSelectedHistoryId] = useState('');
+  const [showWebhookModal, setShowWebhookModal] = useState(false);
+  const [webhookEnabled, setWebhookEnabled] = useState(false);
+  const [webhookUrl, setWebhookUrl] = useState('');
 
   
   useEffect(() => {
     setHistory(getHistory());
+    const stored = localStorage.getItem(WEBHOOK_URL_KEY);
+    if (stored) {
+      setWebhookUrl(stored);
+    }
   }, []);
 
   const addLog = (message) => {
@@ -134,6 +145,16 @@ function App() {
     
     const startTime = Date.now();
     addLog('Starting API call to /designs-from-prompt');
+
+    const activeWebhookUrl = localStorage.getItem(WEBHOOK_URL_KEY);
+    const useWebhook = webhookEnabled && !!activeWebhookUrl;
+    const requestBody = useWebhook
+      ? { ...formData, webhookUrl: activeWebhookUrl }
+      : formData;
+
+    if (useWebhook) {
+      addLog(`Webhook enabled — results will be delivered to: ${activeWebhookUrl}`);
+    }
     
     try {
       const response = await fetch('http://localhost:4000/designs-from-prompt', {
@@ -141,7 +162,7 @@ function App() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(requestBody),
       });
       
       const endTime = Date.now();
@@ -157,16 +178,20 @@ function App() {
       if (data.status === 200 && data.body?.requestId) {
         addLog(`Design request queued. Request ID: ${data.body.requestId}`);
         addLog(`Queue wait time: ${data.body.queueWaitTime || 0} seconds`);
-        
-        setIsPolling(true);
-        
-        // Start polling after initial delay
-        const pollingStartLog = { timestamp: new Date().toLocaleTimeString(), message: 'Starting status polling in 5 seconds...' };
-        addLog(pollingStartLog.message);
-        const initialLogs = [...apiLogs, pollingStartLog];
-        setTimeout(() => {
-          pollDesignStatus(data.body.requestId, 0, formData, initialLogs);
-        }, 5000);
+
+        if (useWebhook) {
+          addLog('Webhook mode active — skipping polling. Waiting for webhook delivery.');
+          setIsLoading(false);
+        } else {
+          setIsPolling(true);
+          // Start polling after initial delay
+          const pollingStartLog = { timestamp: new Date().toLocaleTimeString(), message: 'Starting status polling in 5 seconds...' };
+          addLog(pollingStartLog.message);
+          const initialLogs = [...apiLogs, pollingStartLog];
+          setTimeout(() => {
+            pollDesignStatus(data.body.requestId, 0, formData, initialLogs);
+          }, 5000);
+        }
         
       } else {
         addLog('Design generation failed or returned error');
@@ -198,6 +223,62 @@ function App() {
     setIsPolling(false);
   };
 
+  const handleWebhookSaved = (url) => {
+    setWebhookUrl(url);
+    if (!url) {
+      setWebhookEnabled(false);
+    }
+  };
+
+  const handleWebhookEvent = useCallback((data) => {
+    addLog('Webhook event received from server.');
+
+    // Sivi webhook payload: { status, result } (flat)
+    // Polling envelope:     { status: 200, body: { status, result } }
+    const status = data.body?.status ?? data.status;
+    const variations = data.body?.result?.variations ?? data.result?.variations;
+
+    if (status === 'completed') {
+      addLog('Design generation completed via webhook!');
+
+      // Normalise to polling envelope shape so ApiMonitor renders identically
+      const normalised = data.body
+        ? data
+        : { status: 200, body: { status: 'completed', result: data.result } };
+      setApiResponse(normalised);
+      setIsLoading(false);
+
+      if (variations?.length) {
+        const variants = variations.map(variant => ({
+          url: variant.variantImageUrl,
+          id: variant.variantId,
+          editLink: variant.variantEditLink
+        }));
+        setDesignVariants(variants);
+        addLog(`Found ${variants.length} design variants`);
+
+        setApiInput(prev => {
+          const logs = [{ timestamp: new Date().toLocaleTimeString(), message: 'Webhook delivery completed.' }];
+          const historyId = saveToHistory(prev, normalised, logs, variants);
+          if (historyId) {
+            setHistory(getHistory());
+            addLog('Saved to history');
+          }
+          return prev;
+        });
+      } else {
+        addLog('Webhook completed but no variations found in payload.');
+      }
+    } else if (status === 'failed' || status === 'error') {
+      addLog(`Design generation failed via webhook: ${status}`);
+      setIsLoading(false);
+    } else {
+      addLog(`Webhook event status: ${status}`);
+    }
+  }, []);
+
+  useWebhookEvents(webhookEnabled, handleWebhookEvent);
+
   const handleHistorySelect = (historyId) => {
     if (!historyId) {
       setSelectedHistoryId('');
@@ -220,6 +301,13 @@ function App() {
 
   return (
     <div className="app-container">
+      {showWebhookModal && (
+        <WebhookModal
+          onClose={() => setShowWebhookModal(false)}
+          onSaved={handleWebhookSaved}
+        />
+      )}
+
       <header className="app-header">
         <h1>Sivi API Explorer</h1>
         <div className="header-controls">
@@ -256,6 +344,28 @@ function App() {
               ))}
             </select>
           </div>
+
+          <div className="webhook-controls">
+            <button
+              className="webhook-config-btn"
+              onClick={() => setShowWebhookModal(true)}
+              title="Configure webhook URL"
+            >
+              ⚙ Webhook
+            </button>
+            <label className="webhook-toggle-label" title={webhookUrl ? '' : 'Set a webhook URL first'}>
+              <input
+                type="checkbox"
+                className="webhook-toggle-input"
+                checked={webhookEnabled}
+                disabled={!webhookUrl}
+                onChange={(e) => setWebhookEnabled(e.target.checked)}
+              />
+              <span className={`webhook-toggle-text ${webhookEnabled ? 'enabled' : ''}`}>
+                {webhookEnabled ? 'Webhook ON' : 'Webhook OFF'}
+              </span>
+            </label>
+          </div>
         </div>
       </header>
       
@@ -273,10 +383,12 @@ function App() {
         <main className="main-content">
           <div className="variants-section">
             <h2>Generated Design Variations</h2>
-            {isLoading || isPolling ? (
+              {isLoading || isPolling ? (
               <div className="loading-state">
                 {isPolling ? (
                   <p>Design is being generated, please wait... (Checking for status)</p>
+                ) : isLoading && webhookEnabled && webhookUrl ? (
+                  <p>Design request submitted — results will be delivered via webhook.</p>
                 ) : (
                   <p>Generating design...</p>
                 )}

@@ -90,6 +90,60 @@ body {
   padding: 8px;
 }
 
+.webhook-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.webhook-config-btn {
+  padding: 8px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.webhook-config-btn:hover {
+  background: rgba(255, 255, 255, 0.18);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.webhook-toggle-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.webhook-toggle-input {
+  width: 16px;
+  height: 16px;
+  accent-color: #5662EC;
+  cursor: pointer;
+}
+
+.webhook-toggle-input:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+.webhook-toggle-text {
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.55);
+  white-space: nowrap;
+  transition: color 0.2s ease;
+}
+
+.webhook-toggle-text.enabled {
+  color: #6bcb77;
+}
+
 .app-header h1 {
   font-size: 24px;
   font-weight: 700;
