@@ -1,12 +1,11 @@
 /* API Monitor Component */
 .api-monitor {
-  flex: 0 0 30%;
   display: flex;
   flex-direction: column;
   background: #000000;
   border-radius: 0;
   border: 1px solid rgba(255, 255, 255, 0.1);
-  max-height: 30vh;
+  height: 100%;
   overflow: hidden;
 }
 

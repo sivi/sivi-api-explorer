@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import './ApiMonitor.css';
-import { getDimensionFromInput } from '../utils/dimensionMapping';
-
-const ApiMonitor = ({ apiLogs, apiResponse, apiInput, designVariants, onClearLogs }) => {
+const ApiMonitor = ({ apiLogs, apiResponse, apiInput, onClearLogs }) => {
   const [activeTab, setActiveTab] = useState('logs');
 
   return (

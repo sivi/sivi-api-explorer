@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
+import { API_BASE } from '../api/client.js';
 
-const SSE_URL = 'http://localhost:4000/webhook/events';
+const SSE_URL = `${API_BASE}/webhook/events`;
 
 const useWebhookEvents = (enabled, onEvent) => {
   const esRef = useRef(null);

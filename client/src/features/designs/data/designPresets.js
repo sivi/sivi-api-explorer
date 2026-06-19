@@ -1,6 +1,8 @@
 export const designPresets = {
+  // Designs from Prompt presets
   simple: {
     name: "Simple",
+    flows: ['designs-from-prompt', 'designs-from-content'],
     data: {
       type: 'amazon',
       subtype: 'amazon-square',
@@ -39,6 +41,7 @@ export const designPresets = {
 
   ecommerceCategory: {
     name: "E-commerce Category",
+    flows: ['designs-from-prompt', 'designs-from-content'],
     data: {
       type: 'website',
       subtype: 'website-large-square',
@@ -96,6 +99,7 @@ export const designPresets = {
 
   socialMedia: {
     name: "Social Media",
+    flows: ['designs-from-prompt', 'designs-from-content'],
     data: {
       type: 'twitter',
       subtype: 'twitter-post',
@@ -147,6 +151,7 @@ export const designPresets = {
 
   brandAwareness: {
     name: "Brand Awareness",
+    flows: ['designs-from-prompt', 'designs-from-content'],
     data: {
       type: 'displayAds',
       subtype: 'displayAds-half-page-ad',
@@ -200,6 +205,7 @@ export const designPresets = {
 
   videoThumbnail: {
     name: "Video Thumbnail",
+    flows: ['designs-from-prompt', 'designs-from-content'],
     data: {
       type: 'youtube',
       subtype: 'youtube-thumbnail-small',
@@ -247,6 +253,7 @@ export const designPresets = {
 
   profileCover: {
     name: "Profile Cover",
+    flows: ['designs-from-prompt', 'designs-from-content'],
     data: {
       type: 'facebook',
       subtype: 'facebook-cover',
@@ -290,5 +297,43 @@ export const designPresets = {
         imageStyle: [],
       }
     }
-  }
+  },
+  // Content from Prompt presets
+  contentSummerSale: {
+    name: "Summer Sale Content",
+    flows: ['content-from-prompt'],
+    data: {
+      type: 'displayAds',
+      subtype: 'displayAds-half-page-ad',
+      dimension: { width: 300, height: 600 },
+      prompt: 'Generate catchy headlines and descriptions for a summer sale campaign with 20% off on all t-shirts',
+      language: 'english',
+    }
+  },
+  contentRealEstate: {
+    name: "Real Estate Content",
+    flows: ['content-from-prompt'],
+    data: {
+      type: 'displayAds',
+      subtype: 'displayAds-half-page-ad',
+      dimension: { width: 300, height: 600 },
+      prompt: 'Create engaging content for a real estate agency promoting luxury apartments in the city center',
+      language: 'english',
+    }
+  },
+  // Extract Brand presets
+  extractSivi: {
+    name: "Extract Sivi Brand",
+    flows: ['extract-brand'],
+    data: {
+      brandUrl: 'https://sivi.ai',
+    }
+  },
+  extractExample: {
+    name: "Extract Example Brand",
+    flows: ['extract-brand'],
+    data: {
+      brandUrl: 'https://example.com',
+    }
+  },
 };

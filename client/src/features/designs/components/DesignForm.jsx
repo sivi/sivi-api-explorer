@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import './FormComponents.css';
+import { message } from 'antd';
+import '../../../components/common/FormComponents.css';
 import {
   TextInput,
   TextAreaInput,
@@ -9,7 +10,7 @@ import {
   ColorInput,
   DynamicList,
   UrlInput
-} from './FormComponents';
+} from '../../../components/common/FormComponents';
 import { designTypes, getSubtypesForType, getDimensionsForSubtype, requiresCustomDimensions } from '../data/designTypes';
 
 const DesignForm = ({ onSubmit, initialData }) => {
@@ -193,6 +194,14 @@ const DesignForm = ({ onSubmit, initialData }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!formData.prompt.trim()) {
+      message.error('Prompt is required');
+      return;
+    }
+    if (formData.numOfVariants < 1 || formData.numOfVariants > 10) {
+      message.error('Number of variants must be between 1 and 10');
+      return;
+    }
     onSubmit(formData);
   };
 
@@ -237,13 +246,15 @@ const DesignForm = ({ onSubmit, initialData }) => {
         </div>
       )}
 
-      <TextAreaInput
-        label="Prompt"
-        value={formData.prompt}
-        onChange={(value) => updateField('prompt', value)}
-        placeholder="Describe your design requirements..."
-        rows={6}
-      />
+      <div className="required-field">
+        <TextAreaInput
+          label="Prompt"
+          value={formData.prompt}
+          onChange={(value) => updateField('prompt', value)}
+          placeholder="Describe your design requirements..."
+          rows={6}
+        />
+      </div>
 
       <DynamicList
         label="Images"

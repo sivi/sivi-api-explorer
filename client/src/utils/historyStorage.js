@@ -1,15 +1,15 @@
 const HISTORY_KEY = 'sivi_api_history';
 const MAX_HISTORY_ITEMS = 50;
 
-export const saveToHistory = (apiInput, apiResponse, apiLogs, designVariants) => {
+export const saveToHistory = (apiInput, apiResponse, apiLogs, designVariants, flowKey = 'unknown') => {
   try {
     // Only save if we have valid apiInput data
     if (!apiInput) {
       console.warn('Cannot save to history: apiInput is null or undefined', { apiInput, apiResponse, apiLogs, designVariants });
       return null;
     }
-    
-    console.log('Saving to history with data:', { apiInput, apiResponse, apiLogs, designVariants });
+
+    console.log('Saving to history with data:', { apiInput, apiResponse, apiLogs, designVariants, flowKey });
 
     const historyItem = {
       id: Date.now().toString(),
@@ -18,6 +18,7 @@ export const saveToHistory = (apiInput, apiResponse, apiLogs, designVariants) =>
       dimensions: apiInput?.dimension || { width: 300, height: 300 },
       type: apiInput?.type || 'unknown',
       subtype: apiInput?.subtype || 'unknown',
+      flowKey,
       apiInput,
       apiResponse,
       apiLogs,
