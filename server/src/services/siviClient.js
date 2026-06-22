@@ -35,8 +35,9 @@ const siviClient = {
     });
 
     if (!response.ok) {
+      const errorBody = await response.text().catch(() => '');
       throw new SiviApiError(
-        `Sivi API GET ${endpoint} failed with status ${response.status}`,
+        `Sivi API GET ${endpoint} failed with status ${response.status}: ${errorBody}`,
         response.status
       );
     }
@@ -58,8 +59,9 @@ const siviClient = {
     });
 
     if (!response.ok) {
+      const errorBody = await response.text().catch(() => '');
       throw new SiviApiError(
-        `Sivi API POST ${endpoint} failed with status ${response.status}`,
+        `Sivi API POST ${endpoint} failed with status ${response.status}: ${errorBody}`,
         response.status
       );
     }

@@ -28,6 +28,41 @@ export const FLOW_GROUPS = [
       { label: 'Update Brand', value: 'update-brand' },
     ],
   },
+  {
+    label: 'Media',
+    value: 'media',
+    children: [
+      { label: 'List Media', value: 'get-media' },
+      { label: 'Create Media', value: 'create-media' },
+      { label: 'Update Media', value: 'update-media' },
+      { label: 'Delete Media', value: 'delete-media' },
+      { label: 'Generate Media', value: 'generate-media' },
+    ],
+  },
+  {
+    label: 'Files',
+    value: 'files',
+    children: [
+      { label: 'Get Presigned URL', value: 'get-presigned-url' },
+    ],
+  },
+  {
+    label: 'Fonts',
+    value: 'fonts',
+    children: [
+      { label: 'Get Fonts', value: 'get-fonts' },
+      { label: 'Upload Fonts', value: 'upload-fonts' },
+    ],
+  },
+  {
+    label: 'User Management API',
+    value: 'user-management',
+    children: [
+      { label: 'login-user', value: 'login-user' },
+      { label: 'delete-user', value: 'delete-user' },
+      { label: 'set-user-credit-limit', value: 'set-user-credit-limit' },
+    ],
+  },
 ]
 
 export const FLOW_KEY_MAP = Object.fromEntries(

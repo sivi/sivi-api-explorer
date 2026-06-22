@@ -1,5 +1,5 @@
 import './App.css'
-import React, { useState, useEffect, useCallback, useRef } from 'react'
+import React, { useState, useEffect, useCallback, useRef, useMemo } from 'react'
 import { Cascader } from 'antd'
 import DesignForm from './features/designs/components/DesignForm'
 import DesignsFromContentForm from './features/designs/components/DesignsFromContentForm'
@@ -11,6 +11,15 @@ import BrandExtractForm from './features/brand/components/BrandExtractForm'
 import BrandSetDefaultForm from './features/brand/components/BrandSetDefaultForm'
 import BrandArchiveForm from './features/brand/components/BrandArchiveForm'
 import BrandUpdateForm from './features/brand/components/BrandUpdateForm'
+import UserManagementForm from './features/user/components/UserManagementForm'
+import MediaListPanel from './features/media/components/MediaListPanel'
+import MediaCreateForm from './features/media/components/MediaCreateForm'
+import MediaUpdateForm from './features/media/components/MediaUpdateForm'
+import MediaDeleteForm from './features/media/components/MediaDeleteForm'
+import MediaGenerateForm from './features/media/components/MediaGenerateForm'
+import FilePresignedUrlForm from './features/files/components/FilePresignedUrlForm'
+import FontListPanel from './features/fonts/components/FontListPanel'
+import FontUploadForm from './features/fonts/components/FontUploadForm'
 import ApiMonitor from './components/layout/ApiMonitor'
 import WebhookModal from './components/common/WebhookModal'
 import { useAppContext } from './context/useAppContext.js'
@@ -18,6 +27,10 @@ import { useDesignGeneration } from './features/designs/hooks/useDesignGeneratio
 // content-from-prompt is also async (returns requestId) so it uses useDesignGeneration
 import { useUtilityFlow } from './features/utilities/hooks/useUtilityFlow.js'
 import { useBrandFlow } from './features/brand/hooks/useBrandFlow.js'
+import { useMediaFlow } from './features/media/hooks/useMediaFlow.js'
+import { useFileFlow } from './features/files/hooks/useFileFlow.js'
+import { useFontFlow } from './features/fonts/hooks/useFontFlow.js'
+import { useUserFlow } from './features/user/hooks/useUserFlow.js'
 import useWebhookEvents from './hooks/useWebhookEvents'
 import { coreApi } from './api/core.js'
 import { designPresets } from './features/designs/data/designPresets'
@@ -26,7 +39,10 @@ import { FLOW_GROUPS, FLOW_KEY_MAP, findFlowPath } from './config/flows.js'
 import DesignVariantsResult from './components/results/DesignVariantsResult.jsx'
 import ContentResult from './components/results/ContentResult.jsx'
 import BrandResult from './components/results/BrandResult.jsx'
+import MediaResult from './components/results/MediaResult.jsx'
+import FontResult from './components/results/FontResult.jsx'
 import StatusResult from './components/results/StatusResult.jsx'
+import JsonResult from './components/results/JsonResult.jsx'
 
 const WEBHOOK_URL_KEY = 'webhookUrl'
 
@@ -43,6 +59,17 @@ const FLOW_TITLES = {
   'set-default-brand': 'Brand Result',
   'archive-brand': 'Brand Result',
   'update-brand': 'Brand Result',
+  'get-media': 'Media',
+  'create-media': 'Media Result',
+  'update-media': 'Media Result',
+  'delete-media': 'Media Result',
+  'generate-media': 'Media Result',
+  'get-presigned-url': 'Presigned URL',
+  'get-fonts': 'Font Result',
+  'upload-fonts': 'Font Upload',
+  'login-user': 'User Login Response',
+  'delete-user': 'User Delete Response',
+  'set-user-credit-limit': 'Credit Limit Response',
 }
 
 /** Map each flow to its result renderer component */
@@ -63,6 +90,22 @@ function getResultComponent(flowKey, { apiResponse, designVariants, apiInput }) 
       return <BrandResult apiResponse={apiResponse} />
     case 'request-status':
       return <StatusResult apiResponse={apiResponse} />
+    case 'get-media':
+    case 'create-media':
+    case 'update-media':
+    case 'delete-media':
+    case 'generate-media':
+      return <MediaResult apiResponse={apiResponse} />
+    case 'get-presigned-url':
+      return <StatusResult apiResponse={apiResponse} />
+    case 'get-fonts':
+      return <FontResult apiResponse={apiResponse} />
+    case 'upload-fonts':
+      return <StatusResult apiResponse={apiResponse} />
+    case 'login-user':
+    case 'delete-user':
+    case 'set-user-credit-limit':
+      return <JsonResult apiResponse={apiResponse} />
     default:
       return null
   }
@@ -122,6 +165,20 @@ function App() {
     handleWebhookEvent: handleExtractBrandWebhook,
   } = useBrandFlow(activeFlow)
 
+  const {
+    submit: submitMedia,
+    handleWebhookEvent: handleGenerateMediaWebhook,
+  } = useMediaFlow(activeFlow)
+
+  const { submit: submitFile } = useFileFlow(activeFlow)
+
+  const {
+    submit: submitFont,
+    handleWebhookEvent: handleUploadFontWebhook,
+  } = useFontFlow(activeFlow)
+
+  const { submit: submitUser } = useUserFlow(activeFlow)
+
   // Webhook routing: all async job flows share the same SSE channel
   const handleWebhookEvent = useCallback(
     (data) => {
@@ -133,11 +190,17 @@ function App() {
         handleContentPromptWebhook(data)
       } else if (activeFlow === 'extract-brand') {
         handleExtractBrandWebhook(data)
+      } else if (activeFlow === 'generate-media') {
+        handleGenerateMediaWebhook(data)
+      } else if (activeFlow === 'upload-fonts') {
+        handleUploadFontWebhook(data)
       } else {
-        addLog('Webhook event received but no active job flow is listening.')
+        const eventType = data.body?.eventType ?? data.eventType;
+        const status = data.body?.status ?? data.status;
+        addLog(`Webhook event: eventType=${eventType || 'unknown'}, status=${status || 'unknown'} — no active job flow is listening.`)
       }
     },
-    [activeFlow, handlePromptWebhook, handleContentWebhook, handleContentPromptWebhook, handleExtractBrandWebhook, addLog]
+    [activeFlow, handlePromptWebhook, handleContentWebhook, handleContentPromptWebhook, handleExtractBrandWebhook, handleGenerateMediaWebhook, handleUploadFontWebhook, addLog]
   )
 
   useWebhookEvents(webhookEnabled, handleWebhookEvent)
@@ -269,6 +332,29 @@ function App() {
       case 'extract-brand':
         submitBrand(formData, webhookEnabled)
         break
+      case 'get-media':
+      case 'create-media':
+      case 'update-media':
+      case 'delete-media':
+        submitMedia(formData)
+        break
+      case 'generate-media':
+        submitMedia(formData, webhookEnabled)
+        break
+      case 'get-presigned-url':
+        submitFile(formData)
+        break
+      case 'get-fonts':
+        submitFont(formData)
+        break
+      case 'upload-fonts':
+        submitFont(formData, webhookEnabled)
+        break
+      case 'login-user':
+      case 'delete-user':
+      case 'set-user-credit-limit':
+        submitUser(formData)
+        break
       default:
         addLog(`Unknown flow: ${activeFlow}`)
     }
@@ -279,6 +365,8 @@ function App() {
     : selectedHistoryId
     ? getHistoryItem(selectedHistoryId)?.apiInput
     : null
+
+  const activeFlowPath = useMemo(() => findFlowPath(activeFlow), [activeFlow])
 
   const renderForm = () => {
     switch (activeFlow) {
@@ -322,6 +410,33 @@ function App() {
         return <BrandArchiveForm onSubmit={handleFlowSubmit} initialData={initialFormData} />
       case 'update-brand':
         return <BrandUpdateForm onSubmit={handleFlowSubmit} initialData={initialFormData} />
+      case 'get-media':
+        return <MediaListPanel onSubmit={handleFlowSubmit} initialData={initialFormData} />
+      case 'create-media':
+        return <MediaCreateForm onSubmit={handleFlowSubmit} initialData={initialFormData} />
+      case 'update-media':
+        return <MediaUpdateForm onSubmit={handleFlowSubmit} initialData={initialFormData} />
+      case 'delete-media':
+        return <MediaDeleteForm onSubmit={handleFlowSubmit} initialData={initialFormData} />
+      case 'generate-media':
+        return <MediaGenerateForm onSubmit={handleFlowSubmit} initialData={initialFormData} />
+      case 'get-presigned-url':
+        return <FilePresignedUrlForm onSubmit={handleFlowSubmit} initialData={initialFormData} />
+      case 'get-fonts':
+        return <FontListPanel onSubmit={handleFlowSubmit} initialData={initialFormData} />
+      case 'upload-fonts':
+        return <FontUploadForm onSubmit={handleFlowSubmit} initialData={initialFormData} />
+      case 'login-user':
+      case 'delete-user':
+      case 'set-user-credit-limit':
+        return (
+          <UserManagementForm
+            key={formKey}
+            flowKey={activeFlow}
+            onSubmit={handleFlowSubmit}
+            initialData={initialFormData}
+          />
+        )
       default:
         return (
           <div className="placeholder-flow">
@@ -375,7 +490,7 @@ function App() {
             <Cascader
               className="flow-cascader"
               options={FLOW_GROUPS}
-              value={findFlowPath(activeFlow)}
+              value={activeFlowPath}
               onChange={(value) => {
                 if (value && value.length >= 2) {
                   handleFlowChange(value[value.length - 1])
@@ -392,6 +507,8 @@ function App() {
             'designs-from-content',
             'content-from-prompt',
             'extract-brand',
+            'generate-media',
+            'upload-fonts',
           ].includes(activeFlow) && (
             <div className="preset-selector">
               <label htmlFor="preset-dropdown" className="preset-label">

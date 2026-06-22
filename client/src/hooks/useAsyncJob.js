@@ -128,8 +128,16 @@ export function useAsyncJob(submitApi, endpointLabel, options = {}) {
 
   const handleWebhookEvent = useCallback(
     (data) => {
-      addLog('Webhook event received from server.');
       const status = data.body?.status ?? data.status;
+      const eventType = data.body?.eventType ?? data.eventType;
+      const requestId = data.body?.requestId ?? data.requestId;
+      const logParts = [
+        'Webhook event:',
+        eventType && `eventType=${eventType}`,
+        status && `status=${status}`,
+        requestId && `requestId=${requestId}`,
+      ].filter(Boolean);
+      addLog(logParts.join(' '));
 
       if (status === 'completed') {
         addLog('Job completed via webhook!');
