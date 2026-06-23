@@ -102,7 +102,7 @@ function renderBrandCard(brand, key) {
                   src={logo}
                   alt={`${name} logo ${i + 1}`}
                   className="brand-image"
-                  style={{ objectFit: 'contain', padding: '8px', background: '#fff' }}
+                  style={{ objectFit: 'contain', padding: '8px' }}
                   loading="lazy"
                 />
               ))}
@@ -256,7 +256,6 @@ export default function BrandResult({ apiResponse, onLoadMore, hasMore, isLoadin
   if (Object.keys(body || {}).length > 0) {
     return (
       <div className="brand-card brand-card-single">
-        <h4>Response</h4>
         <pre className="brand-raw">{JSON.stringify(body, null, 2)}</pre>
       </div>
     );

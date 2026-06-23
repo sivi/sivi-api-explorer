@@ -5,6 +5,23 @@ import {
   TextAreaInput,
   ColorInput,
 } from '~/components/common/FormComponents';
+import { brandApi } from '~/api/brand.js';
+
+const normalizeColor = (color) => {
+  if (typeof color === 'string') return color;
+  if (color && typeof color === 'object') {
+    return color.primary || color.color || color.hex || '#000000';
+  }
+  return String(color);
+};
+
+const formatList = (value) => {
+  if (typeof value === 'string') return value;
+  if (Array.isArray(value)) return value.map((item) => (typeof item === 'string' ? item : (item?.name || item?.id || String(item)))).filter(Boolean).join(', ');
+  return '';
+};
+
+const parseList = (str) => str.split(',').map((s) => s.trim()).filter(Boolean);
 
 const BrandUpdateForm = ({ onSubmit, initialData }) => {
   const [formData, setFormData] = useState({
@@ -13,13 +30,13 @@ const BrandUpdateForm = ({ onSubmit, initialData }) => {
     brandDescription: initialData?.brandDescription || '',
     brandUrl: initialData?.brandUrl || '',
     brandLogo: initialData?.brandLogo || '',
-    brandColors: initialData?.brandColors || ['#5662EC'],
-    brandFonts: initialData?.brandFonts || [],
+    brandColors: initialData?.brandColors?.map(normalizeColor) || ['#5662EC'],
+    brandFonts: formatList(initialData?.brandFonts),
     brandPersona: {
-      emotions: initialData?.brandPersona?.emotions || [],
+      emotions: formatList(initialData?.brandPersona?.emotions),
       industry: initialData?.brandPersona?.industry || '',
-      audience: initialData?.brandPersona?.audience || [],
-      designTags: initialData?.brandPersona?.designTags || [],
+      audience: formatList(initialData?.brandPersona?.audience),
+      designTags: formatList(initialData?.brandPersona?.designTags),
     },
     imageGenPreference: { model: initialData?.imageGenPreference?.model || '' },
     textGenPreference: { model: initialData?.textGenPreference?.model || '' },
@@ -32,6 +49,56 @@ const BrandUpdateForm = ({ onSubmit, initialData }) => {
     },
     abstractUserId: initialData?.abstractUserId || '',
   });
+
+  const [isFetching, setIsFetching] = useState(false);
+
+  const handleFetchBrand = async () => {
+    if (!formData.bId.trim()) {
+      message.error('Brand ID is required');
+      return;
+    }
+    setIsFetching(true);
+    try {
+      const response = await brandApi.getBrands({ bId: formData.bId.trim() });
+      const body = response.body ?? response;
+      const result = body?.result ?? body;
+      const brand = result?.brand ?? result?.brands?.[0];
+      if (!brand) {
+        message.error('Brand not found');
+        return;
+      }
+      setFormData({
+        bId: brand.bId || brand.brandId || formData.bId,
+        brandName: brand.brandName || brand.name || '',
+        brandDescription: brand.brandDescription || brand.description || '',
+        brandUrl: brand.brandUrl || '',
+        brandLogo: brand.brandLogo || (brand.brandLogos?.[0]) || (brand.logos?.[0]) || '',
+        brandColors: (brand.brandColors || brand.colors || ['#5662EC']).map(normalizeColor),
+        brandFonts: formatList(brand.brandFonts || brand.fonts || []),
+        brandPersona: {
+          emotions: formatList(brand.brandPersona?.emotions || brand.persona?.emotions || []),
+          industry: brand.brandPersona?.industry || brand.persona?.industry || '',
+          audience: formatList(brand.brandPersona?.audience || brand.persona?.audience || []),
+          designTags: formatList(brand.brandPersona?.designTags || brand.persona?.designTags || []),
+        },
+        imageGenPreference: { model: brand.imageGenPreference?.model || '' },
+        textGenPreference: { model: brand.textGenPreference?.model || '' },
+        genModePreference: {
+          compose: {
+            type: brand.genModePreference?.compose?.type || '',
+            model: brand.genModePreference?.compose?.model || '',
+            sizeType: brand.genModePreference?.compose?.sizeType || '',
+          },
+        },
+        abstractUserId: brand.abstractUserId || '',
+      });
+      message.success('Brand details loaded');
+    } catch (err) {
+      message.error(`Failed to fetch brand: ${err.message}`);
+    } finally {
+      setIsFetching(false);
+    }
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -46,13 +113,13 @@ const BrandUpdateForm = ({ onSubmit, initialData }) => {
     if (formData.brandUrl.trim()) payload.brandUrl = formData.brandUrl.trim();
     if (formData.brandLogo.trim()) payload.brandLogo = formData.brandLogo.trim();
     if (formData.brandColors.length) payload.brandColors = formData.brandColors;
-    if (formData.brandFonts.length) payload.brandFonts = formData.brandFonts;
+    if (formData.brandFonts.trim()) payload.brandFonts = parseList(formData.brandFonts);
 
     const persona = {};
-    if (formData.brandPersona.emotions.length) persona.emotions = formData.brandPersona.emotions;
+    if (parseList(formData.brandPersona.emotions).length) persona.emotions = parseList(formData.brandPersona.emotions);
     if (formData.brandPersona.industry) persona.industry = formData.brandPersona.industry;
-    if (formData.brandPersona.audience.length) persona.audience = formData.brandPersona.audience;
-    if (formData.brandPersona.designTags.length) persona.designTags = formData.brandPersona.designTags;
+    if (parseList(formData.brandPersona.audience).length) persona.audience = parseList(formData.brandPersona.audience);
+    if (parseList(formData.brandPersona.designTags).length) persona.designTags = parseList(formData.brandPersona.designTags);
     if (Object.keys(persona).length) payload.brandPersona = persona;
 
     if (formData.imageGenPreference.model.trim()) {
@@ -92,8 +159,6 @@ const BrandUpdateForm = ({ onSubmit, initialData }) => {
     }));
   };
 
-  const parseList = (str) => str.split(',').map((s) => s.trim()).filter(Boolean);
-
   return (
     <form onSubmit={handleSubmit} className="design-form">
       <h3 className="form-section-title">Update Brand</h3>
@@ -106,6 +171,15 @@ const BrandUpdateForm = ({ onSubmit, initialData }) => {
           onChange={(v) => setFormData((prev) => ({ ...prev, bId: v }))}
           placeholder="e.g. b_s87vFxpfM0R"
         />
+        <button
+          type="button"
+          className="add-button"
+          onClick={handleFetchBrand}
+          disabled={isFetching}
+          style={{ marginTop: 8 }}
+        >
+          {isFetching ? 'Fetching...' : 'Fetch Brand'}
+        </button>
       </div>
       <TextInput
         label="Brand Name"
@@ -148,10 +222,11 @@ const BrandUpdateForm = ({ onSubmit, initialData }) => {
               {formData.brandColors.length > 1 && (
                 <button
                   type="button"
-                  className="remove-button"
+                  className="color-remove"
                   onClick={() => removeColor(index)}
+                  title="Remove color"
                 >
-                  Remove
+                  ×
                 </button>
               )}
             </div>
@@ -162,6 +237,12 @@ const BrandUpdateForm = ({ onSubmit, initialData }) => {
         </div>
       </div>
 
+      <TextInput
+        label="Brand Fonts (comma-separated)"
+        value={formData.brandFonts}
+        onChange={(v) => setFormData((prev) => ({ ...prev, brandFonts: v }))}
+        placeholder="e.g. Inter, Roboto"
+      />
       <TextInput
         label="Industry"
         value={formData.brandPersona.industry}
@@ -175,33 +256,33 @@ const BrandUpdateForm = ({ onSubmit, initialData }) => {
       />
       <TextInput
         label="Emotions (comma-separated)"
-        value={formData.brandPersona.emotions.join(', ')}
+        value={formData.brandPersona.emotions}
         onChange={(v) =>
           setFormData((prev) => ({
             ...prev,
-            brandPersona: { ...prev.brandPersona, emotions: parseList(v) },
+            brandPersona: { ...prev.brandPersona, emotions: v },
           }))
         }
         placeholder="e.g. excited, happy"
       />
       <TextInput
         label="Audience (comma-separated)"
-        value={formData.brandPersona.audience.join(', ')}
+        value={formData.brandPersona.audience}
         onChange={(v) =>
           setFormData((prev) => ({
             ...prev,
-            brandPersona: { ...prev.brandPersona, audience: parseList(v) },
+            brandPersona: { ...prev.brandPersona, audience: v },
           }))
         }
         placeholder="e.g. tech enthusiasts, working moms"
       />
       <TextInput
         label="Design Tags (comma-separated)"
-        value={formData.brandPersona.designTags.join(', ')}
+        value={formData.brandPersona.designTags}
         onChange={(v) =>
           setFormData((prev) => ({
             ...prev,
-            brandPersona: { ...prev.brandPersona, designTags: parseList(v) },
+            brandPersona: { ...prev.brandPersona, designTags: v },
           }))
         }
         placeholder="e.g. minimal, innovative"

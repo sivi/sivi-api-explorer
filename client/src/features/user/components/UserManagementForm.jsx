@@ -7,6 +7,12 @@ import {
   ColorInput,
 } from '~/components/common/FormComponents';
 
+const formatList = (value) => {
+  if (typeof value === 'string') return value;
+  if (Array.isArray(value)) return value.map((item) => (typeof item === 'string' ? item : (item?.name || item?.id || String(item)))).filter(Boolean).join(', ');
+  return '';
+};
+
 const parseList = (str) => str.split(',').map((s) => s.trim()).filter(Boolean);
 
 const UserManagementForm = ({ flowKey, onSubmit, initialData }) => {
@@ -33,12 +39,12 @@ const LoginUserForm = ({ onSubmit, initialData }) => {
       brandUrl: initialData?.brand?.brandUrl || '',
       brandLogo: initialData?.brand?.brandLogo || '',
       brandColors: initialData?.brand?.brandColors || ['#5662EC'],
-      brandFonts: initialData?.brand?.brandFonts || [],
+      brandFonts: formatList(initialData?.brand?.brandFonts),
       brandPersona: {
-        emotions: initialData?.brand?.brandPersona?.emotions || [],
+        emotions: formatList(initialData?.brand?.brandPersona?.emotions),
         industry: initialData?.brand?.brandPersona?.industry || '',
-        audience: initialData?.brand?.brandPersona?.audience || [],
-        designTags: initialData?.brand?.brandPersona?.designTags || [],
+        audience: formatList(initialData?.brand?.brandPersona?.audience),
+        designTags: formatList(initialData?.brand?.brandPersona?.designTags),
       },
     },
     showBrand: false,
@@ -86,12 +92,12 @@ const LoginUserForm = ({ onSubmit, initialData }) => {
         ...(formData.brand.brandUrl.trim() && { brandUrl: formData.brand.brandUrl.trim() }),
         ...(formData.brand.brandLogo.trim() && { brandLogo: formData.brand.brandLogo.trim() }),
         ...(formData.brand.brandColors.length > 0 && { brandColors: formData.brand.brandColors }),
-        ...(formData.brand.brandFonts.length > 0 && { brandFonts: formData.brand.brandFonts }),
+        ...(formData.brand.brandFonts.trim() && { brandFonts: parseList(formData.brand.brandFonts) }),
         brandPersona: {
-          ...(formData.brand.brandPersona.emotions.length > 0 && { emotions: formData.brand.brandPersona.emotions }),
+          ...(parseList(formData.brand.brandPersona.emotions).length > 0 && { emotions: parseList(formData.brand.brandPersona.emotions) }),
           ...(formData.brand.brandPersona.industry.trim() && { industry: formData.brand.brandPersona.industry.trim() }),
-          ...(formData.brand.brandPersona.audience.length > 0 && { audience: formData.brand.brandPersona.audience }),
-          ...(formData.brand.brandPersona.designTags.length > 0 && { designTags: formData.brand.brandPersona.designTags }),
+          ...(parseList(formData.brand.brandPersona.audience).length > 0 && { audience: parseList(formData.brand.brandPersona.audience) }),
+          ...(parseList(formData.brand.brandPersona.designTags).length > 0 && { designTags: parseList(formData.brand.brandPersona.designTags) }),
         },
       };
       if (Object.keys(brand.brandPersona).length === 0) {
@@ -196,8 +202,8 @@ const LoginUserForm = ({ onSubmit, initialData }) => {
                 <div key={index} className="color-list-item">
                   <ColorInput label="" value={color} onChange={(v) => updateColor(index, v)} />
                   {formData.brand.brandColors.length > 1 && (
-                    <button type="button" className="remove-button" onClick={() => removeColor(index)}>
-                      Remove
+                    <button type="button" className="color-remove" onClick={() => removeColor(index)} title="Remove color">
+                      ×
                     </button>
                   )}
                 </div>
@@ -210,8 +216,8 @@ const LoginUserForm = ({ onSubmit, initialData }) => {
 
           <TextInput
             label="Brand Fonts (comma-separated)"
-            value={formData.brand.brandFonts.join(', ')}
-            onChange={(v) => updateField('brand.brandFonts', parseList(v))}
+            value={formData.brand.brandFonts}
+            onChange={(v) => updateField('brand.brandFonts', v)}
             placeholder="e.g. Inter, Roboto"
           />
 
@@ -224,20 +230,20 @@ const LoginUserForm = ({ onSubmit, initialData }) => {
           />
           <TextInput
             label="Emotions (comma-separated)"
-            value={formData.brand.brandPersona.emotions.join(', ')}
-            onChange={(v) => updateField('brand.brandPersona.emotions', parseList(v))}
+            value={formData.brand.brandPersona.emotions}
+            onChange={(v) => updateField('brand.brandPersona.emotions', v)}
             placeholder="e.g. happy, excited, innovative"
           />
           <TextInput
             label="Audience (comma-separated)"
-            value={formData.brand.brandPersona.audience.join(', ')}
-            onChange={(v) => updateField('brand.brandPersona.audience', parseList(v))}
+            value={formData.brand.brandPersona.audience}
+            onChange={(v) => updateField('brand.brandPersona.audience', v)}
             placeholder="e.g. working mom, working dad"
           />
           <TextInput
             label="Design Tags (comma-separated)"
-            value={formData.brand.brandPersona.designTags.join(', ')}
-            onChange={(v) => updateField('brand.brandPersona.designTags', parseList(v))}
+            value={formData.brand.brandPersona.designTags}
+            onChange={(v) => updateField('brand.brandPersona.designTags', v)}
             placeholder="e.g. minimal, productivity, health"
           />
         </>

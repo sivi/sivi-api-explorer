@@ -6,6 +6,12 @@ import {
   ColorInput,
 } from '~/components/common/FormComponents';
 
+const formatList = (value) => {
+  if (typeof value === 'string') return value;
+  if (Array.isArray(value)) return value.map((item) => (typeof item === 'string' ? item : (item?.name || item?.id || String(item)))).filter(Boolean).join(', ');
+  return '';
+};
+
 const parseList = (str) => str.split(',').map((s) => s.trim()).filter(Boolean);
 
 const BrandCreateForm = ({ onSubmit, initialData }) => {
@@ -15,12 +21,12 @@ const BrandCreateForm = ({ onSubmit, initialData }) => {
     brandUrl: initialData?.brandUrl || '',
     brandLogo: initialData?.brandLogo || '',
     brandColors: initialData?.brandColors || ['#5662EC'],
-    brandFonts: initialData?.brandFonts || [],
+    brandFonts: formatList(initialData?.brandFonts),
     brandPersona: {
-      emotions: initialData?.brandPersona?.emotions || [],
+      emotions: formatList(initialData?.brandPersona?.emotions),
       industry: initialData?.brandPersona?.industry || '',
-      audience: initialData?.brandPersona?.audience || [],
-      designTags: initialData?.brandPersona?.designTags || [],
+      audience: formatList(initialData?.brandPersona?.audience),
+      designTags: formatList(initialData?.brandPersona?.designTags),
     },
     abstractUserId: initialData?.abstractUserId || '',
   });
@@ -66,12 +72,12 @@ const BrandCreateForm = ({ onSubmit, initialData }) => {
       ...(formData.brandUrl && { brandUrl: formData.brandUrl }),
       ...(formData.brandLogo && { brandLogo: formData.brandLogo }),
       brandColors: formData.brandColors,
-      brandFonts: formData.brandFonts,
+      ...(formData.brandFonts.trim() && { brandFonts: parseList(formData.brandFonts) }),
       brandPersona: {
-        ...(formData.brandPersona.emotions.length > 0 && { emotions: formData.brandPersona.emotions }),
+        ...(parseList(formData.brandPersona.emotions).length > 0 && { emotions: parseList(formData.brandPersona.emotions) }),
         ...(formData.brandPersona.industry && { industry: formData.brandPersona.industry }),
-        ...(formData.brandPersona.audience.length > 0 && { audience: formData.brandPersona.audience }),
-        ...(formData.brandPersona.designTags.length > 0 && { designTags: formData.brandPersona.designTags }),
+        ...(parseList(formData.brandPersona.audience).length > 0 && { audience: parseList(formData.brandPersona.audience) }),
+        ...(parseList(formData.brandPersona.designTags).length > 0 && { designTags: parseList(formData.brandPersona.designTags) }),
       },
       ...(formData.abstractUserId && { abstractUserId: formData.abstractUserId }),
     };
@@ -103,7 +109,7 @@ const BrandCreateForm = ({ onSubmit, initialData }) => {
       <h3 className="form-section-title">Create Brand</h3>
       <p className="form-hint">Create a new brand identity for your workspace.</p>
 
-      <div className={errors.brandName ? 'required-field' : ''}>
+      <div className={'required-field'}>
         <TextInput
           label="Brand Name"
           value={formData.brandName}
@@ -115,7 +121,7 @@ const BrandCreateForm = ({ onSubmit, initialData }) => {
         />
       </div>
 
-      <div className={errors.brandDescription ? 'required-field' : ''}>
+      <div className={'required-field'}>
         <TextAreaInput
           label="Brand Description"
           value={formData.brandDescription}
@@ -149,8 +155,8 @@ const BrandCreateForm = ({ onSubmit, initialData }) => {
             <div key={index} className="color-list-item">
               <ColorInput label="" value={color} onChange={(v) => updateColor(index, v)} />
               {formData.brandColors.length > 1 && (
-                <button type="button" className="remove-button" onClick={() => removeColor(index)}>
-                  Remove
+                <button type="button" className="color-remove" onClick={() => removeColor(index)} title="Remove color">
+                  ×
                 </button>
               )}
             </div>
@@ -163,8 +169,8 @@ const BrandCreateForm = ({ onSubmit, initialData }) => {
 
       <TextInput
         label="Brand Fonts (comma-separated)"
-        value={formData.brandFonts.join(', ')}
-        onChange={(v) => updateField('brandFonts', parseList(v))}
+        value={formData.brandFonts}
+        onChange={(v) => updateField('brandFonts', v)}
         placeholder="e.g. Inter, Roboto"
       />
 
@@ -177,20 +183,20 @@ const BrandCreateForm = ({ onSubmit, initialData }) => {
       />
       <TextInput
         label="Emotions (comma-separated)"
-        value={formData.brandPersona.emotions.join(', ')}
-        onChange={(v) => updateField('brandPersona.emotions', parseList(v))}
+        value={formData.brandPersona.emotions}
+        onChange={(v) => updateField('brandPersona.emotions', v)}
         placeholder="e.g. happy, excited, innovative"
       />
       <TextInput
         label="Audience (comma-separated)"
-        value={formData.brandPersona.audience.join(', ')}
-        onChange={(v) => updateField('brandPersona.audience', parseList(v))}
+        value={formData.brandPersona.audience}
+        onChange={(v) => updateField('brandPersona.audience', v)}
         placeholder="e.g. working mom, working dad"
       />
       <TextInput
         label="Design Tags (comma-separated)"
-        value={formData.brandPersona.designTags.join(', ')}
-        onChange={(v) => updateField('brandPersona.designTags', parseList(v))}
+        value={formData.brandPersona.designTags}
+        onChange={(v) => updateField('brandPersona.designTags', v)}
         placeholder="e.g. minimal, productivity, health"
       />
 
