@@ -1,22 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { message } from 'antd';
 import {
   TextInput,
   UrlInput,
   SelectInput,
 } from '~/components/common/FormComponents';
+import { MEDIA_TYPE_OPTIONS, SUBTYPE_MAP } from '../config/mediaTypes.js';
 
 const TOUCH_POSITION_DEFAULT = { left: false, right: false, bottom: false, top: false, center: false };
 const IMAGE_PREF_DEFAULT = { crop: null, removeBg: null, enhancement: null };
-
-const MEDIA_TYPE_OPTIONS = [
-  { value: 'photo', label: 'Photo' },
-  { value: 'logo', label: 'Logo' },
-  { value: 'illustration', label: 'Illustration' },
-  { value: 'screenshot', label: 'Screenshot' },
-  { value: 'backdrop', label: 'Backdrop' },
-  { value: 'font', label: 'Font' },
-];
 
 const MediaCreateForm = ({ onSubmit, initialData }) => {
   const [formData, setFormData] = useState({
@@ -34,6 +26,8 @@ const MediaCreateForm = ({ onSubmit, initialData }) => {
   const [file, setFile] = useState(null);
   const [errors, setErrors] = useState({});
 
+  const subTypeOptions = useMemo(() => SUBTYPE_MAP[formData.type] || [], [formData.type]);
+
   const updateField = (path, value) => {
     setFormData((prev) => {
       const keys = path.split('.');
@@ -48,11 +42,20 @@ const MediaCreateForm = ({ onSubmit, initialData }) => {
     });
   };
 
+  const handleTypeChange = (value) => {
+    setFormData((prev) => ({ ...prev, type: value, subType: '' }));
+    if (errors.type) setErrors((prev) => ({ ...prev, type: undefined }));
+  };
+
   const validate = () => {
     const nextErrors = {};
     if (!formData.type.trim()) {
       nextErrors.type = 'Type is required';
       message.error('Type is required');
+    }
+    if (!formData.subType.trim()) {
+      nextErrors.subType = 'SubType is required';
+      message.error('SubType is required');
     }
     if (!file && !formData.url.trim() && !formData.uploadUrl.trim()) {
       nextErrors.url = 'Either URL, Upload URL, or a file is required';
@@ -68,7 +71,7 @@ const MediaCreateForm = ({ onSubmit, initialData }) => {
 
     const payload = {
       type: formData.type,
-      ...(formData.subType.trim() && { subType: formData.subType.trim() }),
+      subType: formData.subType.trim(),
       ...(formData.url && { url: formData.url }),
       ...(formData.uploadUrl && { uploadUrl: formData.uploadUrl }),
       ...(formData.bId && { bId: formData.bId }),
@@ -89,26 +92,24 @@ const MediaCreateForm = ({ onSubmit, initialData }) => {
 
       <div className={errors.type ? 'required-field' : ''}>
         <SelectInput
-          label="Type"
+          label="Type *"
           value={formData.type}
-          onChange={(v) => {
-            updateField('type', v);
-            if (errors.type) setErrors((prev) => ({ ...prev, type: undefined }));
-          }}
+          onChange={handleTypeChange}
           options={MEDIA_TYPE_OPTIONS}
           placeholder="Select media type"
         />
       </div>
 
-      <div>
-        <TextInput
-          label="SubType (optional)"
+      <div className={errors.subType ? 'required-field' : ''}>
+        <SelectInput
+          label="SubType *"
           value={formData.subType}
           onChange={(v) => {
             updateField('subType', v);
             if (errors.subType) setErrors((prev) => ({ ...prev, subType: undefined }));
           }}
-          placeholder="e.g. photograph, logo, backgroundImage"
+          options={subTypeOptions}
+          placeholder="Select subtype"
         />
       </div>
 

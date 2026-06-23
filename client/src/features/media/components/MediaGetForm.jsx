@@ -1,22 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
+import { message } from 'antd';
 import {
   TextInput,
   SelectInput,
   NumberInput,
 } from '~/components/common/FormComponents';
+import { MEDIA_TYPE_OPTIONS, SUBTYPE_MAP } from '../config/mediaTypes.js';
 
 const SORT_OPTIONS = [
   { label: 'Descending', value: 'DESC' },
   { label: 'Ascending', value: 'ASC' },
-];
-
-const MEDIA_TYPE_OPTIONS = [
-  { value: 'photo', label: 'Photo' },
-  { value: 'logo', label: 'Logo' },
-  { value: 'illustration', label: 'Illustration' },
-  { value: 'screenshot', label: 'Screenshot' },
-  { value: 'backdrop', label: 'Backdrop' },
-  { value: 'font', label: 'Font' },
 ];
 
 const MediaGetForm = ({ onSubmit, initialData }) => {
@@ -33,12 +26,27 @@ const MediaGetForm = ({ onSubmit, initialData }) => {
 
   const [errors, setErrors] = useState({});
 
+  const subTypeOptions = useMemo(() => SUBTYPE_MAP[formData.type] || [], [formData.type]);
+
   const updateField = (path, value) => {
     setFormData((prev) => ({ ...prev, [path]: value }));
   };
 
+  const handleTypeChange = (value) => {
+    setFormData((prev) => ({ ...prev, type: value, subType: '' }));
+    if (errors.type) setErrors((prev) => ({ ...prev, type: undefined }));
+  };
+
   const validate = () => {
     const nextErrors = {};
+    if (!formData.type.trim()) {
+      nextErrors.type = 'Type is required';
+      message.error('Type is required');
+    }
+    if (!formData.subType.trim()) {
+      nextErrors.subType = 'SubType is required';
+      message.error('SubType is required');
+    }
     setErrors(nextErrors);
     return Object.keys(nextErrors).length === 0;
   };
@@ -48,8 +56,8 @@ const MediaGetForm = ({ onSubmit, initialData }) => {
     if (!validate()) return;
 
     const payload = {
-      ...(formData.type.trim() && { type: formData.type.trim() }),
-      ...(formData.subType.trim() && { subType: formData.subType.trim() }),
+      type: formData.type.trim(),
+      subType: formData.subType.trim(),
       ...(formData.mId && { mId: formData.mId }),
       ...(formData.bId && { bId: formData.bId }),
       ...(formData.limit && { limit: Number(formData.limit) }),
@@ -66,28 +74,26 @@ const MediaGetForm = ({ onSubmit, initialData }) => {
       <h3 className="form-section-title">Get Media</h3>
       <p className="form-hint">Retrieve media assets from a workspace.</p>
 
-      <div>
+      <div className={errors.type ? 'required-field' : ''}>
         <SelectInput
-          label="Type (optional)"
+          label="Type *"
           value={formData.type}
-          onChange={(v) => {
-            updateField('type', v);
-            if (errors.type) setErrors((prev) => ({ ...prev, type: undefined }));
-          }}
+          onChange={handleTypeChange}
           options={MEDIA_TYPE_OPTIONS}
           placeholder="Select media type"
         />
       </div>
 
-      <div>
-        <TextInput
-          label="SubType (optional)"
+      <div className={errors.subType ? 'required-field' : ''}>
+        <SelectInput
+          label="SubType *"
           value={formData.subType}
           onChange={(v) => {
             updateField('subType', v);
             if (errors.subType) setErrors((prev) => ({ ...prev, subType: undefined }));
           }}
-          placeholder="e.g. photograph, logo, backgroundImage"
+          options={subTypeOptions}
+          placeholder="Select subtype"
         />
       </div>
 

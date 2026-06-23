@@ -6,42 +6,14 @@ import {
   NumberInput,
   Tabs,
 } from '~/components/common/FormComponents';
+import { MEDIA_TYPE_OPTIONS, SUBTYPE_MAP } from '../config/mediaTypes.js';
 
 const TABS = [
   { key: 'multi', label: 'Multi Media' },
   { key: 'single', label: 'Single Media' },
 ];
 
-const TYPE_OPTIONS = [
-  { label: 'Photo', value: 'photo' },
-  { label: 'Logo', value: 'logo' },
-  { label: 'Illustration', value: 'illustration' },
-  { label: 'Screenshot', value: 'screenshot' },
-  { label: 'Backdrop', value: 'backdrop' },
-  { label: 'Font', value: 'font' },
-];
-
-const SUBTYPE_MAP = {
-  photo: [{ label: 'Photograph', value: 'photograph' }],
-  logo: [{ label: 'Logo', value: 'logo' }],
-  illustration: [{ label: 'Illustration', value: 'illustration' }],
-  screenshot: [
-    { label: 'iPhone', value: 'iphone' },
-    { label: 'iPad', value: 'ipad' },
-    { label: 'MacBook', value: 'macbook' },
-    { label: 'iMac', value: 'imac' },
-    { label: 'Laptop', value: 'laptop' },
-    { label: 'Desktop', value: 'desktop' },
-    { label: 'Tablet', value: 'tablet' },
-    { label: 'Smartphone', value: 'smartphone' },
-  ],
-  backdrop: [
-    { label: 'Background Image', value: 'backgroundImage' },
-    { label: 'Pattern', value: 'pattern' },
-    { label: 'Texture', value: 'texture' },
-  ],
-  font: [{ label: 'Font', value: 'font' }],
-};
+const TYPE_OPTIONS = MEDIA_TYPE_OPTIONS;
 
 const SORT_OPTIONS = [
   { label: 'Descending', value: 'DESC' },
@@ -76,12 +48,20 @@ const MediaListPanel = ({ onSubmit, initialData }) => {
       }
       payload.mId = mId.trim();
     } else {
+      if (!type) {
+        message.error('Type is required');
+        return;
+      }
+      if (!subType) {
+        message.error('SubType is required');
+        return;
+      }
       if (!limit || Number(limit) < 1) {
         message.error('Limit is required and must be at least 1');
         return;
       }
-      if (type) payload.type = type;
-      if (subType) payload.subType = subType;
+      payload.type = type;
+      payload.subType = subType;
       if (bId.trim()) payload.bId = bId.trim();
       payload.limit = Number(limit);
       payload.cursor = null;
@@ -118,21 +98,25 @@ const MediaListPanel = ({ onSubmit, initialData }) => {
         </div>
       ) : (
         <>
-          <SelectInput
+          <div className="required-field">
+            <SelectInput
             label="Type"
-            value={type}
-            onChange={handleTypeChange}
-            options={TYPE_OPTIONS}
-            placeholder="Select type"
-          />
+              value={type}
+              onChange={handleTypeChange}
+              options={TYPE_OPTIONS}
+              placeholder="Select type"
+            />
+          </div>
 
-          <SelectInput
+          <div className="required-field">
+            <SelectInput
             label="SubType"
-            value={subType}
-            onChange={setSubType}
-            options={subTypeOptions}
-            placeholder="Select subtype"
-          />
+              value={subType}
+              onChange={setSubType}
+              options={subTypeOptions}
+              placeholder="Select subtype"
+            />
+          </div>
 
           <TextInput
             label="Brand ID (optional)"
@@ -141,14 +125,17 @@ const MediaListPanel = ({ onSubmit, initialData }) => {
             placeholder="e.g. b_s87vFxpfM0R"
           />
 
-          <NumberInput
-            label="Limit *"
+          <div className="required-field">
+            <NumberInput
+            label="Limit"
             value={limit}
             onChange={setLimit}
             placeholder="Number of items per page"
             min={1}
             max={100}
           />
+          </div>
+          
 
           <SelectInput
             label="Sort"

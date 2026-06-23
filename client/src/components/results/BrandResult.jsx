@@ -24,7 +24,7 @@ function resolveColorStyle(color) {
   return String(color);
 }
 
-function renderBrandCard(brand, key) {
+function renderBrandCard(brand, key, extraClass = '') {
   const name = brand.brandName || brand.name || 'Brand';
   const colors = brand.brandColors || brand.colors || [];
   const logos = brand.brandLogos || brand.logos || (brand.brandLogo ? [brand.brandLogo] : []);
@@ -36,7 +36,7 @@ function renderBrandCard(brand, key) {
   const description = brand.brandDescription || brand.description;
 
   return (
-    <div key={key} className="brand-card">
+    <div key={key} className={`brand-card ${extraClass}`.trim()}>
       {/* Full-width color palette bar */}
       {colors.length > 0 && (
         <div className="brand-color-palette">
@@ -219,12 +219,12 @@ export default function BrandResult({ apiResponse, onLoadMore, hasMore, isLoadin
   if (Array.isArray(brandDetails) && brandDetails.length > 0) {
     return (
       <div className="brand-results">
-        {brandDetails.map((brand, index) => renderBrandCard(brand, index))}
+        {brandDetails.map((brand, index) => renderBrandCard(brand, index, 'brand-card--listing'))}
       </div>
     );
   }
   if (brandDetails && typeof brandDetails === 'object') {
-    return <div className="brand-results">{renderBrandCard(brandDetails, 'extracted')}</div>;
+    return <div className="brand-results">{renderBrandCard(brandDetails, 'extracted', 'brand-card--listing')}</div>;
   }
 
   // List brands response: result.brands or body.brands
@@ -233,7 +233,7 @@ export default function BrandResult({ apiResponse, onLoadMore, hasMore, isLoadin
     return (
       <>
         <div className="brand-results">
-          {brands.map((brand, index) => renderBrandCard(brand, index))}
+          {brands.map((brand, index) => renderBrandCard(brand, index, 'brand-card--listing'))}
         </div>
         {hasMore && onLoadMore && <ShowMoreButton onClick={onLoadMore} isLoading={isLoadingMore} />}
       </>

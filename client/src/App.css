@@ -20,7 +20,7 @@ body {
 /* Smooth minimal scrollbar */
 * {
   scrollbar-width: thin;
-  scrollbar-color: rgba(255, 255, 255, 0.15) transparent;
+  scrollbar-color: rgba(255, 255, 255, 0.4) transparent;
 }
 
 ::-webkit-scrollbar {
@@ -33,12 +33,12 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.4);
   border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.6);
 }
 
 ::-webkit-scrollbar-corner {
@@ -1087,6 +1087,11 @@ body {
   flex-direction: column;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  padding: 20px;
+}
+
+.brand-card--listing {
+  padding: 0;
 }
 
 .brand-card:hover {
@@ -1140,10 +1145,10 @@ body {
 }
 
 .brand-card-body {
-  padding: 20px;
   display: flex;
   flex-direction: column;
   gap: 16px;
+  padding: 20px;
 }
 
 /* Header */
