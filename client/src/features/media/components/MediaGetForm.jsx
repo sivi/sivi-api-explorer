@@ -3,7 +3,7 @@ import {
   TextInput,
   SelectInput,
   NumberInput,
-} from '../../../components/common/FormComponents';
+} from '~/components/common/FormComponents';
 
 const SORT_OPTIONS = [
   { label: 'Descending', value: 'DESC' },

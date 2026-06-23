@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import './ApiMonitor.css';
+import './index.css';
+
 const ApiMonitor = ({ apiLogs, apiResponse, apiInput, onClearLogs }) => {
   const [activeTab, setActiveTab] = useState('logs');
 
@@ -7,35 +8,35 @@ const ApiMonitor = ({ apiLogs, apiResponse, apiInput, onClearLogs }) => {
     <div className="api-monitor">
       <div className="api-monitor-header">
         <div className="tab-buttons">
-          <button 
+          <button
             className={`tab-button ${activeTab === 'logs' ? 'active' : ''}`}
             onClick={() => setActiveTab('logs')}
           >
             API Logs ({apiLogs.length})
           </button>
-          <button 
+          <button
             className={`tab-button ${activeTab === 'response' ? 'active' : ''}`}
             onClick={() => setActiveTab('response')}
           >
             API Response
           </button>
-          <button 
+          <button
             className={`tab-button ${activeTab === 'input' ? 'active' : ''}`}
             onClick={() => setActiveTab('input')}
           >
             API Input
           </button>
         </div>
-        
-        <button 
-          onClick={onClearLogs} 
+
+        <button
+          onClick={onClearLogs}
           className="clear-logs-btn"
           disabled={apiLogs.length === 0 && !apiResponse}
         >
           Clear All
         </button>
       </div>
-      
+
       <div className="api-monitor-content">
         {activeTab === 'logs' && (
           <div className="logs-tab">
@@ -55,7 +56,7 @@ const ApiMonitor = ({ apiLogs, apiResponse, apiInput, onClearLogs }) => {
             </div>
           </div>
         )}
-        
+
         {activeTab === 'response' && (
           <div className="response-tab">
             <div className="response-content">
@@ -71,7 +72,7 @@ const ApiMonitor = ({ apiLogs, apiResponse, apiInput, onClearLogs }) => {
             </div>
           </div>
         )}
-        
+
         {activeTab === 'input' && (
           <div className="input-tab">
             <div className="input-content">

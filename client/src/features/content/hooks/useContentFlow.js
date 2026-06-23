@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
-import { coreApi } from '../../../api/core.js';
-import { useAppContext } from '../../../context/useAppContext.js';
+import { coreApi } from '~/api/core.js';
+import { useAppContext } from '~/context/useAppContext.js';
 
 /**
  * Hook for Content from Prompt.

@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
-import { coreApi } from '../../../api/core.js';
-import { useImmediateFlow } from '../../../hooks/useImmediateFlow.js';
+import { coreApi } from '~/api/core.js';
+import { useImmediateFlow } from '~/hooks/useImmediateFlow.js';
 
 /**
  * Hook for utility GET flows: Get Design Variants, Request Status.

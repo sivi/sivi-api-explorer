@@ -1,8 +1,8 @@
 import { useCallback, useMemo } from 'react';
-import { brandApi } from '../../../api/brand.js';
-import { useAppContext } from '../../../context/useAppContext.js';
-import { useImmediateFlow } from '../../../hooks/useImmediateFlow.js';
-import { useAsyncJob } from '../../../hooks/useAsyncJob.js';
+import { brandApi } from '~/api/brand.js';
+import { useAppContext } from '~/context/useAppContext.js';
+import { useImmediateFlow } from '~/hooks/useImmediateFlow.js';
+import { useAsyncJob } from '~/hooks/useAsyncJob.js';
 
 /**
  * Hook for all Brand flows.

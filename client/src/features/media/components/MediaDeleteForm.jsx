@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { message } from 'antd';
 import {
   TextInput,
-} from '../../../components/common/FormComponents';
+} from '~/components/common/FormComponents';
 
 const MediaDeleteForm = ({ onSubmit, initialData }) => {
   const [formData, setFormData] = useState({

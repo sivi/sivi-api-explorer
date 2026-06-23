@@ -1,9 +1,9 @@
 import { useCallback, useMemo } from 'react';
-import { fontsApi } from '../../../api/fonts.js';
-import { filesApi } from '../../../api/files.js';
-import { useAppContext } from '../../../context/useAppContext.js';
-import { useImmediateFlow } from '../../../hooks/useImmediateFlow.js';
-import { useAsyncJob } from '../../../hooks/useAsyncJob.js';
+import { fontsApi } from '~/api/fonts.js';
+import { filesApi } from '~/api/files.js';
+import { useAppContext } from '~/context/useAppContext.js';
+import { useImmediateFlow } from '~/hooks/useImmediateFlow.js';
+import { useAsyncJob } from '~/hooks/useAsyncJob.js';
 
 /**
  * Hook for all Font flows.

@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
-import { coreApi } from '../../../api/core.js';
-import { useAppContext } from '../../../context/useAppContext.js';
-import { usePolling } from '../../../hooks/usePolling.js';
+import { coreApi } from '~/api/core.js';
+import { useAppContext } from '~/context/useAppContext.js';
+import { usePolling } from '~/hooks/usePolling.js';
 
 export function useDesignFlow() {
   const {

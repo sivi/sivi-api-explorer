@@ -1,6 +1,6 @@
 import { useCallback, useMemo } from 'react';
-import { filesApi } from '../../../api/files.js';
-import { useImmediateFlow } from '../../../hooks/useImmediateFlow.js';
+import { filesApi } from '~/api/files.js';
+import { useImmediateFlow } from '~/hooks/useImmediateFlow.js';
 
 /**
  * Hook for File flows.

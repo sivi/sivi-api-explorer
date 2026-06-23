@@ -1,6 +1,6 @@
 import { useCallback, useMemo } from 'react';
-import { userApi } from '../../../api/user.js';
-import { useImmediateFlow } from '../../../hooks/useImmediateFlow.js';
+import { userApi } from '~/api/user.js';
+import { useImmediateFlow } from '~/hooks/useImmediateFlow.js';
 
 /**
  * Hook for all User Management flows.

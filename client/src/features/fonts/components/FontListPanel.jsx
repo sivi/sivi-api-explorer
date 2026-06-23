@@ -5,7 +5,7 @@ import {
   SelectInput,
   NumberInput,
   MultiSelectList,
-} from '../../../components/common/FormComponents';
+} from '~/components/common/FormComponents';
 
 const SOURCE_OPTIONS = [
   { label: 'System', value: 'system' },

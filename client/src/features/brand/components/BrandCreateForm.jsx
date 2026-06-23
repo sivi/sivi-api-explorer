@@ -4,8 +4,7 @@ import {
   TextInput,
   TextAreaInput,
   ColorInput,
-} from '../../../components/common/FormComponents';
-import '../../../components/common/FormComponents.css';
+} from '~/components/common/FormComponents';
 
 const parseList = (str) => str.split(',').map((s) => s.trim()).filter(Boolean);
 

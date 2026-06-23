@@ -1,4 +1,5 @@
 import React from 'react';
+import './index.css';
 
 // Text input component
 export const TextInput = ({ label, value, onChange, placeholder, type = "text" }) => {

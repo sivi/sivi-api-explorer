@@ -4,7 +4,7 @@ import {
   TextInput,
   UrlInput,
   SelectInput,
-} from '../../../components/common/FormComponents';
+} from '~/components/common/FormComponents';
 
 const TOUCH_POSITION_DEFAULT = { left: false, right: false, bottom: false, top: false, center: false };
 const IMAGE_PREF_DEFAULT = { crop: null, removeBg: null, enhancement: null };

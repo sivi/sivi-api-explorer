@@ -4,7 +4,7 @@ import {
   TextInput,
   SelectInput,
   NumberInput,
-} from '../../../components/common/FormComponents';
+} from '~/components/common/FormComponents';
 
 const TYPE_OPTIONS = [
   { label: 'Photo', value: 'photo' },

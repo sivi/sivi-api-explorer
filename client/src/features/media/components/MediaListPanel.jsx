@@ -4,8 +4,7 @@ import {
   TextInput,
   SelectInput,
   NumberInput,
-} from '../../../components/common/FormComponents';
-import '../../../components/common/FormComponents.css';
+} from '~/components/common/FormComponents';
 
 const TABS = [
   { key: 'multi', label: 'Multi Media' },

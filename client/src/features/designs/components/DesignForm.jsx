@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { message } from 'antd';
-import '../../../components/common/FormComponents.css';
 import {
   TextInput,
   TextAreaInput,
@@ -10,7 +9,7 @@ import {
   ColorInput,
   DynamicList,
   UrlInput
-} from '../../../components/common/FormComponents';
+} from '~/components/common/FormComponents';
 import { designTypes, getSubtypesForType, getDimensionsForSubtype, requiresCustomDimensions } from '../data/designTypes';
 
 const DesignForm = ({ onSubmit, initialData }) => {

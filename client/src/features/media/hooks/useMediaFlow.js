@@ -1,9 +1,9 @@
 import { useCallback, useMemo } from 'react';
-import { mediaApi } from '../../../api/media.js';
-import { filesApi } from '../../../api/files.js';
-import { useAppContext } from '../../../context/useAppContext.js';
-import { useImmediateFlow } from '../../../hooks/useImmediateFlow.js';
-import { useAsyncJob } from '../../../hooks/useAsyncJob.js';
+import { mediaApi } from '~/api/media.js';
+import { filesApi } from '~/api/files.js';
+import { useAppContext } from '~/context/useAppContext.js';
+import { useImmediateFlow } from '~/hooks/useImmediateFlow.js';
+import { useAsyncJob } from '~/hooks/useAsyncJob.js';
 
 /**
  * Hook for all Media flows.

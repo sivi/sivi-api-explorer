@@ -3,14 +3,13 @@ import { message } from 'antd';
 import {
   TextAreaInput,
   SelectInput,
-} from '../../../components/common/FormComponents';
-import '../../../components/common/FormComponents.css';
+} from '~/components/common/FormComponents';
 import {
   designTypes,
   getSubtypesForType,
   getDimensionsForSubtype,
   requiresCustomDimensions,
-} from '../../designs/data/designTypes';
+} from '~/features/designs/data/designTypes';
 
 const ContentFromPromptForm = ({ onSubmit, initialData }) => {
   const defaultFormData = {

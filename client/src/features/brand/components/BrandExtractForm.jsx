@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { message } from 'antd';
-import { TextInput } from '../../../components/common/FormComponents';
-import '../../../components/common/FormComponents.css';
+import { TextInput } from '~/components/common/FormComponents';
 
 const BrandExtractForm = ({ onSubmit, initialData }) => {
   const [formData, setFormData] = useState({

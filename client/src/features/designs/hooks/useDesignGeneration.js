@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
-import { useAppContext } from '../../../context/useAppContext.js';
-import { useAsyncJob } from '../../../hooks/useAsyncJob.js';
+import { useAppContext } from '~/context/useAppContext.js';
+import { useAsyncJob } from '~/hooks/useAsyncJob.js';
 
 /**
  * Shared hook for Sivi design-generation flows (designs-from-prompt, designs-from-content, content-from-prompt).

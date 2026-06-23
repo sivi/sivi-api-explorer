@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import './WebhookModal.css';
+import { coreApi } from '~/api/core.js';
+import './index.css';
 
 const WEBHOOK_URL_KEY = 'webhookUrl';
 
@@ -27,23 +28,16 @@ const WebhookModal = ({ onClose, onSaved }) => {
 
     setIsSaving(true);
     try {
-      const response = await fetch('http://localhost:4000/update-webhook', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ webhookUrl: webhookUrl.trim() }),
-      });
-
-      const data = await response.json();
-
-      if (!response.ok || data.error) {
-        setError(data.error || 'Failed to update webhook URL.');
+      const data = await coreApi.updateWebhook(webhookUrl.trim());
+      if (data.error) {
+        setError(data.error);
       } else {
         localStorage.setItem(WEBHOOK_URL_KEY, webhookUrl.trim());
         setSuccess('Webhook URL saved successfully.');
         if (onSaved) onSaved(webhookUrl.trim());
       }
     } catch (err) {
-      setError(`Request failed: ${err.message}`);
+      setError(err.data?.error || err.message || 'Failed to update webhook URL.');
     } finally {
       setIsSaving(false);
     }

@@ -4,7 +4,7 @@ import {
   TextInput,
   TextAreaInput,
   NumberInput,
-} from '../../../components/common/FormComponents';
+} from '~/components/common/FormComponents';
 
 const MediaGenerateForm = ({ onSubmit, initialData }) => {
   const [formData, setFormData] = useState({
