@@ -21,9 +21,18 @@ router.post('/designs-from-prompt', asyncHandler(async (req, res) => {
 // Get design variants
 router.get('/get-design-variants', asyncHandler(async (req, res) => {
   console.time('get-design-variants');
-  const data = await siviClient.get('/general/get-design-variants', {
-    designId: req.query.designId,
-  });
+
+  // Clean query params: remove null/empty values and coerce types
+  const query = {};
+  if (req.query.designId) query.designId = req.query.designId;
+  if (req.query.workspaceId) query.workspaceId = req.query.workspaceId;
+  if (req.query.ideaId) query.ideaId = req.query.ideaId;
+  if (req.query.type) query.type = req.query.type;
+  if (req.query.limit) query.limit = Number(req.query.limit);
+  if (req.query.cursor && req.query.cursor !== 'null') query.cursor = req.query.cursor;
+
+  console.log('get-design-variants query:', query);
+  const data = await siviClient.get('/general/get-design-variants', query);
   console.timeEnd('get-design-variants');
   res.json(data);
 }));

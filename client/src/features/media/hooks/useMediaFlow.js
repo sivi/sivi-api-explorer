@@ -1,4 +1,4 @@
-import { useCallback, useMemo } from 'react';
+import { useCallback, useMemo, useState, useEffect } from 'react';
 import { mediaApi } from '~/api/media.js';
 import { filesApi } from '~/api/files.js';
 import { useAppContext } from '~/context/useAppContext.js';
@@ -9,6 +9,7 @@ import { useAsyncJob } from '~/hooks/useAsyncJob.js';
  * Hook for all Media flows.
  * Immediate-response flows use useImmediateFlow.
  * Async job flows (generate-media) use useAsyncJob.
+ * get-media supports cursor-based pagination via loadMore.
  */
 export function useMediaFlow(flowKey) {
   const {
@@ -17,7 +18,15 @@ export function useMediaFlow(flowKey) {
     setApiInput,
     setIsLoading,
     saveHistoryEntry,
+    apiInput,
+    apiResponse,
   } = useAppContext();
+  const [nextCursor, setNextCursor] = useState(null);
+  const [isLoadingMore, setIsLoadingMore] = useState(false);
+
+  useEffect(() => {
+    setNextCursor(null);
+  }, [flowKey]);
 
   const immediateFlows = useMemo(() => ({
     'get-media': {
@@ -29,6 +38,8 @@ export function useMediaFlow(flowKey) {
         } else {
           log('No media assets found');
         }
+        const cursor = data.body?.cursor ?? data.body?.result?.cursor;
+        setNextCursor(cursor || null);
       },
     },
     'create-media': {
@@ -167,6 +178,32 @@ export function useMediaFlow(flowKey) {
     },
   });
 
+  const loadMore = useCallback(async () => {
+    if (!nextCursor || !apiInput) return;
+    setIsLoadingMore(true);
+    addLog('Loading more media...');
+    try {
+      const data = await mediaApi.getMedia({ ...apiInput, cursor: nextCursor });
+      const newMedia = data.body?.media ?? data.body?.result?.media ?? [];
+      const existingMedia = apiResponse?.body?.media ?? apiResponse?.body?.result?.media ?? [];
+      const merged = {
+        ...data,
+        body: {
+          ...(data.body || {}),
+          media: [...existingMedia, ...newMedia],
+        },
+      };
+      setApiResponse(merged);
+      const cursor = data.body?.cursor ?? data.body?.result?.cursor;
+      setNextCursor(cursor || null);
+      addLog(`Loaded ${newMedia.length} more media assets`);
+    } catch (err) {
+      addLog(`Load more failed: ${err.message}`);
+    } finally {
+      setIsLoadingMore(false);
+    }
+  }, [nextCursor, apiInput, apiResponse, addLog, setApiResponse]);
+
   const submit = useCallback(
     (input, webhookEnabled) => {
       switch (flowKey) {
@@ -194,5 +231,12 @@ export function useMediaFlow(flowKey) {
     ]
   );
 
-  return { submit, handleWebhookEvent: generateMediaJob.handleWebhookEvent, stopPolling: generateMediaJob.stopPolling };
+  return {
+    submit,
+    loadMore: flowKey === 'get-media' ? loadMore : undefined,
+    hasMore: flowKey === 'get-media' && !!nextCursor,
+    isLoadingMore: flowKey === 'get-media' ? isLoadingMore : false,
+    handleWebhookEvent: generateMediaJob.handleWebhookEvent,
+    stopPolling: generateMediaJob.stopPolling,
+  };
 }

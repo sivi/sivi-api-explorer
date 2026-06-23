@@ -1,4 +1,4 @@
-import { useCallback, useMemo } from 'react';
+import { useCallback, useMemo, useState, useEffect } from 'react';
 import { brandApi } from '~/api/brand.js';
 import { useAppContext } from '~/context/useAppContext.js';
 import { useImmediateFlow } from '~/hooks/useImmediateFlow.js';
@@ -8,9 +8,16 @@ import { useAsyncJob } from '~/hooks/useAsyncJob.js';
  * Hook for all Brand flows.
  * Immediate-response flows use useImmediateFlow.
  * Async job flows (extract-brand) use useAsyncJob.
+ * list-brands supports cursor-based pagination via loadMore.
  */
 export function useBrandFlow(flowKey) {
-  const { addLog } = useAppContext();
+  const { addLog, apiInput, setApiResponse, apiResponse } = useAppContext();
+  const [nextCursor, setNextCursor] = useState(null);
+  const [isLoadingMore, setIsLoadingMore] = useState(false);
+
+  useEffect(() => {
+    setNextCursor(null);
+  }, [flowKey]);
 
   const immediateFlows = useMemo(() => ({
     'list-brands': {
@@ -22,6 +29,8 @@ export function useBrandFlow(flowKey) {
         } else {
           log('No brands found');
         }
+        const cursor = data.body?.cursor ?? data.body?.result?.cursor;
+        setNextCursor(cursor || null);
       },
     },
     'create-brand': {
@@ -97,6 +106,32 @@ export function useBrandFlow(flowKey) {
     },
   });
 
+  const loadMore = useCallback(async () => {
+    if (!nextCursor || !apiInput) return;
+    setIsLoadingMore(true);
+    addLog('Loading more brands...');
+    try {
+      const data = await brandApi.getBrands({ ...apiInput, cursor: nextCursor });
+      const newBrands = data.body?.brands ?? data.body?.result?.brands ?? [];
+      const existingBrands = apiResponse?.body?.brands ?? apiResponse?.body?.result?.brands ?? [];
+      const merged = {
+        ...data,
+        body: {
+          ...(data.body || {}),
+          brands: [...existingBrands, ...newBrands],
+        },
+      };
+      setApiResponse(merged);
+      const cursor = data.body?.cursor ?? data.body?.result?.cursor;
+      setNextCursor(cursor || null);
+      addLog(`Loaded ${newBrands.length} more brands`);
+    } catch (err) {
+      addLog(`Load more failed: ${err.message}`);
+    } finally {
+      setIsLoadingMore(false);
+    }
+  }, [nextCursor, apiInput, apiResponse, addLog, setApiResponse]);
+
   const submit = useCallback(
     (input, webhookEnabled) => {
       switch (flowKey) {
@@ -127,5 +162,12 @@ export function useBrandFlow(flowKey) {
     ]
   );
 
-  return { submit, handleWebhookEvent: extractBrandJob.handleWebhookEvent, stopPolling: extractBrandJob.stopPolling };
+  return {
+    submit,
+    loadMore: flowKey === 'list-brands' ? loadMore : undefined,
+    hasMore: flowKey === 'list-brands' && !!nextCursor,
+    isLoadingMore: flowKey === 'list-brands' ? isLoadingMore : false,
+    handleWebhookEvent: extractBrandJob.handleWebhookEvent,
+    stopPolling: extractBrandJob.stopPolling,
+  };
 }

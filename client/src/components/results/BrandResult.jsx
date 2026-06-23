@@ -1,4 +1,5 @@
 import React from 'react';
+import ShowMoreButton from '~/components/common/ShowMoreButton.jsx';
 
 function getFontImageURL(font) {
   if ((font.addedBy === 'user' || font.source === 'user') && font.wId) {
@@ -154,7 +155,7 @@ function renderSuccessMessage(data) {
   );
 }
 
-export default function BrandResult({ apiResponse }) {
+export default function BrandResult({ apiResponse, onLoadMore, hasMore, isLoadingMore }) {
   if (!apiResponse) return null;
 
   if (apiResponse.error) {
@@ -186,9 +187,12 @@ export default function BrandResult({ apiResponse }) {
   const brands = result?.brands ?? body?.brands;
   if (brands?.length) {
     return (
-      <div className="brand-results">
-        {brands.map((brand, index) => renderBrandCard(brand, index))}
-      </div>
+      <>
+        <div className="brand-results">
+          {brands.map((brand, index) => renderBrandCard(brand, index))}
+        </div>
+        {hasMore && onLoadMore && <ShowMoreButton onClick={onLoadMore} isLoading={isLoadingMore} />}
+      </>
     );
   }
 

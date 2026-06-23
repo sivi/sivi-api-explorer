@@ -13,8 +13,14 @@ export const coreApi = {
   getRequestStatus: (requestId) =>
     apiClient.get(`/get-request-status?requestId=${encodeURIComponent(requestId)}`),
 
-  getDesignVariants: (designId) =>
-    apiClient.get(`/get-design-variants?designId=${encodeURIComponent(designId)}`),
+  getDesignVariants: (params) => {
+    const query = new URLSearchParams();
+    Object.entries(params).forEach(([key, value]) => {
+      if (value != null && value !== '') query.append(key, String(value));
+    });
+    const queryString = query.toString();
+    return apiClient.get(`/get-design-variants${queryString ? `?${queryString}` : ''}`);
+  },
 
   updateWebhook: (webhookUrl) =>
     apiClient.post('/update-webhook', { webhookUrl }),

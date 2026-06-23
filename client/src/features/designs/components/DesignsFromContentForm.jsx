@@ -6,21 +6,28 @@ import {
   NumberInput,
   SelectInput,
   ColorInput,
-  UrlInput
+  UrlInput,
+  Tabs
 } from '~/components/common/FormComponents';
 import { designTypes, getSubtypesForType, getDimensionsForSubtype, requiresCustomDimensions } from '../data/designTypes';
+import {
+  CONTENT_CATEGORIES,
+  DEFAULT_CONTENT,
+  getAvailableBlocksForCategory,
+  getBlockMeta,
+  isBlockAlwaysPresent,
+} from '../data/contentBlockTypes';
 
 const DesignsFromContentForm = ({ onSubmit, initialData }) => {
+  const SIVI_MIN_DIMENSION = 150;
+  const SIVI_MAX_DIMENSION = 2000;
+
   const defaultFormData = {
+    dimensionMode: 'standard',
     type: 'displayAds',
     subtype: 'displayAds-half-page-ad',
     dimension: { width: 300, height: 600 },
-    content: {
-      headline: '',
-      description: '',
-      cta: '',
-      tagline: ''
-    },
+    content: { ...DEFAULT_CONTENT },
     language: 'english',
     numOfVariants: 4,
     outputFormat: ['jpg'],
@@ -49,10 +56,22 @@ const DesignsFromContentForm = ({ onSubmit, initialData }) => {
 
   const [formData, setFormData] = useState(initialData || defaultFormData);
   const [availableSubtypes, setAvailableSubtypes] = useState({});
+  const [showOptionalContent, setShowOptionalContent] = useState(false);
 
   useEffect(() => {
     setAvailableSubtypes(getSubtypesForType(formData.type));
   }, [formData.type]);
+
+  useEffect(() => {
+    if (formData.dimensionMode === 'custom') {
+      setFormData(prev => ({
+        ...prev,
+        type: 'custom',
+        subtype: 'custom',
+        dimension: prev.dimension
+      }));
+    }
+  }, [formData.dimensionMode]);
 
   useEffect(() => {
     if (initialData) {
@@ -61,7 +80,7 @@ const DesignsFromContentForm = ({ onSubmit, initialData }) => {
   }, [initialData]);
 
   useEffect(() => {
-    if (!requiresCustomDimensions(formData.type, formData.subtype)) {
+    if (formData.dimensionMode === 'standard' && !requiresCustomDimensions(formData.type, formData.subtype)) {
       const dims = getDimensionsForSubtype(formData.type, formData.subtype);
       if (dims && dims.width && dims.height) {
         setFormData(prev => ({
@@ -70,7 +89,30 @@ const DesignsFromContentForm = ({ onSubmit, initialData }) => {
         }));
       }
     }
-  }, [formData.type, formData.subtype]);
+  }, [formData.type, formData.subtype, formData.dimensionMode]);
+
+  const handleDimensionModeChange = (mode) => {
+    if (mode === 'standard') {
+      const subtypes = getSubtypesForType('displayAds');
+      const firstSubtype = Object.keys(subtypes)[0] || '';
+      const dims = getDimensionsForSubtype('displayAds', firstSubtype);
+      setFormData(prev => ({
+        ...prev,
+        dimensionMode: 'standard',
+        type: 'displayAds',
+        subtype: firstSubtype,
+        dimension: dims ? { width: dims.width, height: dims.height } : { width: 300, height: 600 }
+      }));
+    } else {
+      setFormData(prev => ({
+        ...prev,
+        dimensionMode: 'custom',
+        type: 'custom',
+        subtype: 'custom',
+        dimension: { width: 600, height: 600 }
+      }));
+    }
+  };
 
   const handleTypeChange = (type) => {
     const subtypes = getSubtypesForType(type);
@@ -88,6 +130,47 @@ const DesignsFromContentForm = ({ onSubmit, initialData }) => {
     setFormData(prev => ({
       ...prev,
       content: { ...prev.content, [field]: value }
+    }));
+  };
+
+  const addContentBlock = (categoryKey, blockKey) => {
+    if (formData.content[blockKey] !== undefined) return;
+    const blockMeta = getBlockMeta(categoryKey, blockKey);
+    const initialValue = blockMeta?.inputType === 'list' ? [] : '';
+    setFormData(prev => ({
+      ...prev,
+      content: { ...prev.content, [blockKey]: initialValue }
+    }));
+  };
+
+  const removeContentBlock = (categoryKey, blockKey) => {
+    if (isBlockAlwaysPresent(categoryKey, blockKey)) return;
+    setFormData(prev => {
+      const newContent = { ...prev.content };
+      delete newContent[blockKey];
+      return { ...prev, content: newContent };
+    });
+  };
+
+  const handleListItemChange = (blockKey, index, value) => {
+    setFormData(prev => {
+      const newList = [...(prev.content[blockKey] || [])];
+      newList[index] = value;
+      return { ...prev, content: { ...prev.content, [blockKey]: newList } };
+    });
+  };
+
+  const addListItem = (blockKey) => {
+    setFormData(prev => ({
+      ...prev,
+      content: { ...prev.content, [blockKey]: [...(prev.content[blockKey] || []), ''] }
+    }));
+  };
+
+  const removeListItem = (blockKey, index) => {
+    setFormData(prev => ({
+      ...prev,
+      content: { ...prev.content, [blockKey]: (prev.content[blockKey] || []).filter((_, i) => i !== index) }
     }));
   };
 
@@ -151,71 +234,268 @@ const DesignsFromContentForm = ({ onSubmit, initialData }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const hasContent = formData.content.headline.trim() || formData.content.description.trim() || formData.content.cta.trim() || formData.content.tagline.trim();
-    if (!hasContent) {
-      message.error('At least one content field (Headline, Description, CTA, or Tagline) is required');
+    const textBlockKeys = Object.keys(CONTENT_CATEGORIES.text.blocks);
+    const ctaBlockKeys = Object.keys(CONTENT_CATEGORIES.cta.blocks);
+    const hasTextContent = textBlockKeys.some(key => {
+      const val = formData.content[key];
+      return typeof val === 'string' && val.trim();
+    });
+    const hasCtaContent = ctaBlockKeys.some(key => {
+      const val = formData.content[key];
+      return typeof val === 'string' && val.trim();
+    });
+    if (!hasTextContent) {
+      message.error('At least one text-based content block with content is required');
       return;
     }
-    onSubmit(formData);
+    if (!hasCtaContent) {
+      message.error('At least one call-to-action content block with content is required');
+      return;
+    }
+    if (formData.dimensionMode === 'custom') {
+      const w = formData.dimension.width;
+      const h = formData.dimension.height;
+      if (!w || w < SIVI_MIN_DIMENSION || w > SIVI_MAX_DIMENSION) {
+        message.error(`Width must be between ${SIVI_MIN_DIMENSION} and ${SIVI_MAX_DIMENSION}`);
+        return;
+      }
+      if (!h || h < SIVI_MIN_DIMENSION || h > SIVI_MAX_DIMENSION) {
+        message.error(`Height must be between ${SIVI_MIN_DIMENSION} and ${SIVI_MAX_DIMENSION}`);
+        return;
+      }
+    }
+    const cleanedContent = Object.entries(formData.content).reduce((acc, [key, val]) => {
+      if (Array.isArray(val)) {
+        const filtered = val.filter(item => item && item.trim());
+        if (filtered.length) acc[key] = filtered;
+      } else if (typeof val === 'string' && val.trim()) {
+        acc[key] = val.trim();
+      }
+      return acc;
+    }, {});
+    onSubmit({ ...formData, content: cleanedContent });
   };
 
-  const typeOptions = Object.entries(designTypes).map(([key, type]) => ({ value: key, label: type.label }));
+  const typeOptions = Object.entries(designTypes)
+    .filter(([key]) => key !== 'custom')
+    .map(([key, type]) => ({ value: key, label: type.label }));
   const subtypeOptions = Object.entries(availableSubtypes).map(([key, subtype]) => ({ value: key, label: subtype.label }));
+
+  const isCustomMode = formData.dimensionMode === 'custom';
 
   return (
     <form onSubmit={handleSubmit} className="design-form">
       <h3 className="form-section-title">Design Settings</h3>
-      <SelectInput
-        label="Type"
-        value={formData.type}
-        onChange={handleTypeChange}
-        options={typeOptions}
+      <Tabs
+        tabs={[
+          { key: 'standard', label: 'Standard' },
+          { key: 'custom', label: 'Custom' },
+        ]}
+        activeKey={formData.dimensionMode}
+        onChange={handleDimensionModeChange}
       />
-      <SelectInput
-        label="Subtype"
-        value={formData.subtype}
-        onChange={(v) => setFormData(prev => ({ ...prev, subtype: v }))}
-        options={subtypeOptions}
-      />
-      <div className="dimension-row">
-        <NumberInput
-          label="Width"
-          value={formData.dimension.width}
-          onChange={(v) => setFormData(prev => ({ ...prev, dimension: { ...prev.dimension, width: v } }))}
-        />
-        <NumberInput
-          label="Height"
-          value={formData.dimension.height}
-          onChange={(v) => setFormData(prev => ({ ...prev, dimension: { ...prev.dimension, height: v } }))}
-        />
-      </div>
+      {!isCustomMode && (
+        <>
+        <div className="required-field">
+          <SelectInput
+            label="Type"
+            value={formData.type}
+            onChange={handleTypeChange}
+            options={typeOptions}
+          />
+        </div>
+          
+        <div className="required-field">
+          <SelectInput
+            label="Subtype"
+            value={formData.subtype}
+            onChange={(v) => setFormData(prev => ({ ...prev, subtype: v }))}
+            options={subtypeOptions}
+          />
+        </div>
+        </>
+      )}
+      {isCustomMode && (
+        <div className="dimension-row">
+          <div className="required-field">
+            <NumberInput
+              label="Width"
+              value={formData.dimension.width}
+              onChange={(v) => setFormData(prev => ({ ...prev, dimension: { ...prev.dimension, width: v } }))}
+              min={SIVI_MIN_DIMENSION}
+              max={SIVI_MAX_DIMENSION}
+            />
+          </div>
+          <div className="required-field">
+            <NumberInput
+              label="Height"
+              value={formData.dimension.height}
+              onChange={(v) => setFormData(prev => ({ ...prev, dimension: { ...prev.dimension, height: v } }))}
+              min={SIVI_MIN_DIMENSION}
+              max={SIVI_MAX_DIMENSION}
+            />
+          </div>
+        </div>
+      )}
 
       <h3 className="form-section-title">Content</h3>
-      <TextInput
-        label="Headline"
-        value={formData.content.headline}
-        onChange={(v) => handleContentChange('headline', v)}
-        placeholder="Enter headline"
-      />
-      <TextAreaInput
-        label="Description"
-        value={formData.content.description}
-        onChange={(v) => handleContentChange('description', v)}
-        placeholder="Enter description"
-        rows={3}
-      />
-      <TextInput
-        label="CTA"
-        value={formData.content.cta}
-        onChange={(v) => handleContentChange('cta', v)}
-        placeholder="e.g. Shop Now"
-      />
-      <TextInput
-        label="Tagline"
-        value={formData.content.tagline}
-        onChange={(v) => handleContentChange('tagline', v)}
-        placeholder="Enter tagline"
-      />
+      {Object.entries(CONTENT_CATEGORIES).filter(([, cat]) => cat.required).map(([categoryKey, category]) => {
+        const addedBlocks = Object.keys(category.blocks).filter(key => formData.content[key] !== undefined);
+        const availableToAdd = getAvailableBlocksForCategory(categoryKey).filter(
+          opt => formData.content[opt.value] === undefined
+        );
+        return (
+          <div key={categoryKey} className="content-subsection">
+            <h4 className="content-subsection-title">
+              {category.label}
+              <span className="required-asterisk"> *</span>
+            </h4>
+            {addedBlocks.map(blockKey => {
+              const blockMeta = getBlockMeta(categoryKey, blockKey);
+              const canRemove = !isBlockAlwaysPresent(categoryKey, blockKey);
+              if (blockMeta.inputType === 'list') {
+                const items = formData.content[blockKey] || [];
+                return (
+                  <div key={blockKey} className="content-block-field">
+                    <div className="content-block-header">
+                      <span className="content-block-label">{blockMeta.label}</span>
+                      {canRemove && (
+                        <button type="button" className="asset-remove" title="Remove" onClick={() => removeContentBlock(categoryKey, blockKey)}>×</button>
+                      )}
+                    </div>
+                    {items.map((item, idx) => (
+                      <div key={idx} className="list-item-row">
+                        <input
+                          type="text"
+                          className="form-input"
+                          value={item}
+                          onChange={(e) => handleListItemChange(blockKey, idx, e.target.value)}
+                          placeholder={blockMeta.placeholder}
+                        />
+                        <button type="button" className="color-remove" title="Remove" onClick={() => removeListItem(blockKey, idx)}>×</button>
+                      </div>
+                    ))}
+                    <button type="button" className="add-btn" onClick={() => addListItem(blockKey)}>Add Item</button>
+                  </div>
+                );
+              }
+              return (
+                <div key={blockKey} className="content-block-field">
+                  <div className="content-block-inline">
+                    <div className="form-field content-block-input">
+                      <label className="form-label">{blockMeta.label}</label>
+                      <input
+                        type="text"
+                        className="form-input"
+                        value={formData.content[blockKey] || ''}
+                        onChange={(e) => handleContentChange(blockKey, e.target.value)}
+                        placeholder={blockMeta.placeholder}
+                      />
+                    </div>
+                    {canRemove && (
+                      <button type="button" className="color-remove" title="Remove" onClick={() => removeContentBlock(categoryKey, blockKey)}>×</button>
+                    )}
+                  </div>
+                </div>
+              );
+            })}
+            {availableToAdd.length > 0 && (
+              <div className="content-add-block">
+                <SelectInput
+                  label="Add content block"
+                  value=""
+                  onChange={(v) => v && addContentBlock(categoryKey, v)}
+                  options={availableToAdd}
+                  placeholder="Select to add..."
+                />
+              </div>
+            )}
+          </div>
+        );
+      })}
+      {!showOptionalContent && (
+        <button type="button" className="toggle-optional-btn" onClick={() => setShowOptionalContent(true)}>
+          View More
+        </button>
+      )}
+      {showOptionalContent && (
+        <>
+          {Object.entries(CONTENT_CATEGORIES).filter(([, cat]) => !cat.required).map(([categoryKey, category]) => {
+            const addedBlocks = Object.keys(category.blocks).filter(key => formData.content[key] !== undefined);
+            const availableToAdd = getAvailableBlocksForCategory(categoryKey).filter(
+              opt => formData.content[opt.value] === undefined
+            );
+            return (
+              <div key={categoryKey} className="content-subsection">
+                <h4 className="content-subsection-title">{category.label}</h4>
+                {addedBlocks.map(blockKey => {
+                  const blockMeta = getBlockMeta(categoryKey, blockKey);
+                  const canRemove = !isBlockAlwaysPresent(categoryKey, blockKey);
+                  if (blockMeta.inputType === 'list') {
+                    const items = formData.content[blockKey] || [];
+                    return (
+                      <div key={blockKey} className="content-block-field">
+                        <div className="content-block-header">
+                          <span className="content-block-label">{blockMeta.label}</span>
+                          {canRemove && (
+                            <button type="button" className="asset-remove" title="Remove" onClick={() => removeContentBlock(categoryKey, blockKey)}>×</button>
+                          )}
+                        </div>
+                        {items.map((item, idx) => (
+                          <div key={idx} className="list-item-row">
+                            <input
+                              type="text"
+                              className="form-input"
+                              value={item}
+                              onChange={(e) => handleListItemChange(blockKey, idx, e.target.value)}
+                              placeholder={blockMeta.placeholder}
+                            />
+                            <button type="button" className="color-remove" title="Remove" onClick={() => removeListItem(blockKey, idx)}>×</button>
+                          </div>
+                        ))}
+                        <button type="button" className="add-btn" onClick={() => addListItem(blockKey)}>Add Item</button>
+                      </div>
+                    );
+                  }
+                  return (
+                    <div key={blockKey} className="content-block-field">
+                      <div className="content-block-inline">
+                        <div className="form-field content-block-input">
+                          <label className="form-label">{blockMeta.label}</label>
+                          <input
+                            type="text"
+                            className="form-input"
+                            value={formData.content[blockKey] || ''}
+                            onChange={(e) => handleContentChange(blockKey, e.target.value)}
+                            placeholder={blockMeta.placeholder}
+                          />
+                        </div>
+                        {canRemove && (
+                          <button type="button" className="color-remove" title="Remove" onClick={() => removeContentBlock(categoryKey, blockKey)}>×</button>
+                        )}
+                      </div>
+                    </div>
+                  );
+                })}
+                {availableToAdd.length > 0 && (
+                  <div className="content-add-block">
+                    <SelectInput
+                      label="Add content block"
+                      value=""
+                      onChange={(v) => v && addContentBlock(categoryKey, v)}
+                      options={availableToAdd}
+                      placeholder="Select to add..."
+                    />
+                  </div>
+                )}
+              </div>
+            );
+          })}
+          <button type="button" className="toggle-optional-btn" onClick={() => setShowOptionalContent(false)}>
+            View Less
+          </button>
+        </>
+      )}
 
       <h3 className="form-section-title">Preferences</h3>
       <SelectInput
@@ -245,7 +525,7 @@ const DesignsFromContentForm = ({ onSubmit, initialData }) => {
             value={color}
             onChange={(v) => handleColorChange(index, v)}
           />
-          <button type="button" className="remove-btn" onClick={() => removeColor(index)}>Remove</button>
+          <button type="button" className="color-remove" title="Remove color" onClick={() => removeColor(index)}>×</button>
         </div>
       ))}
       <button type="button" className="add-btn" onClick={addColor}>Add Color</button>
@@ -259,7 +539,7 @@ const DesignsFromContentForm = ({ onSubmit, initialData }) => {
             onChange={(v) => handleLogoChange(index, v)}
             placeholder="https://example.com/logo.png"
           />
-          <button type="button" className="remove-btn" onClick={() => removeLogo(index)}>Remove</button>
+          <button type="button" className="asset-remove" title="Remove" onClick={() => removeLogo(index)}>×</button>
         </div>
       ))}
       <button type="button" className="add-btn" onClick={addLogo}>Add Logo</button>

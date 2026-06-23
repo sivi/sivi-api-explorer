@@ -6,12 +6,17 @@ import {
   NumberInput,
   SelectInput,
   MultiSelectList,
-  UrlInput
+  UrlInput,
+  Tabs
 } from '~/components/common/FormComponents';
 import { designTypes, getSubtypesForType, getDimensionsForSubtype, requiresCustomDimensions } from '../data/designTypes';
 
 const DesignForm = ({ onSubmit, initialData }) => {
+  const SIVI_MIN_DIMENSION = 150;
+  const SIVI_MAX_DIMENSION = 2000;
+
   const defaultFormData = {
+    dimensionMode: 'standard',
     type: 'displayAds',
     subtype: 'displayAds-half-page-ad',
     dimension: {
@@ -57,7 +62,7 @@ const DesignForm = ({ onSubmit, initialData }) => {
 
   // Update dimensions when type/subtype changes
   useEffect(() => {
-    if (!requiresCustomDimensions(formData.type, formData.subtype)) {
+    if (formData.dimensionMode === 'standard' && !requiresCustomDimensions(formData.type, formData.subtype)) {
       const dimensions = getDimensionsForSubtype(formData.type, formData.subtype);
       if (dimensions && dimensions.width && dimensions.height) {
         setFormData(prev => ({
@@ -69,10 +74,11 @@ const DesignForm = ({ onSubmit, initialData }) => {
         }));
       }
     }
-  }, [formData.type, formData.subtype]);
+  }, [formData.type, formData.subtype, formData.dimensionMode]);
 
   const isCustomMode = formData.settings.mode === 'custom';
   const isBrandMode = formData.settings.mode === 'brand';
+  const isCustomDimension = formData.dimensionMode === 'custom';
 
   const updateField = (path, value) => {
     setFormData(prev => {
@@ -188,6 +194,29 @@ const DesignForm = ({ onSubmit, initialData }) => {
     }));
   };
 
+  const handleDimensionModeChange = (mode) => {
+    if (mode === 'standard') {
+      const subtypes = getSubtypesForType('displayAds');
+      const firstSubtype = Object.keys(subtypes)[0] || '';
+      const dims = getDimensionsForSubtype('displayAds', firstSubtype);
+      setFormData(prev => ({
+        ...prev,
+        dimensionMode: 'standard',
+        type: 'displayAds',
+        subtype: firstSubtype,
+        dimension: dims ? { width: dims.width, height: dims.height } : { width: 300, height: 600 }
+      }));
+    } else {
+      setFormData(prev => ({
+        ...prev,
+        dimensionMode: 'custom',
+        type: 'custom',
+        subtype: 'custom',
+        dimension: { width: 600, height: 600 }
+      }));
+    }
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!formData.prompt.trim()) {
@@ -202,51 +231,78 @@ const DesignForm = ({ onSubmit, initialData }) => {
       message.error('Number of variants must be between 1 and 10');
       return;
     }
+    if (isCustomDimension) {
+      const w = formData.dimension.width;
+      const h = formData.dimension.height;
+      if (!w || w < SIVI_MIN_DIMENSION || w > SIVI_MAX_DIMENSION) {
+        message.error(`Width must be between ${SIVI_MIN_DIMENSION} and ${SIVI_MAX_DIMENSION}`);
+        return;
+      }
+      if (!h || h < SIVI_MIN_DIMENSION || h > SIVI_MAX_DIMENSION) {
+        message.error(`Height must be between ${SIVI_MIN_DIMENSION} and ${SIVI_MAX_DIMENSION}`);
+        return;
+      }
+    }
     onSubmit(formData);
   };
 
   return (
     <form onSubmit={handleSubmit} className="design-form">
-      <div className="required-field">
-        <SelectInput
-          label="Type"
-          value={formData.type}
-          onChange={(value) => updateField('type', value)}
-          options={Object.entries(designTypes).map(([key, type]) => ({
-            value: key,
-            label: type.label
-          }))}
-        />
-      </div>
-
-      <div className="required-field">
-        <SelectInput
-          label="Subtype"
-          value={formData.subtype}
-          onChange={(value) => updateField('subtype', value)}
-          options={Object.entries(getSubtypesForType(formData.type)).map(([key, subtype]) => ({
-            value: key,
-            label: subtype.label
-          }))}
-        />
-      </div>
-
-      {requiresCustomDimensions(formData.type, formData.subtype) && (
-        <div className="dimension-group">
-          <NumberInput
-            label="Width"
-            value={formData.dimension.width}
-            onChange={(value) => updateField('dimension.width', value)}
-            min={1}
-            max={2000}
-          />
-          <NumberInput
-            label="Height"
-            value={formData.dimension.height}
-            onChange={(value) => updateField('dimension.height', value)}
-            min={1}
-            max={2000}
-          />
+      <h3 className="form-section-title">Design Settings</h3>
+      <Tabs
+        tabs={[
+          { key: 'standard', label: 'Standard' },
+          { key: 'custom', label: 'Custom' },
+        ]}
+        activeKey={formData.dimensionMode}
+        onChange={handleDimensionModeChange}
+      />
+      {!isCustomDimension && (
+        <>
+          <div className="required-field">
+            <SelectInput
+              label="Type"
+              value={formData.type}
+              onChange={(value) => updateField('type', value)}
+              options={Object.entries(designTypes).filter(([key]) => key !== 'custom').map(([key, type]) => ({
+                value: key,
+                label: type.label
+              }))}
+            />
+          </div>
+          <div className="required-field">
+            <SelectInput
+              label="Subtype"
+              value={formData.subtype}
+              onChange={(value) => updateField('subtype', value)}
+              options={Object.entries(getSubtypesForType(formData.type)).map(([key, subtype]) => ({
+                value: key,
+                label: subtype.label
+              }))}
+            />
+          </div>
+        </>
+      )}
+      {isCustomDimension && (
+        <div className="dimension-row">
+          <div className="required-field">
+            <NumberInput
+              label="Width"
+              value={formData.dimension.width}
+              onChange={(value) => updateField('dimension.width', value)}
+              min={SIVI_MIN_DIMENSION}
+              max={SIVI_MAX_DIMENSION}
+            />
+          </div>
+          <div className="required-field">
+            <NumberInput
+              label="Height"
+              value={formData.dimension.height}
+              onChange={(value) => updateField('dimension.height', value)}
+              min={SIVI_MIN_DIMENSION}
+              max={SIVI_MAX_DIMENSION}
+            />
+          </div>
         </div>
       )}
 

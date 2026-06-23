@@ -197,3 +197,21 @@ export const UrlInput = ({ label, value, onChange, placeholder }) => {
     </div>
   );
 };
+
+// Tabs component
+export const Tabs = ({ tabs, activeKey, onChange }) => {
+  return (
+    <div className="form-tabs">
+      {tabs.map((tab) => (
+        <button
+          key={tab.key}
+          type="button"
+          className={`form-tab ${activeKey === tab.key ? 'active' : ''}`}
+          onClick={() => onChange(tab.key)}
+        >
+          {tab.label}
+        </button>
+      ))}
+    </div>
+  );
+};

@@ -1,40 +1,37 @@
 import React from 'react';
+import ShowMoreButton from '~/components/common/ShowMoreButton.jsx';
+import { UI_CONFIG } from '~/config/ui.js';
 
-export default function DesignVariantsResult({ variants, apiInput }) {
+export default function DesignVariantsResult({ variants, apiInput, onLoadMore, hasMore, isLoadingMore }) {
   if (!variants?.length) return null;
   const dimensions = apiInput?.dimension || { width: 300, height: 300 };
-  const maxHeight = 400;
   const aspectRatio = dimensions.width / dimensions.height;
-  let displayWidth = dimensions.width;
-  let displayHeight = dimensions.height;
-  if (displayHeight > maxHeight) {
-    displayHeight = maxHeight;
-    displayWidth = maxHeight * aspectRatio;
-  }
 
   return (
-    <div className="variants-list">
-      {variants.map((variant, index) => (
-        <div key={index} className="variant-row">
-          <div className="variant-image">
-            <img
-              src={variant.url}
-              alt={`Variant ${index + 1}`}
-              style={{
-                width: `${displayWidth}px`,
-                height: `${displayHeight}px`,
-                objectFit: 'contain',
-              }}
-            />
+    <div className="variants-masonry-wrapper" style={{ maxWidth: UI_CONFIG.VARIANTS_MAX_WIDTH }}>
+      <div className="variants-masonry">
+        {variants.map((variant, index) => (
+          <div key={index} className="variant-card">
+            <div className="variant-card-image" style={{ aspectRatio }}>
+              <img
+                src={variant.url}
+                alt={`Variant ${index + 1}`}
+                loading="lazy"
+              />
+            </div>
+            <div className="variant-card-info">
+              <span className="variant-card-size">
+                {dimensions.width} × {dimensions.height}
+              </span>
+            </div>
           </div>
-          <div className="variant-details">
-            <span className="variant-label">Variant {index + 1}</span>
-            <span className="variant-size">
-              {dimensions.width} × {dimensions.height}
-            </span>
-          </div>
+        ))}
+      </div>
+      {hasMore && onLoadMore && (
+        <div className="show-more-wrapper">
+          <ShowMoreButton onClick={onLoadMore} isLoading={isLoadingMore} />
         </div>
-      ))}
+      )}
     </div>
   );
 }

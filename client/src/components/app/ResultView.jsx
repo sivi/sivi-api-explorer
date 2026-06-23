@@ -8,12 +8,12 @@ import FontResult from '~/components/results/FontResult.jsx';
 import StatusResult from '~/components/results/StatusResult.jsx';
 import JsonResult from '~/components/results/JsonResult.jsx';
 
-function getResultComponent(flowKey, { apiResponse, designVariants, apiInput }) {
+function getResultComponent(flowKey, { apiResponse, designVariants, apiInput, onLoadMore, hasMore, isLoadingMore }) {
   switch (flowKey) {
     case 'designs-from-prompt':
     case 'designs-from-content':
     case 'get-design-variants':
-      return <DesignVariantsResult variants={designVariants} apiInput={apiInput} />;
+      return <DesignVariantsResult variants={designVariants} apiInput={apiInput} onLoadMore={onLoadMore} hasMore={hasMore} isLoadingMore={isLoadingMore} />;
     case 'content-from-prompt':
       return <ContentResult apiResponse={apiResponse} />;
     case 'list-brands':
@@ -22,7 +22,7 @@ function getResultComponent(flowKey, { apiResponse, designVariants, apiInput }) 
     case 'set-default-brand':
     case 'archive-brand':
     case 'update-brand':
-      return <BrandResult apiResponse={apiResponse} />;
+      return <BrandResult apiResponse={apiResponse} onLoadMore={onLoadMore} hasMore={hasMore} isLoadingMore={isLoadingMore} />;
     case 'request-status':
       return <StatusResult apiResponse={apiResponse} />;
     case 'get-media':
@@ -30,11 +30,11 @@ function getResultComponent(flowKey, { apiResponse, designVariants, apiInput }) 
     case 'update-media':
     case 'delete-media':
     case 'generate-media':
-      return <MediaResult apiResponse={apiResponse} />;
+      return <MediaResult apiResponse={apiResponse} onLoadMore={onLoadMore} hasMore={hasMore} isLoadingMore={isLoadingMore} />;
     case 'get-presigned-url':
       return <StatusResult apiResponse={apiResponse} />;
     case 'get-fonts':
-      return <FontResult apiResponse={apiResponse} />;
+      return <FontResult apiResponse={apiResponse} onLoadMore={onLoadMore} hasMore={hasMore} isLoadingMore={isLoadingMore} />;
     case 'upload-fonts':
       return <StatusResult apiResponse={apiResponse} />;
     case 'login-user':
@@ -55,6 +55,9 @@ export default function ResultView({
   apiInput,
   webhookEnabled,
   webhookUrl,
+  onLoadMore,
+  hasMore,
+  isLoadingMore,
 }) {
   // isFlowPolling is a per-flow function so switching flows doesn't
   // show a loader for unrelated background jobs.
@@ -75,7 +78,7 @@ export default function ResultView({
     );
   }
 
-  const resultEl = getResultComponent(activeFlow, { apiResponse, designVariants, apiInput });
+  const resultEl = getResultComponent(activeFlow, { apiResponse, designVariants, apiInput, onLoadMore, hasMore, isLoadingMore });
   if (resultEl) return resultEl;
 
   return (

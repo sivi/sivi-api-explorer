@@ -1,4 +1,4 @@
-import { useCallback, useMemo } from 'react';
+import { useCallback, useMemo, useState, useEffect } from 'react';
 import { fontsApi } from '~/api/fonts.js';
 import { filesApi } from '~/api/files.js';
 import { useAppContext } from '~/context/useAppContext.js';
@@ -9,13 +9,22 @@ import { useAsyncJob } from '~/hooks/useAsyncJob.js';
  * Hook for all Font flows.
  * Immediate-response flows use useImmediateFlow.
  * Async job flows (upload-fonts) use useAsyncJob.
+ * get-fonts supports cursor-based pagination via loadMore.
  */
 export function useFontFlow(flowKey) {
   const {
     addLog,
     setApiResponse,
     setIsLoading,
+    apiInput,
+    apiResponse,
   } = useAppContext();
+  const [nextCursor, setNextCursor] = useState(null);
+  const [isLoadingMore, setIsLoadingMore] = useState(false);
+
+  useEffect(() => {
+    setNextCursor(null);
+  }, [flowKey]);
 
   const immediateFlows = useMemo(() => ({
     'get-fonts': {
@@ -27,6 +36,8 @@ export function useFontFlow(flowKey) {
         } else {
           log('No fonts found');
         }
+        const cursor = data.body?.meta?.cursor ?? data.body?.cursor;
+        setNextCursor(cursor || null);
       },
     },
   }), []);
@@ -104,6 +115,32 @@ export function useFontFlow(flowKey) {
     [addLog, uploadFontsJob, setApiResponse, setIsLoading]
   );
 
+  const loadMore = useCallback(async () => {
+    if (!nextCursor || !apiInput) return;
+    setIsLoadingMore(true);
+    addLog('Loading more fonts...');
+    try {
+      const data = await fontsApi.getFonts({ ...apiInput, cursor: nextCursor });
+      const newFonts = data.body?.data ?? [];
+      const existingFonts = apiResponse?.body?.data ?? [];
+      const merged = {
+        ...data,
+        body: {
+          ...(data.body || {}),
+          data: [...existingFonts, ...newFonts],
+        },
+      };
+      setApiResponse(merged);
+      const cursor = data.body?.meta?.cursor ?? data.body?.cursor;
+      setNextCursor(cursor || null);
+      addLog(`Loaded ${newFonts.length} more fonts`);
+    } catch (err) {
+      addLog(`Load more failed: ${err.message}`);
+    } finally {
+      setIsLoadingMore(false);
+    }
+  }, [nextCursor, apiInput, apiResponse, addLog, setApiResponse]);
+
   const submit = useCallback(
     (input, webhookEnabled) => {
       switch (flowKey) {
@@ -118,5 +155,12 @@ export function useFontFlow(flowKey) {
     [flowKey, getFontsFlow, submitUploadFonts]
   );
 
-  return { submit, handleWebhookEvent: uploadFontsJob.handleWebhookEvent, stopPolling: uploadFontsJob.stopPolling };
+  return {
+    submit,
+    loadMore: flowKey === 'get-fonts' ? loadMore : undefined,
+    hasMore: flowKey === 'get-fonts' && !!nextCursor,
+    isLoadingMore: flowKey === 'get-fonts' ? isLoadingMore : false,
+    handleWebhookEvent: uploadFontsJob.handleWebhookEvent,
+    stopPolling: uploadFontsJob.stopPolling,
+  };
 }

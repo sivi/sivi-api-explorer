@@ -63,14 +63,20 @@ function App() {
     handleWebhookEvent: handleContentPromptWebhook,
   } = useDesignGeneration(coreApi.contentFromPrompt, '/content-from-prompt', 'content-from-prompt')
 
-  const { submit: submitUtility } = useUtilityFlow(activeFlow)
+  const { submit: submitUtility, loadMore: loadMoreUtility, hasMore: hasMoreUtility, isLoadingMore: isLoadingMoreUtility } = useUtilityFlow(activeFlow)
   const {
     submit: submitBrand,
+    loadMore: loadMoreBrand,
+    hasMore: hasMoreBrand,
+    isLoadingMore: isLoadingMoreBrand,
     handleWebhookEvent: handleExtractBrandWebhook,
   } = useBrandFlow(activeFlow)
 
   const {
     submit: submitMedia,
+    loadMore: loadMoreMedia,
+    hasMore: hasMoreMedia,
+    isLoadingMore: isLoadingMoreMedia,
     handleWebhookEvent: handleGenerateMediaWebhook,
   } = useMediaFlow(activeFlow)
 
@@ -78,6 +84,9 @@ function App() {
 
   const {
     submit: submitFont,
+    loadMore: loadMoreFont,
+    hasMore: hasMoreFont,
+    isLoadingMore: isLoadingMoreFont,
     handleWebhookEvent: handleUploadFontWebhook,
   } = useFontFlow(activeFlow)
 
@@ -273,6 +282,27 @@ function App() {
               apiInput={apiInput}
               webhookEnabled={webhook.webhookEnabled}
               webhookUrl={webhook.webhookUrl}
+              onLoadMore={
+                activeFlow === 'get-design-variants' ? loadMoreUtility :
+                activeFlow === 'list-brands' ? loadMoreBrand :
+                activeFlow === 'get-media' ? loadMoreMedia :
+                activeFlow === 'get-fonts' ? loadMoreFont :
+                undefined
+              }
+              hasMore={
+                activeFlow === 'get-design-variants' ? hasMoreUtility :
+                activeFlow === 'list-brands' ? hasMoreBrand :
+                activeFlow === 'get-media' ? hasMoreMedia :
+                activeFlow === 'get-fonts' ? hasMoreFont :
+                false
+              }
+              isLoadingMore={
+                activeFlow === 'get-design-variants' ? isLoadingMoreUtility :
+                activeFlow === 'list-brands' ? isLoadingMoreBrand :
+                activeFlow === 'get-media' ? isLoadingMoreMedia :
+                activeFlow === 'get-fonts' ? isLoadingMoreFont :
+                false
+              }
             />
           </div>
 

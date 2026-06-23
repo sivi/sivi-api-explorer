@@ -45,7 +45,12 @@ const BrandCreateForm = ({ onSubmit, initialData }) => {
     const nextErrors = {};
     if (!formData.brandName.trim()) {
       nextErrors.brandName = 'Brand name is required';
-      message.error('Brand name is required');
+    }
+    if (!formData.brandDescription.trim()) {
+      nextErrors.brandDescription = 'Brand description is required';
+    }
+    if (Object.keys(nextErrors).length > 0) {
+      message.error('Please fill in all required fields');
     }
     setErrors(nextErrors);
     return Object.keys(nextErrors).length === 0;
@@ -110,13 +115,18 @@ const BrandCreateForm = ({ onSubmit, initialData }) => {
         />
       </div>
 
-      <TextAreaInput
-        label="Brand Description"
-        value={formData.brandDescription}
-        onChange={(v) => updateField('brandDescription', v)}
-        placeholder="Brief brand description"
-        rows={3}
-      />
+      <div className={errors.brandDescription ? 'required-field' : ''}>
+        <TextAreaInput
+          label="Brand Description"
+          value={formData.brandDescription}
+          onChange={(v) => {
+            updateField('brandDescription', v);
+            if (errors.brandDescription) setErrors((prev) => ({ ...prev, brandDescription: undefined }));
+          }}
+          placeholder="Brief brand description"
+          rows={3}
+        />
+      </div>
       <TextInput
         label="Brand Website URL"
         value={formData.brandUrl}

@@ -1,4 +1,5 @@
 import React from 'react';
+import ShowMoreButton from '~/components/common/ShowMoreButton.jsx';
 
 function getFontImageURL(font) {
   if ((font.addedBy === 'user' || font.source === 'user') && font.wId) {
@@ -37,7 +38,7 @@ function renderFontCard(font, key) {
   );
 }
 
-export default function FontResult({ apiResponse }) {
+export default function FontResult({ apiResponse, onLoadMore, hasMore, isLoadingMore }) {
   if (!apiResponse) return null;
 
   if (apiResponse.error) {
@@ -54,21 +55,18 @@ export default function FontResult({ apiResponse }) {
 
   if (Array.isArray(fonts)) {
     return (
-      <div className="brand-results">
-        {fonts.length > 0 ? (
-          fonts.map((font, index) => renderFontCard(font, index))
-        ) : (
-          <div className="brand-card brand-card-single">
-            <h4>No Fonts Found</h4>
-          </div>
-        )}
-        {body?.meta?.cursor && (
-          <p className="brand-meta">Cursor: {body.meta.cursor}</p>
-        )}
-        {body?.meta?.hasNext !== undefined && (
-          <p className="brand-meta">Has next: {body.meta.hasNext ? 'Yes' : 'No'}</p>
-        )}
-      </div>
+      <>
+        <div className="brand-results">
+          {fonts.length > 0 ? (
+            fonts.map((font, index) => renderFontCard(font, index))
+          ) : (
+            <div className="brand-card brand-card-single">
+              <h4>No Fonts Found</h4>
+            </div>
+          )}
+        </div>
+        {hasMore && onLoadMore && <ShowMoreButton onClick={onLoadMore} isLoading={isLoadingMore} />}
+      </>
     );
   }
 

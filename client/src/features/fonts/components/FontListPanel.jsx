@@ -25,8 +25,7 @@ const FontListPanel = ({ onSubmit, initialData }) => {
     classification: initialData?.classification || [],
     name: initialData?.name || '',
     source: initialData?.source || 'system',
-    limit: initialData?.limit || 20,
-    cursor: initialData?.cursor || '',
+    limit: initialData?.limit ?? 20,
     abstractUserId: initialData?.abstractUserId || '',
   });
 
@@ -50,12 +49,17 @@ const FontListPanel = ({ onSubmit, initialData }) => {
     e.preventDefault();
     if (!validate()) return;
 
+    if (!formData.limit || Number(formData.limit) < 1) {
+      message.error('Limit is required and must be at least 1');
+      return;
+    }
+
     const payload = {
       ...(formData.classification?.length && { classification: formData.classification }),
       ...(formData.name && { name: formData.name }),
       source: formData.source,
-      ...(formData.limit && { limit: Number(formData.limit) }),
-      ...(formData.cursor && { cursor: formData.cursor }),
+      limit: Number(formData.limit),
+      cursor: null,
       ...(formData.abstractUserId && { abstractUserId: formData.abstractUserId }),
     };
 
@@ -94,19 +98,12 @@ const FontListPanel = ({ onSubmit, initialData }) => {
       </div>
 
       <NumberInput
-        label="Limit"
+        label="Limit *"
         value={formData.limit}
         onChange={(v) => updateField('limit', v)}
         placeholder="Number of fonts to fetch"
         min={1}
         max={100}
-      />
-
-      <TextInput
-        label="Cursor"
-        value={formData.cursor}
-        onChange={(v) => updateField('cursor', v)}
-        placeholder="Pagination cursor"
       />
 
       <TextInput

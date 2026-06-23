@@ -4,6 +4,7 @@ import {
   TextInput,
   SelectInput,
   NumberInput,
+  Tabs,
 } from '~/components/common/FormComponents';
 
 const TABS = [
@@ -53,10 +54,8 @@ const MediaListPanel = ({ onSubmit, initialData }) => {
   const [subType, setSubType] = useState(initialData?.subType || '');
   const [mId, setMId] = useState(initialData?.mId || '');
   const [bId, setBId] = useState(initialData?.bId || '');
-  const [limit, setLimit] = useState(initialData?.limit || 10);
-  const [cursor, setCursor] = useState(initialData?.cursor || '');
+  const [limit, setLimit] = useState(initialData?.limit ?? 20);
   const [sort, setSort] = useState(initialData?.sort || 'DESC');
-  const [workspaceId, setWorkspaceId] = useState(initialData?.workspaceId || '');
   const [abstractUserId, setAbstractUserId] = useState(initialData?.abstractUserId || '');
 
   const subTypeOptions = useMemo(() => SUBTYPE_MAP[type] || [], [type]);
@@ -77,15 +76,18 @@ const MediaListPanel = ({ onSubmit, initialData }) => {
       }
       payload.mId = mId.trim();
     } else {
+      if (!limit || Number(limit) < 1) {
+        message.error('Limit is required and must be at least 1');
+        return;
+      }
       if (type) payload.type = type;
       if (subType) payload.subType = subType;
       if (bId.trim()) payload.bId = bId.trim();
-      if (limit) payload.limit = Number(limit);
-      if (cursor.trim()) payload.cursor = cursor.trim();
+      payload.limit = Number(limit);
+      payload.cursor = null;
       payload.sort = sort || 'DESC';
     }
 
-    if (workspaceId.trim()) payload.workspaceId = workspaceId.trim();
     if (abstractUserId.trim()) payload.abstractUserId = abstractUserId.trim();
 
     onSubmit(payload);
@@ -96,25 +98,7 @@ const MediaListPanel = ({ onSubmit, initialData }) => {
       <h3 className="form-section-title">Media</h3>
       <p className="form-hint">Fetch media assets from your Sivi workspace.</p>
 
-      <div className="form-tabs">
-        {TABS.map((tab) => (
-          <button
-            key={tab.key}
-            type="button"
-            className={`form-tab ${activeTab === tab.key ? 'active' : ''}`}
-            onClick={() => setActiveTab(tab.key)}
-          >
-            {tab.label}
-          </button>
-        ))}
-      </div>
-
-      <TextInput
-        label="Workspace ID"
-        value={workspaceId}
-        onChange={setWorkspaceId}
-        placeholder="e.g. dc6a1c20-1e94-11f0-abff-a1489713342b"
-      />
+      <Tabs tabs={TABS} activeKey={activeTab} onChange={setActiveTab} />
 
       <TextInput
         label="Abstract User ID (optional)"
@@ -158,19 +142,12 @@ const MediaListPanel = ({ onSubmit, initialData }) => {
           />
 
           <NumberInput
-            label="Limit"
+            label="Limit *"
             value={limit}
             onChange={setLimit}
-            placeholder="Number of items"
+            placeholder="Number of items per page"
             min={1}
-            max={50}
-          />
-
-          <TextInput
-            label="Cursor"
-            value={cursor}
-            onChange={setCursor}
-            placeholder="Pagination cursor"
+            max={100}
           />
 
           <SelectInput

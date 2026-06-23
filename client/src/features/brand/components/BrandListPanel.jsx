@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { message } from 'antd';
-import { TextInput } from '~/components/common/FormComponents';
+import { TextInput, NumberInput, Tabs } from '~/components/common/FormComponents';
 
 const TABS = [
   { key: 'multi', label: 'Multi Brand' },
@@ -9,12 +9,16 @@ const TABS = [
 
 const BrandListPanel = ({ onSubmit, initialData }) => {
   const [activeTab, setActiveTab] = useState(initialData?.bId ? 'single' : 'multi');
-  const [workspaceId, setWorkspaceId] = useState(initialData?.workspaceId || '');
   const [brandId, setBrandId] = useState(initialData?.bId || '');
+  const [limit, setLimit] = useState(initialData?.limit ?? 20);
   const [abstractUserId, setAbstractUserId] = useState(initialData?.abstractUserId || '');
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (activeTab === 'multi' && (!limit || Number(limit) < 1)) {
+      message.error('Limit is required and must be at least 1');
+      return;
+    }
     const payload = {};
     if (activeTab === 'single') {
       if (!brandId.trim()) {
@@ -22,8 +26,10 @@ const BrandListPanel = ({ onSubmit, initialData }) => {
         return;
       }
       payload.bId = brandId.trim();
+    } else {
+      payload.limit = Number(limit);
+      payload.cursor = null;
     }
-    if (workspaceId.trim()) payload.workspaceId = workspaceId.trim();
     if (abstractUserId.trim()) payload.abstractUserId = abstractUserId.trim();
     onSubmit(payload);
   };
@@ -35,25 +41,8 @@ const BrandListPanel = ({ onSubmit, initialData }) => {
         Fetch brand(s) from your Sivi workspace.
       </p>
 
-      <div className="form-tabs">
-        {TABS.map((tab) => (
-          <button
-            key={tab.key}
-            type="button"
-            className={`form-tab ${activeTab === tab.key ? 'active' : ''}`}
-            onClick={() => setActiveTab(tab.key)}
-          >
-            {tab.label}
-          </button>
-        ))}
-      </div>
+      <Tabs tabs={TABS} activeKey={activeTab} onChange={setActiveTab} />
 
-      <TextInput
-        label="Workspace ID"
-        value={workspaceId}
-        onChange={setWorkspaceId}
-        placeholder="e.g. dc6a1c20-1e94-11f0-abff-a1489713342b"
-      />
       <TextInput
         label="Abstract User ID (optional)"
         value={abstractUserId}
@@ -70,6 +59,17 @@ const BrandListPanel = ({ onSubmit, initialData }) => {
             placeholder="e.g. b_s87vFxpfM0R"
           />
         </div>
+      )}
+
+      {activeTab === 'multi' && (
+        <NumberInput
+          label="Limit *"
+          value={limit}
+          onChange={setLimit}
+          placeholder="Number of brands per page"
+          min={1}
+          max={100}
+        />
       )}
 
       <button type="submit" className="submit-button">

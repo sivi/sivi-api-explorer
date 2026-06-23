@@ -1,4 +1,5 @@
 import React from 'react';
+import ShowMoreButton from '~/components/common/ShowMoreButton.jsx';
 
 function renderMediaCard(media, key) {
   const mId = media.mId || 'Unknown';
@@ -51,7 +52,7 @@ function renderMediaCard(media, key) {
   );
 }
 
-export default function MediaResult({ apiResponse }) {
+export default function MediaResult({ apiResponse, onLoadMore, hasMore, isLoadingMore }) {
   if (!apiResponse) return null;
 
   if (apiResponse.error) {
@@ -70,16 +71,18 @@ export default function MediaResult({ apiResponse }) {
   const mediaList = result?.media ?? body?.media;
   if (Array.isArray(mediaList)) {
     return (
-      <div className="brand-results">
-        {mediaList.length > 0 ? (
-          mediaList.map((media, index) => renderMediaCard(media, index))
-        ) : (
-          <div className="brand-card brand-card-single">
-            <h4>No Media Found</h4>
-          </div>
-        )}
-        {result?.cursor && <p className="brand-meta">Cursor: {result.cursor}</p>}
-      </div>
+      <>
+        <div className="brand-results">
+          {mediaList.length > 0 ? (
+            mediaList.map((media, index) => renderMediaCard(media, index))
+          ) : (
+            <div className="brand-card brand-card-single">
+              <h4>No Media Found</h4>
+            </div>
+          )}
+        </div>
+        {hasMore && onLoadMore && <ShowMoreButton onClick={onLoadMore} isLoading={isLoadingMore} />}
+      </>
     );
   }
 
