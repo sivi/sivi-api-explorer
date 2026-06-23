@@ -6,8 +6,6 @@ import {
   NumberInput,
   SelectInput,
   MultiSelectList,
-  ColorInput,
-  DynamicList,
   UrlInput
 } from '~/components/common/FormComponents';
 import { designTypes, getSubtypesForType, getDimensionsForSubtype, requiresCustomDimensions } from '../data/designTypes';
@@ -30,8 +28,7 @@ const DesignForm = ({ onSubmit, initialData }) => {
     outputFormat: ['jpg'],
     settings: {
       mode: 'custom',
-      // currentbId: 'sivi_sample_1',
-      // Styles
+      currentbId: '',
       colorsPreference: {
         mode: 'custom',
         customColors: [],
@@ -73,6 +70,9 @@ const DesignForm = ({ onSubmit, initialData }) => {
       }
     }
   }, [formData.type, formData.subtype]);
+
+  const isCustomMode = formData.settings.mode === 'custom';
+  const isBrandMode = formData.settings.mode === 'brand';
 
   const updateField = (path, value) => {
     setFormData(prev => {
@@ -128,73 +128,74 @@ const DesignForm = ({ onSubmit, initialData }) => {
     }));
   };
 
-  const renderImageItem = (image, onChange) => (
-    <div className="asset-item">
-      <UrlInput
-        label="Image URL"
-        value={image.url || ''}
-        onChange={(url) => onChange({ ...image, url })}
-        placeholder="https://example.com/image.jpg"
-      />
-      <div className="image-preferences">
-        <div className="checkbox-item">
-          <input
-            type="checkbox"
-            checked={image.imagePreference?.crop || false}
-            onChange={(e) => onChange({
-              ...image,
-              imagePreference: {
-                ...image.imagePreference,
-                crop: e.target.checked
-              }
-            })}
-          />
-          <label>Crop</label>
-        </div>
-        <div className="checkbox-item">
-          <input
-            type="checkbox"
-            checked={image.imagePreference?.removeBg || false}
-            onChange={(e) => onChange({
-              ...image,
-              imagePreference: {
-                ...image.imagePreference,
-                removeBg: e.target.checked
-              }
-            })}
-          />
-          <label>Remove Background</label>
-        </div>
-      </div>
-    </div>
-  );
+  const addImage = () => {
+    setFormData(prev => ({
+      ...prev,
+      assets: {
+        ...prev.assets,
+        images: [...prev.assets.images, { url: '', imagePreference: { crop: false, removeBg: false } }]
+      }
+    }));
+  };
 
-  const renderLogoItem = (logo, onChange) => (
-    <div className="asset-item">
-      <UrlInput
-        label="Logo URL"
-        value={logo.url || ''}
-        onChange={(url) => onChange({ ...logo, url })}
-        placeholder="https://example.com/logo.png"
-      />
-      {/* <MultiSelectList
-        label="Logo Styles"
-        values={logo.logoStyles || []}
-        onChange={(styles) => onChange({ ...logo, logoStyles: styles })}
-        options={[
-          { value: 'direct', label: 'Direct' },
-          { value: 'outline', label: 'Outline' },
-          { value: 'shadow', label: 'Shadow' },
-          { value: 'embossed', label: 'Embossed' }
-        ]}
-      /> */}
-    </div>
-  );
+  const updateImage = (index, newImage) => {
+    setFormData(prev => ({
+      ...prev,
+      assets: {
+        ...prev.assets,
+        images: prev.assets.images.map((img, i) => i === index ? newImage : img)
+      }
+    }));
+  };
+
+  const removeImage = (index) => {
+    setFormData(prev => ({
+      ...prev,
+      assets: {
+        ...prev.assets,
+        images: prev.assets.images.filter((_, i) => i !== index)
+      }
+    }));
+  };
+
+  const addLogo = () => {
+    setFormData(prev => ({
+      ...prev,
+      assets: {
+        ...prev.assets,
+        logos: [...prev.assets.logos, { url: '', logoStyles: [] }]
+      }
+    }));
+  };
+
+  const updateLogo = (index, newLogo) => {
+    setFormData(prev => ({
+      ...prev,
+      assets: {
+        ...prev.assets,
+        logos: prev.assets.logos.map((logo, i) => i === index ? newLogo : logo)
+      }
+    }));
+  };
+
+  const removeLogo = (index) => {
+    setFormData(prev => ({
+      ...prev,
+      assets: {
+        ...prev.assets,
+        logos: prev.assets.logos.filter((_, i) => i !== index)
+      }
+    }));
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!formData.prompt.trim()) {
       message.error('Prompt is required');
+      return;
+    }
+    if (isBrandMode && !formData.settings.currentbId.trim()) {
+      message.error('Brand ID is required when Mode is Brand');
       return;
     }
     if (formData.numOfVariants < 1 || formData.numOfVariants > 10) {
@@ -206,25 +207,29 @@ const DesignForm = ({ onSubmit, initialData }) => {
 
   return (
     <form onSubmit={handleSubmit} className="design-form">
-      <SelectInput
-        label="Type"
-        value={formData.type}
-        onChange={(value) => updateField('type', value)}
-        options={Object.entries(designTypes).map(([key, type]) => ({
-          value: key,
-          label: type.label
-        }))}
-      />
+      <div className="required-field">
+        <SelectInput
+          label="Type"
+          value={formData.type}
+          onChange={(value) => updateField('type', value)}
+          options={Object.entries(designTypes).map(([key, type]) => ({
+            value: key,
+            label: type.label
+          }))}
+        />
+      </div>
 
-      <SelectInput
-        label="Subtype"
-        value={formData.subtype}
-        onChange={(value) => updateField('subtype', value)}
-        options={Object.entries(getSubtypesForType(formData.type)).map(([key, subtype]) => ({
-          value: key,
-          label: subtype.label
-        }))}
-      />
+      <div className="required-field">
+        <SelectInput
+          label="Subtype"
+          value={formData.subtype}
+          onChange={(value) => updateField('subtype', value)}
+          options={Object.entries(getSubtypesForType(formData.type)).map(([key, subtype]) => ({
+            value: key,
+            label: subtype.label
+          }))}
+        />
+      </div>
 
       {requiresCustomDimensions(formData.type, formData.subtype) && (
         <div className="dimension-group">
@@ -255,223 +260,213 @@ const DesignForm = ({ onSubmit, initialData }) => {
         />
       </div>
 
-      <DynamicList
-        label="Images"
-        items={formData.assets.images}
-        onChange={(images) => updateField('assets.images', images)}
-        renderItem={renderImageItem}
-        addButtonText="Add Image"
-      />
-
-      <DynamicList
-        label="Logos"
-        items={formData.assets.logos}
-        onChange={(logos) => updateField('assets.logos', logos)}
-        renderItem={renderLogoItem}
-        addButtonText="Add Logo"
-      />
-
-      <SelectInput
-        label="Mode"
-        value={formData.settings.mode}
-        onChange={(value) => updateField('settings.mode', value)}
-        options={[
-          { value: 'auto', label: 'Auto' },
-          { value: 'brand', label: 'Brand' },
-          { value: 'custom', label: 'Custom' },
-        ]}
-      />
-
-      {/* <SelectInput
-        label="Brand"
-        value={formData.settings.mode}
-        onChange={(value) => updateField('settings.mode', value)}
-        options={[
-          { value: 'sivi_sample_1', label: 'Sivi Sample 1' },
-          { value: 'sivi_sample_2', label: 'Sivi Sample 2' },
-        ]}
-      /> */}
-
-      <div className="colors-section">
-        <label className="form-label">Colors</label>
-        <div className="colors-list">
-          <button 
-            type="button" 
-            onClick={addColor} 
-            className="add-color-button"
-            disabled={formData.settings.mode !== 'custom'}
-          >
-            Add Color
-          </button>
-          {formData.settings.colorsPreference.customColors.map((colorObj, index) => (
-            <div key={index} className="color-item">
-              <ColorInput
-                value={colorObj.color}
-                onChange={(newColor) => updateColor(index, newColor)}
-                disabled={formData.settings.mode !== 'custom'}
+      <div className="form-field">
+        <label className="form-label">Images</label>
+        <div className="asset-list">
+          {formData.assets.images.map((image, index) => (
+            <div key={index} className="asset-card">
+              <button
+                type="button"
+                onClick={() => removeImage(index)}
+                className="asset-remove"
+                title="Remove"
+              >
+                ×
+              </button>
+              <UrlInput
+                label="Image URL"
+                value={image.url || ''}
+                onChange={(url) => updateImage(index, { ...image, url })}
+                placeholder="https://example.com/image.jpg"
               />
-              {formData.settings.colorsPreference.customColors.length > 0 && (
-                <button
-                  type="button"
-                  onClick={() => removeColor(index)}
-                  className="remove-color-button"
-                  disabled={formData.settings.mode !== 'custom'}
-                >
-                  ×
-                </button>
-              )}
+              <div className="image-preferences">
+                <div className="checkbox-item">
+                  <input
+                    type="checkbox"
+                    id={`img-crop-${index}`}
+                    checked={image.imagePreference?.crop || false}
+                    onChange={(e) => updateImage(index, {
+                      ...image,
+                      imagePreference: { ...image.imagePreference, crop: e.target.checked }
+                    })}
+                  />
+                  <label htmlFor={`img-crop-${index}`}>Crop</label>
+                </div>
+                <div className="checkbox-item">
+                  <input
+                    type="checkbox"
+                    id={`img-rm-${index}`}
+                    checked={image.imagePreference?.removeBg || false}
+                    onChange={(e) => updateImage(index, {
+                      ...image,
+                      imagePreference: { ...image.imagePreference, removeBg: e.target.checked }
+                    })}
+                  />
+                  <label htmlFor={`img-rm-${index}`}>Remove Background</label>
+                </div>
+              </div>
             </div>
           ))}
+          <button type="button" onClick={addImage} className="add-button">
+            Add Image
+          </button>
         </div>
-
       </div>
 
-      <MultiSelectList
-        label="Theme"
-        values={formData.settings.theme}
-        onChange={(value) => updateField('settings.theme', value)}
-        options={[
-          {
-            label: 'Light',
-            value: 'light',
-          },
-          {
-            label: 'Dark',
-            value: 'dark',
-          },
-          {
-            label: 'Colorful',
-            value: 'colorful',
-          },
-        ]}
-        disabled={formData.settings.mode !== 'custom'}
-      />
+      <div className="form-field">
+        <label className="form-label">Logos</label>
+        <div className="asset-list">
+          {formData.assets.logos.map((logo, index) => (
+            <div key={index} className="asset-card">
+              <button
+                type="button"
+                onClick={() => removeLogo(index)}
+                className="asset-remove"
+                title="Remove"
+              >
+                ×
+              </button>
+              <UrlInput
+                label="Logo URL"
+                value={logo.url || ''}
+                onChange={(url) => updateLogo(index, { ...logo, url })}
+                placeholder="https://example.com/logo.png"
+              />
+            </div>
+          ))}
+          <button type="button" onClick={addLogo} className="add-button">
+            Add Logo
+          </button>
+        </div>
+      </div>
 
-      <MultiSelectList
-        label="FrameStyle"
-        values={formData.settings.frameStyle}
-        onChange={(value) => updateField('settings.frameStyle', value)}
-        options={[
-          {
-            label: 'Plain Fill',
-            value: 'Plain Fill',
-            internalName: 'None',
-          },
-          {
-            label: 'Inset Frame',
-            value: 'Inset Frame',
-            internalName: 'Box',
-          },
-          {
-            label: 'Inset Outline',
-            value: 'Inset Outline',
-            internalName: 'Simple',
-          },
-          {
-            label: 'Patterned Boundary',
-            value: 'Patterned Boundary',
-            internalName: 'Ornate',
-          },
-          {
-            label: 'Stroked Outline',
-            value: 'Stroked Outline',
-            internalName: 'Stroke',
-          },
-          {
-            label: 'Corner Accent',
-            value: 'Corner Accent',
-            internalName: 'Diagonal',
-          },
-          {
-            label: 'Bar Accent',
-            value: 'Bar Accent',
-            internalName: 'Bar',
-          },
-        ]}
-        disabled={formData.settings.mode !== 'custom'}
-      />
+      <div className="required-field">
+        <SelectInput
+          label="Mode"
+          value={formData.settings.mode}
+          onChange={(value) => updateField('settings.mode', value)}
+          options={[
+            { value: 'auto', label: 'Auto' },
+            { value: 'brand', label: 'Brand' },
+            { value: 'custom', label: 'Custom' },
+          ]}
+        />
+      </div>
 
-      <MultiSelectList
-        label="BackdropStyle"
-        values={formData.settings.backdropStyle}
-        onChange={(value) => updateField('settings.backdropStyle', value)}
-        options={[
-          { label: 'Minimalist', value: 'minimalist' },
-          { label: 'Imagery', value: 'imagery' },
-          { label: 'Artistic', value: 'artistic' },
-        ]}
-        disabled={formData.settings.mode !== 'custom'}
-      />
+      {isBrandMode && (
+        <div className="required-field">
+          <TextInput
+            label="Brand ID"
+            value={formData.settings.currentbId || ''}
+            onChange={(value) => updateField('settings.currentbId', value)}
+            placeholder="Enter brand ID"
+          />
+        </div>
+      )}
 
-      <MultiSelectList
-        label="Focus"
-        values={formData.settings.focus}
-        onChange={(value) => updateField('settings.focus', value)}
-        options={[
-          {
-            label: 'Text',
-            value: 'text',
-          },
-          {
-            label: 'Image',
-            value: 'image',
-          },
-          {
-            label: 'Neutral',
-            value: 'neutral',
-          },
-        ]}
-        disabled={formData.settings.mode !== 'custom'}
-      />
+      {isCustomMode && (
+        <>
+          <div className="form-field">
+            <label className="form-label">Colors</label>
+            <div className="colors-list">
+              {formData.settings.colorsPreference.customColors.map((colorObj, index) => (
+                <div key={index} className="color-row">
+                  <input
+                    type="color"
+                    value={colorObj.color}
+                    onChange={(e) => updateColor(index, e.target.value)}
+                    className="color-input"
+                  />
+                  <input
+                    type="text"
+                    value={colorObj.color}
+                    onChange={(e) => updateColor(index, e.target.value)}
+                    placeholder="#000000"
+                    className="color-text-input"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => removeColor(index)}
+                    className="color-remove"
+                    title="Remove color"
+                  >
+                    ×
+                  </button>
+                </div>
+              ))}
+              <button type="button" onClick={addColor} className="add-button">
+                Add Color
+              </button>
+            </div>
+          </div>
 
-      <MultiSelectList
-        label="ImageStyle"
-        values={formData.settings.imageStyle}
-        onChange={(value) => updateField('settings.imageStyle', value)}
-        options={[
-          {
-            label: 'Cover',
-            value: 'cover',
-          },
-          {
-            label: 'Cover With Linear Gradient',
-            value: 'cover-with-linear-gradient',
-          },
-          {
-            label: 'Cover With Overlay',
-            value: 'cover-with-overlay',
-          },
-          {
-            label: 'Container',
-            value: 'container',
-          },
-          {
-            label: 'Section',
-            value: 'section',
-          },
-          {
-            label: 'Section with Container',
-            value: 'section-with-container',
-          },
-          {
-            label: 'Mask',
-            value: 'mask',
-          },
-          {
-            label: 'Cutout',
-            value: 'cutout',
-          },
-          {
-            label: 'Cutout with vectors',
-            value: 'cutout-with-vectors',
-          },
-          {
-            label: 'Content Free Form',
-            value: 'content-free-form',
-          },
-        ]}
-        disabled={formData.settings.mode !== 'custom'}
-      />
+          <MultiSelectList
+            label="Theme"
+            values={formData.settings.theme}
+            onChange={(value) => updateField('settings.theme', value)}
+            options={[
+              { label: 'Light', value: 'light' },
+              { label: 'Dark', value: 'dark' },
+              { label: 'Colorful', value: 'colorful' },
+            ]}
+          />
+
+          <MultiSelectList
+            label="FrameStyle"
+            values={formData.settings.frameStyle}
+            onChange={(value) => updateField('settings.frameStyle', value)}
+            options={[
+              { label: 'Plain Fill', value: 'Plain Fill', internalName: 'None' },
+              { label: 'Inset Frame', value: 'Inset Frame', internalName: 'Box' },
+              { label: 'Inset Outline', value: 'Inset Outline', internalName: 'Simple' },
+              { label: 'Patterned Boundary', value: 'Patterned Boundary', internalName: 'Ornate' },
+              { label: 'Stroked Outline', value: 'Stroked Outline', internalName: 'Stroke' },
+              { label: 'Corner Accent', value: 'Corner Accent', internalName: 'Diagonal' },
+              { label: 'Bar Accent', value: 'Bar Accent', internalName: 'Bar' },
+            ]}
+          />
+
+          <MultiSelectList
+            label="BackdropStyle"
+            values={formData.settings.backdropStyle}
+            onChange={(value) => updateField('settings.backdropStyle', value)}
+            options={[
+              { label: 'Minimalist', value: 'minimalist' },
+              { label: 'Imagery', value: 'imagery' },
+              { label: 'Artistic', value: 'artistic' },
+            ]}
+          />
+
+          <MultiSelectList
+            label="Focus"
+            values={formData.settings.focus}
+            onChange={(value) => updateField('settings.focus', value)}
+            options={[
+              { label: 'Text', value: 'text' },
+              { label: 'Image', value: 'image' },
+              { label: 'Neutral', value: 'neutral' },
+            ]}
+          />
+
+          <MultiSelectList
+            label="ImageStyle"
+            values={formData.settings.imageStyle}
+            onChange={(value) => updateField('settings.imageStyle', value)}
+            options={[
+              { label: 'Cover', value: 'cover' },
+              { label: 'Cover With Linear Gradient', value: 'cover-with-linear-gradient' },
+              { label: 'Cover With Overlay', value: 'cover-with-overlay' },
+              { label: 'Container', value: 'container' },
+              { label: 'Section', value: 'section' },
+              { label: 'Section with Container', value: 'section-with-container' },
+              { label: 'Mask', value: 'mask' },
+              { label: 'Cutout', value: 'cutout' },
+              { label: 'Cutout with vectors', value: 'cutout-with-vectors' },
+              { label: 'Content Free Form', value: 'content-free-form' },
+            ]}
+          />
+        </>
+      )}
 
       <SelectInput
         label="Language"
@@ -485,23 +480,15 @@ const DesignForm = ({ onSubmit, initialData }) => {
         ]}
       />
 
-      <NumberInput
-        label="Number of Variants"
-        value={formData.numOfVariants}
-        onChange={(value) => updateField('numOfVariants', value)}
-        min={1}
-        max={10}
-      />
-
-      {/* <MultiSelectList
-        label="Output Format"
-        values={formData.outputFormat}
-        onChange={(formats) => updateField('outputFormat', formats)}
-        options={[
-          { value: 'jpg', label: 'JPG' },
-          { value: 'png', label: 'PNG' },
-        ]}
-      /> */}
+      <div className="required-field">
+        <NumberInput
+          label="Number of Variants"
+          value={formData.numOfVariants}
+          onChange={(value) => updateField('numOfVariants', value)}
+          min={1}
+          max={10}
+        />
+      </div>
 
       <button type="submit" className="ai-studio-button">
         Generate Design

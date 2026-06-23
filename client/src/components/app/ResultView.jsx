@@ -49,23 +49,27 @@ function getResultComponent(flowKey, { apiResponse, designVariants, apiInput }) 
 export default function ResultView({
   activeFlow,
   isLoading,
-  isPolling,
+  isFlowPolling,
   apiResponse,
   designVariants,
   apiInput,
   webhookEnabled,
   webhookUrl,
 }) {
-  if (isLoading || isPolling) {
+  // isFlowPolling is a per-flow function so switching flows doesn't
+  // show a loader for unrelated background jobs.
+  const flowIsPolling = isFlowPolling ? isFlowPolling(activeFlow) : false;
+  if (isLoading || flowIsPolling) {
+    const flowLabel = FLOW_TITLES[activeFlow] || 'Request';
     return (
       <div className="loading-state">
         <div className="spinner" />
-        {isPolling ? (
-          <p>Design is being generated, please wait... (Checking for status)</p>
+        {flowIsPolling ? (
+          <p>{flowLabel} is being processed, please wait... (Checking for status)</p>
         ) : isLoading && webhookEnabled && webhookUrl ? (
-          <p>Design request submitted — results will be delivered via webhook.</p>
+          <p>{flowLabel} submitted — results will be delivered via webhook.</p>
         ) : (
-          <p>Processing...</p>
+          <p>Processing {flowLabel.toLowerCase()}...</p>
         )}
       </div>
     );

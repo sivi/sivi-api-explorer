@@ -18,8 +18,7 @@ import { useWebhookConfig } from './hooks/useWebhookConfig.js'
 import useWebhookEvents from './hooks/useWebhookEvents'
 import { coreApi } from './api/core.js'
 import { designPresets } from './features/designs/data/designPresets'
-import { getHistoryItem } from './utils/historyStorage'
-import { findFlowPath } from './config/flows.js'
+import { FLOW_TITLES } from './config/flowTitles.js'
 
 function App() {
   const [activeFlow, setActiveFlow] = useState('designs-from-prompt')
@@ -33,13 +32,16 @@ function App() {
     apiInput,
     designVariants,
     isLoading,
-    isPolling,
+    isFlowPolling,
     history,
     clearLogs,
     addLog,
     loadHistoryItem,
     formatHistoryLabel,
+    updateHistoryEntry,
+    removeHistoryEntry,
     setActiveFlowKey,
+    resetResultState,
   } = useAppContext()
 
   const panels = usePanels()
@@ -49,17 +51,17 @@ function App() {
   const {
     submit: submitDesignsFromPrompt,
     handleWebhookEvent: handlePromptWebhook,
-  } = useDesignGeneration(coreApi.designsFromPrompt, '/designs-from-prompt')
+  } = useDesignGeneration(coreApi.designsFromPrompt, '/designs-from-prompt', 'designs-from-prompt')
 
   const {
     submit: submitDesignsFromContent,
     handleWebhookEvent: handleContentWebhook,
-  } = useDesignGeneration(coreApi.designsFromContent, '/designs-from-content')
+  } = useDesignGeneration(coreApi.designsFromContent, '/designs-from-content', 'designs-from-content')
 
   const {
     submit: submitContentFromPrompt,
     handleWebhookEvent: handleContentPromptWebhook,
-  } = useDesignGeneration(coreApi.contentFromPrompt, '/content-from-prompt')
+  } = useDesignGeneration(coreApi.contentFromPrompt, '/content-from-prompt', 'content-from-prompt')
 
   const { submit: submitUtility } = useUtilityFlow(activeFlow)
   const {
@@ -81,40 +83,40 @@ function App() {
 
   const { submit: submitUser } = useUserFlow(activeFlow)
 
-  // Webhook routing: all async job flows share the same SSE channel
+  /*
+   * Webhook broadcast: all async job handlers receive every incoming webhook.
+   * Each handler internally guards against irrelevant events by checking
+   * `lastRequestIdRef.current` (set when that flow submitted a job).
+   * Only the handler whose requestId matches the webhook's requestId will
+   * actually process it — the rest return immediately with no side effects.
+   *
+   * This decouples webhooks from the active UI flow. A background job
+   * (e.g. design generation) can complete and save to history even while
+   * the user is viewing a different flow (e.g. brand results).
+   */
   const handleWebhookEvent = useCallback(
     (data) => {
-      if (activeFlow === 'designs-from-prompt') {
-        handlePromptWebhook(data)
-      } else if (activeFlow === 'designs-from-content') {
-        handleContentWebhook(data)
-      } else if (activeFlow === 'content-from-prompt') {
-        handleContentPromptWebhook(data)
-      } else if (activeFlow === 'extract-brand') {
-        handleExtractBrandWebhook(data)
-      } else if (activeFlow === 'generate-media') {
-        handleGenerateMediaWebhook(data)
-      } else if (activeFlow === 'upload-fonts') {
-        handleUploadFontWebhook(data)
-      } else {
-        const eventType = data.body?.eventType ?? data.eventType
-        const status = data.body?.status ?? data.status
-        addLog(`Webhook event: eventType=${eventType || 'unknown'}, status=${status || 'unknown'} — no active job flow is listening.`)
-      }
+      handlePromptWebhook(data)
+      handleContentWebhook(data)
+      handleContentPromptWebhook(data)
+      handleExtractBrandWebhook(data)
+      handleGenerateMediaWebhook(data)
+      handleUploadFontWebhook(data)
     },
-    [activeFlow, handlePromptWebhook, handleContentWebhook, handleContentPromptWebhook, handleExtractBrandWebhook, handleGenerateMediaWebhook, handleUploadFontWebhook, addLog]
+    [handlePromptWebhook, handleContentWebhook, handleContentPromptWebhook, handleExtractBrandWebhook, handleGenerateMediaWebhook, handleUploadFontWebhook]
   )
 
   useWebhookEvents(webhook.webhookEnabled, handleWebhookEvent)
 
   const handleFlowChange = useCallback((flowKey) => {
     if (flowKey === activeFlow) return
+    resetResultState()
     setActiveFlow(flowKey)
     setActiveFlowKey(flowKey)
     setSelectedPreset('')
     setSelectedHistoryId('')
     setFormKey((k) => k + 1)
-  }, [activeFlow, setActiveFlowKey])
+  }, [activeFlow, resetResultState, setActiveFlowKey])
 
   const handlePresetChange = useCallback((presetKey) => {
     setSelectedPreset(presetKey)
@@ -122,13 +124,13 @@ function App() {
     setFormKey((k) => k + 1)
   }, [])
 
-  const handleHistorySelect = useCallback((historyId) => {
+  const handleHistorySelect = useCallback(async (historyId) => {
     if (!historyId) {
       setSelectedHistoryId('')
       setSelectedPreset('')
       return
     }
-    const item = loadHistoryItem(historyId)
+    const item = await loadHistoryItem(historyId)
     if (item) {
       if (item.flowKey && item.flowKey !== activeFlow) {
         setActiveFlow(item.flowKey)
@@ -196,11 +198,9 @@ function App() {
 
   const initialFormData = useMemo(() => {
     if (selectedPreset) return designPresets[selectedPreset].data
-    if (selectedHistoryId) return getHistoryItem(selectedHistoryId)?.apiInput
+    if (selectedHistoryId) return apiInput
     return null
-  }, [selectedPreset, selectedHistoryId])
-
-  const activeFlowPath = useMemo(() => findFlowPath(activeFlow), [activeFlow])
+  }, [selectedPreset, selectedHistoryId, apiInput])
 
   return (
     <div className="app-container">
@@ -222,6 +222,8 @@ function App() {
         onFlowChange={handleFlowChange}
         onPresetChange={handlePresetChange}
         onHistorySelect={handleHistorySelect}
+        onHistoryUpdate={updateHistoryEntry}
+        onHistoryDelete={removeHistoryEntry}
         onOpenWebhookModal={() => webhook.setShowWebhookModal(true)}
         onToggleWebhook={webhook.setWebhookEnabled}
       />
@@ -261,11 +263,11 @@ function App() {
           style={{ marginLeft: panels.sidebarCollapsed ? 0 : panels.sidebarWidth }}
         >
           <div className="variants-section">
-            <h2>{activeFlowPath?.[activeFlowPath.length - 1] || 'Result'}</h2>
+            <h2>{FLOW_TITLES[activeFlow] || 'Result'}</h2>
             <ResultView
               activeFlow={activeFlow}
               isLoading={isLoading}
-              isPolling={isPolling}
+              isFlowPolling={isFlowPolling}
               apiResponse={apiResponse}
               designVariants={designVariants}
               apiInput={apiInput}

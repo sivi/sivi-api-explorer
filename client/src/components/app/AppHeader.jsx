@@ -2,6 +2,7 @@ import React from 'react';
 import { Cascader } from 'antd';
 import { FLOW_GROUPS, findFlowPath } from '~/config/flows.js';
 import { designPresets } from '~/features/designs/data/designPresets';
+import HistoryDropdown from '~/components/common/HistoryDropdown';
 
 const PRESET_FLOWS = [
   'designs-from-prompt',
@@ -23,6 +24,8 @@ export default function AppHeader({
   onFlowChange,
   onPresetChange,
   onHistorySelect,
+  onHistoryUpdate,
+  onHistoryDelete,
   onOpenWebhookModal,
   onToggleWebhook,
 }) {
@@ -73,22 +76,14 @@ export default function AppHeader({
         )}
 
         <div className="history-selector">
-          <label htmlFor="history-dropdown" className="preset-label">
-            History:
-          </label>
-          <select
-            id="history-dropdown"
-            value={selectedHistoryId}
-            onChange={(e) => onHistorySelect(e.target.value)}
-            className="preset-dropdown"
-          >
-            <option value="">Select from history...</option>
-            {history.map((item) => (
-              <option key={item.id} value={item.id}>
-                {formatHistoryLabel(item)}
-              </option>
-            ))}
-          </select>
+          <HistoryDropdown
+            history={history}
+            selectedHistoryId={selectedHistoryId}
+            formatHistoryLabel={formatHistoryLabel}
+            onSelect={onHistorySelect}
+            onUpdate={onHistoryUpdate}
+            onDelete={onHistoryDelete}
+          />
         </div>
 
         <div className="webhook-controls">

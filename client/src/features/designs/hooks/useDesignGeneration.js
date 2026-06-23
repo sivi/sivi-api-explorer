@@ -6,16 +6,17 @@ import { useAsyncJob } from '~/hooks/useAsyncJob.js';
  * Shared hook for Sivi design-generation flows (designs-from-prompt, designs-from-content, content-from-prompt).
  * Thin wrapper around useAsyncJob that maps result variations to design variants.
  */
-export function useDesignGeneration(apiMethod, endpointLabel) {
+export function useDesignGeneration(apiMethod, endpointLabel, flowKey) {
   const {
     apiInput,
     addLog,
     setDesignVariants,
     saveHistoryEntry,
+    activeFlowKey,
   } = useAppContext();
 
   const onResult = useCallback(
-    (data) => {
+    (data, originalInput) => {
       const variations = data.body?.result?.variations ?? data.result?.variations;
       if (variations?.length) {
         const variants = variations.map((v) => ({
@@ -23,20 +24,24 @@ export function useDesignGeneration(apiMethod, endpointLabel) {
           id: v.variantId,
           editLink: v.variantEditLink,
         }));
-        setDesignVariants(variants);
+        // Only update the design variant grid if the user is still on this
+        // flow. History is always saved regardless of the active flow.
+        if (!flowKey || activeFlowKey === flowKey) {
+          setDesignVariants(variants);
+        }
         addLog(`Found ${variants.length} design variants`);
-        saveHistoryEntry(apiInput, data, [], variants);
+        saveHistoryEntry(originalInput ?? apiInput, data, [], variants, flowKey);
       } else {
         addLog('Job completed but no variations found in payload.');
       }
     },
-    [setDesignVariants, saveHistoryEntry, addLog, apiInput]
+    [setDesignVariants, saveHistoryEntry, addLog, apiInput, activeFlowKey, flowKey]
   );
 
   const { submit, handleWebhookEvent, stopPolling } = useAsyncJob(
     apiMethod,
     endpointLabel,
-    { onResult }
+    { onResult, flowKey }
   );
 
   return { submit, handleWebhookEvent, stopPolling };

@@ -146,6 +146,7 @@
 }
 
 .dynamic-list-item {
+  position: relative;
   display: flex;
   align-items: center;
   gap: 12px;
@@ -153,6 +154,12 @@
   border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 8px;
   padding: 12px;
+}
+
+.dynamic-list-item .asset-remove {
+  position: absolute;
+  top: 8px;
+  right: 8px;
 }
 
 .remove-button {
@@ -200,4 +207,109 @@
   max-height: 200px;
   object-fit: cover;
   display: block;
+}
+
+/* Asset list with (x) cards */
+.asset-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.asset-card {
+  position: relative;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  padding: 12px;
+}
+
+.asset-remove {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 107, 107, 0.2);
+  color: #ff6b6b;
+  border: 1px solid rgba(255, 107, 107, 0.3);
+  border-radius: 50%;
+  font-size: 14px;
+  line-height: 1;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  padding: 0;
+  z-index: 1;
+}
+
+.asset-remove:hover {
+  background: rgba(255, 107, 107, 0.4);
+}
+
+/* Color row with inline (x) */
+.color-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.color-remove {
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 107, 107, 0.2);
+  color: #ff6b6b;
+  border: 1px solid rgba(255, 107, 107, 0.3);
+  border-radius: 50%;
+  font-size: 14px;
+  line-height: 1;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  padding: 0;
+  flex-shrink: 0;
+}
+
+.color-remove:hover {
+  background: rgba(255, 107, 107, 0.4);
+}
+
+/* Colors list spacing */
+.colors-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Image preferences inside asset card */
+.image-preferences {
+  display: flex;
+  gap: 16px;
+  margin-top: 8px;
+}
+
+/* Design form consistent spacing */
+.design-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.design-form .form-field {
+  margin-bottom: 0;
+}
+
+/* Dimension group - side by side width/height */
+.dimension-group {
+  display: flex;
+  gap: 12px;
+}
+
+.dimension-group .form-field {
+  flex: 1;
+  margin-bottom: 0;
 }

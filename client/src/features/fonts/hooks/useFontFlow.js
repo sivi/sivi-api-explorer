@@ -38,6 +38,7 @@ export function useFontFlow(flowKey) {
   );
 
   const uploadFontsJob = useAsyncJob(fontsApi.uploadFonts, 'upload-fonts', {
+    flowKey: 'upload-fonts',
     onResult: (data) => {
       const result = data.body?.result ?? data.body;
       if (result?.data) {
@@ -117,5 +118,5 @@ export function useFontFlow(flowKey) {
     [flowKey, getFontsFlow, submitUploadFonts]
   );
 
-  return { submit, handleWebhookEvent: uploadFontsJob.handleWebhookEvent };
+  return { submit, handleWebhookEvent: uploadFontsJob.handleWebhookEvent, stopPolling: uploadFontsJob.stopPolling };
 }

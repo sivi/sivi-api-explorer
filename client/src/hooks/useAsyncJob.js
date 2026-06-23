@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { useCallback, useRef } from 'react';
 import { useAppContext } from '../context/useAppContext.js';
 import { usePolling } from './usePolling.js';
 import { coreApi } from '../api/core.js';
@@ -23,12 +23,18 @@ export function useAsyncJob(submitApi, endpointLabel, options = {}) {
     setApiResponse,
     setApiInput,
     setIsLoading,
-    setIsPolling,
+    startPollingFlow,
+    stopPollingFlow,
+    activeFlowKey,
   } = useAppContext();
 
-  const { start: startPolling, stop: stopPolling } = usePolling();
+  const { start: startPolling, stop: stopHttpPolling } = usePolling();
+  // Preserve the original form data and requestId across flow switches so
+  // that history can be saved correctly even when the user navigates away.
+  const originalInputRef = useRef(null);
+  const lastRequestIdRef = useRef(null);
 
-  const { onResult, onError, extractRequestId, pollApi = coreApi.getRequestStatus } = options;
+  const { onResult, onError, extractRequestId, pollApi = coreApi.getRequestStatus, flowKey } = options;
 
   const extractId = useCallback(
     (data) => {
@@ -43,11 +49,23 @@ export function useAsyncJob(submitApi, endpointLabel, options = {}) {
     [extractRequestId]
   );
 
+  // Returns true only if the user is currently on this flow's screen.
+  // UI state updates (apiResponse, isLoading) are gated by this so that
+  // background jobs do not overwrite the current flow's results.
+  const isFlowActive = useCallback(
+    () => !flowKey || activeFlowKey === flowKey,
+    [flowKey, activeFlowKey]
+  );
+
   const handleCompletion = useCallback(
     (data, originalInput, allLogs) => {
-      setApiResponse(data);
-      setIsPolling(false);
-      setIsLoading(false);
+      // Mark this flow as no longer polling (per-flow tracking).
+      if (flowKey) stopPollingFlow(flowKey);
+      // Only update UI if the user is still on this flow.
+      if (isFlowActive()) {
+        setApiResponse(data);
+        setIsLoading(false);
+      }
       addLog('Job completed!');
       allLogs.push({
         timestamp: new Date().toLocaleTimeString(),
@@ -61,26 +79,29 @@ export function useAsyncJob(submitApi, endpointLabel, options = {}) {
         }
       }
     },
-    [setApiResponse, setIsPolling, setIsLoading, addLog, onResult]
+    [flowKey, stopPollingFlow, isFlowActive, setApiResponse, setIsLoading, addLog, onResult]
   );
 
   const handleFailure = useCallback(
     (message, allLogs) => {
       addLog(message);
-      setIsPolling(false);
-      setIsLoading(false);
+      if (flowKey) stopPollingFlow(flowKey);
+      if (isFlowActive()) {
+        setIsLoading(false);
+      }
       allLogs.push({
         timestamp: new Date().toLocaleTimeString(),
         message,
       });
       if (onError) onError(new Error(message));
     },
-    [addLog, setIsPolling, setIsLoading, onError]
+    [flowKey, stopPollingFlow, addLog, isFlowActive, setIsLoading, onError]
   );
 
   const pollStatus = useCallback(
     (requestId, originalInput, allLogs = []) => {
-      setIsPolling(true);
+      // Track that this specific flow is now actively polling.
+      if (flowKey) startPollingFlow(flowKey);
       let pollCount = 0;
 
       const check = async () => {
@@ -123,7 +144,7 @@ export function useAsyncJob(submitApi, endpointLabel, options = {}) {
         startPolling(check, 10000);
       }, 5000);
     },
-    [setIsPolling, addLog, pollApi, handleCompletion, handleFailure, startPolling]
+    [flowKey, startPollingFlow, addLog, pollApi, handleCompletion, handleFailure, startPolling]
   );
 
   const handleWebhookEvent = useCallback(
@@ -131,6 +152,14 @@ export function useAsyncJob(submitApi, endpointLabel, options = {}) {
       const status = data.body?.status ?? data.status;
       const eventType = data.body?.eventType ?? data.eventType;
       const requestId = data.body?.requestId ?? data.requestId;
+
+      // Guard: silently ignore webhooks meant for other flows.
+      // lastRequestIdRef is set during submit() so this instance only
+      // handles webhooks matching its own queued job.
+      if (lastRequestIdRef.current && requestId && lastRequestIdRef.current !== requestId) {
+        return;
+      }
+
       const logParts = [
         'Webhook event:',
         eventType && `eventType=${eventType}`,
@@ -141,27 +170,39 @@ export function useAsyncJob(submitApi, endpointLabel, options = {}) {
 
       if (status === 'completed') {
         addLog('Job completed via webhook!');
+        if (flowKey) {
+          stopPollingFlow(flowKey);
+          stopHttpPolling();
+        }
         const normalised = data.body
           ? data
           : { status: 200, body: { status: 'completed', result: data.result } };
-        setApiResponse(normalised);
-        setIsLoading(false);
+        if (isFlowActive()) {
+          setApiResponse(normalised);
+          setIsLoading(false);
+        }
         if (onResult) {
           try {
-            onResult(normalised);
+            onResult(normalised, originalInputRef.current);
           } catch (err) {
             addLog(`onResult callback error: ${err.message}`);
           }
         }
       } else if (status === 'failed' || status === 'error') {
         addLog(`Job failed via webhook: ${status}`);
-        setIsLoading(false);
+        if (flowKey) {
+          stopPollingFlow(flowKey);
+          stopHttpPolling();
+        }
+        if (isFlowActive()) {
+          setIsLoading(false);
+        }
         if (onError) onError(new Error(`Job failed: ${status}`));
       } else {
         addLog(`Webhook event status: ${status}`);
       }
     },
-    [addLog, setApiResponse, setIsLoading, onResult, onError]
+    [addLog, flowKey, stopPollingFlow, stopHttpPolling, isFlowActive, setApiResponse, setIsLoading, onResult, onError]
   );
 
   const submit = useCallback(
@@ -169,6 +210,7 @@ export function useAsyncJob(submitApi, endpointLabel, options = {}) {
       setIsLoading(true);
       setApiResponse(null);
       setApiInput(formData);
+      originalInputRef.current = formData;
 
       const activeWebhookUrl = localStorage.getItem('webhookUrl');
       const useWebhook = webhookEnabled && !!activeWebhookUrl;
@@ -195,6 +237,7 @@ export function useAsyncJob(submitApi, endpointLabel, options = {}) {
         addLog(`Response keys: ${Object.keys(data || {}).join(', ')}`);
         if (requestId) {
           addLog(`Extracted requestId: ${requestId}`);
+          lastRequestIdRef.current = requestId;
         }
 
         if (httpStatus === 200 && requestId) {
@@ -242,5 +285,10 @@ export function useAsyncJob(submitApi, endpointLabel, options = {}) {
     ]
   );
 
-  return { submit, handleWebhookEvent, stopPolling };
+  const stopPollingAndFlow = useCallback(() => {
+    stopHttpPolling();
+    if (flowKey) stopPollingFlow(flowKey);
+  }, [stopHttpPolling, stopPollingFlow, flowKey]);
+
+  return { submit, handleWebhookEvent, stopPolling: stopPollingAndFlow };
 }

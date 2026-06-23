@@ -142,9 +142,10 @@ export const DynamicList = ({ label, items, onChange, renderItem, addButtonText 
             <button
               type="button"
               onClick={() => removeItem(index)}
-              className="remove-button"
+              className="asset-remove"
+              title="Remove"
             >
-              Remove
+              ×
             </button>
           </div>
         ))}

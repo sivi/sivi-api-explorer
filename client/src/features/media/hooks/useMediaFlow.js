@@ -156,6 +156,7 @@ export function useMediaFlow(flowKey) {
   );
 
   const generateMediaJob = useAsyncJob(mediaApi.generateMedia, 'generate-media', {
+    flowKey: 'generate-media',
     onResult: (data) => {
       const media = data.body?.result?.media ?? data.body?.media;
       if (media) {
@@ -193,5 +194,5 @@ export function useMediaFlow(flowKey) {
     ]
   );
 
-  return { submit, handleWebhookEvent: generateMediaJob.handleWebhookEvent };
+  return { submit, handleWebhookEvent: generateMediaJob.handleWebhookEvent, stopPolling: generateMediaJob.stopPolling };
 }

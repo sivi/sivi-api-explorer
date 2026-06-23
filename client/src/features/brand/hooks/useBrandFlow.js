@@ -86,6 +86,7 @@ export function useBrandFlow(flowKey) {
   );
 
   const extractBrandJob = useAsyncJob(brandApi.extractBrand, 'extract-brand', {
+    flowKey: 'extract-brand',
     onResult: (data) => {
       const details = data.body?.result?.brandDetails;
       if (details) {
@@ -126,5 +127,5 @@ export function useBrandFlow(flowKey) {
     ]
   );
 
-  return { submit, handleWebhookEvent: extractBrandJob.handleWebhookEvent };
+  return { submit, handleWebhookEvent: extractBrandJob.handleWebhookEvent, stopPolling: extractBrandJob.stopPolling };
 }
