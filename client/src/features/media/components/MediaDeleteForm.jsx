@@ -40,7 +40,7 @@ const MediaDeleteForm = ({ onSubmit, initialData }) => {
       <h3 className="form-section-title">Delete Media</h3>
       <p className="form-hint">Delete media assets from a workspace.</p>
 
-      <div className={errors.mIds ? 'required-field' : ''}>
+      <div className="required-field">
         <TextInput
           label="Media IDs (comma-separated)"
           value={formData.mIds}

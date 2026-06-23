@@ -106,7 +106,7 @@ const FilePresignedUrlForm = ({ onSubmit, initialData }) => {
         />
       </div>
 
-      <div className={errors.contentType ? 'required-field' : ''}>
+      <div className="required-field">
         <TextInput
           label="Content Type"
           value={formData.contentType}

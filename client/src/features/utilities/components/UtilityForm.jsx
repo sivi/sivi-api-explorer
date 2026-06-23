@@ -55,24 +55,30 @@ const DesignVariantsForm = ({ onSubmit, initialData }) => {
     <form onSubmit={handleSubmit} className="design-form">
       <h3 className="form-section-title">Get Design Variants</h3>
       <p className="form-hint">Provide at least one of the following identifiers.</p>
-      <TextInput
-        label="Design ID *"
-        value={formData.designId}
-        onChange={(v) => setFormData((prev) => ({ ...prev, designId: v }))}
-        placeholder="e.g. d_s87vFxpfM0R"
-      />
-      <TextInput
-        label="Workspace ID *"
-        value={formData.workspaceId}
-        onChange={(v) => setFormData((prev) => ({ ...prev, workspaceId: v }))}
-        placeholder="e.g. dc6a1c20-1e94-11f0-abff-a1489713342b"
-      />
-      <TextInput
-        label="Idea ID *"
-        value={formData.ideaId}
-        onChange={(v) => setFormData((prev) => ({ ...prev, ideaId: v }))}
-        placeholder="e.g. i_s87vFxpfM0R"
-      />
+      <div className="required-field">
+        <TextInput
+          label="Design ID"
+          value={formData.designId}
+          onChange={(v) => setFormData((prev) => ({ ...prev, designId: v }))}
+          placeholder="e.g. d_s87vFxpfM0R"
+        />
+      </div>
+      <div className="required-field">
+        <TextInput
+          label="Workspace ID"
+          value={formData.workspaceId}
+          onChange={(v) => setFormData((prev) => ({ ...prev, workspaceId: v }))}
+          placeholder="e.g. dc6a1c20-1e94-11f0-abff-a1489713342b"
+        />
+      </div>
+      <div className="required-field">
+        <TextInput
+          label="Idea ID"
+          value={formData.ideaId}
+          onChange={(v) => setFormData((prev) => ({ ...prev, ideaId: v }))}
+          placeholder="e.g. i_s87vFxpfM0R"
+        />
+      </div>
       <hr className="form-divider" />
       <SelectInput
         label="Type"
@@ -80,14 +86,16 @@ const DesignVariantsForm = ({ onSubmit, initialData }) => {
         onChange={(v) => setFormData((prev) => ({ ...prev, type: v }))}
         options={TYPE_OPTIONS}
       />
-      <NumberInput
-        label="Limit *"
-        value={formData.limit}
-        onChange={(v) => setFormData((prev) => ({ ...prev, limit: v }))}
-        placeholder="Number of variants per page (1-100)"
-        min={1}
-        max={100}
-      />
+      <div className="required-field">
+        <NumberInput
+          label="Limit"
+          value={formData.limit}
+          onChange={(v) => setFormData((prev) => ({ ...prev, limit: v }))}
+          placeholder="Number of variants per page (1-100)"
+          min={1}
+          max={100}
+        />
+      </div>
       <button type="submit" className="submit-button">
         Get Variants
       </button>

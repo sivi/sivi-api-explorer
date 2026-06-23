@@ -62,14 +62,16 @@ const BrandListPanel = ({ onSubmit, initialData }) => {
       )}
 
       {activeTab === 'multi' && (
-        <NumberInput
-          label="Limit *"
-          value={limit}
-          onChange={setLimit}
-          placeholder="Number of brands per page"
-          min={1}
-          max={100}
-        />
+        <div className="required-field">
+          <NumberInput
+            label="Limit"
+            value={limit}
+            onChange={setLimit}
+            placeholder="Number of brands per page"
+            min={1}
+            max={100}
+          />
+        </div>
       )}
 
       <button type="submit" className="submit-button">

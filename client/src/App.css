@@ -1421,14 +1421,15 @@ body {
 /* FontResult card styles */
 .font-result-card .brand-font {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
-  gap: 16px;
+  gap: 12px;
   width: auto;
 }
 
 .font-result-card .brand-font-preview {
-  width: 220px;
+  width: 100%;
+  max-width: 250px;
   height: 80px;
   object-fit: contain;
   border-radius: 8px;
@@ -1442,8 +1443,9 @@ body {
   display: flex;
   flex-direction: column;
   gap: 6px;
-  flex: 1;
-  min-width: 0;
+  align-items: center;
+  text-align: center;
+  width: 100%;
 }
 
 .font-result-card .brand-font-info h4 {

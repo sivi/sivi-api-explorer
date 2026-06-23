@@ -67,7 +67,7 @@ const MediaGenerateForm = ({ onSubmit, initialData }) => {
       <h3 className="form-section-title">Generate Media</h3>
       <p className="form-hint">Generate or enhance images using AI.</p>
 
-      <div className={errors.prompt ? 'required-field' : ''}>
+      <div className="required-field">
         <TextAreaInput
           label="Prompt"
           value={formData.prompt}
@@ -117,7 +117,7 @@ const MediaGenerateForm = ({ onSubmit, initialData }) => {
         placeholder="e.g. b_s87vFxpfM0R"
       />
 
-      <div className={errors.model ? 'required-field' : ''}>
+      <div className="required-field">
         <TextInput
           label="Model"
           value={formData.model}

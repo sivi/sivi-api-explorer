@@ -97,14 +97,16 @@ const FontListPanel = ({ onSubmit, initialData }) => {
         />
       </div>
 
-      <NumberInput
-        label="Limit *"
-        value={formData.limit}
-        onChange={(v) => updateField('limit', v)}
-        placeholder="Number of fonts to fetch"
-        min={1}
-        max={100}
-      />
+      <div className="required-field">
+        <NumberInput
+          label="Limit"
+          value={formData.limit}
+          onChange={(v) => updateField('limit', v)}
+          placeholder="Number of fonts to fetch"
+          min={1}
+          max={100}
+        />
+      </div>
 
       <TextInput
         label="Abstract User ID (optional)"

@@ -133,9 +133,9 @@ const LoginUserForm = ({ onSubmit, initialData }) => {
       <h3 className="form-section-title">Login User</h3>
       <p className="form-hint">Log in an existing user or create a new user.</p>
 
-      <div className={errors.abstractUserId ? 'required-field' : ''}>
+      <div className="required-field">
         <TextInput
-          label="Abstract User ID *"
+          label="Abstract User ID"
           value={formData.abstractUserId}
           onChange={(v) => {
             updateField('abstractUserId', v);
@@ -277,9 +277,9 @@ const DeleteUserForm = ({ onSubmit, initialData }) => {
       <h3 className="form-section-title">Delete User</h3>
       <p className="form-hint">Delete a user and their associated workspace.</p>
 
-      <div className={error ? 'required-field' : ''}>
+      <div className="required-field">
         <TextInput
-          label="Abstract User ID *"
+          label="Abstract User ID"
           value={abstractUserId}
           onChange={(v) => {
             setAbstractUserId(v);
@@ -330,9 +330,9 @@ const SetUserCreditLimitForm = ({ onSubmit, initialData }) => {
       <h3 className="form-section-title">Set User Credit Limit</h3>
       <p className="form-hint">Set a user&apos;s credit usage limit for the current billing cycle.</p>
 
-      <div className={errors.abstractUserId ? 'required-field' : ''}>
+      <div className="required-field">
         <TextInput
-          label="Abstract User ID *"
+          label="Abstract User ID"
           value={formData.abstractUserId}
           onChange={(v) => {
             setFormData((prev) => ({ ...prev, abstractUserId: v }));
@@ -342,9 +342,9 @@ const SetUserCreditLimitForm = ({ onSubmit, initialData }) => {
         />
       </div>
 
-      <div className={errors.creditLimit ? 'required-field' : ''}>
+      <div className="required-field">
         <NumberInput
-          label="Credit Limit *"
+          label="Credit Limit"
           value={formData.creditLimit}
           onChange={(v) => {
             setFormData((prev) => ({ ...prev, creditLimit: v }));

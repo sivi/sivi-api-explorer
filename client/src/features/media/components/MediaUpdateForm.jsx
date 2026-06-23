@@ -62,7 +62,7 @@ const MediaUpdateForm = ({ onSubmit, initialData }) => {
       <h3 className="form-section-title">Update Media</h3>
       <p className="form-hint">Update metadata of an existing media asset.</p>
 
-      <div className={errors.mId ? 'required-field' : ''}>
+      <div className="required-field">
         <TextInput
           label="Media ID (mId)"
           value={formData.mId}
