@@ -8,6 +8,22 @@ function getFontImageURL(font) {
   return `https://media.hellosivi.com/system/fonts/images/${font.id}.png`;
 }
 
+function resolveColorValue(color) {
+  if (typeof color === 'string') return color;
+  if (color && typeof color === 'object') {
+    return color.primary || color.color || color.hex || JSON.stringify(color);
+  }
+  return String(color);
+}
+
+function resolveColorStyle(color) {
+  if (typeof color === 'string') return color;
+  if (color && typeof color === 'object') {
+    return color.primary || color.color || color.hex || '#cccccc';
+  }
+  return String(color);
+}
+
 function renderBrandCard(brand, key) {
   const name = brand.brandName || brand.name || 'Brand';
   const colors = brand.brandColors || brand.colors || [];
@@ -16,130 +32,158 @@ function renderBrandCard(brand, key) {
   const fonts = brand.brandFonts || brand.fonts || [];
   const persona = brand.brandPersona || brand.persona;
 
-  const resolveColor = (color) => {
-    if (typeof color === 'string') return color;
-    if (color && typeof color === 'object') {
-      return color.primary || color.color || color.hex || JSON.stringify(color);
-    }
-    return String(color);
-  };
-
-  const resolveColorStyle = (color) => {
-    if (typeof color === 'string') return color;
-    if (color && typeof color === 'object') {
-      return color.primary || color.color || color.hex || '#cccccc';
-    }
-    return String(color);
-  };
+  const id = brand.bId || brand.brandId;
+  const description = brand.brandDescription || brand.description;
 
   return (
     <div key={key} className="brand-card">
-      <h4>{name}</h4>
-      {brand.brandDescription && <p>{brand.brandDescription}</p>}
-      {brand.description && <p>{brand.description}</p>}
-      {brand.bId && <p className="brand-meta">ID: {brand.bId}</p>}
-      {brand.brandId && <p className="brand-meta">ID: {brand.brandId}</p>}
-
-      {brand.brandUrl && (
-        <p className="brand-url">
-          <a href={brand.brandUrl} target="_blank" rel="noopener noreferrer">
-            {brand.brandUrl}
-          </a>
-        </p>
-      )}
-
-      {logos.length > 0 && (
-        <div className="brand-logos-row">
-          {logos.map((logo, i) => (
-            <img
-              key={i}
-              src={logo}
-              alt={`${name} logo ${i + 1}`}
-              className="brand-logo"
-              loading="lazy"
-            />
-          ))}
-        </div>
-      )}
-
+      {/* Full-width color palette bar */}
       {colors.length > 0 && (
-        <div className="brand-colors">
+        <div className="brand-color-palette">
           {colors.map((color, i) => (
-            <div key={i} className="brand-color">
-              <span className="color-swatch" style={{ backgroundColor: resolveColorStyle(color) }} />
-              <span className="color-value">{resolveColor(color)}</span>
-            </div>
-          ))}
-        </div>
-      )}
-
-      {images.length > 0 && (
-        <div className="brand-images-row">
-          {images.map((img, i) => (
-            <img
+            <div
               key={i}
-              src={img}
-              alt={`${name} reference ${i + 1}`}
-              className="brand-image"
-              loading="lazy"
+              className="brand-color-bar"
+              style={{ backgroundColor: resolveColorStyle(color) }}
+              title={resolveColorValue(color)}
             />
           ))}
         </div>
       )}
 
-      {fonts.length > 0 && (
-        <div className="brand-fonts">
-          <h5>Fonts</h5>
-          <div className="brand-fonts-list">
-            {fonts.map((font, i) => (
-              <div key={i} className="brand-font">
+      <div className="brand-card-body">
+        {/* Header */}
+        <div className="brand-header">
+          <div className="brand-title-row">
+            <div className="brand-title-info">
+              <h4>{name}</h4>
+              {id && <span className="brand-id">{id}</span>}
+            </div>
+          </div>
+          {description && <p className="brand-description">{description}</p>}
+          {brand.brandUrl && (
+            <a
+              className="brand-url-link"
+              href={brand.brandUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {brand.brandUrl}
+            </a>
+          )}
+        </div>
+
+        {/* Color swatches with hex values */}
+        {colors.length > 0 && (
+          <div className="brand-colors-section">
+            <span className="brand-section-label">Palette</span>
+            <div className="brand-color-swatches">
+              {colors.map((color, i) => (
+                <div key={i} className="brand-color-swatch-item">
+                  <span
+                    className="color-swatch"
+                    style={{ backgroundColor: resolveColorStyle(color) }}
+                  />
+                  <span className="color-value">{resolveColorValue(color)}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Logos */}
+        {logos.length > 0 && (
+          <div className="brand-images-section">
+            <span className="brand-section-label">Logos</span>
+            <div className="brand-images-row">
+              {logos.map((logo, i) => (
                 <img
-                  src={getFontImageURL(font)}
-                  alt={font.name || font.id || 'Font preview'}
-                  className="brand-font-preview"
+                  key={i}
+                  src={logo}
+                  alt={`${name} logo ${i + 1}`}
+                  className="brand-image"
+                  style={{ objectFit: 'contain', padding: '8px', background: '#fff' }}
                   loading="lazy"
                 />
-                <span className="brand-font-name">{font.name || font.id}</span>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
-      )}
+        )}
 
-      {persona && (
-        <div className="brand-persona">
-          {persona.industry && (
-            <div className="persona-row">
-              <span className="persona-label">Industry:</span>
-              <span className="persona-tag">{persona.industry}</span>
-            </div>
-          )}
-          {persona.emotions?.length > 0 && (
-            <div className="persona-row">
-              <span className="persona-label">Emotions:</span>
-              {persona.emotions.map((e, i) => (
-                <span key={i} className="persona-tag emotion">{e}</span>
+        {/* Images */}
+        {images.length > 0 && (
+          <div className="brand-images-section">
+            <span className="brand-section-label">Images</span>
+            <div className="brand-images-row">
+              {images.map((img, i) => (
+                <img
+                  key={i}
+                  src={img}
+                  alt={`${name} reference ${i + 1}`}
+                  className="brand-image"
+                  loading="lazy"
+                />
               ))}
             </div>
-          )}
-          {persona.audience?.length > 0 && (
-            <div className="persona-row">
-              <span className="persona-label">Audience:</span>
-              {persona.audience.map((a, i) => (
-                <span key={i} className="persona-tag audience">{a}</span>
+          </div>
+        )}
+
+        {/* Fonts */}
+        {fonts.length > 0 && (
+          <div className="brand-fonts-section">
+            <span className="brand-section-label">Typography</span>
+            <div className="brand-fonts-list">
+              {fonts.map((font, i) => (
+                <div key={i} className="brand-font">
+                  <img
+                    src={getFontImageURL(font)}
+                    alt={font.name || font.id || 'Font preview'}
+                    className="brand-font-preview"
+                    loading="lazy"
+                  />
+                  <span className="brand-font-name">{font.name || font.id}</span>
+                </div>
               ))}
             </div>
-          )}
-          {persona.designTags?.length > 0 && (
-            <div className="persona-row">
-              <span className="persona-label">Design tags:</span>
-              {persona.designTags.map((t, i) => (
-                <span key={i} className="persona-tag design">{t}</span>
-              ))}
-            </div>
-          )}
-        </div>
-      )}
+          </div>
+        )}
+
+        {/* Persona */}
+        {persona && (
+          <div className="brand-persona">
+            {persona.industry && (
+              <div className="persona-row">
+                <span className="persona-label">Industry</span>
+                <span className="persona-tag">{persona.industry}</span>
+              </div>
+            )}
+            {persona.emotions?.length > 0 && (
+              <div className="persona-row">
+                <span className="persona-label">Emotions</span>
+                {persona.emotions.map((e, i) => (
+                  <span key={i} className="persona-tag emotion">{e}</span>
+                ))}
+              </div>
+            )}
+            {persona.audience?.length > 0 && (
+              <div className="persona-row">
+                <span className="persona-label">Audience</span>
+                {persona.audience.map((a, i) => (
+                  <span key={i} className="persona-tag audience">{a}</span>
+                ))}
+              </div>
+            )}
+            {persona.designTags?.length > 0 && (
+              <div className="persona-row">
+                <span className="persona-label">Design Tags</span>
+                {persona.designTags.map((t, i) => (
+                  <span key={i} className="persona-tag design">{t}</span>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
+      </div>
     </div>
   );
 }
