@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Cascader } from 'antd';
 import { FLOW_GROUPS, findFlowPath } from '~/config/flows.js';
 import { designPresets } from '~/features/designs/data/designPresets';
@@ -29,7 +29,7 @@ export default function AppHeader({
   onOpenWebhookModal,
   onToggleWebhook,
 }) {
-  const activeFlowPath = findFlowPath(activeFlow);
+  const activeFlowPath = useMemo(() => findFlowPath(activeFlow), [activeFlow]);
 
   return (
     <header className="app-header">

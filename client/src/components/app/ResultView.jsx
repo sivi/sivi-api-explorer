@@ -7,6 +7,7 @@ import MediaResult from '~/components/results/MediaResult.jsx';
 import FontResult from '~/components/results/FontResult.jsx';
 import StatusResult from '~/components/results/StatusResult.jsx';
 import JsonResult from '~/components/results/JsonResult.jsx';
+import LoginUserResult from '~/components/results/LoginUserResult.jsx';
 
 function getResultComponent(flowKey, { apiResponse, designVariants, apiInput, onLoadMore, hasMore, isLoadingMore }) {
   switch (flowKey) {
@@ -38,6 +39,7 @@ function getResultComponent(flowKey, { apiResponse, designVariants, apiInput, on
     case 'upload-fonts':
       return <StatusResult apiResponse={apiResponse} />;
     case 'login-user':
+      return <LoginUserResult apiResponse={apiResponse} />;
     case 'delete-user':
     case 'set-user-credit-limit':
       return <JsonResult apiResponse={apiResponse} />;
