@@ -1,5 +1,6 @@
 import React from 'react';
 import ShowMoreButton from '~/components/common/ShowMoreButton.jsx';
+import CopyJsonButton from '~/components/common/CopyJsonButton.jsx';
 
 function getFontImageURL(font) {
   if ((font.addedBy === 'user' || font.source === 'user') && font.wId) {
@@ -37,6 +38,7 @@ function renderBrandCard(brand, key, extraClass = '') {
 
   return (
     <div key={key} className={`brand-card ${extraClass}`.trim()}>
+      <CopyJsonButton data={brand} />
       {/* Full-width color palette bar */}
       {colors.length > 0 && (
         <div className="brand-color-palette">
@@ -193,6 +195,7 @@ function renderSuccessMessage(data) {
     data.body?.message ?? data.body?.result?.message ?? 'Operation completed successfully';
   return (
     <div className="brand-card brand-card-single">
+      <CopyJsonButton data={data} />
       <h4>Success</h4>
       <p>{message}</p>
     </div>

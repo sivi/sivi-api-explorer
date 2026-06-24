@@ -1,4 +1,5 @@
 import React from 'react';
+import CopyJsonButton from '~/components/common/CopyJsonButton.jsx';
 
 const IMAGE_KEYS = ['url', 'imageUrl', 'mediaUrl', 'src', 'icon', 'logo', 'thumbnail'];
 const IMAGE_EXTENSIONS = /\.(jpg|jpeg|png|gif|webp|svg|bmp)(\?|$)/i;
@@ -72,7 +73,8 @@ export default function ContentResult({ apiResponse }) {
           <div className="content-results">
             {content.map((item, index) => (
               <div key={index} className="content-card">
-                <span className="content-index">{index + 1}</span>
+              <CopyJsonButton data={item} />
+              <span className="content-index">{index + 1}</span>
                 {typeof item === 'string' ? (
                   <p className="content-text">{item}</p>
                 ) : (
@@ -92,6 +94,7 @@ export default function ContentResult({ apiResponse }) {
           <div className="asset-grid">
             {assets.map((asset, index) => (
               <div key={index} className="asset-card">
+                <CopyJsonButton data={asset} />
                 <img src={asset.url} alt={asset.name || `Asset ${index + 1}`} loading="lazy" />
                 {asset.name && <span className="asset-name">{asset.name}</span>}
               </div>

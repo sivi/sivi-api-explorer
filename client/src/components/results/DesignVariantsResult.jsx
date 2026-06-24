@@ -1,5 +1,6 @@
 import React from 'react';
 import ShowMoreButton from '~/components/common/ShowMoreButton.jsx';
+import CopyJsonButton from '~/components/common/CopyJsonButton.jsx';
 import { UI_CONFIG } from '~/config/ui.js';
 
 export default function DesignVariantsResult({ variants, apiInput, onLoadMore, hasMore, isLoadingMore }) {
@@ -12,6 +13,7 @@ export default function DesignVariantsResult({ variants, apiInput, onLoadMore, h
       <div className="variants-masonry">
         {variants.map((variant, index) => (
           <div key={index} className="variant-card">
+            <CopyJsonButton data={variant} />
             <div className="variant-card-image" style={{ aspectRatio }}>
               <img
                 src={variant.url}

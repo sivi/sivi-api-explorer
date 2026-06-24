@@ -1,53 +1,84 @@
 import React from 'react';
 import ShowMoreButton from '~/components/common/ShowMoreButton.jsx';
+import CopyJsonButton from '~/components/common/CopyJsonButton.jsx';
+
+function formatDate(ts) {
+  if (!ts) return '';
+  const d = new Date(ts * 1000);
+  return d.toLocaleDateString(undefined, {
+    year: 'numeric', month: 'short', day: 'numeric',
+  }) + ' ' + d.toLocaleTimeString(undefined, {
+    hour: '2-digit', minute: '2-digit',
+  });
+}
 
 function renderMediaCard(media, key) {
   const mId = media.mId || 'Unknown';
-  const type = media.type || '';
-  const subType = media.subType || '';
+  const type = (media.type || '').toUpperCase();
+  const subType = (media.subType || '').toUpperCase();
   const url = media.url || '';
-  const system = media.system || '';
+  const system = (media.system || '').toUpperCase();
   const createdOn = media.createdOn;
   const meta = media.meta || {};
+  const remoteUrl = media.remoteUrl || '';
 
   return (
-    <div key={key} className="brand-card">
-      <h4>{mId}</h4>
-      {type && <p className="brand-meta">Type: {type} / {subType}</p>}
-      {system && <p className="brand-meta">System: {system}</p>}
-      {createdOn && <p className="brand-meta">Created: {new Date(createdOn * 1000).toLocaleString()}</p>}
+    <div key={key} className="brand-card media-card" title={mId}>
+      <CopyJsonButton data={media} />
+      <div className="media-card-visual">
+        {(url || remoteUrl) ? (
+          <img src={remoteUrl || url} alt={mId} className="media-preview-img" loading="lazy" />
+        ) : (
+          <div className="media-card-no-image">No Preview</div>
+        )}
+      </div>
 
-      {url && (
-        <div className="media-preview">
-          <img src={url} alt={mId} className="media-preview-img" loading="lazy" />
-        </div>
-      )}
-
-      {meta.touchPosition && (
-        <div className="brand-persona">
-          <div className="persona-row">
-            <span className="persona-label">Touch:</span>
-            {Object.entries(meta.touchPosition)
-              .filter(([, v]) => v)
-              .map(([k]) => (
-                <span key={k} className="persona-tag design">{k}</span>
-              ))}
+      <div className="media-card-details">
+        {type && (
+          <div className="media-card-row">
+            <span className="media-card-label">TYPE</span>
+            <span className="media-card-value">{type}{subType ? ` / ${subType}` : ''}</span>
           </div>
-        </div>
-      )}
-
-      {meta.imagePreference && (
-        <div className="brand-persona">
-          <div className="persona-row">
-            <span className="persona-label">Prefs:</span>
-            {Object.entries(meta.imagePreference)
-              .filter(([, v]) => v)
-              .map(([k]) => (
-                <span key={k} className="persona-tag emotion">{k}</span>
-              ))}
+        )}
+        {system && (
+          <div className="media-card-row">
+            <span className="media-card-label">SYSTEM</span>
+            <span className="media-card-value">{system}</span>
           </div>
-        </div>
-      )}
+        )}
+        {createdOn && (
+          <div className="media-card-row">
+            <span className="media-card-label">CREATED</span>
+            <span className="media-card-value">{formatDate(createdOn)}</span>
+          </div>
+        )}
+
+        {meta.touchPosition && (
+          <div className="media-card-row">
+            <span className="media-card-label">TOUCH</span>
+            <div className="media-card-tags">
+              {Object.entries(meta.touchPosition)
+                .filter(([, v]) => v)
+                .map(([k]) => (
+                  <span key={k} className="persona-tag design">{k}</span>
+                ))}
+            </div>
+          </div>
+        )}
+
+        {meta.imagePreference && (
+          <div className="media-card-row">
+            <span className="media-card-label">PREFS</span>
+            <div className="media-card-tags">
+              {Object.entries(meta.imagePreference)
+                .filter(([, v]) => v)
+                .map(([k]) => (
+                  <span key={k} className="persona-tag emotion">{k}</span>
+                ))}
+            </div>
+          </div>
+        )}
+      </div>
     </div>
   );
 }
@@ -72,7 +103,7 @@ export default function MediaResult({ apiResponse, onLoadMore, hasMore, isLoadin
   if (Array.isArray(mediaList)) {
     return (
       <>
-        <div className="brand-results">
+        <div className="brand-results media-results">
           {mediaList.length > 0 ? (
             mediaList.map((media, index) => renderMediaCard(media, index))
           ) : (
@@ -89,7 +120,7 @@ export default function MediaResult({ apiResponse, onLoadMore, hasMore, isLoadin
   // Single media response (object, not array)
   const singleMedia = result?.media ?? body?.media;
   if (singleMedia && typeof singleMedia === 'object') {
-    return <div className="brand-results">{renderMediaCard(singleMedia, 'single')}</div>;
+    return <div className="brand-results media-results">{renderMediaCard(singleMedia, 'single')}</div>;
   }
 
   // Delete response
@@ -107,19 +138,35 @@ export default function MediaResult({ apiResponse, onLoadMore, hasMore, isLoadin
   const images = result?.images ?? body?.images;
   if (Array.isArray(images) && images.length > 0) {
     return (
-      <div className="brand-results">
+      <div className="brand-results media-results">
         {images.map((img, index) => (
-          <div key={index} className="brand-card">
-            <h4>Generated Image {index + 1}</h4>
-            {img.remoteUrl && (
-              <div className="media-preview">
+          <div key={index} className="brand-card media-card" title={img.mId || `Generated ${index + 1}`}>
+            <CopyJsonButton data={img} />
+            <div className="media-card-visual">
+              {img.remoteUrl ? (
                 <img src={img.remoteUrl} alt={`Generated ${index + 1}`} className="media-preview-img" loading="lazy" />
+              ) : (
+                <div className="media-card-no-image">No Preview</div>
+              )}
+            </div>
+            <div className="media-card-details">
+              <div className="media-card-row">
+                <span className="media-card-label">TYPE</span>
+                <span className="media-card-value">GENERATED</span>
               </div>
-            )}
-            {img.remoteUrl && (
-              <p className="brand-meta">Remote URL: {img.remoteUrl}</p>
-            )}
-            {img.mId && <p className="brand-meta">Media ID: {img.mId}</p>}
+              {img.mId && (
+                <div className="media-card-row">
+                  <span className="media-card-label">MEDIA ID</span>
+                  <span className="media-card-value">{img.mId}</span>
+                </div>
+              )}
+              {img.remoteUrl && (
+                <div className="media-card-row">
+                  <span className="media-card-label">URL</span>
+                  <span className="media-card-value media-card-url">{img.remoteUrl}</span>
+                </div>
+              )}
+            </div>
           </div>
         ))}
       </div>

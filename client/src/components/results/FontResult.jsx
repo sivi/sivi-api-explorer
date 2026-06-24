@@ -1,5 +1,6 @@
 import React from 'react';
 import ShowMoreButton from '~/components/common/ShowMoreButton.jsx';
+import CopyJsonButton from '~/components/common/CopyJsonButton.jsx';
 
 function getFontImageURL(font) {
   if ((font.addedBy === 'user' || font.source === 'user') && font.wId) {
@@ -16,6 +17,7 @@ function renderFontCard(font, key) {
 
   return (
     <div key={key} className="brand-card font-result-card">
+      <CopyJsonButton data={font} />
       <div className="brand-font">
         <img
           src={imageUrl}
