@@ -321,19 +321,5 @@ export const designPresets = {
       language: 'english',
     }
   },
-  // Extract Brand presets
-  extractSivi: {
-    name: "Extract Sivi Brand",
-    flows: ['extract-brand'],
-    data: {
-      brandUrl: 'https://sivi.ai',
-    }
-  },
-  extractExample: {
-    name: "Extract Example Brand",
-    flows: ['extract-brand'],
-    data: {
-      brandUrl: 'https://example.com',
-    }
-  },
+  // Extract Brand presets (empty for now)
 };

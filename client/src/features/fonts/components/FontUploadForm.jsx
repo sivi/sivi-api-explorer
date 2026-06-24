@@ -20,8 +20,19 @@ const FontUploadForm = ({ onSubmit, initialData }) => {
   const validate = () => {
     const nextErrors = {};
     if (!file && !formData.uploadedURL.trim()) {
-      nextErrors.file = 'Either a font file or an uploaded URL is required';
-      message.error('Either a font file or an uploaded URL is required');
+      nextErrors.uploadedURL = 'Upload URL is required when no font file is selected';
+      message.error('Upload URL is required when no font file is selected');
+    }
+    if (formData.uploadedURL.trim()) {
+      try {
+        const url = new URL(formData.uploadedURL.trim());
+        if (!['http:', 'https:'].includes(url.protocol)) {
+          throw new Error('Invalid protocol');
+        }
+      } catch {
+        nextErrors.uploadedURL = 'Please enter a valid HTTP/HTTPS URL';
+        message.error('Please enter a valid HTTP/HTTPS URL');
+      }
     }
     setErrors(nextErrors);
     return Object.keys(nextErrors).length === 0;
@@ -47,7 +58,7 @@ const FontUploadForm = ({ onSubmit, initialData }) => {
         Upload a custom font file. The app will get a presigned URL, upload to S3, then process the font.
       </p>
 
-      <div className={errors.file ? 'required-field' : ''}>
+      <div className={`form-field ${errors.uploadedURL ? 'required-field' : ''}`}>
         <label className="form-label">Font File</label>
         <input
           type="file"
@@ -58,7 +69,7 @@ const FontUploadForm = ({ onSubmit, initialData }) => {
             if (selected) {
               setFormData((prev) => ({ ...prev, uploadedURL: '' }));
             }
-            if (errors.file) setErrors((prev) => ({ ...prev, file: undefined }));
+            if (errors.uploadedURL) setErrors((prev) => ({ ...prev, uploadedURL: undefined }));
           }}
           className="file-input"
         />
@@ -69,15 +80,17 @@ const FontUploadForm = ({ onSubmit, initialData }) => {
         )}
       </div>
 
-      <TextInput
-        label="Uploaded URL (optional)"
-        value={formData.uploadedURL}
-        onChange={(v) => {
-          updateField('uploadedURL', v);
-          if (errors.file) setErrors((prev) => ({ ...prev, file: undefined }));
-        }}
-        placeholder="Or paste an already-uploaded S3 URL"
-      />
+      <div className={errors.uploadedURL ? 'required-field' : ''}>
+        <TextInput
+          label="Upload URL"
+          value={formData.uploadedURL}
+          onChange={(v) => {
+            updateField('uploadedURL', v);
+            if (errors.uploadedURL) setErrors((prev) => ({ ...prev, uploadedURL: undefined }));
+          }}
+          placeholder="Paste an already-uploaded S3 URL"
+        />
+      </div>
 
       <TextInput
         label="Abstract User ID (optional)"
