@@ -5,17 +5,20 @@ export function usePanels() {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const [bottomPanelHeight, setBottomPanelHeight] = useState(30);
   const [bottomCollapsed, setBottomCollapsed] = useState(false);
+  const [isDragging, setIsDragging] = useState(false);
   const sidebarDragRef = useRef(false);
   const bottomDragRef = useRef(false);
 
   const handleSidebarDragStart = useCallback(() => {
     sidebarDragRef.current = true;
+    setIsDragging(true);
     document.body.style.cursor = 'col-resize';
     document.body.style.userSelect = 'none';
   }, []);
 
   const handleSidebarDragEnd = useCallback(() => {
     sidebarDragRef.current = false;
+    if (!bottomDragRef.current) setIsDragging(false);
     document.body.style.cursor = '';
     document.body.style.userSelect = '';
   }, []);
@@ -28,12 +31,14 @@ export function usePanels() {
 
   const handleBottomDragStart = useCallback(() => {
     bottomDragRef.current = true;
+    setIsDragging(true);
     document.body.style.cursor = 'row-resize';
     document.body.style.userSelect = 'none';
   }, []);
 
   const handleBottomDragEnd = useCallback(() => {
     bottomDragRef.current = false;
+    if (!sidebarDragRef.current) setIsDragging(false);
     document.body.style.cursor = '';
     document.body.style.userSelect = '';
   }, []);
@@ -71,6 +76,7 @@ export function usePanels() {
     bottomPanelHeight,
     bottomCollapsed,
     setBottomCollapsed,
+    isDragging,
     handleSidebarDragStart,
     handleBottomDragStart,
   };

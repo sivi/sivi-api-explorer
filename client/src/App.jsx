@@ -253,7 +253,7 @@ function App() {
         onGoHome={handleGoHome}
       />
 
-      <div className="app-content">
+      <div className={`app-content${panels.isDragging ? ' dragging' : ''}`}>
         <aside
           className={`sidebar${panels.sidebarCollapsed ? ' collapsed' : ''}`}
           style={panels.sidebarCollapsed ? { width: 0, minWidth: 0, overflow: 'hidden' } : { width: panels.sidebarWidth }}
@@ -329,6 +329,7 @@ function App() {
 
           <button
             className={`bottom-collapse-btn${panels.bottomCollapsed ? ' collapsed' : ''}`}
+            style={panels.bottomCollapsed ? { bottom: 0 } : { bottom: `${panels.bottomPanelHeight}%` }}
             onClick={() => panels.setBottomCollapsed((c) => !c)}
             title={panels.bottomCollapsed ? 'Expand panel' : 'Collapse panel'}
           >

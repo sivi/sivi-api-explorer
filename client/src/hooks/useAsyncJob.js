@@ -131,7 +131,7 @@ export function useAsyncJob(submitApi, endpointLabel, options = {}) {
             return false;
           }
 
-          const nextDelay = pollCount === 1 ? 45000 : pollCount === 2 ? 20000 : 10000;
+          const nextDelay = 20000;
           addLog(`Next status check in ${nextDelay / 1000} seconds...`);
           return true;
         } catch (err) {
