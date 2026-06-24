@@ -311,48 +311,6 @@ const BrandUpdateForm = ({ onSubmit, initialData }) => {
         }
         placeholder="e.g. gpt-4o"
       />
-      <TextInput
-        label="Gen Mode Compose Type"
-        value={formData.genModePreference.compose.type}
-        onChange={(v) =>
-          setFormData((prev) => ({
-            ...prev,
-            genModePreference: {
-              ...prev.genModePreference,
-              compose: { ...prev.genModePreference.compose, type: v },
-            },
-          }))
-        }
-        placeholder="e.g. design"
-      />
-      <TextInput
-        label="Gen Mode Compose Model"
-        value={formData.genModePreference.compose.model}
-        onChange={(v) =>
-          setFormData((prev) => ({
-            ...prev,
-            genModePreference: {
-              ...prev.genModePreference,
-              compose: { ...prev.genModePreference.compose, model: v },
-            },
-          }))
-        }
-        placeholder="e.g. auto"
-      />
-      <TextInput
-        label="Gen Mode Compose Size Type"
-        value={formData.genModePreference.compose.sizeType}
-        onChange={(v) =>
-          setFormData((prev) => ({
-            ...prev,
-            genModePreference: {
-              ...prev.genModePreference,
-              compose: { ...prev.genModePreference.compose, sizeType: v },
-            },
-          }))
-        }
-        placeholder="e.g. instagram-post"
-      />
 
       <TextInput
         label="Abstract User ID (optional)"
