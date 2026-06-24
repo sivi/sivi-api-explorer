@@ -6,6 +6,7 @@ import BrandResult from '~/components/results/BrandResult.jsx';
 import MediaResult from '~/components/results/MediaResult.jsx';
 import FontResult from '~/components/results/FontResult.jsx';
 import StatusResult from '~/components/results/StatusResult.jsx';
+import PresignedUrlResult from '~/components/results/PresignedUrlResult.jsx';
 import JsonResult from '~/components/results/JsonResult.jsx';
 import LoginUserResult from '~/components/results/LoginUserResult.jsx';
 
@@ -33,7 +34,7 @@ function getResultComponent(flowKey, { apiResponse, designVariants, apiInput, on
     case 'generate-media':
       return <MediaResult apiResponse={apiResponse} onLoadMore={onLoadMore} hasMore={hasMore} isLoadingMore={isLoadingMore} />;
     case 'get-presigned-url':
-      return <StatusResult apiResponse={apiResponse} />;
+      return <PresignedUrlResult apiResponse={apiResponse} />;
     case 'get-fonts':
       return <FontResult apiResponse={apiResponse} onLoadMore={onLoadMore} hasMore={hasMore} isLoadingMore={isLoadingMore} />;
     case 'upload-fonts':

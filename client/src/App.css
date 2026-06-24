@@ -2071,3 +2071,147 @@ body {
   background: rgba(86, 98, 236, 0.1);
   border-color: rgba(86, 98, 236, 0.6);
 }
+
+/* Presigned URL result */
+.presigned-url-result {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.presigned-url-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.presigned-url-label {
+  font-size: 12px;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+}
+
+.presigned-url-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.presigned-url-scroll-wrapper {
+  overflow-x: auto;
+  background: #f1f5f9;
+  border-radius: 8px;
+  padding: 10px 12px;
+}
+
+.presigned-url-scroll-wrapper::-webkit-scrollbar {
+  height: 6px;
+}
+
+.presigned-url-scroll-wrapper::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.presigned-url-scroll-wrapper::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 3px;
+}
+
+.presigned-url-value {
+  display: inline-block;
+  white-space: nowrap;
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  font-size: 13px;
+  color: #0f172a;
+  line-height: 1.5;
+}
+
+.presigned-url-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 12px;
+}
+
+.presigned-url-badge {
+  display: inline-block;
+  background: #e0e7ff;
+  color: #3730a3;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 6px;
+  align-self: flex-start;
+}
+
+.presigned-url-text {
+  font-size: 14px;
+  color: #334155;
+  word-break: break-all;
+}
+
+.presigned-url-headers {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 10px 12px;
+}
+
+.presigned-url-header-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.presigned-url-header-key {
+  font-size: 12px;
+  font-weight: 600;
+  color: #64748b;
+  min-width: 120px;
+}
+
+.presigned-url-header-value {
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  font-size: 13px;
+  color: #0f172a;
+  word-break: break-all;
+}
+
+.presigned-url-curl {
+  background: #1e293b;
+  color: #e2e8f0;
+  padding: 16px;
+  border-radius: 10px;
+  font-size: 13px;
+  line-height: 1.6;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-break: break-word;
+  margin: 0;
+}
+
+.copy-url-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  background: rgba(86, 98, 236, 0.1);
+  color: #5662EC;
+  border: 1px solid rgba(86, 98, 236, 0.3);
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.copy-url-btn:hover {
+  background: rgba(86, 98, 236, 0.2);
+  border-color: rgba(86, 98, 236, 0.5);
+}

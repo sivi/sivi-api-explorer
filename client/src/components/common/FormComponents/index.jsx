@@ -2,7 +2,7 @@ import React from 'react';
 import './index.css';
 
 // Text input component
-export const TextInput = ({ label, value, onChange, placeholder, type = "text" }) => {
+export const TextInput = ({ label, value, onChange, placeholder, type = "text", disabled = false }) => {
   return (
     <div className="form-field">
       <label className="form-label">{label}</label>
@@ -11,7 +11,8 @@ export const TextInput = ({ label, value, onChange, placeholder, type = "text" }
         value={value}
         onChange={(e) => onChange(e.target.value)}
         placeholder={placeholder}
-        className="form-input"
+        className={`form-input ${disabled ? 'disabled' : ''}`}
+        disabled={disabled}
       />
     </div>
   );
