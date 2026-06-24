@@ -1,10 +1,12 @@
 import './App.css'
+import './components/landing/landing.css'
 import React, { useState, useCallback, useMemo } from 'react'
 import ApiMonitor from './components/common/ApiMonitor'
 import WebhookModal from './components/common/WebhookModal'
 import AppHeader from './components/app/AppHeader'
 import FlowForm from './components/app/FlowForm'
 import ResultView from './components/app/ResultView'
+import LandingPage from './components/landing/LandingPage.jsx'
 import { useAppContext } from './context/useAppContext.js'
 import { useDesignGeneration } from './features/designs/hooks/useDesignGeneration.js'
 import { useUtilityFlow } from './features/utilities/hooks/useUtilityFlow.js'
@@ -21,6 +23,7 @@ import { designPresets } from './features/designs/data/designPresets'
 import { FLOW_TITLES } from './config/flowTitles.js'
 
 function App() {
+  const [showLanding, setShowLanding] = useState(true)
   const [activeFlow, setActiveFlow] = useState('designs-from-prompt')
   const [selectedPreset, setSelectedPreset] = useState('')
   const [formKey, setFormKey] = useState(0)
@@ -211,6 +214,18 @@ function App() {
     return null
   }, [selectedPreset, selectedHistoryId, apiInput])
 
+  const handleLaunch = useCallback(() => {
+    setShowLanding(false)
+  }, [])
+
+  const handleGoHome = useCallback(() => {
+    setShowLanding(true)
+  }, [])
+
+  if (showLanding) {
+    return <LandingPage onLaunch={handleLaunch} />
+  }
+
   return (
     <div className="app-container">
       {webhook.showWebhookModal && (
@@ -235,6 +250,7 @@ function App() {
         onHistoryDelete={removeHistoryEntry}
         onOpenWebhookModal={() => webhook.setShowWebhookModal(true)}
         onToggleWebhook={webhook.setWebhookEnabled}
+        onGoHome={handleGoHome}
       />
 
       <div className="app-content">
