@@ -16,10 +16,12 @@ export default function HistoryDropdown({
 }) {
   const [isOpen, setIsOpen] = useState(false);
   const [activeTab, setActiveTab] = useState('all');
+  const [searchQuery, setSearchQuery] = useState('');
   const [sortAsc, setSortAsc] = useState(false);
   const [editingId, setEditingId] = useState(null);
   const [editValue, setEditValue] = useState('');
   const containerRef = useRef(null);
+  const searchInputRef = useRef(null);
 
   useEffect(() => {
     const handleClickOutside = (e) => {
@@ -32,10 +34,28 @@ export default function HistoryDropdown({
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
+  useEffect(() => {
+    if (isOpen) {
+      setTimeout(() => searchInputRef.current?.focus(), 0);
+    } else {
+      setSearchQuery('');
+    }
+  }, [isOpen]);
+
   const filteredHistory = React.useMemo(() => {
     let items = activeTab === 'favorites'
       ? history.filter((item) => item.isFavorite)
       : [...history];
+
+    if (searchQuery.trim().length >= 3) {
+      const query = searchQuery.trim().toLowerCase();
+      items = items.filter((item) => {
+        const label = formatHistoryLabel(item).toLowerCase();
+        const dimensions = `${item.dimensions.width}x${item.dimensions.height}`.toLowerCase();
+        const date = new Date(item.timestamp).toLocaleString().toLowerCase();
+        return label.includes(query) || dimensions.includes(query) || date.includes(query);
+      });
+    }
 
     items.sort((a, b) => {
       const aTime = new Date(a.timestamp).getTime();
@@ -44,7 +64,7 @@ export default function HistoryDropdown({
     });
 
     return items;
-  }, [history, activeTab, sortAsc]);
+  }, [history, activeTab, searchQuery, sortAsc, formatHistoryLabel]);
 
   const selectedItem = history.find((item) => item.id === selectedHistoryId);
 
@@ -127,12 +147,26 @@ export default function HistoryDropdown({
             </button>
           </div>
 
+          <div className="history-search">
+            <input
+              ref={searchInputRef}
+              type="text"
+              className="history-search-input"
+              placeholder="Search history..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              onClick={(e) => e.stopPropagation()}
+            />
+          </div>
+
           <div className="history-list">
             {filteredHistory.length === 0 && (
               <div className="history-empty">
-                {activeTab === 'favorites'
-                  ? 'No favorites yet. Star an item to add it here.'
-                  : 'No history yet. Run a flow to see items here.'}
+                {searchQuery.trim().length >= 3
+                  ? 'No results match your search.'
+                  : activeTab === 'favorites'
+                    ? 'No favorites yet. Star an item to add it here.'
+                    : 'No history yet. Run a flow to see items here.'}
               </div>
             )}
 
