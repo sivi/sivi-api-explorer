@@ -19,11 +19,11 @@ const FontUploadForm = ({ onSubmit, initialData }) => {
 
   const validate = () => {
     const nextErrors = {};
-    if (!file && !formData.uploadedURL.trim()) {
-      nextErrors.uploadedURL = 'Upload URL is required when no font file is selected';
-      message.error('Upload URL is required when no font file is selected');
+    if (!file) {
+      nextErrors.file = 'Font file is required';
+      message.error('Font file is required');
     }
-    if (formData.uploadedURL.trim()) {
+    if (!file && formData.uploadedURL.trim()) {
       try {
         const url = new URL(formData.uploadedURL.trim());
         if (!['http:', 'https:'].includes(url.protocol)) {
@@ -55,29 +55,11 @@ const FontUploadForm = ({ onSubmit, initialData }) => {
     <form onSubmit={handleSubmit} className="design-form">
       <h3 className="form-section-title">Upload Fonts</h3>
       <p className="form-hint">
-        Upload a custom font file. The app will get a presigned URL, upload to S3, then process the font.
+        Get a presigned URL, upload a custom font file, then process the font.
       </p>
 
-      <div className={`form-field ${errors.uploadedURL ? 'required-field' : ''}`}>
-        <label className="form-label">Font File</label>
-        <input
-          type="file"
-          accept=".ttf,.otf,.woff,.woff2,font/*"
-          onChange={(e) => {
-            const selected = e.target.files?.[0] || null;
-            setFile(selected);
-            if (errors.uploadedURL) setErrors((prev) => ({ ...prev, uploadedURL: undefined }));
-          }}
-          className="file-input"
-        />
-        {file && (
-          <p className="form-hint" style={{ marginTop: 4 }}>
-            Selected: {file.name} ({(file.size / 1024).toFixed(1)} KB)
-          </p>
-        )}
-      </div>
-
-      <div className={'required-field'}>
+      <div className={`form-field required-field ${errors.file ? 'has-error' : ''}`}>
+        <div className={'required-field'} style={{ marginBottom: '1rem' }}>
         <TextInput
           label="Upload URL"
           value={formData.uploadedURL}
@@ -87,6 +69,24 @@ const FontUploadForm = ({ onSubmit, initialData }) => {
           }}
           placeholder="Paste an already-uploaded S3 URL"
         />
+        </div>
+
+        <label className="form-label">Font File</label>
+        <input
+          type="file"
+          accept=".ttf,.otf,.woff,.woff2,font/*"
+          onChange={(e) => {
+            const selected = e.target.files?.[0] || null;
+            setFile(selected);
+            if (errors.file) setErrors((prev) => ({ ...prev, file: undefined }));
+          }}
+          className="file-input"
+        />
+        {file && (
+          <p className="form-hint" style={{ marginTop: 4 }}>
+            Selected: {file.name} ({(file.size / 1024).toFixed(1)} KB)
+          </p>
+        )}
       </div>
 
       <TextInput

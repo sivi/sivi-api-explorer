@@ -84,9 +84,21 @@ const MediaCreateForm = ({ onSubmit, initialData }) => {
       nextErrors.url = 'Remote URL is required';
       message.error('Remote URL is required');
     }
+    if (inputMode === 'presigned' && !file) {
+      nextErrors.file = 'Upload File is required';
+      message.error('Upload File is required');
+    }
     if (inputMode === 'presigned' && !formData.uploadUrl.trim()) {
-      nextErrors.url = 'Presigned Upload URL is required';
+      nextErrors.uploadUrl = 'Presigned Upload URL is required';
       message.error('Presigned Upload URL is required');
+    }
+    if (inputMode === 'presigned' && formData.uploadUrl.trim()) {
+      try {
+        new URL(formData.uploadUrl.trim());
+      } catch {
+        nextErrors.uploadUrl = 'Please enter a valid URL';
+        message.error('Please enter a valid presigned URL');
+      }
     }
     setErrors(nextErrors);
     return Object.keys(nextErrors).length === 0;
@@ -140,40 +152,38 @@ const MediaCreateForm = ({ onSubmit, initialData }) => {
         />
       </div>
 
-      <hr className="form-divider" />
-
       <div className="required-field">
         <label className="form-label">Source</label>
-        <Tabs tabs={UPLOAD_MODE_TABS} activeKey={inputMode} onChange={handleModeChange} />
+        <div style={{ marginTop: 10 }}>
+          <Tabs tabs={UPLOAD_MODE_TABS} activeKey={inputMode} onChange={handleModeChange} />
+        </div>
       </div>
 
       {inputMode === 'remote' && (
-        <UrlInput
-          label="Remote URL"
-          value={formData.url}
-          onChange={(v) => updateField('url', v)}
-          placeholder="https://example.com/image.jpg"
-        />
+        <div className="required-field">
+          <UrlInput
+            label="Remote URL"
+            value={formData.url}
+            onChange={(v) => {
+              updateField('url', v);
+              if (errors.url) setErrors((prev) => ({ ...prev, url: undefined }));
+            }}
+            placeholder="https://example.com/image.jpg"
+          />
+        </div>
       )}
 
       {inputMode === 'presigned' && (
         <>
-          <TextInput
-            label="Presigned Upload URL"
-            value={formData.uploadUrl}
-            onChange={(v) => updateField('uploadUrl', v)}
-            placeholder="https://media.hellosivi.com/photos/..."
-          />
-
-          <div className="form-field">
-            <label className="form-label">Upload File (optional)</label>
+          <div className="form-field required-field">
+            <label className="form-label">Upload File</label>
             <input
               type="file"
               accept="image/*,font/*"
               onChange={(e) => {
                 const selected = e.target.files?.[0] || null;
                 setFile(selected);
-                if (errors.url) setErrors((prev) => ({ ...prev, url: undefined }));
+                if (errors.file) setErrors((prev) => ({ ...prev, file: undefined }));
               }}
               className="file-input"
             />
@@ -183,10 +193,20 @@ const MediaCreateForm = ({ onSubmit, initialData }) => {
               </p>
             )}
           </div>
+
+          <div className="form-field required-field">
+            <TextInput
+              label="Presigned Upload URL"
+              value={formData.uploadUrl}
+              onChange={(v) => {
+                updateField('uploadUrl', v);
+                if (errors.uploadUrl) setErrors((prev) => ({ ...prev, uploadUrl: undefined }));
+              }}
+              placeholder="https://media.hellosivi.com/photos/..."
+            />
+          </div>
         </>
       )}
-
-      <hr className="form-divider" />
 
       <TextInput
         label="Brand ID (bId)"

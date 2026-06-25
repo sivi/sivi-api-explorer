@@ -8,6 +8,7 @@ import {
 } from '~/components/common/FormComponents';
 
 const SOURCE_OPTIONS = [
+  { label: 'All', value: 'all' },
   { label: 'System', value: 'system' },
   { label: 'User', value: 'user' },
 ];
@@ -22,9 +23,9 @@ const CLASSIFICATION_OPTIONS = [
 
 const FontListPanel = ({ onSubmit, initialData }) => {
   const [formData, setFormData] = useState({
-    classification: initialData?.classification || [],
+    classification: initialData?.classification || CLASSIFICATION_OPTIONS.map((o) => o.value),
     name: initialData?.name || '',
-    source: initialData?.source || 'system',
+    source: initialData?.source || 'all',
     limit: initialData?.limit ?? 20,
     abstractUserId: initialData?.abstractUserId || '',
   });
@@ -57,7 +58,7 @@ const FontListPanel = ({ onSubmit, initialData }) => {
     const payload = {
       ...(formData.classification?.length && { classification: formData.classification }),
       ...(formData.name && { name: formData.name }),
-      source: formData.source,
+      ...(formData.source !== 'all' && { source: formData.source }),
       limit: Number(formData.limit),
       cursor: null,
       ...(formData.abstractUserId && { abstractUserId: formData.abstractUserId }),
@@ -85,7 +86,7 @@ const FontListPanel = ({ onSubmit, initialData }) => {
         placeholder="e.g. Roboto"
       />
 
-      <div className={'required-field'}>
+      <div className={'form-field'}>
         <SelectInput
           label="Source"
           value={formData.source}
