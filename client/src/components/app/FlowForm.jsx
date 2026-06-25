@@ -47,37 +47,37 @@ export default function FlowForm({ activeFlow, formKey, onSubmit, initialFormDat
         />
       );
     case 'get-design-variants':
-      return <UtilityForm flowKey="get-design-variants" onSubmit={onSubmit} initialData={initialFormData} />;
+      return <UtilityForm key={formKey} flowKey="get-design-variants" onSubmit={onSubmit} initialData={initialFormData} />;
     case 'request-status':
-      return <UtilityForm flowKey="request-status" onSubmit={onSubmit} initialData={initialFormData} />;
+      return <UtilityForm key={formKey} flowKey="request-status" onSubmit={onSubmit} initialData={initialFormData} />;
     case 'list-brands':
-      return <BrandListPanel onSubmit={onSubmit} initialData={initialFormData} />;
+      return <BrandListPanel key={formKey} onSubmit={onSubmit} initialData={initialFormData} />;
     case 'create-brand':
-      return <BrandCreateForm onSubmit={onSubmit} initialData={initialFormData} />;
+      return <BrandCreateForm key={formKey} onSubmit={onSubmit} initialData={initialFormData} />;
     case 'extract-brand':
-      return <BrandExtractForm onSubmit={onSubmit} initialData={initialFormData} />;
+      return <BrandExtractForm key={formKey} onSubmit={onSubmit} initialData={initialFormData} />;
     case 'set-default-brand':
-      return <BrandSetDefaultForm onSubmit={onSubmit} initialData={initialFormData} />;
+      return <BrandSetDefaultForm key={formKey} onSubmit={onSubmit} initialData={initialFormData} />;
     case 'archive-brand':
-      return <BrandArchiveForm onSubmit={onSubmit} initialData={initialFormData} />;
+      return <BrandArchiveForm key={formKey} onSubmit={onSubmit} initialData={initialFormData} />;
     case 'update-brand':
-      return <BrandUpdateForm onSubmit={onSubmit} initialData={initialFormData} />;
+      return <BrandUpdateForm key={formKey} onSubmit={onSubmit} initialData={initialFormData} />;
     case 'get-media':
-      return <MediaListPanel onSubmit={onSubmit} initialData={initialFormData} />;
+      return <MediaListPanel key={formKey} onSubmit={onSubmit} initialData={initialFormData} />;
     case 'create-media':
-      return <MediaCreateForm onSubmit={onSubmit} initialData={initialFormData} />;
+      return <MediaCreateForm key={formKey} onSubmit={onSubmit} initialData={initialFormData} />;
     case 'update-media':
-      return <MediaUpdateForm onSubmit={onSubmit} initialData={initialFormData} />;
+      return <MediaUpdateForm key={formKey} onSubmit={onSubmit} initialData={initialFormData} />;
     case 'delete-media':
-      return <MediaDeleteForm onSubmit={onSubmit} initialData={initialFormData} />;
+      return <MediaDeleteForm key={formKey} onSubmit={onSubmit} initialData={initialFormData} />;
     case 'generate-media':
-      return <MediaGenerateForm onSubmit={onSubmit} initialData={initialFormData} />;
+      return <MediaGenerateForm key={formKey} onSubmit={onSubmit} initialData={initialFormData} />;
     case 'get-presigned-url':
-      return <FilePresignedUrlForm onSubmit={onSubmit} initialData={initialFormData} />;
+      return <FilePresignedUrlForm key={formKey} onSubmit={onSubmit} initialData={initialFormData} />;
     case 'get-fonts':
-      return <FontListPanel onSubmit={onSubmit} initialData={initialFormData} />;
+      return <FontListPanel key={formKey} onSubmit={onSubmit} initialData={initialFormData} />;
     case 'upload-fonts':
-      return <FontUploadForm onSubmit={onSubmit} initialData={initialFormData} />;
+      return <FontUploadForm key={formKey} onSubmit={onSubmit} initialData={initialFormData} />;
     case 'login-user':
     case 'delete-user':
     case 'set-user-credit-limit':

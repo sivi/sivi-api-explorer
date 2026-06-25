@@ -621,5 +621,58 @@ export const designPresets = {
       language: 'english',
     }
   },
-  // Extract Brand presets (empty for now)
+  // Extract Brand presets
+  extractSivi: {
+    name: "Sivi.ai",
+    flows: ['extract-brand'],
+    data: {
+      brandUrl: 'https://sivi.ai/',
+    }
+  },
+  extractAlbertos: {
+    name: "Albertacos.com",
+    flows: ['extract-brand'],
+    data: {
+      brandUrl: 'https://albertacos.com/',
+    }
+  },
+  extractSolidHome: {
+    name: "SolidHome.in",
+    flows: ['extract-brand'],
+    data: {
+      brandUrl: 'https://solidhome.in/',
+    }
+  },
+
+  // Generate Media presets
+  mediaGenProductShot: {
+    name: "Product Shot",
+    flows: ['generate-media'],
+    data: {
+      prompt: 'A professional product photography shot of a skincare bottle on a marble surface with soft natural lighting, minimal aesthetic',
+      negativePrompt: 'blurry, low quality, distorted, cluttered',
+      dimensions: { width: 1024, height: 1024 },
+      model: 'z-image-turbo',
+    }
+  },
+  mediaGenSocialGraphic: {
+    name: "Social Media Graphic",
+    flows: ['generate-media'],
+    data: {
+      prompt: 'A vibrant social media promotional graphic with bold abstract shapes, colorful gradient background, and space for text overlay',
+      negativePrompt: 'text, watermark, blurry, low quality',
+      dimensions: { width: 1024, height: 1024 },
+      model: 'z-image-turbo',
+    }
+  },
+  mediaGenRealEstate: {
+    name: "Real Estate Hero",
+    flows: ['generate-media'],
+    data: {
+      prompt: 'A modern luxury home interior with floor-to-ceiling windows, natural light, contemporary furniture, and warm tones',
+      negativePrompt: 'people, clutter, dark, grainy',
+      dimensions: { width: 1024, height: 768 },
+      model: 'z-image-turbo',
+    }
+  },
 };

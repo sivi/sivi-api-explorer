@@ -12,7 +12,7 @@ export function useDesignGeneration(apiMethod, endpointLabel, flowKey) {
     addLog,
     setDesignVariants,
     saveHistoryEntry,
-    activeFlowKey,
+    activeFlow,
   } = useAppContext();
 
   const onResult = useCallback(
@@ -26,7 +26,7 @@ export function useDesignGeneration(apiMethod, endpointLabel, flowKey) {
         }));
         // Only update the design variant grid if the user is still on this
         // flow. History is always saved regardless of the active flow.
-        if (!flowKey || activeFlowKey === flowKey) {
+        if (!flowKey || activeFlow === flowKey) {
           setDesignVariants(variants);
         }
         addLog(`Found ${variants.length} design variants`);
@@ -35,7 +35,7 @@ export function useDesignGeneration(apiMethod, endpointLabel, flowKey) {
         addLog('Job completed but no variations found in payload.');
       }
     },
-    [setDesignVariants, saveHistoryEntry, addLog, apiInput, activeFlowKey, flowKey]
+    [setDesignVariants, saveHistoryEntry, addLog, apiInput, activeFlow, flowKey]
   );
 
   const { submit, handleWebhookEvent, stopPolling } = useAsyncJob(

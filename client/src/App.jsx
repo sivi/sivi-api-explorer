@@ -1,12 +1,15 @@
 import './App.css'
 import './components/landing/landing.css'
 import React, { useState, useCallback, useMemo, useEffect } from 'react'
+
 import ApiMonitor from './components/common/ApiMonitor'
 import WebhookModal from './components/common/WebhookModal'
 import AppHeader from './components/app/AppHeader'
 import FlowForm from './components/app/FlowForm'
 import ResultView from './components/app/ResultView'
+
 import { useAppContext } from './context/useAppContext.js'
+
 import { useDesignGeneration } from './features/designs/hooks/useDesignGeneration.js'
 import { useUtilityFlow } from './features/utilities/hooks/useUtilityFlow.js'
 import { useBrandFlow } from './features/brand/hooks/useBrandFlow.js'
@@ -14,15 +17,16 @@ import { useMediaFlow } from './features/media/hooks/useMediaFlow.js'
 import { useFileFlow } from './features/files/hooks/useFileFlow.js'
 import { useFontFlow } from './features/fonts/hooks/useFontFlow.js'
 import { useUserFlow } from './features/user/hooks/useUserFlow.js'
+
 import { usePanels } from './hooks/usePanels.js'
 import { useWebhookConfig } from './hooks/useWebhookConfig.js'
 import useWebhookEvents from './hooks/useWebhookEvents'
+
 import { coreApi } from './api/core.js'
 import { designPresets } from './features/designs/data/designPresets'
 import { FLOW_KEY_MAP } from './config/flows.js'
 
 function App() {
-  const [activeFlow, setActiveFlow] = useState('designs-from-prompt')
   const [selectedPreset, setSelectedPreset] = useState('')
   const [formKey, setFormKey] = useState(0)
   const [selectedHistoryId, setSelectedHistoryId] = useState('')
@@ -42,7 +46,8 @@ function App() {
     formatHistoryLabel,
     updateHistoryEntry,
     removeHistoryEntry,
-    setActiveFlowKey,
+    activeFlow,
+    setActiveFlow,
     resetResultState,
     pendingFlowAction,
     clearPendingFlowAction,
@@ -125,11 +130,10 @@ function App() {
     if (flowKey === activeFlow) return
     resetResultState()
     setActiveFlow(flowKey)
-    setActiveFlowKey(flowKey)
     setSelectedPreset('')
     setSelectedHistoryId('')
     setFormKey((k) => k + 1)
-  }, [activeFlow, resetResultState, setActiveFlowKey])
+  }, [activeFlow, resetResultState, setActiveFlow])
 
   const handlePresetChange = useCallback((presetKey) => {
     setSelectedPreset(presetKey)
@@ -148,7 +152,6 @@ function App() {
     if (item) {
       if (item.flowKey && item.flowKey !== activeFlow) {
         setActiveFlow(item.flowKey)
-        setActiveFlowKey(item.flowKey)
       }
       setSelectedHistoryId(historyId)
       setSelectedPreset('')
@@ -156,7 +159,7 @@ function App() {
       setFormKey((k) => k + 1)
       addLog(`Loaded history: ${item.prompt?.substring(0, 50) ?? 'N/A'}...`)
     }
-  }, [activeFlow, loadHistoryItem, setActiveFlowKey, addLog])
+  }, [activeFlow, loadHistoryItem, setActiveFlow, addLog])
 
   // Global flow actions: any component can ask the app to switch to a target
   // flow and pre-fill form fields. This effect consumes the pending action,
@@ -168,13 +171,12 @@ function App() {
     clearPendingFlowAction()
     resetResultState()
     setActiveFlow(flowKey)
-    setActiveFlowKey(flowKey)
     setSelectedPreset('')
     setSelectedHistoryId('')
     setPrefilledFormData(initialFormData || null)
     setFormKey((k) => k + 1)
     addLog(`Navigated to ${FLOW_KEY_MAP[flowKey] ?? flowKey} from result action`)
-  }, [pendingFlowAction, clearPendingFlowAction, resetResultState, setActiveFlowKey, addLog])
+  }, [pendingFlowAction, clearPendingFlowAction, resetResultState, setActiveFlow, addLog])
 
   // Clear prefilled form data when a preset or history item takes over.
   useEffect(() => {

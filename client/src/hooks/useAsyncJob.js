@@ -25,7 +25,7 @@ export function useAsyncJob(submitApi, endpointLabel, options = {}) {
     setIsLoading,
     startPollingFlow,
     stopPollingFlow,
-    activeFlowKey,
+    activeFlow,
   } = useAppContext();
 
   const { start: startPolling, stop: stopHttpPolling } = usePolling();
@@ -53,8 +53,8 @@ export function useAsyncJob(submitApi, endpointLabel, options = {}) {
   // UI state updates (apiResponse, isLoading) are gated by this so that
   // background jobs do not overwrite the current flow's results.
   const isFlowActive = useCallback(
-    () => !flowKey || activeFlowKey === flowKey,
-    [flowKey, activeFlowKey]
+    () => !flowKey || activeFlow === flowKey,
+    [flowKey, activeFlow]
   );
 
   const handleCompletion = useCallback(

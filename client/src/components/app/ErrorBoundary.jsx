@@ -52,7 +52,7 @@ export default class ErrorBoundary extends React.Component {
               </button>
             </div>
 
-            <details className="error-boundary-details">
+            {/* <details className="error-boundary-details">
               <summary>Show error details</summary>
               <div className="error-boundary-stack">
                 <p><strong>{error?.toString()}</strong></p>
@@ -60,7 +60,7 @@ export default class ErrorBoundary extends React.Component {
                   <pre>{errorInfo.componentStack}</pre>
                 )}
               </div>
-            </details>
+            </details> */}
           </div>
         </div>
       );

@@ -11,7 +11,6 @@ const PRESET_FLOWS = [
   'content-from-prompt',
   'extract-brand',
   'generate-media',
-  'upload-fonts',
 ];
 
 export default function AppHeader({
@@ -44,22 +43,6 @@ export default function AppHeader({
         </div>
       </div>
       <div className="header-controls">
-        <div className="flow-selector">
-          <label className="preset-label">Flow:</label>
-          <Cascader
-            className="flow-cascader"
-            options={FLOW_GROUPS}
-            value={activeFlowPath}
-            onChange={(value) => {
-              if (value && value.length >= 2) {
-                onFlowChange(value[value.length - 1]);
-              }
-            }}
-            placeholder="Select a flow"
-            allowClear={false}
-            popupClassName="flow-cascader-popup"
-          />
-        </div>
 
         {PRESET_FLOWS.includes(activeFlow) && (
           <div className="preset-selector">
@@ -83,6 +66,23 @@ export default function AppHeader({
             </select>
           </div>
         )}
+
+        <div className="flow-selector">
+          <label className="preset-label">Flow:</label>
+          <Cascader
+            className="flow-cascader"
+            options={FLOW_GROUPS}
+            value={activeFlowPath}
+            onChange={(value) => {
+              if (value && value.length >= 2) {
+                onFlowChange(value[value.length - 1]);
+              }
+            }}
+            placeholder="Select a flow"
+            allowClear={false}
+            popupClassName="flow-cascader-popup"
+          />
+        </div>
 
         <div className="history-selector">
           <HistoryDropdown

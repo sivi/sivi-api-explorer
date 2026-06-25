@@ -142,7 +142,7 @@ const MediaCreateForm = ({ onSubmit, initialData }) => {
 
       <hr className="form-divider" />
 
-      <div className={errors.url ? 'required-field' : ''}>
+      <div className="required-field">
         <label className="form-label">Source</label>
         <Tabs tabs={UPLOAD_MODE_TABS} activeKey={inputMode} onChange={handleModeChange} />
       </div>

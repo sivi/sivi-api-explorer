@@ -23,7 +23,7 @@ export function AppProvider({ children }) {
   // can run in parallel without a single global flag.
   const [pollingFlows, setPollingFlows] = useState(new Set());
   const [history, setHistory] = useState([]);
-  const [activeFlowKey, setActiveFlowKey] = useState('unknown');
+  const [activeFlow, setActiveFlow] = useState('designs-from-prompt');
   const [pendingFlowAction, setPendingFlowAction] = useState(null);
 
   const handleStorageError = useCallback((err) => {
@@ -61,10 +61,10 @@ export function AppProvider({ children }) {
     setIsLoading(false);
   }, []);
 
-  // flowKey defaults to activeFlowKey, but background jobs override it
+  // flowKey defaults to activeFlow, but background jobs override it
   // with their original flow so history items are tagged correctly.
   const saveHistoryEntry = useCallback(
-    async (input, response, logs, variants, flowKey = activeFlowKey) => {
+    async (input, response, logs, variants, flowKey = activeFlow) => {
       try {
         const id = await saveToHistory(input, response, logs, variants, flowKey);
         if (id) {
@@ -78,7 +78,7 @@ export function AppProvider({ children }) {
         return null;
       }
     },
-    [activeFlowKey, handleStorageError]
+    [activeFlow, handleStorageError]
   );
 
   // Register a flow as actively polling. Multiple flows can be polling
@@ -173,8 +173,8 @@ export function AppProvider({ children }) {
     updateHistoryEntry,
     removeHistoryEntry,
     formatHistoryLabel,
-    activeFlowKey,
-    setActiveFlowKey,
+    activeFlow,
+    setActiveFlow,
     resetResultState,
     startPollingFlow,
     stopPollingFlow,
