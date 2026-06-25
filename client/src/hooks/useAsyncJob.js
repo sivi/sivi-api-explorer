@@ -106,7 +106,7 @@ export function useAsyncJob(submitApi, endpointLabel, options = {}) {
 
       const check = async () => {
         pollCount++;
-        addLog(`Polling job status (attempt ${pollCount})...`);
+        addLog(`Polling job (${requestId}) status (attempt ${pollCount})...`);
 
         try {
           const data = await pollApi(requestId);
@@ -246,6 +246,7 @@ export function useAsyncJob(submitApi, endpointLabel, options = {}) {
 
           if (useWebhook) {
             addLog('Webhook mode active — skipping polling. Waiting for webhook delivery.');
+            if (flowKey) startPollingFlow(flowKey);
             setIsLoading(false);
           } else {
             const initialLogs = [...(apiLogs || [])];
@@ -282,6 +283,8 @@ export function useAsyncJob(submitApi, endpointLabel, options = {}) {
       pollStatus,
       apiLogs,
       onError,
+      flowKey,
+      startPollingFlow,
     ]
   );
 

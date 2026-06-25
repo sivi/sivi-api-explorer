@@ -57,7 +57,22 @@ const DesignForm = ({ onSubmit, initialData }) => {
   // Update form data when initialData changes (for history loading)
   useEffect(() => {
     if (initialData) {
-      setFormData(initialData);
+      setFormData(prev => ({
+        ...prev,
+        ...initialData,
+        settings: {
+          ...prev.settings,
+          ...(initialData.settings || {}),
+          colorsPreference: {
+            ...prev.settings.colorsPreference,
+            ...(initialData.settings?.colorsPreference || {}),
+          },
+          fontGroupPreference: {
+            ...prev.settings.fontGroupPreference,
+            ...(initialData.settings?.fontGroupPreference || {}),
+          },
+        },
+      }));
     }
   }, [initialData]);
 
@@ -77,8 +92,8 @@ const DesignForm = ({ onSubmit, initialData }) => {
     }
   }, [formData.type, formData.subtype, formData.dimensionMode]);
 
-  const isCustomMode = formData.settings.mode === 'custom';
-  const isBrandMode = formData.settings.mode === 'brand';
+  const isCustomMode = formData.settings?.mode === 'custom';
+  const isBrandMode = formData.settings?.mode === 'brand';
   const isCustomDimension = formData.dimensionMode === 'custom';
 
   const updateField = (path, value) => {
@@ -224,7 +239,7 @@ const DesignForm = ({ onSubmit, initialData }) => {
       message.error('Prompt is required');
       return;
     }
-    if (isBrandMode && !formData.settings.currentbId.trim()) {
+    if (isBrandMode && !(formData.settings?.currentbId ?? '').trim()) {
       message.error('Brand ID is required when Mode is Brand');
       return;
     }
@@ -414,7 +429,7 @@ const DesignForm = ({ onSubmit, initialData }) => {
       <div className="required-field">
         <SelectInput
           label="Mode"
-          value={formData.settings.mode}
+          value={formData.settings?.mode ?? 'custom'}
           onChange={(value) => updateField('settings.mode', value)}
           options={[
             { value: 'auto', label: 'Auto' },
@@ -440,7 +455,7 @@ const DesignForm = ({ onSubmit, initialData }) => {
           <div className="form-field">
             <label className="form-label">Colors</label>
             <div className="colors-list">
-              {formData.settings.colorsPreference.customColors.map((colorObj, index) => (
+              {(formData.settings?.colorsPreference?.customColors || []).map((colorObj, index) => (
                 <div key={index} className="color-row">
                   <input
                     type="color"
@@ -473,7 +488,7 @@ const DesignForm = ({ onSubmit, initialData }) => {
 
           <MultiSelectList
             label="Theme"
-            values={formData.settings.theme}
+            values={formData.settings?.theme || []}
             onChange={(value) => updateField('settings.theme', value)}
             options={[
               { label: 'Light', value: 'light' },
@@ -484,7 +499,7 @@ const DesignForm = ({ onSubmit, initialData }) => {
 
           <MultiSelectList
             label="FrameStyle"
-            values={formData.settings.frameStyle}
+            values={formData.settings?.frameStyle || []}
             onChange={(value) => updateField('settings.frameStyle', value)}
             options={[
               { label: 'Plain Fill', value: 'Plain Fill', internalName: 'None' },
@@ -499,7 +514,7 @@ const DesignForm = ({ onSubmit, initialData }) => {
 
           <MultiSelectList
             label="BackdropStyle"
-            values={formData.settings.backdropStyle}
+            values={formData.settings?.backdropStyle || []}
             onChange={(value) => updateField('settings.backdropStyle', value)}
             options={[
               { label: 'Minimalist', value: 'minimalist' },
@@ -510,7 +525,7 @@ const DesignForm = ({ onSubmit, initialData }) => {
 
           <MultiSelectList
             label="Focus"
-            values={formData.settings.focus}
+            values={formData.settings?.focus || []}
             onChange={(value) => updateField('settings.focus', value)}
             options={[
               { label: 'Text', value: 'text' },
@@ -521,7 +536,7 @@ const DesignForm = ({ onSubmit, initialData }) => {
 
           <MultiSelectList
             label="ImageStyle"
-            values={formData.settings.imageStyle}
+            values={formData.settings?.imageStyle || []}
             onChange={(value) => updateField('settings.imageStyle', value)}
             options={[
               { label: 'Cover', value: 'cover' },

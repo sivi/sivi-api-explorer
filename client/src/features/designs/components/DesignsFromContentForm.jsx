@@ -76,7 +76,22 @@ const DesignsFromContentForm = ({ onSubmit, initialData }) => {
 
   useEffect(() => {
     if (initialData) {
-      setFormData(prev => ({ ...prev, ...initialData }));
+      setFormData(prev => ({
+        ...prev,
+        ...initialData,
+        settings: {
+          ...prev.settings,
+          ...(initialData.settings || {}),
+          colorsPreference: {
+            ...prev.settings.colorsPreference,
+            ...(initialData.settings?.colorsPreference || {}),
+          },
+          fontGroupPreference: {
+            ...prev.settings.fontGroupPreference,
+            ...(initialData.settings?.fontGroupPreference || {}),
+          },
+        },
+      }));
     }
   }, [initialData]);
 
@@ -176,7 +191,7 @@ const DesignsFromContentForm = ({ onSubmit, initialData }) => {
   };
 
   const handleColorChange = (index, value) => {
-    const newColors = [...formData.settings.colorsPreference.customColors];
+    const newColors = [...(formData.settings?.colorsPreference?.customColors || [])];
     newColors[index] = value;
     setFormData(prev => ({
       ...prev,
@@ -530,7 +545,7 @@ const DesignsFromContentForm = ({ onSubmit, initialData }) => {
       />
 
       <h3 className="form-section-title">Colors</h3>
-      {formData.settings.colorsPreference.customColors.map((color, index) => (
+      {(formData.settings?.colorsPreference?.customColors || []).map((color, index) => (
         <div key={index} className="color-row">
           <ColorInput
             label={`Color ${index + 1}`}

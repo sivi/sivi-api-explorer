@@ -10,10 +10,28 @@ import PresignedUrlResult from '~/components/results/PresignedUrlResult.jsx';
 import JsonResult from '~/components/results/JsonResult.jsx';
 import LoginUserResult from '~/components/results/LoginUserResult.jsx';
 import EmptyResult from '~/components/common/EmptyResult.jsx';
+import JobPendingCard from '~/components/common/JobPendingCard.jsx';
+import PollingLoader from '~/components/common/PollingLoader.jsx';
 
 const DESIGN_FLOWS = new Set(['designs-from-prompt', 'designs-from-content', 'get-design-variants']);
 const BRAND_FLOWS = new Set(['list-brands', 'create-brand', 'extract-brand', 'set-default-brand', 'archive-brand', 'update-brand']);
 const MEDIA_FLOWS = new Set(['get-media', 'create-media', 'update-media', 'delete-media', 'generate-media']);
+
+// Flows that use the two-phase async pattern: REST API → requestId → poll/webhook
+const ASYNC_JOB_FLOWS = new Set([
+  'designs-from-prompt',
+  'designs-from-content',
+  'content-from-prompt',
+  'extract-brand',
+  'generate-media',
+  'upload-fonts',
+]);
+
+function hasRequestId(apiResponse) {
+  if (!apiResponse) return false;
+  const body = apiResponse?.body ?? apiResponse;
+  return !!(body?.requestId ?? apiResponse?.requestId ?? body?.result?.requestId);
+}
 
 function hasResultData(flowKey, { apiResponse, designVariants }) {
   if (DESIGN_FLOWS.has(flowKey)) {
@@ -84,8 +102,26 @@ export default function ResultView({
   // isFlowPolling is a per-flow function so switching flows doesn't
   // show a loader for unrelated background jobs.
   const flowIsPolling = isFlowPolling ? isFlowPolling(activeFlow) : false;
+  const flowLabel = FLOW_TITLES[activeFlow] || 'Request';
+
+  // When loading or polling: if we already have an initial REST API response
+  // with a requestId (async job flow), show the response card + a compact
+  // polling/webhook loader below it. Otherwise show the full spinner.
   if (isLoading || flowIsPolling) {
-    const flowLabel = FLOW_TITLES[activeFlow] || 'Request';
+    if (apiResponse && ASYNC_JOB_FLOWS.has(activeFlow) && (hasRequestId(apiResponse) || apiResponse.error)) {
+      return (
+        <>
+          <h2 className="result-section-heading">{flowLabel}</h2>
+          <JobPendingCard apiResponse={apiResponse} />
+          <PollingLoader
+            flowLabel={flowLabel}
+            isPolling={flowIsPolling}
+            webhookEnabled={webhookEnabled && !!webhookUrl}
+          />
+        </>
+      );
+    }
+
     return (
       <div className="loading-state">
         <div className="spinner" />
@@ -105,7 +141,6 @@ export default function ResultView({
   }
 
   const resultEl = getResultComponent(activeFlow, { apiResponse, designVariants, apiInput, onLoadMore, hasMore, isLoadingMore });
-  const flowLabel = FLOW_TITLES[activeFlow] || 'Result';
   return (
     <>
       <h2 className="result-section-heading">{flowLabel}</h2>

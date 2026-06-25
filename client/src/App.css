@@ -2386,3 +2386,131 @@ body {
   background: rgba(16, 185, 129, 0.2);
   border-color: rgba(16, 185, 129, 0.5);
 }
+
+/* JobPendingCard — initial REST API response for async job flows */
+.job-pending-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.job-pending-card--error {
+  border-color: rgba(239, 68, 68, 0.3);
+  background: rgba(239, 68, 68, 0.05);
+}
+
+.job-pending-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.job-pending-status-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 12px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.job-pending-status--queued {
+  background: rgba(99, 102, 241, 0.15);
+  color: #818cf8;
+}
+
+.job-pending-status--processing {
+  background: rgba(245, 158, 11, 0.15);
+  color: #fbbf24;
+}
+
+.job-pending-status--completed {
+  background: rgba(16, 185, 129, 0.15);
+  color: #34d399;
+}
+
+.job-pending-status--error {
+  background: rgba(239, 68, 68, 0.15);
+  color: #f87171;
+}
+
+.job-pending-toggle {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.5);
+  border-radius: 6px;
+  padding: 4px 10px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.job-pending-toggle:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.job-pending-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.job-pending-field-label {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.4);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+}
+
+.job-pending-field-value {
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.85);
+  word-break: break-all;
+}
+
+.job-pending-error-msg {
+  color: #f87171;
+  font-size: 14px;
+  margin: 0;
+}
+
+.job-pending-raw {
+  background: #1e293b;
+  color: #e2e8f0;
+  padding: 14px;
+  border-radius: 8px;
+  font-size: 12px;
+  line-height: 1.6;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-break: break-word;
+  margin: 0;
+}
+
+/* PollingLoader — compact loader for polling/webhook waiting phase */
+.polling-loader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 24px 20px;
+  margin-top: 12px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+}
+
+.polling-loader-msg {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.45);
+  margin: 0;
+  text-align: center;
+}
