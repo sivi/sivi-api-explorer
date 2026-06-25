@@ -20,7 +20,7 @@ const BrandCreateForm = ({ onSubmit, initialData }) => {
     brandDescription: initialData?.brandDescription || '',
     brandUrl: initialData?.brandUrl || '',
     brandLogo: initialData?.brandLogo || '',
-    brandColors: initialData?.brandColors || ['#5662EC'],
+    brandColors: initialData?.brandColors || [],
     brandFonts: formatList(initialData?.brandFonts),
     brandPersona: {
       emotions: formatList(initialData?.brandPersona?.emotions),
@@ -71,7 +71,7 @@ const BrandCreateForm = ({ onSubmit, initialData }) => {
       ...(formData.brandDescription && { brandDescription: formData.brandDescription }),
       ...(formData.brandUrl && { brandUrl: formData.brandUrl }),
       ...(formData.brandLogo && { brandLogo: formData.brandLogo }),
-      brandColors: formData.brandColors,
+      ...(formData.brandColors.length > 0 && { brandColors: formData.brandColors }),
       ...(formData.brandFonts.trim() && { brandFonts: parseList(formData.brandFonts) }),
       brandPersona: {
         ...(parseList(formData.brandPersona.emotions).length > 0 && { emotions: parseList(formData.brandPersona.emotions) }),
@@ -154,11 +154,9 @@ const BrandCreateForm = ({ onSubmit, initialData }) => {
           {formData.brandColors.map((color, index) => (
             <div key={index} className="color-list-item">
               <ColorInput label="" value={color} onChange={(v) => updateColor(index, v)} />
-              {formData.brandColors.length > 1 && (
-                <button type="button" className="color-remove" onClick={() => removeColor(index)} title="Remove color">
-                  ×
-                </button>
-              )}
+              <button type="button" className="color-remove" onClick={() => removeColor(index)} title="Remove color">
+                ×
+              </button>
             </div>
           ))}
           <button type="button" className="add-button" onClick={addColor}>

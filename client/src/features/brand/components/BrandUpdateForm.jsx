@@ -30,7 +30,7 @@ const BrandUpdateForm = ({ onSubmit, initialData }) => {
     brandDescription: initialData?.brandDescription || '',
     brandUrl: initialData?.brandUrl || '',
     brandLogo: initialData?.brandLogo || '',
-    brandColors: initialData?.brandColors?.map(normalizeColor) || ['#5662EC'],
+    brandColors: initialData?.brandColors?.map(normalizeColor) || [],
     brandFonts: formatList(initialData?.brandFonts),
     brandPersona: {
       emotions: formatList(initialData?.brandPersona?.emotions),
@@ -73,7 +73,7 @@ const BrandUpdateForm = ({ onSubmit, initialData }) => {
         brandDescription: brand.brandDescription || brand.description || '',
         brandUrl: brand.brandUrl || '',
         brandLogo: brand.brandLogo || (brand.brandLogos?.[0]) || (brand.logos?.[0]) || '',
-        brandColors: (brand.brandColors || brand.colors || ['#5662EC']).map(normalizeColor),
+        brandColors: (brand.brandColors || brand.colors || []).map(normalizeColor),
         brandFonts: formatList(brand.brandFonts || brand.fonts || []),
         brandPersona: {
           emotions: formatList(brand.brandPersona?.emotions || brand.persona?.emotions || []),
@@ -219,16 +219,14 @@ const BrandUpdateForm = ({ onSubmit, initialData }) => {
                 value={color}
                 onChange={(v) => updateColor(index, v)}
               />
-              {formData.brandColors.length > 1 && (
-                <button
-                  type="button"
-                  className="color-remove"
-                  onClick={() => removeColor(index)}
-                  title="Remove color"
-                >
-                  ×
-                </button>
-              )}
+              <button
+                type="button"
+                className="color-remove"
+                onClick={() => removeColor(index)}
+                title="Remove color"
+              >
+                ×
+              </button>
             </div>
           ))}
           <button type="button" className="add-button" onClick={addColor}>

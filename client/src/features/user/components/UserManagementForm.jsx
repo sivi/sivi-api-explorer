@@ -38,7 +38,7 @@ const LoginUserForm = ({ onSubmit, initialData }) => {
       brandDescription: initialData?.brand?.brandDescription || '',
       brandUrl: initialData?.brand?.brandUrl || '',
       brandLogo: initialData?.brand?.brandLogo || '',
-      brandColors: initialData?.brand?.brandColors || ['#5662EC'],
+      brandColors: initialData?.brand?.brandColors || [],
       brandFonts: formatList(initialData?.brand?.brandFonts),
       brandPersona: {
         emotions: formatList(initialData?.brand?.brandPersona?.emotions),
@@ -201,11 +201,9 @@ const LoginUserForm = ({ onSubmit, initialData }) => {
               {formData.brand.brandColors.map((color, index) => (
                 <div key={index} className="color-list-item">
                   <ColorInput label="" value={color} onChange={(v) => updateColor(index, v)} />
-                  {formData.brand.brandColors.length > 1 && (
-                    <button type="button" className="color-remove" onClick={() => removeColor(index)} title="Remove color">
-                      ×
-                    </button>
-                  )}
+                  <button type="button" className="color-remove" onClick={() => removeColor(index)} title="Remove color">
+                    ×
+                  </button>
                 </div>
               ))}
               <button type="button" className="add-button" onClick={addColor}>

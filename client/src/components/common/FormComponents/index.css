@@ -28,7 +28,7 @@
 .form-select:focus,
 .form-textarea:focus {
   border-color: rgba(86, 98, 236, 0.6);
-  background: rgba(255, 255, 255, 0.08);
+  background-color: rgba(255, 255, 255, 0.08);
 }
 
 .form-input:disabled,
@@ -36,7 +36,7 @@
 .form-textarea:disabled {
   opacity: 0.6;
   cursor: not-allowed;
-  background: rgba(255, 255, 255, 0.03);
+  background-color: rgba(255, 255, 255, 0.03);
 }
 
 .form-input::placeholder,
@@ -53,7 +53,7 @@
   background-repeat: no-repeat;
   background-position: right 14px center;
   padding-right: 40px;
-  transition: border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+  transition: border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .form-select:hover {
@@ -63,7 +63,7 @@
 
 .form-select:focus {
   border-color: rgba(86, 98, 236, 0.8);
-  background: rgba(255, 255, 255, 0.08);
+  background-color: rgba(255, 255, 255, 0.08);
   box-shadow: 0 0 0 3px rgba(86, 98, 236, 0.15);
 }
 
