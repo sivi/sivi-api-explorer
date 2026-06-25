@@ -1,4 +1,5 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 import AuroraBackground from './AuroraBackground.jsx'
 
 const FEATURES = [
@@ -47,7 +48,10 @@ const API_FLOWS = [
   { label: 'Get Presigned URL', group: 'Files' },
 ]
 
-export default function LandingPage({ onLaunch }) {
+export default function LandingPage() {
+  const navigate = useNavigate()
+  const launch = () => navigate('/playground')
+
   return (
     <div className="landing-page">
       <AuroraBackground />
@@ -64,7 +68,7 @@ export default function LandingPage({ onLaunch }) {
           <a href="https://developer.sivi.ai/docs/sivi-api/overview" target="_blank" rel="noreferrer">
             Docs
           </a>
-          <button className="landing-nav-cta" onClick={onLaunch}>
+          <button className="landing-nav-cta" onClick={launch}>
             Launch Explorer
           </button>
         </div>
@@ -86,7 +90,7 @@ export default function LandingPage({ onLaunch }) {
           and more — all through a single elegant interface.
         </p>
         <div className="landing-hero-actions">
-          <button className="landing-btn-primary" onClick={onLaunch}>
+          <button className="landing-btn-primary" onClick={launch}>
             <span>Launch API Explorer</span>
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M5 12h14M12 5l7 7-7 7" />
@@ -157,7 +161,7 @@ export default function LandingPage({ onLaunch }) {
         <div className="landing-cta-content">
           <h2>Ready to explore?</h2>
           <p>Jump right into the interactive API explorer and start generating designs.</p>
-          <button className="landing-btn-primary landing-btn-lg" onClick={onLaunch}>
+          <button className="landing-btn-primary landing-btn-lg" onClick={launch}>
             <span>Launch API Explorer</span>
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M5 12h14M12 5l7 7-7 7" />

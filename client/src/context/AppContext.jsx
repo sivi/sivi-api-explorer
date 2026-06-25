@@ -24,6 +24,7 @@ export function AppProvider({ children }) {
   const [pollingFlows, setPollingFlows] = useState(new Set());
   const [history, setHistory] = useState([]);
   const [activeFlowKey, setActiveFlowKey] = useState('unknown');
+  const [pendingFlowAction, setPendingFlowAction] = useState(null);
 
   const handleStorageError = useCallback((err) => {
     if (isQuotaExceededError(err)) {
@@ -144,6 +145,14 @@ export function AppProvider({ children }) {
     }
   }, [handleStorageError]);
 
+  const dispatchFlowAction = useCallback((action) => {
+    setPendingFlowAction(action);
+  }, []);
+
+  const clearPendingFlowAction = useCallback(() => {
+    setPendingFlowAction(null);
+  }, []);
+
   const value = {
     apiResponse,
     setApiResponse,
@@ -170,6 +179,9 @@ export function AppProvider({ children }) {
     startPollingFlow,
     stopPollingFlow,
     isFlowPolling,
+    pendingFlowAction,
+    dispatchFlowAction,
+    clearPendingFlowAction,
   };
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;

@@ -68,8 +68,8 @@
 }
 
 .form-select option {
-  background: #161628;
-  color: rgba(255, 255, 255, 0.9);
+  background: #12121f;
+  color: #ffffff;
   padding: 10px 14px;
   font-size: 14px;
   line-height: 1.4;
@@ -77,13 +77,8 @@
 
 .form-select option:checked,
 .form-select option:hover {
-  background: rgba(86, 98, 236, 0.25);
+  background: rgba(86, 98, 236, 0.35);
   color: #fff;
-}
-
-.form-select option:first-child {
-  color: rgba(255, 255, 255, 0.4);
-  font-style: italic;
 }
 
 .form-textarea {

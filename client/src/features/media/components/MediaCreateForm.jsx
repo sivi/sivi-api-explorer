@@ -4,11 +4,22 @@ import {
   TextInput,
   UrlInput,
   SelectInput,
+  Tabs,
 } from '~/components/common/FormComponents';
 import { MEDIA_TYPE_OPTIONS, SUBTYPE_MAP } from '../config/mediaTypes.js';
 
 const TOUCH_POSITION_DEFAULT = { left: false, right: false, bottom: false, top: false, center: false };
 const IMAGE_PREF_DEFAULT = { crop: null, removeBg: null, enhancement: null };
+
+const UPLOAD_MODE_TABS = [
+  { key: 'remote', label: 'Remote URL' },
+  { key: 'presigned', label: 'Presigned Upload' },
+];
+
+function getInitialMode(initialData) {
+  if (initialData?.url) return 'remote';
+  return 'presigned';
+}
 
 const MediaCreateForm = ({ onSubmit, initialData }) => {
   const [formData, setFormData] = useState({
@@ -25,8 +36,20 @@ const MediaCreateForm = ({ onSubmit, initialData }) => {
 
   const [file, setFile] = useState(null);
   const [errors, setErrors] = useState({});
+  const [inputMode, setInputMode] = useState(getInitialMode(initialData));
 
   const subTypeOptions = useMemo(() => SUBTYPE_MAP[formData.type] || [], [formData.type]);
+
+  const handleModeChange = (mode) => {
+    setInputMode(mode);
+    setFormData((prev) => ({
+      ...prev,
+      url: mode === 'remote' ? prev.url : '',
+      uploadUrl: mode === 'presigned' ? prev.uploadUrl : '',
+    }));
+    if (mode === 'remote') setFile(null);
+    setErrors((prev) => ({ ...prev, url: undefined }));
+  };
 
   const updateField = (path, value) => {
     setFormData((prev) => {
@@ -57,9 +80,13 @@ const MediaCreateForm = ({ onSubmit, initialData }) => {
       nextErrors.subType = 'SubType is required';
       message.error('SubType is required');
     }
-    if (!file && !formData.url.trim() && !formData.uploadUrl.trim()) {
-      nextErrors.url = 'Either URL, Upload URL, or a file is required';
-      message.error('Either URL, Upload URL, or a file is required');
+    if (inputMode === 'remote' && !formData.url.trim()) {
+      nextErrors.url = 'Remote URL is required';
+      message.error('Remote URL is required');
+    }
+    if (inputMode === 'presigned' && !formData.uploadUrl.trim()) {
+      nextErrors.url = 'Presigned Upload URL is required';
+      message.error('Presigned Upload URL is required');
     }
     setErrors(nextErrors);
     return Object.keys(nextErrors).length === 0;
@@ -72,14 +99,14 @@ const MediaCreateForm = ({ onSubmit, initialData }) => {
     const payload = {
       type: formData.type,
       subType: formData.subType.trim(),
-      ...(formData.url && { url: formData.url }),
-      ...(formData.uploadUrl && { uploadUrl: formData.uploadUrl }),
+      ...(inputMode === 'remote' && formData.url && { url: formData.url }),
+      ...(inputMode === 'presigned' && formData.uploadUrl && { uploadUrl: formData.uploadUrl }),
       ...(formData.bId && { bId: formData.bId }),
       touchPosition: formData.touchPosition,
       imagePreference: formData.imagePreference,
       hueRotations: formData.hueRotations,
       ...(formData.abstractUserId && { abstractUserId: formData.abstractUserId }),
-      ...(file && { file }),
+      ...(inputMode === 'presigned' && file && { file }),
     };
 
     onSubmit(payload);
@@ -90,9 +117,9 @@ const MediaCreateForm = ({ onSubmit, initialData }) => {
       <h3 className="form-section-title">Create Media</h3>
       <p className="form-hint">Upload a new media asset to a workspace.</p>
 
-      <div className={errors.type ? 'required-field' : ''}>
+      <div className={'required-field'}>
         <SelectInput
-          label="Type *"
+          label="Type"
           value={formData.type}
           onChange={handleTypeChange}
           options={MEDIA_TYPE_OPTIONS}
@@ -100,9 +127,9 @@ const MediaCreateForm = ({ onSubmit, initialData }) => {
         />
       </div>
 
-      <div className={errors.subType ? 'required-field' : ''}>
+      <div className={'required-field'}>
         <SelectInput
-          label="SubType *"
+          label="SubType"
           value={formData.subType}
           onChange={(v) => {
             updateField('subType', v);
@@ -113,44 +140,53 @@ const MediaCreateForm = ({ onSubmit, initialData }) => {
         />
       </div>
 
+      <hr className="form-divider" />
+
       <div className={errors.url ? 'required-field' : ''}>
+        <label className="form-label">Source</label>
+        <Tabs tabs={UPLOAD_MODE_TABS} activeKey={inputMode} onChange={handleModeChange} />
+      </div>
+
+      {inputMode === 'remote' && (
         <UrlInput
           label="Remote URL"
           value={formData.url}
           onChange={(v) => updateField('url', v)}
           placeholder="https://example.com/image.jpg"
         />
-      </div>
+      )}
 
-      <TextInput
-        label="Presigned Upload URL"
-        value={formData.uploadUrl}
-        onChange={(v) => updateField('uploadUrl', v)}
-        placeholder="https://media.hellosivi.com/photos/..."
-      />
+      {inputMode === 'presigned' && (
+        <>
+          <TextInput
+            label="Presigned Upload URL"
+            value={formData.uploadUrl}
+            onChange={(v) => updateField('uploadUrl', v)}
+            placeholder="https://media.hellosivi.com/photos/..."
+          />
 
-      <div className="form-field">
-        <label className="form-label">Upload File (optional)</label>
-        <input
-          type="file"
-          accept="image/*,font/*"
-          onChange={(e) => {
-            const selected = e.target.files?.[0] || null;
-            setFile(selected);
-            if (selected) {
-              // Clear URL fields when a file is selected
-              setFormData((prev) => ({ ...prev, url: '', uploadUrl: '' }));
-            }
-            if (errors.url) setErrors((prev) => ({ ...prev, url: undefined }));
-          }}
-          className="file-input"
-        />
-        {file && (
-          <p className="form-hint" style={{ marginTop: 4 }}>
-            Selected: {file.name} ({(file.size / 1024).toFixed(1)} KB)
-          </p>
-        )}
-      </div>
+          <div className="form-field">
+            <label className="form-label">Upload File (optional)</label>
+            <input
+              type="file"
+              accept="image/*,font/*"
+              onChange={(e) => {
+                const selected = e.target.files?.[0] || null;
+                setFile(selected);
+                if (errors.url) setErrors((prev) => ({ ...prev, url: undefined }));
+              }}
+              className="file-input"
+            />
+            {file && (
+              <p className="form-hint" style={{ marginTop: 4 }}>
+                Selected: {file.name} ({(file.size / 1024).toFixed(1)} KB)
+              </p>
+            )}
+          </div>
+        </>
+      )}
+
+      <hr className="form-divider" />
 
       <TextInput
         label="Brand ID (bId)"

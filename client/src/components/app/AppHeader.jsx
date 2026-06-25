@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react';
 import { Cascader } from 'antd';
+import { useNavigate } from 'react-router-dom';
 import { FLOW_GROUPS, findFlowPath } from '~/config/flows.js';
 import { designPresets } from '~/features/designs/data/designPresets';
 import HistoryDropdown from '~/components/common/HistoryDropdown';
@@ -28,13 +29,14 @@ export default function AppHeader({
   onHistoryDelete,
   onOpenWebhookModal,
   onToggleWebhook,
-  onGoHome,
 }) {
+  const navigate = useNavigate();
+  const goHome = () => navigate('/');
   const activeFlowPath = useMemo(() => findFlowPath(activeFlow), [activeFlow]);
 
   return (
     <header className="app-header">
-      <div className="app-header-brand" onClick={onGoHome} title="Back to Home">
+      <div className="app-header-brand" onClick={goHome} title="Back to Home">
         <img src="/sivi-logo.png" alt="Sivi AI" className="app-header-logo" />
         <div className="app-header-titles">
           <span className="app-header-title-main">Sivi API Explorer</span>
@@ -96,7 +98,7 @@ export default function AppHeader({
         <div className="webhook-controls">
           <button
             className="home-btn"
-            onClick={onGoHome}
+            onClick={goHome}
             title="Back to Home"
           >
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

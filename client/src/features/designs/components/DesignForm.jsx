@@ -557,7 +557,7 @@ const DesignForm = ({ onSubmit, initialData }) => {
       </div>
 
       <button type="submit" className="ai-studio-button">
-        Generate Design
+        Generate Designs
       </button>
     </form>
   );

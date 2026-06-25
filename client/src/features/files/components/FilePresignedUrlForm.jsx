@@ -129,7 +129,7 @@ const FilePresignedUrlForm = ({ onSubmit, initialData }) => {
 
       <Tabs tabs={TAB_CONFIG} activeKey={activeTab} onChange={handleTabChange} />
 
-      <div className={errors.type ? 'required-field' : ''}>
+      <div className={'required-field'}>
         <SelectInput
           label="Type"
           value={formData.type}
@@ -141,7 +141,7 @@ const FilePresignedUrlForm = ({ onSubmit, initialData }) => {
         />
       </div>
 
-      <div className={errors.extension ? 'required-field' : ''}>
+      <div className={'required-field'}>
         <SelectInput
           label="Extension"
           value={formData.extension}

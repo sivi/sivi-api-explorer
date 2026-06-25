@@ -85,7 +85,7 @@ const FontListPanel = ({ onSubmit, initialData }) => {
         placeholder="e.g. Roboto"
       />
 
-      <div className={errors.source ? 'required-field' : ''}>
+      <div className={'required-field'}>
         <SelectInput
           label="Source"
           value={formData.source}
@@ -97,7 +97,7 @@ const FontListPanel = ({ onSubmit, initialData }) => {
         />
       </div>
 
-      <div className="required-field">
+      <div className={'required-field'}>
         <NumberInput
           label="Limit"
           value={formData.limit}

@@ -66,9 +66,6 @@ const FontUploadForm = ({ onSubmit, initialData }) => {
           onChange={(e) => {
             const selected = e.target.files?.[0] || null;
             setFile(selected);
-            if (selected) {
-              setFormData((prev) => ({ ...prev, uploadedURL: '' }));
-            }
             if (errors.uploadedURL) setErrors((prev) => ({ ...prev, uploadedURL: undefined }));
           }}
           className="file-input"
@@ -80,7 +77,7 @@ const FontUploadForm = ({ onSubmit, initialData }) => {
         )}
       </div>
 
-      <div className={errors.uploadedURL ? 'required-field' : ''}>
+      <div className={'required-field'}>
         <TextInput
           label="Upload URL"
           value={formData.uploadedURL}

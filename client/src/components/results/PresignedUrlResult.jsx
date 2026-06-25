@@ -1,6 +1,8 @@
 import React, { useState, useCallback } from 'react';
 import CopyJsonButton from '~/components/common/CopyJsonButton.jsx';
 import EmptyResult from '~/components/common/EmptyResult.jsx';
+import { useAppContext } from '~/context/useAppContext.js';
+import { resolveFlowActionFromPresignedUrl } from '~/utils/flowActions.js';
 
 function CopyTextButton({ text, label = 'Copy' }) {
   const [copied, setCopied] = useState(false);
@@ -37,6 +39,31 @@ function CopyTextButton({ text, label = 'Copy' }) {
   );
 }
 
+function UseUrlButton({ contentType, uploadUrl }) {
+  const { dispatchFlowAction } = useAppContext();
+  const action = resolveFlowActionFromPresignedUrl(contentType, uploadUrl);
+
+  const handleClick = useCallback(() => {
+    if (action) dispatchFlowAction(action);
+  }, [dispatchFlowAction, action]);
+
+  if (!action) return null;
+
+  return (
+    <button
+      className="use-url-btn"
+      onClick={handleClick}
+      title="Use this URL in the matching flow"
+      type="button"
+    >
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M5 12h14M12 5l7 7-7 7" />
+      </svg>
+      <span>Use URL</span>
+    </button>
+  );
+}
+
 export default function PresignedUrlResult({ apiResponse }) {
   if (!apiResponse) {
     return <EmptyResult />;
@@ -59,6 +86,7 @@ export default function PresignedUrlResult({ apiResponse }) {
   const headers = result?.headers ?? {};
   const expiresIn = result?.expiresIn;
   const fileName = result?.fileName;
+  const contentType = headers['Content-Type'] || headers['content-type'] || '';
 
   // If no structured presigned URL data, fall back to raw JSON
   if (!uploadUrl) {
@@ -86,7 +114,10 @@ export default function PresignedUrlResult({ apiResponse }) {
       <div className="presigned-url-section">
         <div className="presigned-url-header">
           <span className="presigned-url-label">UPLOAD URL</span>
-          <CopyTextButton text={uploadUrl} label="Copy URL" />
+          <div className="presigned-url-actions">
+            <UseUrlButton contentType={contentType} uploadUrl={uploadUrl} />
+            <CopyTextButton text={uploadUrl} label="Copy URL" />
+          </div>
         </div>
         <div className="presigned-url-scroll-wrapper">
           <code className="presigned-url-value">{uploadUrl}</code>

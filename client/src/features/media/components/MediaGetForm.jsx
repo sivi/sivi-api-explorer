@@ -74,9 +74,9 @@ const MediaGetForm = ({ onSubmit, initialData }) => {
       <h3 className="form-section-title">Get Media</h3>
       <p className="form-hint">Retrieve media assets from a workspace.</p>
 
-      <div className={errors.type ? 'required-field' : ''}>
+      <div className={'required-field'}>
         <SelectInput
-          label="Type *"
+          label="Type"
           value={formData.type}
           onChange={handleTypeChange}
           options={MEDIA_TYPE_OPTIONS}
@@ -84,9 +84,9 @@ const MediaGetForm = ({ onSubmit, initialData }) => {
         />
       </div>
 
-      <div className={errors.subType ? 'required-field' : ''}>
+      <div className={'required-field'}>
         <SelectInput
-          label="SubType *"
+          label="SubType"
           value={formData.subType}
           onChange={(v) => {
             updateField('subType', v);

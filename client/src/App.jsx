@@ -1,12 +1,11 @@
 import './App.css'
 import './components/landing/landing.css'
-import React, { useState, useCallback, useMemo } from 'react'
+import React, { useState, useCallback, useMemo, useEffect } from 'react'
 import ApiMonitor from './components/common/ApiMonitor'
 import WebhookModal from './components/common/WebhookModal'
 import AppHeader from './components/app/AppHeader'
 import FlowForm from './components/app/FlowForm'
 import ResultView from './components/app/ResultView'
-import LandingPage from './components/landing/LandingPage.jsx'
 import { useAppContext } from './context/useAppContext.js'
 import { useDesignGeneration } from './features/designs/hooks/useDesignGeneration.js'
 import { useUtilityFlow } from './features/utilities/hooks/useUtilityFlow.js'
@@ -20,13 +19,14 @@ import { useWebhookConfig } from './hooks/useWebhookConfig.js'
 import useWebhookEvents from './hooks/useWebhookEvents'
 import { coreApi } from './api/core.js'
 import { designPresets } from './features/designs/data/designPresets'
+import { FLOW_KEY_MAP } from './config/flows.js'
 
 function App() {
-  const [showLanding, setShowLanding] = useState(true)
   const [activeFlow, setActiveFlow] = useState('designs-from-prompt')
   const [selectedPreset, setSelectedPreset] = useState('')
   const [formKey, setFormKey] = useState(0)
   const [selectedHistoryId, setSelectedHistoryId] = useState('')
+  const [prefilledFormData, setPrefilledFormData] = useState(null)
 
   const {
     apiResponse,
@@ -44,6 +44,8 @@ function App() {
     removeHistoryEntry,
     setActiveFlowKey,
     resetResultState,
+    pendingFlowAction,
+    clearPendingFlowAction,
   } = useAppContext()
 
   const panels = usePanels()
@@ -132,6 +134,7 @@ function App() {
   const handlePresetChange = useCallback((presetKey) => {
     setSelectedPreset(presetKey)
     setSelectedHistoryId('')
+    setPrefilledFormData(null)
     setFormKey((k) => k + 1)
   }, [])
 
@@ -149,10 +152,36 @@ function App() {
       }
       setSelectedHistoryId(historyId)
       setSelectedPreset('')
+      setPrefilledFormData(null)
       setFormKey((k) => k + 1)
       addLog(`Loaded history: ${item.prompt?.substring(0, 50) ?? 'N/A'}...`)
     }
   }, [activeFlow, loadHistoryItem, setActiveFlowKey, addLog])
+
+  // Global flow actions: any component can ask the app to switch to a target
+  // flow and pre-fill form fields. This effect consumes the pending action,
+  // switches the active flow, and stores the form data for the next mount.
+  useEffect(() => {
+    if (!pendingFlowAction) return
+
+    const { flowKey, initialFormData } = pendingFlowAction
+    clearPendingFlowAction()
+    resetResultState()
+    setActiveFlow(flowKey)
+    setActiveFlowKey(flowKey)
+    setSelectedPreset('')
+    setSelectedHistoryId('')
+    setPrefilledFormData(initialFormData || null)
+    setFormKey((k) => k + 1)
+    addLog(`Navigated to ${FLOW_KEY_MAP[flowKey] ?? flowKey} from result action`)
+  }, [pendingFlowAction, clearPendingFlowAction, resetResultState, setActiveFlowKey, addLog])
+
+  // Clear prefilled form data when a preset or history item takes over.
+  useEffect(() => {
+    if (selectedPreset || selectedHistoryId) {
+      setPrefilledFormData(null)
+    }
+  }, [selectedPreset, selectedHistoryId])
 
   const handleFlowSubmit = useCallback((formData) => {
     switch (activeFlow) {
@@ -208,22 +237,11 @@ function App() {
   }, [activeFlow, webhook.webhookEnabled, submitDesignsFromPrompt, submitDesignsFromContent, submitContentFromPrompt, submitUtility, submitBrand, submitMedia, submitFile, submitFont, submitUser, addLog])
 
   const initialFormData = useMemo(() => {
+    if (prefilledFormData) return prefilledFormData
     if (selectedPreset) return designPresets[selectedPreset].data
     if (selectedHistoryId) return apiInput
     return null
-  }, [selectedPreset, selectedHistoryId, apiInput])
-
-  const handleLaunch = useCallback(() => {
-    setShowLanding(false)
-  }, [])
-
-  const handleGoHome = useCallback(() => {
-    setShowLanding(true)
-  }, [])
-
-  if (showLanding) {
-    return <LandingPage onLaunch={handleLaunch} />
-  }
+  }, [prefilledFormData, selectedPreset, selectedHistoryId, apiInput])
 
   return (
     <div className="app-container">
@@ -249,7 +267,6 @@ function App() {
         onHistoryDelete={removeHistoryEntry}
         onOpenWebhookModal={() => webhook.setShowWebhookModal(true)}
         onToggleWebhook={webhook.setWebhookEnabled}
-        onGoHome={handleGoHome}
       />
 
       <div className={`app-content${panels.isDragging ? ' dragging' : ''}`}>
