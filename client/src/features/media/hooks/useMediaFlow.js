@@ -168,13 +168,14 @@ export function useMediaFlow(flowKey) {
 
   const generateMediaJob = useAsyncJob(mediaApi.generateMedia, 'generate-media', {
     flowKey: 'generate-media',
-    onResult: (data) => {
+    onResult: (data, originalInput) => {
       const media = data.body?.result?.media ?? data.body?.media;
       if (media) {
         addLog(`Generated media: ${media.mId || 'unknown'}`);
       } else {
         addLog('Media generation completed');
       }
+      saveHistoryEntry(originalInput ?? apiInput, data, [], [], 'generate-media');
     },
   });
 

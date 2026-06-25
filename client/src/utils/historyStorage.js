@@ -1,6 +1,37 @@
 import { historyStore } from '../storage/IndexedDBStore.js';
+import { FLOW_KEY_MAP } from '../config/flows.js';
 
 const MAX_HISTORY_ITEMS = 50;
+
+function getFlowLabel(flowKey) {
+  return FLOW_KEY_MAP[flowKey] || flowKey || 'Unknown';
+}
+
+function generatePromptFromInput(apiInput) {
+  if (!apiInput) return '';
+
+  const { prompt, content, description, url, title, type, subtype, fonts, file } = apiInput;
+
+  if (prompt && prompt !== 'No prompt') return prompt;
+  if (content) {
+    const preview = typeof content === 'string' ? content : content?.text || '';
+    return preview ? `Content: ${preview.substring(0, 60)}` : '';
+  }
+  if (description) return description;
+  if (title) return title;
+  if (url) return `URL: ${url}`;
+
+  const parts = [];
+  if (type && type !== 'unknown') parts.push(type);
+  if (subtype && subtype !== 'unknown') parts.push(subtype);
+  if (fonts?.length) {
+    const fontName = fonts[0].name || fonts[0].fileName || fonts[0].fontName || 'font';
+    parts.push(`Font: ${fontName}`);
+  }
+  if (file) parts.push(`File: ${file.name || file}`);
+
+  return parts.length ? parts.join(' · ') : '';
+}
 
 export const saveToHistory = async (apiInput, apiResponse, apiLogs, designVariants, flowKey = 'unknown') => {
   try {
@@ -84,12 +115,21 @@ export const clearHistory = async () => {
 };
 
 export const formatHistoryLabel = (item) => {
-  const date = new Date(item.timestamp);
-  const timeStr = date.toLocaleString();
-  const promptPreview = item.prompt.length > 30
-    ? item.prompt.substring(0, 30) + '...'
-    : item.prompt;
-  const dimensions = `${item.dimensions.width}x${item.dimensions.height}`;
+  const flowLabel = getFlowLabel(item.flowKey);
+  const prompt = item.prompt && item.prompt !== 'No prompt'
+    ? item.prompt
+    : generatePromptFromInput(item.apiInput);
 
-  return `${promptPreview} | ${dimensions} | ${timeStr}`;
+  if (item.name) {
+    return `${flowLabel}: ${item.name}`;
+  }
+
+  if (prompt) {
+    const promptPreview = prompt.length > 35
+      ? prompt.substring(0, 35) + '...'
+      : prompt;
+    return `${flowLabel}: ${promptPreview}`;
+  }
+
+  return flowLabel;
 };

@@ -2,6 +2,63 @@ import React from 'react';
 import ShowMoreButton from '~/components/common/ShowMoreButton.jsx';
 import CopyJsonButton from '~/components/common/CopyJsonButton.jsx';
 
+function BrandCarousel({ children }) {
+  const rowRef = React.useRef(null);
+  const [canScrollLeft, setCanScrollLeft] = React.useState(false);
+  const [canScrollRight, setCanScrollRight] = React.useState(false);
+
+  const updateScrollState = React.useCallback(() => {
+    const el = rowRef.current;
+    if (!el) return;
+    const { scrollLeft, scrollWidth, clientWidth } = el;
+    setCanScrollLeft(scrollLeft > 1);
+    setCanScrollRight(scrollLeft + clientWidth < scrollWidth - 1);
+  }, []);
+
+  React.useEffect(() => {
+    const el = rowRef.current;
+    if (!el) return;
+    updateScrollState();
+    el.addEventListener('scroll', updateScrollState, { passive: true });
+    window.addEventListener('resize', updateScrollState);
+    return () => {
+      el.removeEventListener('scroll', updateScrollState);
+      window.removeEventListener('resize', updateScrollState);
+    };
+  }, [updateScrollState, children]);
+
+  const scrollBy = (direction) => {
+    const el = rowRef.current;
+    if (!el) return;
+    const itemWidth = 130;
+    el.scrollBy({ left: direction * itemWidth * 3, behavior: 'smooth' });
+  };
+
+  return (
+    <div className="brand-carousel">
+      {canScrollLeft && (
+        <button
+          type="button"
+          className="brand-carousel-arrow brand-carousel-arrow--left"
+          onClick={() => scrollBy(-1)}
+          aria-label="Scroll left"
+        />
+      )}
+      <div className="brand-images-row" ref={rowRef}>
+        {children}
+      </div>
+      {canScrollRight && (
+        <button
+          type="button"
+          className="brand-carousel-arrow brand-carousel-arrow--right"
+          onClick={() => scrollBy(1)}
+          aria-label="Scroll right"
+        />
+      )}
+    </div>
+  );
+}
+
 function getFontImageURL(font) {
   if ((font.addedBy === 'user' || font.source === 'user') && font.wId) {
     return `https://media.hellosivi.com/user-data/${font.wId}/fonts/images/${font.id}.png`;
@@ -97,7 +154,7 @@ function renderBrandCard(brand, key, extraClass = '') {
         {logos.length > 0 && (
           <div className="brand-images-section">
             <span className="brand-section-label">Logos</span>
-            <div className="brand-images-row">
+            <BrandCarousel>
               {logos.map((logo, i) => (
                 <img
                   key={i}
@@ -108,7 +165,7 @@ function renderBrandCard(brand, key, extraClass = '') {
                   loading="lazy"
                 />
               ))}
-            </div>
+            </BrandCarousel>
           </div>
         )}
 
@@ -116,7 +173,7 @@ function renderBrandCard(brand, key, extraClass = '') {
         {images.length > 0 && (
           <div className="brand-images-section">
             <span className="brand-section-label">Images</span>
-            <div className="brand-images-row">
+            <BrandCarousel>
               {images.map((img, i) => (
                 <img
                   key={i}
@@ -126,7 +183,7 @@ function renderBrandCard(brand, key, extraClass = '') {
                   loading="lazy"
                 />
               ))}
-            </div>
+            </BrandCarousel>
           </div>
         )}
 

@@ -16,6 +16,7 @@ export function useFontFlow(flowKey) {
     addLog,
     setApiResponse,
     setIsLoading,
+    saveHistoryEntry,
     apiInput,
     apiResponse,
   } = useAppContext();
@@ -50,13 +51,14 @@ export function useFontFlow(flowKey) {
 
   const uploadFontsJob = useAsyncJob(fontsApi.uploadFonts, 'upload-fonts', {
     flowKey: 'upload-fonts',
-    onResult: (data) => {
+    onResult: (data, originalInput) => {
       const result = data.body?.result ?? data.body;
       if (result?.data) {
         addLog(`Fonts uploaded successfully`);
       } else {
         addLog('Font upload completed');
       }
+      saveHistoryEntry(originalInput ?? apiInput, data, [], [], 'upload-fonts');
     },
   });
 

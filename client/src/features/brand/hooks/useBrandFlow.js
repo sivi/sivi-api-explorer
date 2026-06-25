@@ -11,7 +11,7 @@ import { useAsyncJob } from '~/hooks/useAsyncJob.js';
  * list-brands supports cursor-based pagination via loadMore.
  */
 export function useBrandFlow(flowKey) {
-  const { addLog, apiInput, setApiResponse, apiResponse } = useAppContext();
+  const { addLog, apiInput, setApiResponse, apiResponse, saveHistoryEntry } = useAppContext();
   const [nextCursor, setNextCursor] = useState(null);
   const [isLoadingMore, setIsLoadingMore] = useState(false);
 
@@ -96,13 +96,14 @@ export function useBrandFlow(flowKey) {
 
   const extractBrandJob = useAsyncJob(brandApi.extractBrand, 'extract-brand', {
     flowKey: 'extract-brand',
-    onResult: (data) => {
+    onResult: (data, originalInput) => {
       const details = data.body?.result?.brandDetails;
       if (details) {
         addLog(`Extracted brand: ${details.brandName || 'unknown'}`);
       } else {
         addLog('Brand extraction completed but no details found');
       }
+      saveHistoryEntry(originalInput ?? apiInput, data, [], [], 'extract-brand');
     },
   });
 

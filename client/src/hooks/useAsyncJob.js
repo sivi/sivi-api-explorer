@@ -26,6 +26,7 @@ export function useAsyncJob(submitApi, endpointLabel, options = {}) {
     startPollingFlow,
     stopPollingFlow,
     activeFlow,
+    saveHistoryEntry,
   } = useAppContext();
 
   const { start: startPolling, stop: stopHttpPolling } = usePolling();
@@ -93,9 +94,10 @@ export function useAsyncJob(submitApi, endpointLabel, options = {}) {
         timestamp: new Date().toLocaleTimeString(),
         message,
       });
+      saveHistoryEntry(originalInputRef.current, { error: message }, allLogs, [], flowKey);
       if (onError) onError(new Error(message));
     },
-    [flowKey, stopPollingFlow, addLog, isFlowActive, setIsLoading, onError]
+    [flowKey, stopPollingFlow, addLog, isFlowActive, setIsLoading, saveHistoryEntry, onError]
   );
 
   const pollStatus = useCallback(
@@ -197,12 +199,14 @@ export function useAsyncJob(submitApi, endpointLabel, options = {}) {
         if (isFlowActive()) {
           setIsLoading(false);
         }
+        const failLogs = [{ timestamp: new Date().toLocaleTimeString(), message: `Job failed via webhook: ${status}` }];
+        saveHistoryEntry(originalInputRef.current, { error: `Job failed: ${status}` }, failLogs, [], flowKey);
         if (onError) onError(new Error(`Job failed: ${status}`));
       } else {
         addLog(`Webhook event status: ${status}`);
       }
     },
-    [addLog, flowKey, stopPollingFlow, stopHttpPolling, isFlowActive, setApiResponse, setIsLoading, onResult, onError]
+    [addLog, flowKey, stopPollingFlow, stopHttpPolling, isFlowActive, setApiResponse, setIsLoading, onResult, onError, saveHistoryEntry]
   );
 
   const submit = useCallback(

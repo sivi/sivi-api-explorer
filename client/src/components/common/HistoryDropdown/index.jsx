@@ -82,7 +82,7 @@ export default function HistoryDropdown({
   };
 
   const displayLabel = selectedItem
-    ? (selectedItem.name || selectedItem.prompt || 'History item')
+    ? formatHistoryLabel(selectedItem)
     : 'History';
 
   return (
@@ -171,7 +171,7 @@ export default function HistoryDropdown({
                       </div>
                     ) : (
                       <div className="history-item-text" title={label}>
-                        {item.name || item.prompt || 'No prompt'}
+                        {label}
                       </div>
                     )}
                     <div className="history-item-meta">

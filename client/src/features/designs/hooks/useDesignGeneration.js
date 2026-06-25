@@ -18,22 +18,25 @@ export function useDesignGeneration(apiMethod, endpointLabel, flowKey) {
   const onResult = useCallback(
     (data, originalInput) => {
       const variations = data.body?.result?.variations ?? data.result?.variations;
-      if (variations?.length) {
-        const variants = variations.map((v) => ({
-          url: v.variantImageUrl,
-          id: v.variantId,
-          editLink: v.variantEditLink,
-        }));
+      const variants = variations?.length
+        ? variations.map((v) => ({
+            url: v.variantImageUrl,
+            id: v.variantId,
+            editLink: v.variantEditLink,
+          }))
+        : [];
+
+      if (variants.length) {
         // Only update the design variant grid if the user is still on this
         // flow. History is always saved regardless of the active flow.
         if (!flowKey || activeFlow === flowKey) {
           setDesignVariants(variants);
         }
         addLog(`Found ${variants.length} design variants`);
-        saveHistoryEntry(originalInput ?? apiInput, data, [], variants, flowKey);
       } else {
         addLog('Job completed but no variations found in payload.');
       }
+      saveHistoryEntry(originalInput ?? apiInput, data, [], variants, flowKey);
     },
     [setDesignVariants, saveHistoryEntry, addLog, apiInput, activeFlow, flowKey]
   );
