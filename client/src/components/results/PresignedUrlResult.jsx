@@ -1,5 +1,6 @@
 import React, { useState, useCallback } from 'react';
 import CopyJsonButton from '~/components/common/CopyJsonButton.jsx';
+import EmptyResult from '~/components/common/EmptyResult.jsx';
 
 function CopyTextButton({ text, label = 'Copy' }) {
   const [copied, setCopied] = useState(false);
@@ -38,11 +39,7 @@ function CopyTextButton({ text, label = 'Copy' }) {
 
 export default function PresignedUrlResult({ apiResponse }) {
   if (!apiResponse) {
-    return (
-      <div className="variant-empty-state">
-        <p>Results will appear here after API call</p>
-      </div>
-    );
+    return <EmptyResult />;
   }
 
   if (apiResponse.error) {

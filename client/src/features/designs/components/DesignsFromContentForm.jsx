@@ -10,6 +10,7 @@ import {
   Tabs
 } from '~/components/common/FormComponents';
 import { designTypes, getSubtypesForType, getDimensionsForSubtype, requiresCustomDimensions } from '../data/designTypes';
+import { getLanguageOptions } from '~/utils/languages';
 import {
   CONTENT_CATEGORIES,
   DEFAULT_CONTENT,
@@ -214,7 +215,10 @@ const DesignsFromContentForm = ({ onSubmit, initialData }) => {
 
   const handleLogoChange = (index, value) => {
     const newLogos = [...formData.assets.logos];
-    newLogos[index] = value;
+    const existing = newLogos[index];
+    newLogos[index] = typeof existing === 'object' && existing !== null
+      ? { ...existing, url: value }
+      : value;
     setFormData(prev => ({ ...prev, assets: { ...prev.assets, logos: newLogos } }));
   };
 
@@ -273,7 +277,20 @@ const DesignsFromContentForm = ({ onSubmit, initialData }) => {
       }
       return acc;
     }, {});
-    onSubmit({ ...formData, content: cleanedContent });
+
+    const { colorsPreference, fontGroupPreference, ...restSettings } = formData.settings;
+    const apiSettings = {
+      ...restSettings,
+      colors: colorsPreference.customColors.filter(c => typeof c === 'string' && c.trim()),
+      fontGroups: fontGroupPreference.fontGroups || [],
+    };
+
+    const apiAssets = {
+      images: formData.assets.images,
+      logos: formData.assets.logos.map(url => typeof url === 'string' ? { url, logoStyles: ['direct', 'neutral'] } : url),
+    };
+
+    onSubmit({ ...formData, content: cleanedContent, settings: apiSettings, assets: apiAssets });
   };
 
   const typeOptions = Object.entries(designTypes)
@@ -502,12 +519,7 @@ const DesignsFromContentForm = ({ onSubmit, initialData }) => {
         label="Language"
         value={formData.language}
         onChange={(v) => setFormData(prev => ({ ...prev, language: v }))}
-        options={[
-          { value: 'english', label: 'English' },
-          { value: 'spanish', label: 'Spanish' },
-          { value: 'french', label: 'French' },
-          { value: 'german', label: 'German' },
-        ]}
+        options={getLanguageOptions()}
       />
       <NumberInput
         label="Number of Variants"
@@ -535,7 +547,7 @@ const DesignsFromContentForm = ({ onSubmit, initialData }) => {
         <div key={index} className="logo-row">
           <UrlInput
             label={`Logo URL ${index + 1}`}
-            value={logo}
+            value={typeof logo === 'string' ? logo : logo?.url || ''}
             onChange={(v) => handleLogoChange(index, v)}
             placeholder="https://example.com/logo.png"
           />

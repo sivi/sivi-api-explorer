@@ -12,6 +12,7 @@ import {
   getDimensionsForSubtype,
   requiresCustomDimensions,
 } from '~/features/designs/data/designTypes';
+import { getLanguageOptions } from '~/utils/languages';
 
 const SIVI_MIN_DIMENSION = 150;
 const SIVI_MAX_DIMENSION = 2000;
@@ -184,12 +185,7 @@ const ContentFromPromptForm = ({ onSubmit, initialData }) => {
         label="Language"
         value={formData.language}
         onChange={(v) => setFormData((prev) => ({ ...prev, language: v }))}
-        options={[
-          { value: 'english', label: 'English' },
-          { value: 'spanish', label: 'Spanish' },
-          { value: 'french', label: 'French' },
-          { value: 'german', label: 'German' },
-        ]}
+        options={getLanguageOptions()}
       />
       <button type="submit" className="submit-button">
         Generate Content

@@ -20,7 +20,6 @@ import { useWebhookConfig } from './hooks/useWebhookConfig.js'
 import useWebhookEvents from './hooks/useWebhookEvents'
 import { coreApi } from './api/core.js'
 import { designPresets } from './features/designs/data/designPresets'
-import { FLOW_TITLES } from './config/flowTitles.js'
 
 function App() {
   const [showLanding, setShowLanding] = useState(true)
@@ -288,7 +287,6 @@ function App() {
           style={{ marginLeft: panels.sidebarCollapsed ? 0 : panels.sidebarWidth }}
         >
           <div className="variants-section">
-            <h2>{FLOW_TITLES[activeFlow] || 'Result'}</h2>
             <ResultView
               activeFlow={activeFlow}
               isLoading={isLoading}

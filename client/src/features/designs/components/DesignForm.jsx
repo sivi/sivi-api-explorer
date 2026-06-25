@@ -10,6 +10,7 @@ import {
   Tabs
 } from '~/components/common/FormComponents';
 import { designTypes, getSubtypesForType, getDimensionsForSubtype, requiresCustomDimensions } from '../data/designTypes';
+import { getLanguageOptions } from '~/utils/languages';
 
 const DesignForm = ({ onSubmit, initialData }) => {
   const SIVI_MIN_DIMENSION = 150;
@@ -243,7 +244,21 @@ const DesignForm = ({ onSubmit, initialData }) => {
         return;
       }
     }
-    onSubmit(formData);
+    const { colorsPreference, fontGroupPreference, ...restSettings } = formData.settings;
+    const apiSettings = {
+      ...restSettings,
+      colors: colorsPreference.customColors
+        .map(c => typeof c === 'object' && c?.color ? c.color : c)
+        .filter(c => typeof c === 'string' && c.trim()),
+      fontGroups: fontGroupPreference.fontGroups || [],
+    };
+
+    const apiAssets = {
+      images: formData.assets.images,
+      logos: formData.assets.logos.map(url => typeof url === 'string' ? { url, logoStyles: ['direct', 'neutral'] } : url),
+    };
+
+    onSubmit({ ...formData, settings: apiSettings, assets: apiAssets });
   };
 
   return (
@@ -528,12 +543,7 @@ const DesignForm = ({ onSubmit, initialData }) => {
         label="Language"
         value={formData.language}
         onChange={(value) => updateField('language', value)}
-        options={[
-          { value: 'english', label: 'English' },
-          { value: 'spanish', label: 'Spanish' },
-          { value: 'french', label: 'French' },
-          { value: 'german', label: 'German' }
-        ]}
+        options={getLanguageOptions()}
       />
 
       <div className="required-field">

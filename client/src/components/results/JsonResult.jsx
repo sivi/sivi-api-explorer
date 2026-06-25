@@ -1,12 +1,9 @@
 import React from 'react';
+import EmptyResult from '~/components/common/EmptyResult.jsx';
 
 export default function JsonResult({ apiResponse }) {
   if (!apiResponse) {
-    return (
-      <div className="variant-empty-state">
-        <p>Results will appear here after API call</p>
-      </div>
-    );
+    return <EmptyResult />;
   }
 
   const status = apiResponse?.status ?? apiResponse?.body?.status ?? 'unknown';

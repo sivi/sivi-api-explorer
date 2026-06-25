@@ -1,12 +1,9 @@
 import React from 'react';
+import EmptyResult from '~/components/common/EmptyResult.jsx';
 
 export default function LoginUserResult({ apiResponse }) {
   if (!apiResponse) {
-    return (
-      <div className="variant-empty-state">
-        <p>Results will appear here after API call</p>
-      </div>
-    );
+    return <EmptyResult />;
   }
 
   const body = apiResponse?.body ?? apiResponse;
