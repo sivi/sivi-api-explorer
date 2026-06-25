@@ -58,9 +58,9 @@ export const FLOW_GROUPS = [
     label: 'User Management API',
     value: 'user-management',
     children: [
-      { label: 'login-user', value: 'login-user' },
-      { label: 'delete-user', value: 'delete-user' },
-      { label: 'set-user-credit-limit', value: 'set-user-credit-limit' },
+      { label: 'Login User', value: 'login-user' },
+      { label: 'Delete User', value: 'delete-user' },
+      { label: 'Set User Credit Limit', value: 'set-user-credit-limit' },
     ],
   },
 ]
