@@ -5,7 +5,10 @@ import {
   TextAreaInput,
   NumberInput,
   ColorInput,
+  SelectInput,
+  MultiSelectDropdown,
 } from '~/components/common/FormComponents';
+import { INDUSTRY_OPTIONS, EMOTION_OPTIONS } from '~/config/brandPersona';
 
 const formatList = (value) => {
   if (typeof value === 'string') return value;
@@ -41,7 +44,7 @@ const LoginUserForm = ({ onSubmit, initialData }) => {
       brandColors: initialData?.brand?.brandColors || [],
       brandFonts: formatList(initialData?.brand?.brandFonts),
       brandPersona: {
-        emotions: formatList(initialData?.brand?.brandPersona?.emotions),
+        emotions: Array.isArray(initialData?.brand?.brandPersona?.emotions) ? initialData.brand.brandPersona.emotions : (initialData?.brand?.brandPersona?.emotions ? parseList(formatList(initialData.brand.brandPersona.emotions)) : []),
         industry: initialData?.brand?.brandPersona?.industry || '',
         audience: formatList(initialData?.brand?.brandPersona?.audience),
         designTags: formatList(initialData?.brand?.brandPersona?.designTags),
@@ -94,7 +97,7 @@ const LoginUserForm = ({ onSubmit, initialData }) => {
         ...(formData.brand.brandColors.length > 0 && { brandColors: formData.brand.brandColors }),
         ...(formData.brand.brandFonts.trim() && { brandFonts: parseList(formData.brand.brandFonts) }),
         brandPersona: {
-          ...(parseList(formData.brand.brandPersona.emotions).length > 0 && { emotions: parseList(formData.brand.brandPersona.emotions) }),
+          ...(formData.brand.brandPersona.emotions.length > 0 && { emotions: formData.brand.brandPersona.emotions }),
           ...(formData.brand.brandPersona.industry.trim() && { industry: formData.brand.brandPersona.industry.trim() }),
           ...(parseList(formData.brand.brandPersona.audience).length > 0 && { audience: parseList(formData.brand.brandPersona.audience) }),
           ...(parseList(formData.brand.brandPersona.designTags).length > 0 && { designTags: parseList(formData.brand.brandPersona.designTags) }),
@@ -220,17 +223,19 @@ const LoginUserForm = ({ onSubmit, initialData }) => {
           />
 
           <h4 className="form-section-title">Brand Persona</h4>
-          <TextInput
+          <SelectInput
             label="Industry"
             value={formData.brand.brandPersona.industry}
             onChange={(v) => updateField('brand.brandPersona.industry', v)}
-            placeholder="e.g. technology, retail, finance"
+            options={INDUSTRY_OPTIONS}
+            placeholder="Select an industry"
           />
-          <TextInput
-            label="Emotions (comma-separated)"
-            value={formData.brand.brandPersona.emotions}
+          <MultiSelectDropdown
+            label="Emotions"
+            values={formData.brand.brandPersona.emotions}
             onChange={(v) => updateField('brand.brandPersona.emotions', v)}
-            placeholder="e.g. happy, excited, innovative"
+            options={EMOTION_OPTIONS}
+            placeholder="Select emotions"
           />
           <TextInput
             label="Audience (comma-separated)"

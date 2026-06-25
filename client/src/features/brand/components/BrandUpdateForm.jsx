@@ -4,8 +4,11 @@ import {
   TextInput,
   TextAreaInput,
   ColorInput,
+  SelectInput,
+  MultiSelectDropdown,
 } from '~/components/common/FormComponents';
 import { brandApi } from '~/api/brand.js';
+import { INDUSTRY_OPTIONS, EMOTION_OPTIONS } from '~/config/brandPersona';
 
 const normalizeColor = (color) => {
   if (typeof color === 'string') return color;
@@ -33,7 +36,7 @@ const BrandUpdateForm = ({ onSubmit, initialData }) => {
     brandColors: initialData?.brandColors?.map(normalizeColor) || [],
     brandFonts: formatList(initialData?.brandFonts),
     brandPersona: {
-      emotions: formatList(initialData?.brandPersona?.emotions),
+      emotions: Array.isArray(initialData?.brandPersona?.emotions) ? initialData.brandPersona.emotions : (initialData?.brandPersona?.emotions ? parseList(formatList(initialData.brandPersona.emotions)) : []),
       industry: initialData?.brandPersona?.industry || '',
       audience: formatList(initialData?.brandPersona?.audience),
       designTags: formatList(initialData?.brandPersona?.designTags),
@@ -76,7 +79,7 @@ const BrandUpdateForm = ({ onSubmit, initialData }) => {
         brandColors: (brand.brandColors || brand.colors || []).map(normalizeColor),
         brandFonts: formatList(brand.brandFonts || brand.fonts || []),
         brandPersona: {
-          emotions: formatList(brand.brandPersona?.emotions || brand.persona?.emotions || []),
+          emotions: Array.isArray(brand.brandPersona?.emotions || brand.persona?.emotions) ? (brand.brandPersona?.emotions || brand.persona?.emotions) : (brand.brandPersona?.emotions || brand.persona?.emotions ? parseList(formatList(brand.brandPersona?.emotions || brand.persona?.emotions)) : []),
           industry: brand.brandPersona?.industry || brand.persona?.industry || '',
           audience: formatList(brand.brandPersona?.audience || brand.persona?.audience || []),
           designTags: formatList(brand.brandPersona?.designTags || brand.persona?.designTags || []),
@@ -116,7 +119,7 @@ const BrandUpdateForm = ({ onSubmit, initialData }) => {
     if (formData.brandFonts.trim()) payload.brandFonts = parseList(formData.brandFonts);
 
     const persona = {};
-    if (parseList(formData.brandPersona.emotions).length) persona.emotions = parseList(formData.brandPersona.emotions);
+    if (formData.brandPersona.emotions.length) persona.emotions = formData.brandPersona.emotions;
     if (formData.brandPersona.industry) persona.industry = formData.brandPersona.industry;
     if (parseList(formData.brandPersona.audience).length) persona.audience = parseList(formData.brandPersona.audience);
     if (parseList(formData.brandPersona.designTags).length) persona.designTags = parseList(formData.brandPersona.designTags);
@@ -241,7 +244,7 @@ const BrandUpdateForm = ({ onSubmit, initialData }) => {
         onChange={(v) => setFormData((prev) => ({ ...prev, brandFonts: v }))}
         placeholder="e.g. Inter, Roboto"
       />
-      <TextInput
+      <SelectInput
         label="Industry"
         value={formData.brandPersona.industry}
         onChange={(v) =>
@@ -250,18 +253,20 @@ const BrandUpdateForm = ({ onSubmit, initialData }) => {
             brandPersona: { ...prev.brandPersona, industry: v },
           }))
         }
-        placeholder="e.g. technology, retail"
+        options={INDUSTRY_OPTIONS}
+        placeholder="Select an industry"
       />
-      <TextInput
-        label="Emotions (comma-separated)"
-        value={formData.brandPersona.emotions}
+      <MultiSelectDropdown
+        label="Emotions"
+        values={formData.brandPersona.emotions}
         onChange={(v) =>
           setFormData((prev) => ({
             ...prev,
             brandPersona: { ...prev.brandPersona, emotions: v },
           }))
         }
-        placeholder="e.g. excited, happy"
+        options={EMOTION_OPTIONS}
+        placeholder="Select emotions"
       />
       <TextInput
         label="Audience (comma-separated)"

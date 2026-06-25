@@ -4,7 +4,10 @@ import {
   TextInput,
   TextAreaInput,
   ColorInput,
+  SelectInput,
+  MultiSelectDropdown,
 } from '~/components/common/FormComponents';
+import { INDUSTRY_OPTIONS, EMOTION_OPTIONS } from '~/config/brandPersona';
 
 const formatList = (value) => {
   if (typeof value === 'string') return value;
@@ -23,7 +26,7 @@ const BrandCreateForm = ({ onSubmit, initialData }) => {
     brandColors: initialData?.brandColors || [],
     brandFonts: formatList(initialData?.brandFonts),
     brandPersona: {
-      emotions: formatList(initialData?.brandPersona?.emotions),
+      emotions: Array.isArray(initialData?.brandPersona?.emotions) ? initialData.brandPersona.emotions : (initialData?.brandPersona?.emotions ? parseList(formatList(initialData.brandPersona.emotions)) : []),
       industry: initialData?.brandPersona?.industry || '',
       audience: formatList(initialData?.brandPersona?.audience),
       designTags: formatList(initialData?.brandPersona?.designTags),
@@ -74,7 +77,7 @@ const BrandCreateForm = ({ onSubmit, initialData }) => {
       ...(formData.brandColors.length > 0 && { brandColors: formData.brandColors }),
       ...(formData.brandFonts.trim() && { brandFonts: parseList(formData.brandFonts) }),
       brandPersona: {
-        ...(parseList(formData.brandPersona.emotions).length > 0 && { emotions: parseList(formData.brandPersona.emotions) }),
+        ...(formData.brandPersona.emotions.length > 0 && { emotions: formData.brandPersona.emotions }),
         ...(formData.brandPersona.industry && { industry: formData.brandPersona.industry }),
         ...(parseList(formData.brandPersona.audience).length > 0 && { audience: parseList(formData.brandPersona.audience) }),
         ...(parseList(formData.brandPersona.designTags).length > 0 && { designTags: parseList(formData.brandPersona.designTags) }),
@@ -173,17 +176,19 @@ const BrandCreateForm = ({ onSubmit, initialData }) => {
       />
 
       <h3 className="form-section-title">Brand Persona</h3>
-      <TextInput
+      <SelectInput
         label="Industry"
         value={formData.brandPersona.industry}
         onChange={(v) => updateField('brandPersona.industry', v)}
-        placeholder="e.g. technology, retail, finance"
+        options={INDUSTRY_OPTIONS}
+        placeholder="Select an industry"
       />
-      <TextInput
-        label="Emotions (comma-separated)"
-        value={formData.brandPersona.emotions}
+      <MultiSelectDropdown
+        label="Emotions"
+        values={formData.brandPersona.emotions}
         onChange={(v) => updateField('brandPersona.emotions', v)}
-        placeholder="e.g. happy, excited, innovative"
+        options={EMOTION_OPTIONS}
+        placeholder="Select emotions"
       />
       <TextInput
         label="Audience (comma-separated)"

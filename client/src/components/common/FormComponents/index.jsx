@@ -1,4 +1,5 @@
 import React from 'react';
+import { Select } from 'antd';
 import './index.css';
 
 // Text input component
@@ -87,6 +88,27 @@ export const MultiSelectList = ({ label, values, onChange, options, disabled = f
           </div>
         ))}
       </div>
+    </div>
+  );
+};
+
+// Multi-select dropdown component (using antd Select)
+export const MultiSelectDropdown = ({ label, values, onChange, options, placeholder = 'Select options' }) => {
+  return (
+    <div className="form-field">
+      <label className="form-label">{label}</label>
+      <Select
+        mode="multiple"
+        value={values}
+        onChange={onChange}
+        options={options}
+        placeholder={placeholder}
+        style={{ width: '100%' }}
+        allowClear
+        showSearch
+        optionFilterProp="label"
+        maxTagPlaceholder={(omittedValues) => `+${omittedValues.length} more`}
+      />
     </div>
   );
 };
