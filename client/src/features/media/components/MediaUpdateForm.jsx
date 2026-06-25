@@ -3,20 +3,37 @@ import { message } from 'antd';
 import {
   TextInput,
 } from '~/components/common/FormComponents';
+import { mediaApi } from '~/api/media.js';
 
 const TOUCH_POSITION_DEFAULT = { left: false, right: false, bottom: false, top: false, center: false };
 const IMAGE_PREF_DEFAULT = { crop: null, removeBg: null, enhancement: null };
+
+const formatHueRotations = (value) => {
+  if (Array.isArray(value)) return value.join(', ');
+  if (typeof value === 'string') return value;
+  return '';
+};
+
+const parseHueRotations = (str) => {
+  return str
+    .split(',')
+    .map((s) => s.trim())
+    .filter((s) => s !== '')
+    .map(Number)
+    .filter((n) => !isNaN(n));
+};
 
 const MediaUpdateForm = ({ onSubmit, initialData }) => {
   const [formData, setFormData] = useState({
     mId: initialData?.mId || '',
     touchPosition: initialData?.touchPosition || { ...TOUCH_POSITION_DEFAULT },
     imagePreference: initialData?.imagePreference || { ...IMAGE_PREF_DEFAULT },
-    hueRotations: initialData?.hueRotations || [],
+    hueRotations: formatHueRotations(initialData?.hueRotations),
     abstractUserId: initialData?.abstractUserId || '',
   });
 
   const [errors, setErrors] = useState({});
+  const [isFetching, setIsFetching] = useState(false);
 
   const updateField = (path, value) => {
     setFormData((prev) => {
@@ -50,11 +67,42 @@ const MediaUpdateForm = ({ onSubmit, initialData }) => {
       mId: formData.mId,
       touchPosition: formData.touchPosition,
       imagePreference: formData.imagePreference,
-      hueRotations: formData.hueRotations,
+      hueRotations: parseHueRotations(formData.hueRotations),
       ...(formData.abstractUserId && { abstractUserId: formData.abstractUserId }),
     };
 
     onSubmit(payload);
+  };
+
+  const handleFetchMedia = async () => {
+    if (!formData.mId.trim()) {
+      message.error('Media ID is required');
+      return;
+    }
+    setIsFetching(true);
+    try {
+      const response = await mediaApi.getMedia({ mId: formData.mId.trim() });
+      const body = response.body ?? response;
+      const result = body?.result ?? body;
+      const media = result?.media?.[0] ?? result?.media;
+      if (!media) {
+        message.error('Media not found');
+        return;
+      }
+      const meta = media.meta || {};
+      setFormData({
+        mId: media.mId || formData.mId,
+        touchPosition: { ...TOUCH_POSITION_DEFAULT, ...(media.touchPosition || meta.touchPosition || {}) },
+        imagePreference: { ...IMAGE_PREF_DEFAULT, ...(media.imagePreference || meta.imagePreference || {}) },
+        hueRotations: formatHueRotations(media.hueRotations ?? meta.hueRotations),
+        abstractUserId: media.abstractUserId || '',
+      });
+      message.success('Media details loaded');
+    } catch (err) {
+      message.error(`Failed to fetch media: ${err.message}`);
+    } finally {
+      setIsFetching(false);
+    }
   };
 
   return (
@@ -72,6 +120,15 @@ const MediaUpdateForm = ({ onSubmit, initialData }) => {
           }}
           placeholder="e.g. w_abc123----photo_001.jpeg"
         />
+        <button
+          type="button"
+          className="add-button"
+          onClick={handleFetchMedia}
+          disabled={isFetching}
+          style={{ marginTop: 8 }}
+        >
+          {isFetching ? 'Fetching...' : 'Fetch Media'}
+        </button>
       </div>
 
       <div className="form-field">
@@ -117,6 +174,13 @@ const MediaUpdateForm = ({ onSubmit, initialData }) => {
           ))}
         </div>
       </div>
+
+      <TextInput
+        label="Hue Rotations (comma-separated)"
+        value={formData.hueRotations}
+        onChange={(v) => updateField('hueRotations', v)}
+        placeholder="e.g. 15, 45, 90"
+      />
 
       <TextInput
         label="Abstract User ID (optional)"

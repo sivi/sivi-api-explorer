@@ -11,6 +11,21 @@ import { MEDIA_TYPE_OPTIONS, SUBTYPE_MAP } from '../config/mediaTypes.js';
 const TOUCH_POSITION_DEFAULT = { left: false, right: false, bottom: false, top: false, center: false };
 const IMAGE_PREF_DEFAULT = { crop: null, removeBg: null, enhancement: null };
 
+const formatHueRotations = (value) => {
+  if (Array.isArray(value)) return value.join(', ');
+  if (typeof value === 'string') return value;
+  return '';
+};
+
+const parseHueRotations = (str) => {
+  return str
+    .split(',')
+    .map((s) => s.trim())
+    .filter((s) => s !== '')
+    .map(Number)
+    .filter((n) => !isNaN(n));
+};
+
 const UPLOAD_MODE_TABS = [
   { key: 'remote', label: 'Remote URL' },
   { key: 'presigned', label: 'Presigned Upload' },
@@ -30,7 +45,7 @@ const MediaCreateForm = ({ onSubmit, initialData }) => {
     bId: initialData?.bId || '',
     touchPosition: initialData?.touchPosition || { ...TOUCH_POSITION_DEFAULT },
     imagePreference: initialData?.imagePreference || { ...IMAGE_PREF_DEFAULT },
-    hueRotations: initialData?.hueRotations || [],
+    hueRotations: formatHueRotations(initialData?.hueRotations),
     abstractUserId: initialData?.abstractUserId || '',
   });
 
@@ -116,7 +131,7 @@ const MediaCreateForm = ({ onSubmit, initialData }) => {
       ...(formData.bId && { bId: formData.bId }),
       touchPosition: formData.touchPosition,
       imagePreference: formData.imagePreference,
-      hueRotations: formData.hueRotations,
+      hueRotations: parseHueRotations(formData.hueRotations),
       ...(formData.abstractUserId && { abstractUserId: formData.abstractUserId }),
       ...(inputMode === 'presigned' && file && { file }),
     };
@@ -258,6 +273,13 @@ const MediaCreateForm = ({ onSubmit, initialData }) => {
           ))}
         </div>
       </div>
+
+      <TextInput
+        label="Hue Rotations (comma-separated)"
+        value={formData.hueRotations}
+        onChange={(v) => updateField('hueRotations', v)}
+        placeholder="e.g. 15, 45, 90"
+      />
 
       <TextInput
         label="Abstract User ID (optional)"
