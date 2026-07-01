@@ -9,7 +9,7 @@ import {
   UrlInput,
   Tabs
 } from '~/components/common/FormComponents';
-import { designTypes, getSubtypesForType, getDimensionsForSubtype, requiresCustomDimensions } from '../data/designTypes';
+import { designTypes, imagineDesignTypes, composeModels, imagineModels, getSubtypesForType, getFilteredSubtypesForModel, getDimensionsForSubtype, requiresCustomDimensions, isImagineType } from '../data/designTypes';
 import { getLanguageOptions } from '~/utils/languages';
 
 const DesignForm = ({ onSubmit, initialData }) => {
@@ -17,7 +17,6 @@ const DesignForm = ({ onSubmit, initialData }) => {
   const SIVI_MAX_DIMENSION = 2000;
 
   const defaultFormData = {
-    dimensionMode: 'standard',
     type: 'displayAds',
     subtype: 'displayAds-half-page-ad',
     dimension: {
@@ -34,6 +33,8 @@ const DesignForm = ({ onSubmit, initialData }) => {
     outputFormat: ['jpg'],
     settings: {
       mode: 'custom',
+      genMode: 'compose',
+      designModel: 'auto',
       currentbId: '',
       colorsPreference: {
         mode: 'custom',
@@ -54,15 +55,24 @@ const DesignForm = ({ onSubmit, initialData }) => {
 
   const [formData, setFormData] = useState(initialData || defaultFormData);
 
-  // Update form data when initialData changes (for history loading)
+  // Update form data when initialData changes (for history/example loading)
   useEffect(() => {
     if (initialData) {
+      const loadedType = initialData.type || '';
+      const isImagine = isImagineType(loadedType);
+      const inferredGenMode = initialData.settings?.genMode || initialData.dimensionMode || (isImagine ? 'imagine' : 'compose');
+      const inferredDesignModel = initialData.settings?.designModel || (isImagine
+        ? Object.keys(imagineModels).find(key => imagineModels[key].types.includes(loadedType)) || Object.keys(imagineModels)[0]
+        : 'auto');
       setFormData(prev => ({
         ...prev,
         ...initialData,
+        dimension: initialData.dimension || prev.dimension,
         settings: {
           ...prev.settings,
           ...(initialData.settings || {}),
+          genMode: inferredGenMode,
+          designModel: inferredDesignModel,
           colorsPreference: {
             ...prev.settings.colorsPreference,
             ...(initialData.settings?.colorsPreference || {}),
@@ -78,7 +88,7 @@ const DesignForm = ({ onSubmit, initialData }) => {
 
   // Update dimensions when type/subtype changes
   useEffect(() => {
-    if (formData.dimensionMode === 'standard' && !requiresCustomDimensions(formData.type, formData.subtype)) {
+    if (!requiresCustomDimensions(formData.type, formData.subtype)) {
       const dimensions = getDimensionsForSubtype(formData.type, formData.subtype);
       if (dimensions && dimensions.width && dimensions.height) {
         setFormData(prev => ({
@@ -90,11 +100,13 @@ const DesignForm = ({ onSubmit, initialData }) => {
         }));
       }
     }
-  }, [formData.type, formData.subtype, formData.dimensionMode]);
+  }, [formData.type, formData.subtype, formData.settings?.genMode]);
 
   const isCustomMode = formData.settings?.mode === 'custom';
   const isBrandMode = formData.settings?.mode === 'brand';
-  const isCustomDimension = formData.dimensionMode === 'custom';
+  const isComposeMode = formData.settings?.genMode === 'compose';
+  const isImagineMode = formData.settings?.genMode === 'imagine';
+  const isCustomDimension = formData.type === 'custom';
 
   const updateField = (path, value) => {
     setFormData(prev => {
@@ -211,26 +223,68 @@ const DesignForm = ({ onSubmit, initialData }) => {
   };
 
   const handleDimensionModeChange = (mode) => {
-    if (mode === 'standard') {
+    if (mode === 'compose') {
       const subtypes = getSubtypesForType('displayAds');
       const firstSubtype = Object.keys(subtypes)[0] || '';
       const dims = getDimensionsForSubtype('displayAds', firstSubtype);
       setFormData(prev => ({
         ...prev,
-        dimensionMode: 'standard',
         type: 'displayAds',
         subtype: firstSubtype,
-        dimension: dims ? { width: dims.width, height: dims.height } : { width: 300, height: 600 }
+        dimension: dims ? { width: dims.width, height: dims.height } : { width: 300, height: 600 },
+        settings: { ...prev.settings, genMode: 'compose', designModel: 'auto' }
+      }));
+    } else {
+      const firstModel = Object.keys(imagineModels)[0];
+      const firstType = imagineModels[firstModel].types[0];
+      const subtypes = getFilteredSubtypesForModel(firstModel, firstType);
+      const firstSubtype = Object.keys(subtypes)[0] || '';
+      const dims = getDimensionsForSubtype(firstType, firstSubtype);
+      setFormData(prev => ({
+        ...prev,
+        type: firstType,
+        subtype: firstSubtype,
+        dimension: dims ? { width: dims.width, height: dims.height } : { width: 1024, height: 1024 },
+        settings: { ...prev.settings, genMode: 'imagine', designModel: firstModel }
+      }));
+    }
+  };
+
+  const handleModelChange = (model) => {
+    if (isImagineMode) {
+      const modelTypes = imagineModels[model]?.types || [];
+      const firstType = modelTypes[0] || '';
+      const subtypes = getFilteredSubtypesForModel(model, firstType);
+      const firstSubtype = Object.keys(subtypes)[0] || '';
+      const dims = getDimensionsForSubtype(firstType, firstSubtype);
+      setFormData(prev => ({
+        ...prev,
+        type: firstType,
+        subtype: firstSubtype,
+        dimension: dims ? { width: dims.width, height: dims.height } : prev.dimension,
+        settings: { ...prev.settings, designModel: model }
       }));
     } else {
       setFormData(prev => ({
         ...prev,
-        dimensionMode: 'custom',
-        type: 'custom',
-        subtype: 'custom',
-        dimension: { width: 600, height: 600 }
+        settings: { ...prev.settings, designModel: model }
       }));
     }
+  };
+
+  const handleTypeChange = (type) => {
+    const modelKey = formData.settings?.designModel;
+    const subtypes = isImagineMode
+      ? getFilteredSubtypesForModel(modelKey, type)
+      : getSubtypesForType(type);
+    const firstSubtype = Object.keys(subtypes)[0] || '';
+    const dims = getDimensionsForSubtype(type, firstSubtype);
+    setFormData(prev => ({
+      ...prev,
+      type,
+      subtype: firstSubtype,
+      dimension: dims ? { width: dims.width, height: dims.height } : prev.dimension
+    }));
   };
 
   const handleSubmit = (e) => {
@@ -259,6 +313,10 @@ const DesignForm = ({ onSubmit, initialData }) => {
         return;
       }
     }
+    if (isImagineMode && requiresCustomDimensions(formData.type, formData.subtype)) {
+      message.error('Imagine models require a predefined type and subtype');
+      return;
+    }
     const { colorsPreference, fontGroupPreference, ...restSettings } = formData.settings;
     const apiSettings = {
       ...restSettings,
@@ -281,22 +339,95 @@ const DesignForm = ({ onSubmit, initialData }) => {
       <h3 className="form-section-title">Design Settings</h3>
       <Tabs
         tabs={[
-          { key: 'standard', label: 'Standard' },
-          { key: 'custom', label: 'Custom' },
+          { key: 'compose', label: 'Compose' },
+          { key: 'imagine', label: 'Imagine' },
         ]}
-        activeKey={formData.dimensionMode}
+        activeKey={formData.settings?.genMode}
         onChange={handleDimensionModeChange}
       />
-      {!isCustomDimension && (
+      {isComposeMode && (
         <>
+          <div className="required-field">
+            <SelectInput
+              label="Design Model"
+              value={formData.settings?.designModel ?? 'auto'}
+              onChange={handleModelChange}
+              options={Object.entries(composeModels).map(([key, model]) => ({
+                value: key,
+                label: model.label
+              }))}
+            />
+          </div>
           <div className="required-field">
             <SelectInput
               label="Type"
               value={formData.type}
-              onChange={(value) => updateField('type', value)}
-              options={Object.entries(designTypes).filter(([key]) => key !== 'custom').map(([key, type]) => ({
+              onChange={handleTypeChange}
+              options={Object.entries(designTypes).map(([key, type]) => ({
                 value: key,
                 label: type.label
+              }))}
+            />
+          </div>
+          {!isCustomDimension && (
+            <div className="required-field">
+              <SelectInput
+                label="Subtype"
+                value={formData.subtype}
+                onChange={(value) => updateField('subtype', value)}
+                options={Object.entries(getSubtypesForType(formData.type)).map(([key, subtype]) => ({
+                  value: key,
+                  label: subtype.label
+                }))}
+              />
+            </div>
+          )}
+          {isCustomDimension && (
+            <div className="dimension-row">
+              <div className="required-field">
+                <NumberInput
+                  label="Width"
+                  value={formData.dimension.width}
+                  onChange={(value) => updateField('dimension.width', value)}
+                  min={SIVI_MIN_DIMENSION}
+                  max={SIVI_MAX_DIMENSION}
+                />
+              </div>
+              <div className="required-field">
+                <NumberInput
+                  label="Height"
+                  value={formData.dimension.height}
+                  onChange={(value) => updateField('dimension.height', value)}
+                  min={SIVI_MIN_DIMENSION}
+                  max={SIVI_MAX_DIMENSION}
+                />
+              </div>
+              <small className="dimension-hint">Min: {SIVI_MIN_DIMENSION}px, Max: {SIVI_MAX_DIMENSION}px</small>
+            </div>
+          )}
+        </>
+      )}
+      {isImagineMode && (
+        <>
+          <div className="required-field">
+            <SelectInput
+              label="Design Model"
+              value={formData.settings?.designModel ?? 'gpt-image-1:low'}
+              onChange={handleModelChange}
+              options={Object.entries(imagineModels).map(([key, model]) => ({
+                value: key,
+                label: model.label
+              }))}
+            />
+          </div>
+          <div className="required-field">
+            <SelectInput
+              label="Type"
+              value={formData.type}
+              onChange={handleTypeChange}
+              options={(imagineModels[formData.settings?.designModel]?.types || Object.keys(imagineDesignTypes)).map((typeKey) => ({
+                value: typeKey,
+                label: imagineDesignTypes[typeKey]?.label || typeKey
               }))}
             />
           </div>
@@ -305,35 +436,17 @@ const DesignForm = ({ onSubmit, initialData }) => {
               label="Subtype"
               value={formData.subtype}
               onChange={(value) => updateField('subtype', value)}
-              options={Object.entries(getSubtypesForType(formData.type)).map(([key, subtype]) => ({
+              options={Object.entries(
+                isImagineMode
+                  ? getFilteredSubtypesForModel(formData.settings?.designModel, formData.type)
+                  : getSubtypesForType(formData.type)
+              ).map(([key, subtype]) => ({
                 value: key,
                 label: subtype.label
               }))}
             />
           </div>
         </>
-      )}
-      {isCustomDimension && (
-        <div className="dimension-row">
-          <div className="required-field">
-            <NumberInput
-              label="Width"
-              value={formData.dimension.width}
-              onChange={(value) => updateField('dimension.width', value)}
-              min={SIVI_MIN_DIMENSION}
-              max={SIVI_MAX_DIMENSION}
-            />
-          </div>
-          <div className="required-field">
-            <NumberInput
-              label="Height"
-              value={formData.dimension.height}
-              onChange={(value) => updateField('dimension.height', value)}
-              min={SIVI_MIN_DIMENSION}
-              max={SIVI_MAX_DIMENSION}
-            />
-          </div>
-        </div>
       )}
 
       <div className="required-field">
