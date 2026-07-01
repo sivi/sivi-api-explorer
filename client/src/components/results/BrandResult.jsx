@@ -300,8 +300,8 @@ export default function BrandResult({ apiResponse, onLoadMore, hasMore, isLoadin
     );
   }
 
-  // Single brand response
-  const singleBrand = result?.brand ?? body?.brand;
+  // Single brand response (brand, brandDetail)
+  const singleBrand = result?.brand ?? body?.brand ?? result?.brandDetail ?? body?.brandDetail;
   if (singleBrand) {
     return <div className="brand-results">{renderBrandCard(singleBrand, 'single')}</div>;
   }
