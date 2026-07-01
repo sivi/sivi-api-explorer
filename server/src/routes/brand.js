@@ -22,7 +22,7 @@ router.post('/brands/list', asyncHandler(async (req, res) => {
   };
   const extraHeaders = req.body.workspaceId ? { 'Workspace-Id': req.body.workspaceId } : {};
   console.log({body, extraHeaders});
-  const data = await siviClient.post('/general/get-brands', body, extraHeaders);
+  const data = await siviClient.post('/general/brand/get', body, extraHeaders);
   console.timeEnd('get-brands');
   console.log('get-brands response:', data);
   res.json(data);
