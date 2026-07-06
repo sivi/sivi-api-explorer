@@ -337,15 +337,15 @@ const DesignForm = ({ onSubmit, initialData }) => {
   return (
     <form onSubmit={handleSubmit} className="design-form">
       <h3 className="form-section-title">Design Settings</h3>
-      <Tabs
+      {/* <Tabs
         tabs={[
           { key: 'compose', label: 'Compose' },
           { key: 'imagine', label: 'Imagine' },
         ]}
         activeKey={formData.settings?.genMode}
         onChange={handleDimensionModeChange}
-      />
-      {isComposeMode && (
+      /> */}
+      {/* {isComposeMode && ( */}
         <>
           <div className="required-field">
             <SelectInput
@@ -406,8 +406,8 @@ const DesignForm = ({ onSubmit, initialData }) => {
             </div>
           )}
         </>
-      )}
-      {isImagineMode && (
+      {/* )} */}
+      {/* {isImagineMode && (
         <>
           <div className="required-field">
             <SelectInput
@@ -447,7 +447,7 @@ const DesignForm = ({ onSubmit, initialData }) => {
             />
           </div>
         </>
-      )}
+      )} */}
 
       <div className="required-field">
         <TextAreaInput
