@@ -2,25 +2,18 @@ import React from 'react';
 import ShowMoreButton from '~/components/common/ShowMoreButton.jsx';
 import CopyJsonButton from '~/components/common/CopyJsonButton.jsx';
 
-function getFontImageURL(font) {
-  if ((font.addedBy === 'user' || font.source === 'user') && font.wId) {
-    return `https://media.hellosivi.com/user-data/${font.wId}/fonts/images/${font.id}.png`;
-  }
-  return `https://media.hellosivi.com/system/fonts/images/${font.id}.png`;
-}
-
 function renderFontCard(font, key) {
   const id = font.id || 'Unknown';
   const name = font.name || id;
   const classification = font.classification || [];
-  const imageUrl = getFontImageURL(font);
+  const previewImage = font.previewImage
 
   return (
     <div key={key} className="brand-card font-result-card">
       <CopyJsonButton data={font} />
       <div className="brand-font">
         <img
-          src={imageUrl}
+          src={previewImage}
           alt={name}
           className="brand-font-preview"
           loading="lazy"

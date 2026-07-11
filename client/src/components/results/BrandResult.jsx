@@ -59,13 +59,6 @@ function BrandCarousel({ children }) {
   );
 }
 
-function getFontImageURL(font) {
-  if ((font.addedBy === 'user' || font.source === 'user') && font.wId) {
-    return `https://media.hellosivi.com/user-data/${font.wId}/fonts/images/${font.id}.png`;
-  }
-  return `https://media.hellosivi.com/system/fonts/images/${font.id}.png`;
-}
-
 function resolveColorValue(color) {
   if (typeof color === 'string') return color;
   if (color && typeof color === 'object') {
@@ -87,7 +80,12 @@ function renderBrandCard(brand, key, extraClass = '') {
   const colors = brand.brandColors || brand.colors || [];
   const logos = brand.brandLogos || brand.logos || (brand.brandLogo ? [brand.brandLogo] : []);
   const images = brand.brandImages || brand.images || [];
-  const fonts = brand.brandFonts || brand.fonts || [];
+  const rawFontGroups = brand.brandFonts || brand.fonts || [];
+  const fontGroups = rawFontGroups.every((item) => Array.isArray(item))
+    ? rawFontGroups.filter((group) => group.length > 0)
+    : rawFontGroups.length > 0
+      ? [rawFontGroups]
+      : [];
   const persona = brand.brandPersona || brand.persona;
 
   const id = brand.bId || brand.brandId;
@@ -188,19 +186,27 @@ function renderBrandCard(brand, key, extraClass = '') {
         )}
 
         {/* Fonts */}
-        {fonts.length > 0 && (
+        {fontGroups.length > 0 && (
           <div className="brand-fonts-section">
             <span className="brand-section-label">Typography</span>
-            <div className="brand-fonts-list">
-              {fonts.map((font, i) => (
-                <div key={i} className="brand-font">
-                  <img
-                    src={getFontImageURL(font)}
-                    alt={font.name || font.id || 'Font preview'}
-                    className="brand-font-preview"
-                    loading="lazy"
-                  />
-                  <span className="brand-font-name">{font.name || font.id}</span>
+            <div className="brand-font-groups">
+              {fontGroups.map((group, groupIndex) => (
+                <div key={groupIndex} className="brand-font-group">
+                  <div className="brand-fonts-list">
+                    {group.map((font, i) => (
+                      <React.Fragment key={font.id || i}>
+                        <img
+                          src={font.imageUrl}
+                          alt={font.name || font.id || 'Font preview'}
+                          className="brand-font-preview"
+                          loading="lazy"
+                        />
+                        {i < group.length - 1 && (
+                          <span className="brand-font-divider" aria-hidden="true" />
+                        )}
+                      </React.Fragment>
+                    ))}
+                  </div>
                 </div>
               ))}
             </div>
