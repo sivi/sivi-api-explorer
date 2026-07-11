@@ -17,9 +17,11 @@ export function useMediaFlow(flowKey) {
     setApiResponse,
     setApiInput,
     setIsLoading,
+    savePendingHistoryEntry,
     saveHistoryEntry,
     apiInput,
     apiResponse,
+    activeFlow,
   } = useAppContext();
   const [nextCursor, setNextCursor] = useState(null);
   const [isLoadingMore, setIsLoadingMore] = useState(false);
@@ -82,6 +84,8 @@ export function useMediaFlow(flowKey) {
       // Strip file from input for history saving
       const { file, ...restInput } = input;
       setApiInput(restInput);
+
+      await savePendingHistoryEntry(restInput, activeFlow);
 
       const startTime = Date.now();
       addLog('Starting API call: create-media');
@@ -148,10 +152,11 @@ export function useMediaFlow(flowKey) {
         addLog(`API call failed after ${timeTaken}ms: ${err.message}`);
         setApiResponse({ error: err.message });
         setIsLoading(false);
+        saveHistoryEntry(restInput, { error: err.message }, [], []);
         throw err;
       }
     },
-    [addLog, setApiResponse, setApiInput, setIsLoading, saveHistoryEntry]
+    [addLog, setApiResponse, setApiInput, setIsLoading, savePendingHistoryEntry, saveHistoryEntry, activeFlow]
   );
 
   const updateMediaFlow = useImmediateFlow(
@@ -239,5 +244,6 @@ export function useMediaFlow(flowKey) {
     isLoadingMore: flowKey === 'get-media' ? isLoadingMore : false,
     handleWebhookEvent: generateMediaJob.handleWebhookEvent,
     stopPolling: generateMediaJob.stopPolling,
+    resume: generateMediaJob.resume,
   };
 }

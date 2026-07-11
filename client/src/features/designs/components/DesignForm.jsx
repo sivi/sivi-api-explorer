@@ -9,7 +9,7 @@ import {
   UrlInput,
   Tabs
 } from '~/components/common/FormComponents';
-import { designTypes, imagineDesignTypes, composeModels, imagineModels, getSubtypesForType, getFilteredSubtypesForModel, getDimensionsForSubtype, requiresCustomDimensions, isImagineType } from '../data/designTypes';
+import { designTypes, composeModels, imagineModels, getSubtypesForType, getFilteredSubtypesForModel, getDimensionsForSubtype, requiresCustomDimensions, isImagineType } from '../data/designTypes';
 import { getLanguageOptions } from '~/utils/languages';
 
 const DesignForm = ({ onSubmit, initialData }) => {
@@ -55,6 +55,11 @@ const DesignForm = ({ onSubmit, initialData }) => {
 
   const [formData, setFormData] = useState(initialData || defaultFormData);
 
+  const normalizeColors = (colors) => {
+    if (!Array.isArray(colors)) return [];
+    return colors.map(c => (typeof c === 'string' ? c : c?.color)).filter(Boolean);
+  };
+
   // Update form data when initialData changes (for history/example loading)
   useEffect(() => {
     if (initialData) {
@@ -64,9 +69,11 @@ const DesignForm = ({ onSubmit, initialData }) => {
       const inferredDesignModel = initialData.settings?.designModel || (isImagine
         ? Object.keys(imagineModels).find(key => imagineModels[key].types.includes(loadedType)) || Object.keys(imagineModels)[0]
         : 'auto');
+      const loadedColors = initialData.settings?.colorsPreference?.customColors;
       setFormData(prev => ({
         ...prev,
         ...initialData,
+        assets: initialData.assets || prev.assets,
         dimension: initialData.dimension || prev.dimension,
         settings: {
           ...prev.settings,
@@ -76,6 +83,7 @@ const DesignForm = ({ onSubmit, initialData }) => {
           colorsPreference: {
             ...prev.settings.colorsPreference,
             ...(initialData.settings?.colorsPreference || {}),
+            customColors: normalizeColors(loadedColors),
           },
           fontGroupPreference: {
             ...prev.settings.fontGroupPreference,
@@ -104,7 +112,7 @@ const DesignForm = ({ onSubmit, initialData }) => {
 
   const isCustomMode = formData.settings?.mode === 'custom';
   const isBrandMode = formData.settings?.mode === 'brand';
-  const isComposeMode = formData.settings?.genMode === 'compose';
+  const _isComposeMode = formData.settings?.genMode === 'compose';
   const isImagineMode = formData.settings?.genMode === 'imagine';
   const isCustomDimension = formData.type === 'custom';
 
@@ -222,7 +230,7 @@ const DesignForm = ({ onSubmit, initialData }) => {
     }));
   };
 
-  const handleDimensionModeChange = (mode) => {
+  const _handleDimensionModeChange = (mode) => {
     if (mode === 'compose') {
       const subtypes = getSubtypesForType('displayAds');
       const firstSubtype = Object.keys(subtypes)[0] || '';

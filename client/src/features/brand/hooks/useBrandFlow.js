@@ -170,5 +170,6 @@ export function useBrandFlow(flowKey) {
     isLoadingMore: flowKey === 'list-brands' ? isLoadingMore : false,
     handleWebhookEvent: extractBrandJob.handleWebhookEvent,
     stopPolling: extractBrandJob.stopPolling,
+    resume: extractBrandJob.resume,
   };
 }

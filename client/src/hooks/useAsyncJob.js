@@ -26,6 +26,8 @@ export function useAsyncJob(submitApi, endpointLabel, options = {}) {
     startPollingFlow,
     stopPollingFlow,
     activeFlow,
+    savePendingHistoryEntry,
+    updateHistoryEntry,
     saveHistoryEntry,
   } = useAppContext();
 
@@ -34,6 +36,7 @@ export function useAsyncJob(submitApi, endpointLabel, options = {}) {
   // that history can be saved correctly even when the user navigates away.
   const originalInputRef = useRef(null);
   const lastRequestIdRef = useRef(null);
+  const pendingHistoryIdRef = useRef(null);
 
   const { onResult, onError, extractRequestId, pollApi = coreApi.getRequestStatus, flowKey } = options;
 
@@ -216,6 +219,9 @@ export function useAsyncJob(submitApi, endpointLabel, options = {}) {
       setApiInput(formData);
       originalInputRef.current = formData;
 
+      const historyId = await savePendingHistoryEntry(formData, flowKey || activeFlow);
+      pendingHistoryIdRef.current = historyId;
+
       const activeWebhookUrl = localStorage.getItem('webhookUrl');
       const useWebhook = webhookEnabled && !!activeWebhookUrl;
       const requestBody = useWebhook ? { ...formData, webhookUrl: activeWebhookUrl } : formData;
@@ -242,6 +248,9 @@ export function useAsyncJob(submitApi, endpointLabel, options = {}) {
         if (requestId) {
           addLog(`Extracted requestId: ${requestId}`);
           lastRequestIdRef.current = requestId;
+          if (pendingHistoryIdRef.current) {
+            updateHistoryEntry(pendingHistoryIdRef.current, { requestId });
+          }
         }
 
         if (httpStatus === 200 && requestId) {
@@ -273,6 +282,7 @@ export function useAsyncJob(submitApi, endpointLabel, options = {}) {
         addLog(`API call failed after ${timeTaken}ms: ${err.message}`);
         setApiResponse({ error: err.message });
         setIsLoading(false);
+        saveHistoryEntry(formData, { error: err.message }, [], [], flowKey || activeFlow);
         if (onError) onError(err);
       }
     },
@@ -289,6 +299,10 @@ export function useAsyncJob(submitApi, endpointLabel, options = {}) {
       onError,
       flowKey,
       startPollingFlow,
+      savePendingHistoryEntry,
+      updateHistoryEntry,
+      saveHistoryEntry,
+      activeFlow,
     ]
   );
 
@@ -297,5 +311,27 @@ export function useAsyncJob(submitApi, endpointLabel, options = {}) {
     if (flowKey) stopPollingFlow(flowKey);
   }, [stopHttpPolling, stopPollingFlow, flowKey]);
 
-  return { submit, handleWebhookEvent, stopPolling: stopPollingAndFlow };
+  // Resume polling from a stored requestId (e.g., after page refresh).
+  // Skips if the job was already submitted in this session (already polling).
+  const resume = useCallback(
+    (requestId, input) => {
+      if (!requestId) return;
+      if (lastRequestIdRef.current === requestId) return;
+      setIsLoading(true);
+      setApiResponse(null);
+      setApiInput(input);
+      originalInputRef.current = input;
+      lastRequestIdRef.current = requestId;
+      addLog(`Resuming polling for job ${requestId}`);
+      const initialLogs = [...(apiLogs || [])];
+      initialLogs.push({
+        timestamp: new Date().toLocaleTimeString(),
+        message: 'Resuming status polling...',
+      });
+      pollStatus(requestId, input, initialLogs);
+    },
+    [setIsLoading, setApiResponse, setApiInput, addLog, apiLogs, pollStatus]
+  );
+
+  return { submit, handleWebhookEvent, stopPolling: stopPollingAndFlow, resume };
 }

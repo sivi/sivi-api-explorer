@@ -1,14 +1,16 @@
 import { useCallback } from 'react';
 import { useAppContext } from '../context/useAppContext.js';
 
-export function useGenericFlow(apiMethod) {
+export function useGenericFlow(apiMethod, flowKey) {
   const {
     addLog,
     setApiResponse,
     setApiInput,
     setDesignVariants,
     setIsLoading,
+    savePendingHistoryEntry,
     saveHistoryEntry,
+    activeFlow,
   } = useAppContext();
 
   const execute = useCallback(
@@ -17,6 +19,11 @@ export function useGenericFlow(apiMethod) {
       setApiResponse(null);
       setDesignVariants([]);
       setApiInput(input);
+
+      const historyId = await savePendingHistoryEntry(input, flowKey || activeFlow);
+      if (!historyId) {
+        addLog('Warning: failed to create pending history entry');
+      }
 
       const startTime = Date.now();
       addLog(`Starting API call`);
@@ -65,10 +72,11 @@ export function useGenericFlow(apiMethod) {
         addLog(`API call failed after ${timeTaken}ms: ${err.message}`);
         setApiResponse({ error: err.message });
         setIsLoading(false);
+        saveHistoryEntry(input, { error: err.message }, [], []);
         throw err;
       }
     },
-    [apiMethod, addLog, setApiResponse, setApiInput, setDesignVariants, setIsLoading, saveHistoryEntry]
+    [apiMethod, addLog, setApiResponse, setApiInput, setDesignVariants, setIsLoading, savePendingHistoryEntry, saveHistoryEntry, flowKey, activeFlow]
   );
 
   return { execute };

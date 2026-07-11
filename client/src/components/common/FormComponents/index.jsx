@@ -200,19 +200,35 @@ export const TextAreaInput = ({ label, value, onChange, placeholder, rows = 4 })
   );
 };
 
-// URL input with preview
+function isValidUrlOrPath(value) {
+  if (!value) return true
+  if (value.startsWith('/')) return true
+  try {
+    const url = new URL(value)
+    return url.protocol === 'http:' || url.protocol === 'https:'
+  } catch {
+    return false
+  }
+}
+
+// URL input with preview. Accepts absolute http(s) URLs or relative paths
+// (e.g., /brand_logo.png) so that assets served from the public folder work.
 export const UrlInput = ({ label, value, onChange, placeholder }) => {
+  const isInvalid = !isValidUrlOrPath(value)
   return (
     <div className="form-field">
       <label className="form-label">{label}</label>
       <input
-        type="url"
+        type="text"
         value={value}
         onChange={(e) => onChange(e.target.value)}
         placeholder={placeholder}
-        className="form-input"
+        className={`form-input${isInvalid ? ' invalid' : ''}`}
       />
-      {value && (
+      {isInvalid && value && (
+        <span className="form-error">Please enter a valid URL or path</span>
+      )}
+      {value && !isInvalid && (
         <div className="url-preview">
           <img src={value} alt="Preview" className="url-preview-image" />
         </div>

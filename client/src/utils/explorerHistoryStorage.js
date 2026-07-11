@@ -1,4 +1,4 @@
-import { historyStore } from '../storage/IndexedDBStore.js';
+import { explorerHistoryStore } from '../storage/ExplorerIndexedDBStore.js';
 import { FLOW_KEY_MAP } from '../config/flows.js';
 
 const MAX_HISTORY_ITEMS = 50;
@@ -33,7 +33,7 @@ function generatePromptFromInput(apiInput) {
   return parts.length ? parts.join(' · ') : '';
 }
 
-function buildHistoryItem(apiInput, apiResponse, apiLogs, designVariants, flowKey = 'unknown', status = 'completed', overrides = {}) {
+function buildExplorerHistoryItem(apiInput, apiResponse, apiLogs, designVariants, flowKey = 'unknown', bId = 'auto', status = 'completed', overrides = {}) {
   return {
     id: Date.now().toString(),
     timestamp: new Date().toISOString(),
@@ -43,18 +43,20 @@ function buildHistoryItem(apiInput, apiResponse, apiLogs, designVariants, flowKe
     type: apiInput?.type || 'unknown',
     subtype: apiInput?.subtype || 'unknown',
     flowKey,
+    bId: bId || 'auto',
     apiInput,
     apiResponse,
     apiLogs,
     designVariants,
     isFavorite: false,
+    isDisliked: false,
     status,
     ...overrides,
   };
 }
 
-async function persistHistoryItem(item) {
-  const all = await historyStore.getAll('desc');
+async function persistExplorerHistoryItem(item) {
+  const all = await explorerHistoryStore.getAll('desc');
   const existingIndex = all.findIndex((i) => i.id === item.id);
   if (existingIndex >= 0) {
     all[existingIndex] = item;
@@ -63,89 +65,89 @@ async function persistHistoryItem(item) {
   }
   const newHistory = all.slice(0, MAX_HISTORY_ITEMS);
   for (const i of newHistory) {
-    await historyStore.create(i);
+    await explorerHistoryStore.create(i);
   }
   return item.id;
 }
 
-export const saveToHistory = async (apiInput, apiResponse, apiLogs, designVariants, flowKey = 'unknown') => {
+export const saveToExplorerHistory = async (apiInput, apiResponse, apiLogs, designVariants, flowKey = 'unknown', bId = 'auto') => {
   try {
     if (!apiInput) {
-      console.warn('Cannot save to history: apiInput is null or undefined', { apiInput, apiResponse, apiLogs, designVariants });
+      console.warn('Cannot save to explorer history: apiInput is null or undefined');
       return null;
     }
 
-    const historyItem = buildHistoryItem(apiInput, apiResponse, apiLogs, designVariants, flowKey, 'completed');
-    return await persistHistoryItem(historyItem);
+    const historyItem = buildExplorerHistoryItem(apiInput, apiResponse, apiLogs, designVariants, flowKey, bId, 'completed');
+    return await persistExplorerHistoryItem(historyItem);
   } catch (error) {
-    console.error('Failed to save to history:', error);
+    console.error('Failed to save to explorer history:', error);
     return null;
   }
 };
 
-export const savePendingToHistory = async (apiInput, flowKey = 'unknown', overrides = {}) => {
+export const savePendingToExplorerHistory = async (apiInput, flowKey = 'unknown', bId = 'auto', overrides = {}) => {
   try {
     if (!apiInput) {
-      console.warn('Cannot save pending history: apiInput is null or undefined');
+      console.warn('Cannot save pending explorer history: apiInput is null or undefined');
       return null;
     }
 
-    const historyItem = buildHistoryItem(apiInput, null, [], [], flowKey, 'pending', {
+    const historyItem = buildExplorerHistoryItem(apiInput, null, [], [], flowKey, bId, 'pending', {
       requestId: overrides.requestId || null,
       ...overrides,
     });
-    return await persistHistoryItem(historyItem);
+    return await persistExplorerHistoryItem(historyItem);
   } catch (error) {
-    console.error('Failed to save pending history:', error);
+    console.error('Failed to save pending explorer history:', error);
     return null;
   }
 };
 
-export const getHistory = async () => {
+export const getExplorerHistory = async () => {
   try {
-    return await historyStore.getAll('desc');
+    return await explorerHistoryStore.getAll('desc');
   } catch (error) {
-    console.error('Failed to get history:', error);
+    console.error('Failed to get explorer history:', error);
     return [];
   }
 };
 
-export const getHistoryItem = async (id) => {
+export const getExplorerHistoryItem = async (id) => {
   try {
-    return await historyStore.get(id);
+    return await explorerHistoryStore.get(id);
   } catch (error) {
-    console.error('Failed to get history item:', error);
+    console.error('Failed to get explorer history item:', error);
     return null;
   }
 };
 
-export const updateHistoryItem = async (id, updates) => {
+export const updateExplorerHistoryItem = async (id, updates) => {
   try {
-    return await historyStore.update(id, updates);
+    return await explorerHistoryStore.update(id, updates);
   } catch (error) {
-    console.error('Failed to update history item:', error);
+    console.error('Failed to update explorer history item:', error);
     return null;
   }
 };
 
-export const deleteHistoryItem = async (id) => {
+export const deleteExplorerHistoryItem = async (id) => {
   try {
-    return await historyStore.delete(id);
+    return await explorerHistoryStore.delete(id);
   } catch (error) {
-    console.error('Failed to delete history item:', error);
+    console.error('Failed to delete explorer history item:', error);
     return false;
   }
 };
 
-export const clearHistory = async () => {
+export const clearExplorerHistory = async () => {
   try {
-    await historyStore.deleteAll();
+    await explorerHistoryStore.deleteAll();
   } catch (error) {
-    console.error('Failed to clear history:', error);
+    console.error('Failed to clear explorer history:', error);
   }
 };
 
-export const formatHistoryLabel = (item) => {
+export const formatExplorerHistoryLabel = (item) => {
   const prompt = item.prompt && item.prompt !== 'No prompt'
     ? item.prompt
     : generatePromptFromInput(item.apiInput);

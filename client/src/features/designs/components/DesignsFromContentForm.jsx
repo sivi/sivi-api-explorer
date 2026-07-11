@@ -60,6 +60,11 @@ const DesignsFromContentForm = ({ onSubmit, initialData }) => {
   const [availableSubtypes, setAvailableSubtypes] = useState({});
   const [showOptionalContent, setShowOptionalContent] = useState(false);
 
+  const normalizeColors = (colors) => {
+    if (!Array.isArray(colors)) return [];
+    return colors.map(c => (typeof c === 'string' ? c : c?.color)).filter(Boolean);
+  };
+
   useEffect(() => {
     setAvailableSubtypes(getSubtypesForType(formData.type));
   }, [formData.type]);
@@ -83,9 +88,13 @@ const DesignsFromContentForm = ({ onSubmit, initialData }) => {
       const inferredDesignModel = initialData.settings?.designModel || (isImagine
         ? Object.keys(imagineModels).find(key => imagineModels[key].types.includes(loadedType)) || Object.keys(imagineModels)[0]
         : 'auto');
+      const loadedColors = initialData.settings?.colorsPreference?.customColors;
       setFormData(prev => ({
         ...prev,
         ...initialData,
+        content: initialData.content && typeof initialData.content === 'object'
+          ? { ...DEFAULT_CONTENT, ...initialData.content }
+          : { ...DEFAULT_CONTENT },
         dimension: initialData.dimension || prev.dimension,
         settings: {
           ...prev.settings,
@@ -95,6 +104,7 @@ const DesignsFromContentForm = ({ onSubmit, initialData }) => {
           colorsPreference: {
             ...prev.settings.colorsPreference,
             ...(initialData.settings?.colorsPreference || {}),
+            customColors: normalizeColors(loadedColors),
           },
           fontGroupPreference: {
             ...prev.settings.fontGroupPreference,
@@ -117,11 +127,11 @@ const DesignsFromContentForm = ({ onSubmit, initialData }) => {
     }
   }, [formData.type, formData.subtype, formData.settings?.genMode]);
 
-  const isComposeMode = formData.settings?.genMode === 'compose';
+  const _isComposeMode = formData.settings?.genMode === 'compose';
   const isImagineMode = formData.settings?.genMode === 'imagine';
   const isCustomDimension = formData.type === 'custom';
 
-  const handleDimensionModeChange = (mode) => {
+  const _handleDimensionModeChange = (mode) => {
     if (mode === 'compose') {
       const subtypes = getSubtypesForType('displayAds');
       const firstSubtype = Object.keys(subtypes)[0] || '';
@@ -354,7 +364,7 @@ const DesignsFromContentForm = ({ onSubmit, initialData }) => {
 
   const composeTypeOptions = Object.entries(designTypes)
     .map(([key, type]) => ({ value: key, label: type.label }));
-  const imagineTypeOptions = (imagineModels[formData.settings?.designModel]?.types || Object.keys(imagineDesignTypes))
+  const _imagineTypeOptions = (imagineModels[formData.settings?.designModel]?.types || Object.keys(imagineDesignTypes))
     .map((typeKey) => ({ value: typeKey, label: imagineDesignTypes[typeKey]?.label || typeKey }));
   const imagineSubtypeOptions = Object.entries(
     getFilteredSubtypesForModel(formData.settings?.designModel, formData.type)
@@ -463,10 +473,11 @@ const DesignsFromContentForm = ({ onSubmit, initialData }) => {
       )} */}
 
       <h3 className="form-section-title">Content</h3>
-      {Object.entries(CONTENT_CATEGORIES).filter(([, cat]) => cat.required).map(([categoryKey, category]) => {
-        const addedBlocks = Object.keys(category.blocks).filter(key => formData.content[key] !== undefined);
+      {Object.entries(CONTENT_CATEGORIES).filter(([, cat]) => cat?.required).map(([categoryKey, category]) => {
+        if (!category) return null;
+        const addedBlocks = Object.keys(category.blocks || {}).filter(key => formData.content?.[key] !== undefined);
         const availableToAdd = getAvailableBlocksForCategory(categoryKey).filter(
-          opt => formData.content[opt.value] === undefined
+          opt => formData.content?.[opt.value] === undefined
         );
         return (
           <div key={categoryKey} className="content-subsection">
@@ -476,6 +487,7 @@ const DesignsFromContentForm = ({ onSubmit, initialData }) => {
             </h4>
             {addedBlocks.map(blockKey => {
               const blockMeta = getBlockMeta(categoryKey, blockKey);
+              if (!blockMeta) return null;
               const canRemove = !isBlockAlwaysPresent(categoryKey, blockKey);
               if (blockMeta.inputType === 'list') {
                 const items = formData.content[blockKey] || [];
@@ -544,16 +556,18 @@ const DesignsFromContentForm = ({ onSubmit, initialData }) => {
       )}
       {showOptionalContent && (
         <>
-          {Object.entries(CONTENT_CATEGORIES).filter(([, cat]) => !cat.required).map(([categoryKey, category]) => {
-            const addedBlocks = Object.keys(category.blocks).filter(key => formData.content[key] !== undefined);
+          {Object.entries(CONTENT_CATEGORIES).filter(([, cat]) => !cat?.required).map(([categoryKey, category]) => {
+            if (!category) return null;
+            const addedBlocks = Object.keys(category.blocks || {}).filter(key => formData.content?.[key] !== undefined);
             const availableToAdd = getAvailableBlocksForCategory(categoryKey).filter(
-              opt => formData.content[opt.value] === undefined
+              opt => formData.content?.[opt.value] === undefined
             );
             return (
               <div key={categoryKey} className="content-subsection">
                 <h4 className="content-subsection-title">{category.label}</h4>
                 {addedBlocks.map(blockKey => {
                   const blockMeta = getBlockMeta(categoryKey, blockKey);
+                  if (!blockMeta) return null;
                   const canRemove = !isBlockAlwaysPresent(categoryKey, blockKey);
                   if (blockMeta.inputType === 'list') {
                     const items = formData.content[blockKey] || [];

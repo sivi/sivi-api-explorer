@@ -26,8 +26,6 @@ export default class ErrorBoundary extends React.Component {
 
   render() {
     if (this.state.hasError) {
-      const { error, errorInfo } = this.state;
-
       return (
         <div className="error-boundary">
           <div className="error-boundary-card">

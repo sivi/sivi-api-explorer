@@ -1,10 +1,11 @@
 import './App.css'
 import './components/landing/landing.css'
-import React, { useState, useCallback, useMemo, useEffect } from 'react'
+import React, { useState, useCallback, useMemo, useEffect, useRef } from 'react'
 
 import ApiMonitor from './components/common/ApiMonitor'
 import WebhookModal from './components/common/WebhookModal'
 import AppHeader from './components/app/AppHeader'
+import ExplorerHeader from './components/app/ExplorerHeader'
 import FlowForm from './components/app/FlowForm'
 import ResultView from './components/app/ResultView'
 
@@ -26,8 +27,10 @@ import { coreApi } from './api/core.js'
 import { designPresets } from './features/designs/data/designPresets'
 import { FLOW_KEY_MAP } from './config/flows.js'
 
-function App() {
+function App({ variant = 'playground' }) {
+  const isExplorer = variant === 'explorer'
   const [selectedPreset, setSelectedPreset] = useState('')
+  const [selectedExample, setSelectedExample] = useState('')
   const [formKey, setFormKey] = useState(0)
   const [selectedHistoryId, setSelectedHistoryId] = useState('')
   const [prefilledFormData, setPrefilledFormData] = useState(null)
@@ -38,6 +41,7 @@ function App() {
     apiInput,
     designVariants,
     isLoading,
+    setIsLoading,
     isFlowPolling,
     history,
     clearLogs,
@@ -51,25 +55,38 @@ function App() {
     resetResultState,
     pendingFlowAction,
     clearPendingFlowAction,
+    selectedBId,
+    setSelectedBId,
   } = useAppContext()
 
   const panels = usePanels()
   const webhook = useWebhookConfig()
 
+  // Explorer: read bId from URL query param on mount
+  useEffect(() => {
+    if (!isExplorer) return
+    const params = new URLSearchParams(window.location.search)
+    const bId = params.get('bId')
+    if (bId && setSelectedBId) setSelectedBId(bId)
+  }, [isExplorer, setSelectedBId])
+
   // Feature-specific hooks
   const {
     submit: submitDesignsFromPrompt,
     handleWebhookEvent: handlePromptWebhook,
+    resume: resumeDesignsFromPrompt,
   } = useDesignGeneration(coreApi.designsFromPrompt, '/designs-from-prompt', 'designs-from-prompt')
 
   const {
     submit: submitDesignsFromContent,
     handleWebhookEvent: handleContentWebhook,
+    resume: resumeDesignsFromContent,
   } = useDesignGeneration(coreApi.designsFromContent, '/designs-from-content', 'designs-from-content')
 
   const {
     submit: submitContentFromPrompt,
     handleWebhookEvent: handleContentPromptWebhook,
+    resume: resumeContentFromPrompt,
   } = useDesignGeneration(coreApi.contentFromPrompt, '/content-from-prompt', 'content-from-prompt')
 
   const { submit: submitUtility, loadMore: loadMoreUtility, hasMore: hasMoreUtility, isLoadingMore: isLoadingMoreUtility } = useUtilityFlow(activeFlow)
@@ -79,6 +96,7 @@ function App() {
     hasMore: hasMoreBrand,
     isLoadingMore: isLoadingMoreBrand,
     handleWebhookEvent: handleExtractBrandWebhook,
+    resume: resumeBrand,
   } = useBrandFlow(activeFlow)
 
   const {
@@ -87,6 +105,7 @@ function App() {
     hasMore: hasMoreMedia,
     isLoadingMore: isLoadingMoreMedia,
     handleWebhookEvent: handleGenerateMediaWebhook,
+    resume: resumeMedia,
   } = useMediaFlow(activeFlow)
 
   const { submit: submitFile } = useFileFlow(activeFlow)
@@ -97,9 +116,50 @@ function App() {
     hasMore: hasMoreFont,
     isLoadingMore: isLoadingMoreFont,
     handleWebhookEvent: handleUploadFontWebhook,
+    resume: resumeFont,
   } = useFontFlow(activeFlow)
 
   const { submit: submitUser } = useUserFlow(activeFlow)
+
+  // Auto-resume any pending async job stored in history for the current flow.
+  // This restores polling after a page refresh so results update automatically.
+  const resumedRequestIdsRef = useRef(new Set())
+  useEffect(() => {
+    const pending = history.find(
+      (item) =>
+        item.status === 'pending' &&
+        item.requestId &&
+        item.flowKey === activeFlow &&
+        item.apiInput &&
+        !resumedRequestIdsRef.current.has(item.requestId)
+    )
+    if (!pending) return
+
+    resumedRequestIdsRef.current.add(pending.requestId)
+    addLog(`Resuming pending job ${pending.requestId} for ${activeFlow}`)
+    switch (activeFlow) {
+      case 'designs-from-prompt':
+        resumeDesignsFromPrompt(pending.requestId, pending.apiInput)
+        break
+      case 'designs-from-content':
+        resumeDesignsFromContent(pending.requestId, pending.apiInput)
+        break
+      case 'content-from-prompt':
+        resumeContentFromPrompt(pending.requestId, pending.apiInput)
+        break
+      case 'extract-brand':
+        resumeBrand(pending.requestId, pending.apiInput)
+        break
+      case 'generate-media':
+        resumeMedia(pending.requestId, pending.apiInput)
+        break
+      case 'upload-fonts':
+        resumeFont(pending.requestId, pending.apiInput)
+        break
+      default:
+        addLog(`Cannot auto-resume flow: ${activeFlow}`)
+    }
+  }, [history, activeFlow, resumeDesignsFromPrompt, resumeDesignsFromContent, resumeContentFromPrompt, resumeBrand, resumeMedia, resumeFont, addLog])
 
   /*
    * Webhook broadcast: all async job handlers receive every incoming webhook.
@@ -128,10 +188,13 @@ function App() {
 
   const handleFlowChange = useCallback((flowKey) => {
     if (flowKey === activeFlow) return
+    if (flowKey === 'auto') return
     resetResultState()
     setActiveFlow(flowKey)
     setSelectedPreset('')
+    setSelectedExample('')
     setSelectedHistoryId('')
+    setPrefilledFormData(null)
     setFormKey((k) => k + 1)
   }, [activeFlow, resetResultState, setActiveFlow])
 
@@ -142,10 +205,28 @@ function App() {
     setFormKey((k) => k + 1)
   }, [])
 
+  const handleBIdChange = useCallback((bId) => {
+    if (setSelectedBId) setSelectedBId(bId)
+    setSelectedExample('')
+    setPrefilledFormData(null)
+    setFormKey((k) => k + 1)
+  }, [setSelectedBId])
+
+  const handleExampleChange = useCallback((exampleValue, exampleData, flowKey) => {
+    setSelectedExample(exampleValue)
+    setSelectedHistoryId('')
+    setPrefilledFormData(exampleData || null)
+    if (flowKey && flowKey !== 'auto' && flowKey !== activeFlow) {
+      setActiveFlow(flowKey)
+    }
+    setFormKey((k) => k + 1)
+  }, [activeFlow, setActiveFlow])
+
   const handleHistorySelect = useCallback(async (historyId) => {
     if (!historyId) {
       setSelectedHistoryId('')
       setSelectedPreset('')
+      setSelectedExample('')
       return
     }
     const item = await loadHistoryItem(historyId)
@@ -155,11 +236,15 @@ function App() {
       }
       setSelectedHistoryId(historyId)
       setSelectedPreset('')
+      setSelectedExample('')
       setPrefilledFormData(null)
+      if (item.status === 'pending') {
+        setIsLoading(true)
+      }
       setFormKey((k) => k + 1)
       addLog(`Loaded history: ${item.prompt?.substring(0, 50) ?? 'N/A'}...`)
     }
-  }, [activeFlow, loadHistoryItem, setActiveFlow, addLog])
+  }, [activeFlow, loadHistoryItem, setActiveFlow, setIsLoading, addLog])
 
   // Global flow actions: any component can ask the app to switch to a target
   // flow and pre-fill form fields. This effect consumes the pending action,
@@ -172,6 +257,7 @@ function App() {
     resetResultState()
     setActiveFlow(flowKey)
     setSelectedPreset('')
+    setSelectedExample('')
     setSelectedHistoryId('')
     setPrefilledFormData(initialFormData || null)
     setFormKey((k) => k + 1)
@@ -240,10 +326,14 @@ function App() {
 
   const initialFormData = useMemo(() => {
     if (prefilledFormData) return prefilledFormData
+    if (isExplorer) {
+      if (selectedHistoryId) return apiInput
+      return null
+    }
     if (selectedPreset) return designPresets[selectedPreset].data
     if (selectedHistoryId) return apiInput
     return null
-  }, [prefilledFormData, selectedPreset, selectedHistoryId, apiInput])
+  }, [prefilledFormData, isExplorer, selectedPreset, selectedHistoryId, apiInput])
 
   return (
     <div className="app-container">
@@ -254,22 +344,43 @@ function App() {
         />
       )}
 
-      <AppHeader
-        activeFlow={activeFlow}
-        selectedPreset={selectedPreset}
-        selectedHistoryId={selectedHistoryId}
-        history={history}
-        formatHistoryLabel={formatHistoryLabel}
-        webhookUrl={webhook.webhookUrl}
-        webhookEnabled={webhook.webhookEnabled}
-        onFlowChange={handleFlowChange}
-        onPresetChange={handlePresetChange}
-        onHistorySelect={handleHistorySelect}
-        onHistoryUpdate={updateHistoryEntry}
-        onHistoryDelete={removeHistoryEntry}
-        onOpenWebhookModal={() => webhook.setShowWebhookModal(true)}
-        onToggleWebhook={webhook.setWebhookEnabled}
-      />
+      {isExplorer ? (
+        <ExplorerHeader
+          activeFlow={activeFlow}
+          selectedBId={selectedBId}
+          selectedExample={selectedExample}
+          selectedHistoryId={selectedHistoryId}
+          history={history}
+          formatHistoryLabel={formatHistoryLabel}
+          onBIdChange={handleBIdChange}
+          onFlowChange={handleFlowChange}
+          onExampleChange={handleExampleChange}
+          onHistorySelect={handleHistorySelect}
+          onHistoryUpdate={updateHistoryEntry}
+          onHistoryDelete={removeHistoryEntry}
+          webhookUrl={webhook.webhookUrl}
+          webhookEnabled={webhook.webhookEnabled}
+          onOpenWebhookModal={() => webhook.setShowWebhookModal(true)}
+          onToggleWebhook={webhook.setWebhookEnabled}
+        />
+      ) : (
+        <AppHeader
+          activeFlow={activeFlow}
+          selectedPreset={selectedPreset}
+          selectedHistoryId={selectedHistoryId}
+          history={history}
+          formatHistoryLabel={formatHistoryLabel}
+          webhookUrl={webhook.webhookUrl}
+          webhookEnabled={webhook.webhookEnabled}
+          onFlowChange={handleFlowChange}
+          onPresetChange={handlePresetChange}
+          onHistorySelect={handleHistorySelect}
+          onHistoryUpdate={updateHistoryEntry}
+          onHistoryDelete={removeHistoryEntry}
+          onOpenWebhookModal={() => webhook.setShowWebhookModal(true)}
+          onToggleWebhook={webhook.setWebhookEnabled}
+        />
+      )}
 
       <div className={`app-content${panels.isDragging ? ' dragging' : ''}`}>
         <aside

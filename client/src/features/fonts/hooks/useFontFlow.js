@@ -164,5 +164,6 @@ export function useFontFlow(flowKey) {
     isLoadingMore: flowKey === 'get-fonts' ? isLoadingMore : false,
     handleWebhookEvent: uploadFontsJob.handleWebhookEvent,
     stopPolling: uploadFontsJob.stopPolling,
+    resume: uploadFontsJob.resume,
   };
 }

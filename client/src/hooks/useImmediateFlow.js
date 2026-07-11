@@ -18,10 +18,12 @@ export function useImmediateFlow(submitApi, endpointLabel, options = {}) {
     setApiInput,
     setDesignVariants,
     setIsLoading,
+    savePendingHistoryEntry,
     saveHistoryEntry,
+    activeFlow,
   } = useAppContext();
 
-  const { onResponse, clearVariants = false } = options;
+  const { onResponse, clearVariants = false, flowKey } = options;
 
   const submit = useCallback(
     async (input = {}) => {
@@ -31,6 +33,8 @@ export function useImmediateFlow(submitApi, endpointLabel, options = {}) {
       if (clearVariants) {
         setDesignVariants([]);
       }
+
+      await savePendingHistoryEntry(input, flowKey || activeFlow);
 
       const startTime = Date.now();
       addLog(`Starting API call: ${endpointLabel}`);
@@ -58,10 +62,11 @@ export function useImmediateFlow(submitApi, endpointLabel, options = {}) {
         addLog(`API call failed after ${timeTaken}ms: ${err.message}`);
         setApiResponse({ error: err.message });
         setIsLoading(false);
+        saveHistoryEntry(input, { error: err.message }, [], []);
         throw err;
       }
     },
-    [submitApi, endpointLabel, onResponse, clearVariants, addLog, setApiResponse, setApiInput, setDesignVariants, setIsLoading, saveHistoryEntry]
+    [submitApi, endpointLabel, onResponse, clearVariants, addLog, setApiResponse, setApiInput, setDesignVariants, setIsLoading, savePendingHistoryEntry, saveHistoryEntry, flowKey, activeFlow]
   );
 
   return { submit };

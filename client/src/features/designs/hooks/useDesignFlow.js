@@ -13,7 +13,9 @@ export function useDesignFlow() {
     setDesignVariants,
     setIsLoading,
     setIsPolling,
+    savePendingHistoryEntry,
     saveHistoryEntry,
+    activeFlow,
   } = useAppContext();
 
   const { start: startPolling, stop: stopPolling } = usePolling();
@@ -152,6 +154,8 @@ export function useDesignFlow() {
       setDesignVariants([]);
       setApiInput(formData);
 
+      await savePendingHistoryEntry(formData, activeFlow);
+
       const activeWebhookUrl = localStorage.getItem('webhookUrl');
       const useWebhook = webhookEnabled && !!activeWebhookUrl;
       const requestBody = useWebhook ? { ...formData, webhookUrl: activeWebhookUrl } : formData;
@@ -195,10 +199,28 @@ export function useDesignFlow() {
         addLog(`API call failed after ${timeTaken}ms: ${err.message}`);
         setApiResponse({ error: err.message });
         setIsLoading(false);
+        saveHistoryEntry(formData, { error: err.message }, [], []);
       }
     },
-    [setIsLoading, setApiResponse, setDesignVariants, setApiInput, addLog, pollStatus, apiLogs]
+    [setIsLoading, setApiResponse, setDesignVariants, setApiInput, addLog, pollStatus, apiLogs, savePendingHistoryEntry, saveHistoryEntry, activeFlow]
   );
 
-  return { submitDesign, handleWebhookEvent, stopPolling };
+  const resume = useCallback(
+    (requestId, input) => {
+      if (!requestId) return;
+      setIsLoading(true);
+      setApiResponse(null);
+      setApiInput(input);
+      addLog(`Resuming polling for design request ${requestId}`);
+      const initialLogs = [...(apiLogs || [])];
+      initialLogs.push({
+        timestamp: new Date().toLocaleTimeString(),
+        message: 'Resuming status polling...',
+      });
+      pollStatus(requestId, input, initialLogs);
+    },
+    [setIsLoading, setApiResponse, setApiInput, addLog, apiLogs, pollStatus]
+  );
+
+  return { submitDesign, handleWebhookEvent, stopPolling, resume };
 }

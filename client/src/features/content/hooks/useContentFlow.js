@@ -12,7 +12,9 @@ export function useContentFlow() {
     setApiResponse,
     setApiInput,
     setIsLoading,
+    savePendingHistoryEntry,
     saveHistoryEntry,
+    activeFlow,
   } = useAppContext();
 
   const submit = useCallback(
@@ -20,6 +22,8 @@ export function useContentFlow() {
       setIsLoading(true);
       setApiResponse(null);
       setApiInput(formData);
+
+      await savePendingHistoryEntry(formData, activeFlow);
 
       const startTime = Date.now();
       addLog('Starting API call to /content-from-prompt');
@@ -44,10 +48,11 @@ export function useContentFlow() {
         addLog(`API call failed after ${timeTaken}ms: ${err.message}`);
         setApiResponse({ error: err.message });
         setIsLoading(false);
+        saveHistoryEntry(formData, { error: err.message }, [], []);
         throw err;
       }
     },
-    [addLog, setApiResponse, setApiInput, setIsLoading, saveHistoryEntry]
+    [addLog, setApiResponse, setApiInput, setIsLoading, savePendingHistoryEntry, saveHistoryEntry, activeFlow]
   );
 
   return { submit };

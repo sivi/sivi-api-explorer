@@ -1,31 +1,30 @@
 import React, { useState, useCallback, useEffect, useRef } from 'react';
 import { message } from 'antd';
-import {
-  saveToHistory,
-  savePendingToHistory,
-  getHistory,
-  getHistoryItem,
-  updateHistoryItem,
-  deleteHistoryItem,
-  formatHistoryLabel,
-} from '../utils/historyStorage';
-import { isQuotaExceededError } from '../storage/IndexedDBStore.js';
 import { AppContext } from './AppContext.context.js';
+import { isQuotaExceededError } from '../storage/IndexedDBStore.js';
+import {
+  saveToExplorerHistory,
+  savePendingToExplorerHistory,
+  getExplorerHistory,
+  getExplorerHistoryItem,
+  updateExplorerHistoryItem,
+  deleteExplorerHistoryItem,
+  formatExplorerHistoryLabel,
+} from '../utils/explorerHistoryStorage.js';
 
 const QUOTA_MSG = 'Storage quota exceeded. Please delete some history items to free up space.';
 
-export function AppProvider({ children }) {
+export function ExplorerProvider({ children }) {
   const [apiResponse, setApiResponse] = useState(null);
   const [apiLogs, setApiLogs] = useState([]);
   const [apiInput, setApiInput] = useState(null);
   const [designVariants, setDesignVariants] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  // Track which flows are actively polling so multiple background jobs
-  // can run in parallel without a single global flag.
   const [pollingFlows, setPollingFlows] = useState(new Set());
   const [history, setHistory] = useState([]);
   const [activeFlow, setActiveFlow] = useState('designs-from-prompt');
   const [pendingFlowAction, setPendingFlowAction] = useState(null);
+  const [selectedBId, setSelectedBId] = useState('auto');
   const pendingHistoryIdRef = useRef(null);
 
   const handleStorageError = useCallback((err) => {
@@ -34,8 +33,10 @@ export function AppProvider({ children }) {
     }
   }, []);
 
+  // Load history on mount. If the most recent pending item matches the active
+  // flow, restore the loading UI so the user sees the job is still running.
   useEffect(() => {
-    getHistory()
+    getExplorerHistory()
       .then((all) => {
         setHistory(all);
         const pending = all.find((item) => item.status === 'pending');
@@ -51,9 +52,9 @@ export function AppProvider({ children }) {
       });
   }, [handleStorageError, activeFlow]);
 
-  const addLog = useCallback((message) => {
+  const addLog = useCallback((logMessage) => {
     const timestamp = new Date().toLocaleTimeString();
-    setApiLogs((prev) => [...prev, { timestamp, message }]);
+    setApiLogs((prev) => [...prev, { timestamp, message: logMessage }]);
   }, []);
 
   const clearLogs = useCallback(() => {
@@ -74,10 +75,10 @@ export function AppProvider({ children }) {
   const savePendingHistoryEntry = useCallback(
     async (input, flowKey = activeFlow, overrides = {}) => {
       try {
-        const id = await savePendingToHistory(input, flowKey, overrides);
+        const id = await savePendingToExplorerHistory(input, flowKey, selectedBId, overrides);
         if (id) {
           pendingHistoryIdRef.current = id;
-          const updated = await getHistory();
+          const updated = await getExplorerHistory();
           setHistory(updated);
         }
         return id;
@@ -87,17 +88,15 @@ export function AppProvider({ children }) {
         return null;
       }
     },
-    [activeFlow, handleStorageError]
+    [activeFlow, selectedBId, handleStorageError]
   );
 
-  // flowKey defaults to activeFlow, but background jobs override it
-  // with their original flow so history items are tagged correctly.
   const saveHistoryEntry = useCallback(
     async (input, response, logs, variants, flowKey = activeFlow) => {
       try {
         const pendingId = pendingHistoryIdRef.current;
         if (pendingId) {
-          await updateHistoryItem(pendingId, {
+          await updateExplorerHistoryItem(pendingId, {
             apiInput: input,
             apiResponse: response,
             apiLogs: logs,
@@ -106,9 +105,9 @@ export function AppProvider({ children }) {
           });
           pendingHistoryIdRef.current = null;
         } else {
-          await saveToHistory(input, response, logs, variants, flowKey);
+          await saveToExplorerHistory(input, response, logs, variants, flowKey, selectedBId);
         }
-        const updated = await getHistory();
+        const updated = await getExplorerHistory();
         setHistory(updated);
         return pendingId;
       } catch (err) {
@@ -117,11 +116,9 @@ export function AppProvider({ children }) {
         return null;
       }
     },
-    [activeFlow, handleStorageError]
+    [activeFlow, selectedBId, handleStorageError]
   );
 
-  // Register a flow as actively polling. Multiple flows can be polling
-  // simultaneously (e.g. design generation + brand extraction).
   const startPollingFlow = useCallback((flowKey) => {
     setPollingFlows((prev) => {
       const next = new Set(prev);
@@ -130,7 +127,6 @@ export function AppProvider({ children }) {
     });
   }, []);
 
-  // Unregister a flow from active polling.
   const stopPollingFlow = useCallback((flowKey) => {
     setPollingFlows((prev) => {
       const next = new Set(prev);
@@ -145,7 +141,7 @@ export function AppProvider({ children }) {
   );
 
   const loadHistoryItem = useCallback(async (historyId) => {
-    const item = await getHistoryItem(historyId);
+    const item = await getExplorerHistoryItem(historyId);
     if (!item) return null;
     setApiInput(item.apiInput);
     setApiResponse(item.apiResponse);
@@ -156,9 +152,9 @@ export function AppProvider({ children }) {
 
   const updateHistoryEntry = useCallback(async (id, updates) => {
     try {
-      const updated = await updateHistoryItem(id, updates);
+      const updated = await updateExplorerHistoryItem(id, updates);
       if (updated) {
-        const all = await getHistory();
+        const all = await getExplorerHistory();
         setHistory(all);
       }
       return updated;
@@ -171,9 +167,9 @@ export function AppProvider({ children }) {
 
   const removeHistoryEntry = useCallback(async (id) => {
     try {
-      const ok = await deleteHistoryItem(id);
+      const ok = await deleteExplorerHistoryItem(id);
       if (ok) {
-        const all = await getHistory();
+        const all = await getExplorerHistory();
         setHistory(all);
       }
       return ok;
@@ -212,7 +208,7 @@ export function AppProvider({ children }) {
     loadHistoryItem,
     updateHistoryEntry,
     removeHistoryEntry,
-    formatHistoryLabel,
+    formatHistoryLabel: formatExplorerHistoryLabel,
     activeFlow,
     setActiveFlow,
     resetResultState,
@@ -222,6 +218,8 @@ export function AppProvider({ children }) {
     pendingFlowAction,
     dispatchFlowAction,
     clearPendingFlowAction,
+    selectedBId,
+    setSelectedBId,
   };
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;

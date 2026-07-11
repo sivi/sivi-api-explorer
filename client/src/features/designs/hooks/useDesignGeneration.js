@@ -23,6 +23,7 @@ export function useDesignGeneration(apiMethod, endpointLabel, flowKey) {
             url: v.variantImageUrl,
             id: v.variantId,
             editLink: v.variantEditLink,
+            options: v.options,
           }))
         : [];
 
@@ -41,11 +42,11 @@ export function useDesignGeneration(apiMethod, endpointLabel, flowKey) {
     [setDesignVariants, saveHistoryEntry, addLog, apiInput, activeFlow, flowKey]
   );
 
-  const { submit, handleWebhookEvent, stopPolling } = useAsyncJob(
+  const { submit, handleWebhookEvent, stopPolling, resume } = useAsyncJob(
     apiMethod,
     endpointLabel,
     { onResult, flowKey }
   );
 
-  return { submit, handleWebhookEvent, stopPolling };
+  return { submit, handleWebhookEvent, stopPolling, resume };
 }

@@ -306,3 +306,26 @@
   background: rgba(81, 207, 102, 0.2);
   color: #51cf66;
 }
+
+.history-item.pending {
+  opacity: 0.85;
+}
+
+.history-item-status {
+  font-size: 10px;
+  text-transform: uppercase;
+  padding: 1px 6px;
+  border-radius: 10px;
+  margin-left: 8px;
+  font-weight: 600;
+}
+
+.history-item-status.pending {
+  background: rgba(255, 193, 7, 0.2);
+  color: #ffc107;
+}
+
+.history-item-status.failed {
+  background: rgba(255, 107, 107, 0.2);
+  color: #ff6b6b;
+}

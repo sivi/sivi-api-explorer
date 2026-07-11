@@ -50,7 +50,7 @@ const API_FLOWS = [
 
 export default function LandingPage() {
   const navigate = useNavigate()
-  const launch = () => navigate('/playground')
+  const launch = () => navigate('/brands')
 
   return (
     <div className="landing-page">

@@ -52,7 +52,7 @@ function getResultComponent(flowKey, { apiResponse, designVariants, apiInput, on
     case 'designs-from-prompt':
     case 'designs-from-content':
     case 'get-design-variants':
-      return <DesignVariantsResult variants={designVariants} apiInput={apiInput} onLoadMore={onLoadMore} hasMore={hasMore} isLoadingMore={isLoadingMore} />;
+      return <DesignVariantsResult variants={designVariants} apiResponse={apiResponse} apiInput={apiInput} onLoadMore={onLoadMore} hasMore={hasMore} isLoadingMore={isLoadingMore} />;
     case 'content-from-prompt':
       return <ContentResult apiResponse={apiResponse} />;
     case 'list-brands':

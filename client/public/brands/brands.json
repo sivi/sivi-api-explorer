@@ -1,0 +1,37 @@
+{
+  "sivi": {
+    "bId": "sivi",
+    "brandName": "Sivi",
+    "brandDescription": "Generative AI design tool that transforms text into editable, multi-format visual content.",
+    "logo": "/sivi-logo.png",
+    "colors": ["#00E0FF", "#00A8FF", "#8B5CF6"]
+  },
+  "bookmyshow": {
+    "bId": "bookmyshow",
+    "brandName": "BookMyShow",
+    "brandDescription": "BookMyShow offers tickets for movies, plays, sports, events and more across India.",
+    "logo": "/brand_logo.png",
+    "colors": ["#E53945", "#555555"]
+  },
+  "time": {
+    "bId": "time",
+    "brandName": "TIME",
+    "brandDescription": "TIME is an American news magazine and website known for its iconic covers and influential journalism.",
+    "logo": "/ai_logo.png",
+    "colors": ["#6CC04A", "#D6884E", "#C6E8B5", "#3C4F3C"]
+  },
+  "acorns": {
+    "bId": "acorns",
+    "brandName": "Acorns",
+    "brandDescription": "Acorns is a financial wellness app that helps individuals and families invest and save for the future.",
+    "logo": "/sivi-logo.png",
+    "colors": ["#6CC04A", "#D6884E", "#C6E8B5", "#3C4F3C"]
+  },
+  "complete-list-of-awesome": {
+    "bId": "complete-list-of-awesome",
+    "brandName": "Complete List of Awesome",
+    "brandDescription": "Explore the best dummy websites for automated software testing and developer experiments.",
+    "logo": "/mail_logo.png",
+    "colors": ["#C84C4C", "#6DD494", "#D99E99", "#E8F5E9", "#555E5B", "#1A2421"]
+  }
+}

@@ -142,6 +142,7 @@ body {
 
 .flow-selector,
 .preset-selector,
+.brand-selector,
 .history-selector {
   display: flex;
   align-items: center;
@@ -190,6 +191,144 @@ body {
   display: flex;
   align-items: center;
   gap: 10px;
+}
+
+/* Webhook popover */
+.webhook-popover-wrapper {
+  position: relative;
+}
+
+.webhook-icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.04);
+  color: #d4d4d8;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  padding: 0;
+}
+
+.webhook-icon-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+}
+
+.webhook-icon-btn.active {
+  color: #6bcb77;
+  border-color: rgba(107, 203, 119, 0.3);
+}
+
+.webhook-popover {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  width: 280px;
+  background: rgba(15, 15, 23, 0.95);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
+  z-index: 100;
+  overflow: hidden;
+}
+
+.webhook-popover-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  font-size: 14px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.webhook-popover-toggle {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.webhook-popover-toggle input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+  position: absolute;
+}
+
+.webhook-popover-slider {
+  width: 36px;
+  height: 20px;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+  position: relative;
+  transition: background 0.2s ease;
+}
+
+.webhook-popover-slider::before {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 16px;
+  height: 16px;
+  background: #ffffff;
+  border-radius: 50%;
+  transition: transform 0.2s ease;
+}
+
+.webhook-popover-toggle input:checked + .webhook-popover-slider {
+  background: #6366f1;
+}
+
+.webhook-popover-toggle input:checked + .webhook-popover-slider::before {
+  transform: translateX(16px);
+}
+
+.webhook-popover-body {
+  padding: 12px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.webhook-popover-url {
+  font-size: 12px;
+  color: #a1a1aa;
+  word-break: break-all;
+  line-height: 1.4;
+}
+
+.webhook-popover-url.empty {
+  color: #71717a;
+  font-style: italic;
+}
+
+.webhook-popover-config-btn {
+  background: rgba(99, 102, 241, 0.12);
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  color: #a5b4fc;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+  font-family: inherit;
+}
+
+.webhook-popover-config-btn:hover {
+  background: rgba(99, 102, 241, 0.2);
+  color: #c7d2fe;
 }
 
 /* Ant Design Cascader dark theme overrides */
@@ -338,8 +477,9 @@ body {
 .app-content {
   display: flex;
   width: 100%;
-  height: auto; /* let content define height */
-  min-height: calc(100vh - 64px); /* still at least viewport height below header */
+  height: calc(100vh - 64px);
+  min-height: calc(100vh - 64px);
+  overflow: hidden;
 }
 
 /* Sidebar */
@@ -870,6 +1010,84 @@ body {
   color: #71717a;
 }
 
+.variant-card-main {
+  position: relative;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.02);
+  max-height: 520px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.variant-card-main img {
+  width: 100%;
+  height: auto;
+  max-height: 520px;
+  display: block;
+  object-fit: contain;
+}
+
+.variant-edit-link {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  background: rgba(0, 0, 0, 0.6);
+  color: #ffffff;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  text-decoration: none;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  z-index: 2;
+}
+
+.variant-card:hover .variant-edit-link {
+  opacity: 1;
+}
+
+.variant-options {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  overflow-x: auto;
+}
+
+.variant-option-thumb {
+  flex: 0 0 auto;
+  width: 72px;
+  height: 72px;
+  padding: 0;
+  background: transparent;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.variant-option-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.variant-option-thumb:hover {
+  transform: scale(1.04);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.variant-option-thumb.selected {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.3);
+}
+
 .show-more-wrapper {
   display: flex;
   justify-content: center;
@@ -923,23 +1141,68 @@ body {
   }
 }
 
+@media (max-width: 1280px) {
+  .app-header {
+    padding: 0 16px;
+  }
+
+  .header-controls {
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+
+  .flow-selector,
+  .preset-selector,
+  .brand-selector,
+  .history-selector {
+    gap: 8px;
+  }
+
+  .preset-label {
+    display: none;
+  }
+
+  .preset-dropdown {
+    min-width: 140px;
+    max-width: 180px;
+  }
+
+  .app-header-title-sub {
+    display: none;
+  }
+}
+
 @media (max-width: 1024px) {
   .app-content {
     flex-direction: column;
   }
-  
+
+  .app-header {
+    height: auto;
+    min-height: 64px;
+    padding: 12px 16px;
+  }
+
   .header-controls {
     flex-direction: column;
     gap: 12px;
     align-items: flex-end;
+    width: 100%;
+    margin-top: 12px;
   }
-  
+
   .flow-selector,
   .preset-selector,
+  .brand-selector,
   .history-selector {
     gap: 8px;
     width: 100%;
     justify-content: flex-end;
+  }
+
+  .preset-dropdown {
+    max-width: none;
   }
 
   .flow-cascader .ant-cascader-input {

@@ -4,15 +4,18 @@ import './index.css';
 const TABS = [
   { key: 'all', label: 'All' },
   { key: 'favorites', label: 'Like' },
+  { key: 'disliked', label: 'Dislike' },
 ];
 
-export default function HistoryDropdown({
+export default function ExplorerHistoryDropdown({
   history,
   selectedHistoryId,
   formatHistoryLabel,
   onSelect,
   onUpdate,
   onDelete,
+  filterBId,
+  filterFlowKey,
 }) {
   const [isOpen, setIsOpen] = useState(false);
   const [activeTab, setActiveTab] = useState('all');
@@ -42,16 +45,39 @@ export default function HistoryDropdown({
     }
   }, [isOpen]);
 
+  const baseFilteredHistory = React.useMemo(() => {
+    let items = [...history];
+
+    // bId filter
+    if (filterBId && filterBId !== 'auto') {
+      items = items.filter((item) => (item.bId || 'auto') === filterBId);
+    }
+
+    // flowKey filter
+    if (filterFlowKey && filterFlowKey !== 'auto') {
+      items = items.filter((item) => item.flowKey === filterFlowKey);
+    }
+
+    return items;
+  }, [history, filterBId, filterFlowKey]);
+
   const filteredHistory = React.useMemo(() => {
-    let items = activeTab === 'favorites'
-      ? history.filter((item) => item.isFavorite)
-      : [...history];
+    let items = [...baseFilteredHistory];
+
+    // Tab filtering: "all" excludes disliked items
+    if (activeTab === 'favorites') {
+      items = items.filter((item) => item.isFavorite);
+    } else if (activeTab === 'disliked') {
+      items = items.filter((item) => item.isDisliked);
+    } else {
+      items = items.filter((item) => !item.isDisliked);
+    }
 
     if (searchQuery.trim().length >= 3) {
       const query = searchQuery.trim().toLowerCase();
       items = items.filter((item) => {
         const label = formatHistoryLabel(item).toLowerCase();
-        const dimensions = `${item.dimensions.width}x${item.dimensions.height}`.toLowerCase();
+        const dimensions = `${item.dimensions?.width || 0}x${item.dimensions?.height || 0}`.toLowerCase();
         const date = new Date(item.timestamp).toLocaleString().toLowerCase();
         return label.includes(query) || dimensions.includes(query) || date.includes(query);
       });
@@ -64,7 +90,7 @@ export default function HistoryDropdown({
     });
 
     return items;
-  }, [history, activeTab, searchQuery, sortAsc, formatHistoryLabel]);
+  }, [baseFilteredHistory, activeTab, searchQuery, sortAsc, formatHistoryLabel]);
 
   const selectedItem = history.find((item) => item.id === selectedHistoryId);
 
@@ -77,6 +103,11 @@ export default function HistoryDropdown({
   const handleToggleFavorite = async (e, item) => {
     e.stopPropagation();
     await onUpdate(item.id, { isFavorite: !item.isFavorite });
+  };
+
+  const handleToggleDislike = async (e, item) => {
+    e.stopPropagation();
+    await onUpdate(item.id, { isDisliked: !item.isDisliked });
   };
 
   const handleStartEdit = (e, item) => {
@@ -100,6 +131,10 @@ export default function HistoryDropdown({
       onSelect('');
     }
   };
+
+  const allCount = baseFilteredHistory.filter((i) => !i.isDisliked).length;
+  const favoritesCount = baseFilteredHistory.filter((i) => i.isFavorite).length;
+  const dislikedCount = baseFilteredHistory.filter((i) => i.isDisliked).length;
 
   const displayLabel = selectedItem
     ? formatHistoryLabel(selectedItem)
@@ -128,12 +163,13 @@ export default function HistoryDropdown({
                 >
                   {tab.label}
                   {tab.key === 'all' && (
-                    <span className="history-tab-count">{history.length}</span>
+                    <span className="history-tab-count">{allCount}</span>
                   )}
                   {tab.key === 'favorites' && (
-                    <span className="history-tab-count">
-                      {history.filter((i) => i.isFavorite).length}
-                    </span>
+                    <span className="history-tab-count">{favoritesCount}</span>
+                  )}
+                  {tab.key === 'disliked' && (
+                    <span className="history-tab-count">{dislikedCount}</span>
                   )}
                 </button>
               ))}
@@ -166,7 +202,9 @@ export default function HistoryDropdown({
                   ? 'No results match your search.'
                   : activeTab === 'favorites'
                     ? 'No liked items yet. Like an item to add it here.'
-                    : 'No history yet. Run a flow to see items here.'}
+                    : activeTab === 'disliked'
+                      ? 'No disliked items. Dislike an item to add it here.'
+                      : 'No history yet. Run a flow to see items here.'}
               </div>
             )}
 
@@ -211,7 +249,7 @@ export default function HistoryDropdown({
                       </div>
                     )}
                     <div className="history-item-meta">
-                      {`${item.dimensions.width}x${item.dimensions.height}`} · {new Date(item.timestamp).toLocaleString()}
+                      {`${item.dimensions?.width || 0}x${item.dimensions?.height || 0}`} · {new Date(item.timestamp).toLocaleString()}
                     </div>
                   </div>
 
@@ -219,9 +257,16 @@ export default function HistoryDropdown({
                     <button
                       className={`history-item-icon ${item.isFavorite ? 'active' : ''}`}
                       onClick={(e) => handleToggleFavorite(e, item)}
-                      title={item.isFavorite ? 'Remove from favorites' : 'Add to favorites'}
+                      title={item.isFavorite ? 'Remove like' : 'Like'}
                     >
-                      {item.isFavorite ? '★' : '☆'}
+                      {item.isFavorite ? '👍' : '👍🏻'}
+                    </button>
+                    <button
+                      className={`history-item-icon ${item.isDisliked ? 'active' : ''}`}
+                      onClick={(e) => handleToggleDislike(e, item)}
+                      title={item.isDisliked ? 'Remove dislike' : 'Dislike'}
+                    >
+                      {item.isDisliked ? '👎' : '👎🏻'}
                     </button>
                     <button
                       className="history-item-icon"

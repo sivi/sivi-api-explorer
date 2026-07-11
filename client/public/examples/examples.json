@@ -1,0 +1,447 @@
+{
+  "auto": {
+    "designs-from-prompt": [
+      {
+        "name": "Simple",
+        "data": {
+          "type": "amazon",
+          "subtype": "amazon-square",
+          "dimension": { "width": 300, "height": 300 },
+          "prompt": "Get Free POS Development with your landing page. Claim Now",
+          "assets": { "images": [], "logos": [] },
+          "language": "english",
+          "numOfVariants": 3,
+          "outputFormat": ["jpg"],
+          "settings": {
+            "mode": "brand",
+            "colorsPreference": { "mode": "brand", "customColors": [], "paletteStyle": [] },
+            "fontGroupPreference": { "mode": "brand", "fontGroups": [] },
+            "theme": [], "frameStyle": [], "backdropStyle": [], "focus": [], "imageStyle": []
+          }
+        }
+      },
+      {
+        "name": "E-commerce Category",
+        "data": {
+          "type": "website",
+          "subtype": "website-large-square",
+          "dimension": { "width": 600, "height": 600 },
+          "prompt": "Naturally Luxurious Skincare. Experience the Skinpro difference today. View Collection",
+          "assets": {
+            "images": [
+              { "url": "https://media.hellosivi.com/system/sample-brands/blossom-bloom/photo-1.jpg", "imagePreference": { "crop": true, "removeBg": false } },
+              { "url": "https://media.hellosivi.com/system/sample-brands/blossom-bloom/photo-2.jpg", "imagePreference": { "crop": true, "removeBg": false } }
+            ],
+            "logos": []
+          },
+          "language": "english",
+          "numOfVariants": 3,
+          "outputFormat": ["jpg"],
+          "settings": {
+            "mode": "custom",
+            "colorsPreference": {
+              "mode": "custom",
+              "customColors": [
+                { "primary": false, "color": "#D34D75", "addedBy": "user" },
+                { "primary": false, "color": "#4AD3A9", "addedBy": "user" },
+                { "primary": false, "color": "#FFC84D", "addedBy": "user" }
+              ],
+              "paletteStyle": []
+            },
+            "fontGroupPreference": { "mode": "brand", "fontGroups": [] },
+            "theme": ["light"], "frameStyle": [], "backdropStyle": [], "focus": ["image"], "imageStyle": []
+          }
+        }
+      },
+      {
+        "name": "Social Media",
+        "data": {
+          "type": "twitter",
+          "subtype": "twitter-post",
+          "dimension": { "width": 1024, "height": 512 },
+          "prompt": "Title: Bask in the Sun, Subtext: Let natural light flood your space with our designs., Button: Get a Quote",
+          "assets": {
+            "images": [
+              { "url": "https://media.hellosivi.com/system/sample-brands/solid-home/photo-1.jpg", "imagePreference": { "crop": true, "removeBg": false } }
+            ],
+            "logos": []
+          },
+          "fonts": [],
+          "language": "english",
+          "numOfVariants": 3,
+          "outputFormat": ["jpg"],
+          "settings": {
+            "mode": "custom",
+            "colorsPreference": {
+              "mode": "custom",
+              "customColors": [
+                { "primary": false, "color": "#2F5693", "addedBy": "user" },
+                { "primary": false, "color": "#0372CD", "addedBy": "user" },
+                { "primary": false, "color": "#9BCBEB", "addedBy": "user" }
+              ],
+              "paletteStyle": []
+            },
+            "fontGroupPreference": { "mode": "brand", "fontGroups": [] },
+            "theme": [], "frameStyle": [], "backdropStyle": [], "focus": [], "imageStyle": []
+          }
+        }
+      },
+      {
+        "name": "Brand Awareness",
+        "data": {
+          "type": "displayAds",
+          "subtype": "displayAds-half-page-ad",
+          "dimension": { "width": 300, "height": 600 },
+          "prompt": "Navigating Real Estate, Simplified. Your trusted partner for buying and selling property. Learn More",
+          "assets": {
+            "images": [
+              { "url": "https://media.hellosivi.com/system/sample-brands/solid-home/photo-2.jpg", "imagePreference": { "crop": true, "removeBg": false } }
+            ],
+            "logos": [
+              { "url": "https://media.hellosivi.com/system/sample-brands/solid-home/solid-home-logo.png", "logoStyles": ["direct", "neutral"] }
+            ]
+          },
+          "language": "english",
+          "numOfVariants": 4,
+          "outputFormat": ["jpg"],
+          "settings": {
+            "mode": "custom",
+            "colorsPreference": {
+              "mode": "custom",
+              "customColors": [
+                { "primary": false, "color": "#2F5693", "addedBy": "user" },
+                { "primary": false, "color": "#0372CD", "addedBy": "user" }
+              ],
+              "paletteStyle": []
+            },
+            "fontGroupPreference": { "mode": "brand", "fontGroups": [] },
+            "theme": ["dark"], "frameStyle": [], "backdropStyle": [], "focus": [], "imageStyle": []
+          }
+        }
+      }
+    ],
+    "designs-from-content": [
+      {
+        "name": "Taco Tuesday Offer",
+        "data": {
+          "type": "instagram",
+          "subtype": "instagram-post",
+          "dimension": { "width": 1080, "height": 1080 },
+          "content": {
+            "supertext": "Taco Tuesday",
+            "title": "Alberto's Taco",
+            "subtext": "Bold, authentic Mexican flavors made fresh, fast, and always satisfying",
+            "offer": "Up to 50% Off All Tacos",
+            "button": "Order Now"
+          },
+          "assets": {
+            "images": [
+              { "url": "https://media.hellosivi.com/system/sample-brands/albertos-taco/photo-1.png", "imagePreference": { "crop": true, "removeBg": false } },
+              { "url": "https://media.hellosivi.com/system/sample-brands/albertos-taco/photo-2.png", "imagePreference": { "crop": true, "removeBg": false } }
+            ],
+            "logos": [
+              { "url": "https://media.hellosivi.com/system/sample-brands/albertos-taco/albertos-taco-logo.png", "logoStyles": ["direct", "neutral"] }
+            ]
+          },
+          "language": "english",
+          "numOfVariants": 3,
+          "outputFormat": ["jpg"],
+          "settings": {
+            "mode": "custom",
+            "colorsPreference": { "mode": "custom", "customColors": ["#A12324", "#527A00", "#B3892D"], "paletteStyle": [] },
+            "fontGroupPreference": { "mode": "brand", "fontGroups": [] },
+            "theme": ["light"], "frameStyle": [], "backdropStyle": [], "focus": ["image"], "imageStyle": []
+          }
+        }
+      },
+      {
+        "name": "Blossom & Bloom Showcase",
+        "data": {
+          "type": "website",
+          "subtype": "website-large-square",
+          "dimension": { "width": 600, "height": 600 },
+          "content": {
+            "supertext": "Fresh Arrivals",
+            "title": "Blossom & Bloom",
+            "subtext": "Fresh flowers that make every occasion feel special",
+            "bulletlist": ["Same-day delivery", "Handpicked blooms", "Custom arrangements"],
+            "button": "View Collection"
+          },
+          "assets": {
+            "images": [
+              { "url": "https://media.hellosivi.com/system/sample-brands/blossom-bloom/photo-1.jpg", "imagePreference": { "crop": true, "removeBg": false } },
+              { "url": "https://media.hellosivi.com/system/sample-brands/blossom-bloom/photo-2.jpg", "imagePreference": { "crop": true, "removeBg": false } }
+            ],
+            "logos": [
+              { "url": "https://media.hellosivi.com/system/sample-brands/blossom-bloom/blossom-bloom-logo.png", "logoStyles": ["direct", "neutral"] }
+            ]
+          },
+          "language": "english",
+          "numOfVariants": 3,
+          "outputFormat": ["jpg"],
+          "settings": {
+            "mode": "custom",
+            "colorsPreference": { "mode": "custom", "customColors": ["#D34D75", "#4AD3A9", "#FFC84D"], "paletteStyle": [] },
+            "fontGroupPreference": { "mode": "brand", "fontGroups": [] },
+            "theme": ["light"], "frameStyle": [], "backdropStyle": [], "focus": ["image"], "imageStyle": []
+          }
+        }
+      }
+    ]
+  },
+  "sivi": {
+    "designs-from-prompt": [
+      {
+        "name": "Sivi Product Promo",
+        "data": {
+          "type": "linkedin",
+          "subtype": "linkedin-post",
+          "dimension": { "width": 1200, "height": 627 },
+          "prompt": "Sivi AI — Turn Text into Designs. Generate multi-format visual content from a single prompt. Try it free today.",
+          "assets": {
+            "images": [],
+            "logos": [
+              { "url": "/sivi-logo.png", "logoStyles": ["direct", "neutral"] }
+            ]
+          },
+          "language": "english",
+          "numOfVariants": 3,
+          "outputFormat": ["jpg"],
+          "settings": {
+            "mode": "custom",
+            "colorsPreference": {
+              "mode": "custom",
+              "customColors": [
+                { "primary": false, "color": "#00E0FF", "addedBy": "user" },
+                { "primary": false, "color": "#00A8FF", "addedBy": "user" },
+                { "primary": false, "color": "#8B5CF6", "addedBy": "user" }
+              ],
+              "paletteStyle": []
+            },
+            "fontGroupPreference": { "mode": "brand", "fontGroups": [] },
+            "theme": ["dark"], "frameStyle": [], "backdropStyle": [], "focus": [], "imageStyle": []
+          }
+        }
+      },
+      {
+        "name": "Sivi Feature Highlight",
+        "data": {
+          "type": "displayAds",
+          "subtype": "displayAds-medium-rectangle",
+          "dimension": { "width": 300, "height": 250 },
+          "prompt": "Design at Scale. Sivi generates 100+ variations in minutes. Boost your creative output.",
+          "assets": {
+            "images": [],
+            "logos": [
+              { "url": "/sivi-logo.png", "logoStyles": ["direct", "neutral"] }
+            ]
+          },
+          "language": "english",
+          "numOfVariants": 4,
+          "outputFormat": ["jpg"],
+          "settings": {
+            "mode": "custom",
+            "colorsPreference": {
+              "mode": "custom",
+              "customColors": [
+                { "primary": false, "color": "#00E0FF", "addedBy": "user" },
+                { "primary": false, "color": "#8B5CF6", "addedBy": "user" }
+              ],
+              "paletteStyle": []
+            },
+            "fontGroupPreference": { "mode": "brand", "fontGroups": [] },
+            "theme": ["light"], "frameStyle": [], "backdropStyle": [], "focus": [], "imageStyle": []
+          }
+        }
+      }
+    ],
+    "designs-from-content": [
+      {
+        "name": "Sivi Launch Announcement",
+        "data": {
+          "type": "instagram",
+          "subtype": "instagram-post",
+          "dimension": { "width": 1080, "height": 1080 },
+          "content": {
+            "supertext": "New Release",
+            "title": "Sivi AI 2.0",
+            "subtext": "Now with multi-format design generation from a single prompt",
+            "bulletlist": ["100+ variations", "Brand-aware designs", "Editable SVG output"],
+            "button": "Get Started"
+          },
+          "assets": {
+            "images": [],
+            "logos": [
+              { "url": "/sivi-logo.png", "logoStyles": ["direct", "neutral"] }
+            ]
+          },
+          "language": "english",
+          "numOfVariants": 3,
+          "outputFormat": ["jpg"],
+          "settings": {
+            "mode": "custom",
+            "colorsPreference": { "mode": "custom", "customColors": ["#00E0FF", "#00A8FF", "#8B5CF6"], "paletteStyle": [] },
+            "fontGroupPreference": { "mode": "brand", "fontGroups": [] },
+            "theme": ["dark"], "frameStyle": [], "backdropStyle": [], "focus": [], "imageStyle": []
+          }
+        }
+      },
+      {
+        "name": "Sivi Webinar Promo",
+        "data": {
+          "type": "linkedin",
+          "subtype": "linkedin-post",
+          "dimension": { "width": 1200, "height": 627 },
+          "content": {
+            "supertext": "Live Webinar",
+            "title": "Design Automation with Sivi AI",
+            "subtext": "Learn how to scale your creative production with AI-powered design generation",
+            "button": "Register Now"
+          },
+          "assets": {
+            "images": [],
+            "logos": [
+              { "url": "/sivi-logo.png", "logoStyles": ["direct", "neutral"] }
+            ]
+          },
+          "language": "english",
+          "numOfVariants": 3,
+          "outputFormat": ["jpg"],
+          "settings": {
+            "mode": "custom",
+            "colorsPreference": { "mode": "custom", "customColors": ["#00E0FF", "#8B5CF6"], "paletteStyle": [] },
+            "fontGroupPreference": { "mode": "brand", "fontGroups": [] },
+            "theme": ["light"], "frameStyle": [], "backdropStyle": [], "focus": [], "imageStyle": []
+          }
+        }
+      }
+    ]
+  },
+  "bookmyshow": {
+    "designs-from-prompt": [
+      {
+        "name": "Movie Now Showing",
+        "data": {
+          "type": "instagram",
+          "subtype": "instagram-post",
+          "dimension": { "width": 1080, "height": 1080 },
+          "prompt": "Now Showing — Dune: Part Two. Book your tickets now on BookMyShow. IMAX & 4DX available.",
+          "assets": {
+            "images": [],
+            "logos": [
+              { "url": "/brand_logo.png", "logoStyles": ["direct", "neutral"] }
+            ]
+          },
+          "language": "english",
+          "numOfVariants": 3,
+          "outputFormat": ["jpg"],
+          "settings": {
+            "mode": "custom",
+            "colorsPreference": {
+              "mode": "custom",
+              "customColors": [
+                { "primary": false, "color": "#E53945", "addedBy": "user" },
+                { "primary": false, "color": "#555555", "addedBy": "user" }
+              ],
+              "paletteStyle": []
+            },
+            "fontGroupPreference": { "mode": "brand", "fontGroups": [] },
+            "theme": ["dark"], "frameStyle": [], "backdropStyle": [], "focus": [], "imageStyle": []
+          }
+        }
+      },
+      {
+        "name": "Weekend Events Promo",
+        "data": {
+          "type": "facebook",
+          "subtype": "facebook-post",
+          "dimension": { "width": 1200, "height": 630 },
+          "prompt": "Live Events This Weekend — Stand-up Comedy, Music Concerts, Theatre Plays. Book now on BookMyShow.",
+          "assets": {
+            "images": [],
+            "logos": [
+              { "url": "/brand_logo.png", "logoStyles": ["direct", "neutral"] }
+            ]
+          },
+          "language": "english",
+          "numOfVariants": 4,
+          "outputFormat": ["jpg"],
+          "settings": {
+            "mode": "custom",
+            "colorsPreference": {
+              "mode": "custom",
+              "customColors": [
+                { "primary": false, "color": "#E53945", "addedBy": "user" },
+                { "primary": false, "color": "#555555", "addedBy": "user" }
+              ],
+              "paletteStyle": []
+            },
+            "fontGroupPreference": { "mode": "brand", "fontGroups": [] },
+            "theme": ["light"], "frameStyle": [], "backdropStyle": [], "focus": [], "imageStyle": []
+          }
+        }
+      }
+    ],
+    "designs-from-content": [
+      {
+        "name": "Blockbuster Movie Release",
+        "data": {
+          "type": "instagram",
+          "subtype": "instagram-post",
+          "dimension": { "width": 1080, "height": 1080 },
+          "content": {
+            "supertext": "Now Booking",
+            "title": "Dune: Part Two",
+            "subtext": "Experience the epic continuation of the Dune saga",
+            "bulletlist": ["IMAX Available", "4DX Shows", "Multiple Languages"],
+            "button": "Book Tickets"
+          },
+          "assets": {
+            "images": [],
+            "logos": [
+              { "url": "/brand_logo.png", "logoStyles": ["direct", "neutral"] }
+            ]
+          },
+          "language": "english",
+          "numOfVariants": 3,
+          "outputFormat": ["jpg"],
+          "settings": {
+            "mode": "custom",
+            "colorsPreference": { "mode": "custom", "customColors": ["#E53945", "#555555"], "paletteStyle": [] },
+            "fontGroupPreference": { "mode": "brand", "fontGroups": [] },
+            "theme": ["dark"], "frameStyle": [], "backdropStyle": [], "focus": [], "imageStyle": []
+          }
+        }
+      },
+      {
+        "name": "Comedy Show Promo",
+        "data": {
+          "type": "facebook",
+          "subtype": "facebook-post",
+          "dimension": { "width": 1200, "height": 630 },
+          "content": {
+            "supertext": "Live This Weekend",
+            "title": "Comedy Night Live",
+            "subtext": "India's funniest comedians on one stage",
+            "button": "Book Now"
+          },
+          "assets": {
+            "images": [],
+            "logos": [
+              { "url": "/brand_logo.png", "logoStyles": ["direct", "neutral"] }
+            ]
+          },
+          "language": "english",
+          "numOfVariants": 3,
+          "outputFormat": ["jpg"],
+          "settings": {
+            "mode": "custom",
+            "colorsPreference": { "mode": "custom", "customColors": ["#E53945", "#555555"], "paletteStyle": [] },
+            "fontGroupPreference": { "mode": "brand", "fontGroups": [] },
+            "theme": ["light"], "frameStyle": [], "backdropStyle": [], "focus": [], "imageStyle": []
+          }
+        }
+      }
+    ]
+  }
+}
