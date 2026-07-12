@@ -676,7 +676,62 @@
         }
       }
     ],
-    "designs-from-content": []
+    "designs-from-content": [
+      {
+        "name": "Display Ad – No Plastic. No Plywood. No Compromise.",
+        "data": {
+          "type": "custom",
+          "subtype": "custom",
+          "dimension": {
+            "width": 600,
+            "height": 1200
+          },
+          "content": {
+            "title": "No Plastic. No Plywood. No Compromise.",
+            "text": "Just solid wood, real metal, and craftsmanship built to outlast trends.",
+            "button": "See What Real Wood Feels Like"
+          },
+          "assets": {
+            "images": [
+              {
+                "url": "https://media.hellosivi.com/system/generated-images/sivi/7f38e444e3a43a4ced42d5c39a9abdbc.jpeg"
+              }
+            ],
+            "logos": [
+              {
+                "url": "https://images.hellosivi.com/fit-in/200x200/logos/swIfBy0IB29.png",
+                "logoStyles": ["direct", "outline"]
+              }
+            ]
+          },
+          "language": "english",
+          "numOfVariants": 4,
+          "outputFormat": [
+            "jpg"
+          ],
+          "settings": {
+            "mode": "brand",
+            "currentbId": "b_s1Vd8gwj35g",
+            "genMode": "compose",
+            "designModel": "sivi-gen-28h",
+            "colorsPreference": {
+              "mode": "brand",
+              "customColors": [],
+              "paletteStyle": []
+            },
+            "fontGroupPreference": {
+              "mode": "brand",
+              "fontGroups": []
+            },
+            "theme": [],
+            "frameStyle": [],
+            "backdropStyle": [],
+            "focus": [],
+            "imageStyle": []
+          }
+        }
+      }
+    ]
   },
   "b_s1AN3jePPgm": {
     "designs-from-prompt": [
