@@ -76,14 +76,18 @@ export default function LandingPage() {
 
       {/* Hero */}
       <section className="landing-hero">
-        <div className="landing-hero-badge">
-          <span className="landing-hero-badge-dot" />
-          Powered by Sivi Large Design Model
-        </div>
+        <a
+          className="landing-google-io-banner"
+          href="https://sivi.ai"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <span className="landing-google-io-text">Sivi live at</span>
+          <img src="/google-io-logo-white.svg" alt="Google I/O" className="landing-google-io-logo" />
+          <span className="landing-google-io-text">Connect</span>
+        </a>
         <h1 className="landing-hero-title">
-          Explore the <span className="landing-hero-gradient-text">Sivi API</span>
-          <br />
-          in real-time
+          Explore Sivi's <span className="landing-hero-gradient-text">Large Design Model</span>
         </h1>
         <p className="landing-hero-subtitle">
           An interactive playground to test design generation, brand management, media processing,
