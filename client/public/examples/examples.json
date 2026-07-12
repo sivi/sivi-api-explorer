@@ -730,6 +730,123 @@
             "imageStyle": []
           }
         }
+      },
+      {
+        "name": "Amazon Ad – Born From German Precision",
+        "data": {
+          "type": "instagram",
+          "subtype": "instagram-ad",
+          "dimension": {
+            "width": 1080,
+            "height": 1080
+          },
+          "content": {
+            "title": "Born From German Precision",
+            "text": "Where German engineering meets timeless furniture making.",
+            "button": "Discover Our Legacy"
+          },
+          "assets": {
+            "images": [
+              {
+                "url": "https://media.hellosivi.com/photos/sdqy4b1Cm0Y.png"
+              }
+            ],
+            "logos": [
+              {
+                "url": "https://images.hellosivi.com/fit-in/200x200/logos/swIfBy0IB29.png",
+                "logoStyles": ["direct", "outline"]
+              }
+            ]
+          },
+          "language": "english",
+          "numOfVariants": 4,
+          "outputFormat": [
+            "jpg"
+          ],
+          "settings": {
+            "mode": "custom",
+            "currentbId": "b_s1Vd8gwj35g",
+            "genMode": "compose",
+            "designModel": "sivi-gen-28h",
+            "colorsPreference": {
+              "mode": "brand",
+              "customColors": [],
+              "paletteStyle": []
+            },
+            "fontGroupPreference": {
+              "mode": "brand",
+              "fontGroups": []
+            },
+            "theme": [
+              "colorful",
+              "dark",
+              "light"
+            ],
+            "frameStyle": [
+              "box",
+              "plain"
+            ],
+            "backdropStyle": [],
+            "focus": [
+              "image"
+            ],
+            "imageStyle": [
+              "cover-with-overlay",
+              "cover-with-linear-gradient",
+              "cover"
+            ]
+          }
+        }
+      },
+      {
+        "name": "Instagram Story – A New Chapter In Craftsmanship",
+        "data": {
+          "type": "instagram",
+          "subtype": "instagram-story",
+          "dimension": {
+            "width": 1080,
+            "height": 1920
+          },
+          "content": {
+            "title": "A New Chapter In Craftsmanship",
+            "text": "Crafted with German precision, designed for the modern legacy home.",
+            "caption": "#KraftHausBergmann",
+            "button": "Explore The New Collection"
+          },
+          "assets": {
+            "images": [
+              {
+                "url": "https://media.hellosivi.com/system/generated-images/sivi/79e6252e2fa99042f3fb7df8c21fde12.jpeg"
+              }
+            ],
+            "logos": []
+          },
+          "language": "english",
+          "numOfVariants": 4,
+          "outputFormat": [
+            "jpg"
+          ],
+          "settings": {
+            "mode": "brand",
+            "currentbId": "b_s1Vd8gwj35g",
+            "genMode": "compose",
+            "designModel": "sivi-gen-28h",
+            "colorsPreference": {
+              "mode": "brand",
+              "customColors": [],
+              "paletteStyle": []
+            },
+            "fontGroupPreference": {
+              "mode": "brand",
+              "fontGroups": []
+            },
+            "theme": [],
+            "frameStyle": [],
+            "backdropStyle": [],
+            "focus": [],
+            "imageStyle": []
+          }
+        }
       }
     ]
   },
