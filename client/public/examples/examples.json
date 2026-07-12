@@ -1843,6 +1843,73 @@
             "imageStyle": []
           }
         }
+      },
+      {
+        "name": "Instagram Ad – Tired Eyes Don't Stand a Chance",
+        "data": {
+          "type": "instagram",
+          "subtype": "instagram-ad",
+          "dimension": {
+            "width": 1080,
+            "height": 1080
+          },
+          "content": {
+            "caption": "Buy 2 Get 1 Free, This Week",
+            "title": "Tired Eyes Don't Stand a Chance",
+            "text": "Stock up on the Eye Mask that actually delivers",
+            "button": "Claim the Offer"
+          },
+          "assets": {
+            "images": [
+              {
+                "url": "https://media.hellosivi.com/photos/s9JmFq3OMTW.jpg"
+              }
+            ],
+            "logos": [
+              {
+                "url": "https://media.hellosivi.com/logos/sMwQ5D5UNAK.png",
+                "logoStyles": ["direct", "outline"]
+              }
+            ]
+          },
+          "language": "english",
+          "numOfVariants": 4,
+          "outputFormat": [
+            "jpg"
+          ],
+          "settings": {
+            "mode": "custom",
+            "currentbId": "b_smimyDcZAWw",
+            "genMode": "compose",
+            "designModel": "sivi-gen-28h",
+            "colorsPreference": {
+              "mode": "brand",
+              "customColors": [],
+              "paletteStyle": []
+            },
+            "fontGroupPreference": {
+              "mode": "brand",
+              "fontGroups": []
+            },
+            "theme": [
+              "colorful",
+              "dark",
+              "light"
+            ],
+            "frameStyle": [
+              "plain"
+            ],
+            "backdropStyle": [],
+            "focus": [
+              "image"
+            ],
+            "imageStyle": [
+              "cover-with-linear-gradient",
+              "cover-with-overlay",
+              "cover"
+            ]
+          }
+        }
       }
     ]
   },
