@@ -1,447 +1,736 @@
 {
   "auto": {
+    "designs-from-prompt": [],
+    "designs-from-content": []
+  },
+  "b_ssQ7X36zjro": {
     "designs-from-prompt": [
       {
-        "name": "Simple",
+        "name": "Amazon Store Banner – Sustainable Baby Essentials",
         "data": {
           "type": "amazon",
-          "subtype": "amazon-square",
-          "dimension": { "width": 300, "height": 300 },
-          "prompt": "Get Free POS Development with your landing page. Claim Now",
+          "subtype": "amazon-rectangle",
+          "dimension": { "width": 1500, "height": 300 },
+          "prompt": "Create an Amazon store page banner (1500 × 300 px), showcasing Miniora's eco-friendly baby care collection. The headline should read \"Sustainable Baby Essentials\". Display a smiling baby playing with soft toys. Use warm cream, soft beige, pastel peach, light sage green, and natural wood tones. Highlight 100% Baby Safe, Eco-Friendly Materials, Ultra Soft Fabrics, and Made for Sensitive Skin. Finish with a prominent CTA reading \"Shop Now.\"",
           "assets": { "images": [], "logos": [] },
           "language": "english",
-          "numOfVariants": 3,
+          "numOfVariants": 4,
           "outputFormat": ["jpg"],
           "settings": {
             "mode": "brand",
             "colorsPreference": { "mode": "brand", "customColors": [], "paletteStyle": [] },
             "fontGroupPreference": { "mode": "brand", "fontGroups": [] },
-            "theme": [], "frameStyle": [], "backdropStyle": [], "focus": [], "imageStyle": []
+            "currentbId": "b_ssQ7X36zjro",
+            "theme": ["light"], "frameStyle": [], "backdropStyle": [], "focus": ["image"], "imageStyle": []
           }
         }
       },
       {
-        "name": "E-commerce Category",
+        "name": "Pinterest Pin – Cozy Nursery Inspiration",
         "data": {
-          "type": "website",
-          "subtype": "website-large-square",
-          "dimension": { "width": 600, "height": 600 },
-          "prompt": "Naturally Luxurious Skincare. Experience the Skinpro difference today. View Collection",
-          "assets": {
-            "images": [
-              { "url": "https://media.hellosivi.com/system/sample-brands/blossom-bloom/photo-1.jpg", "imagePreference": { "crop": true, "removeBg": false } },
-              { "url": "https://media.hellosivi.com/system/sample-brands/blossom-bloom/photo-2.jpg", "imagePreference": { "crop": true, "removeBg": false } }
-            ],
-            "logos": []
-          },
+          "type": "pinterest",
+          "subtype": "pinterest-pin-small",
+          "dimension": { "width": 600, "height": 900 },
+          "prompt": "Design a Pinterest Pin 600 x 900 px promoting nursery inspiration using Miniora products. The headline should read \"Create a Cozy Nursery Naturally.\" Show a beautifully styled nursery featuring Miniora toys, blankets, clothing, and décor with natural sunlight filling the room. Arrange products organically within the nursery instead of isolated product photography. Use cream, ivory, beige, soft peach, pastel green, and light wood textures. Include icons representing nursery, toys, clothing, sustainability, and comfort. Highlight Nursery Inspiration, Safe Materials, Warm Interiors, and Everyday Comfort. Website: miniora.com.",
+          "assets": { "images": [], "logos": [] },
           "language": "english",
-          "numOfVariants": 3,
+          "numOfVariants": 4,
           "outputFormat": ["jpg"],
           "settings": {
-            "mode": "custom",
-            "colorsPreference": {
-              "mode": "custom",
-              "customColors": [
-                { "primary": false, "color": "#D34D75", "addedBy": "user" },
-                { "primary": false, "color": "#4AD3A9", "addedBy": "user" },
-                { "primary": false, "color": "#FFC84D", "addedBy": "user" }
-              ],
-              "paletteStyle": []
-            },
+            "mode": "brand",
+            "colorsPreference": { "mode": "brand", "customColors": [], "paletteStyle": [] },
+            "fontGroupPreference": { "mode": "brand", "fontGroups": [] },
+            "currentbId": "b_ssQ7X36zjro",
+            "theme": ["light"], "frameStyle": [], "backdropStyle": [], "focus": ["image"], "imageStyle": []
+          }
+        }
+      },
+      {
+        "name": "Facebook Collection Ad – Wooden Toys (French)",
+        "data": {
+          "type": "facebook",
+          "subtype": "facebook-ad",
+          "dimension": { "width": 1200, "height": 628 },
+          "prompt": "Make a Facebook Collection Ad in French (1200 × 628 px), promoting Miniora's wooden toys range. Keep products clearly visible while creating a cozy home environment. Include eco-friendly materials, safety, and softness. Finish with a CTA.",
+          "assets": { "images": [], "logos": [] },
+          "language": "french",
+          "numOfVariants": 4,
+          "outputFormat": ["jpg"],
+          "settings": {
+            "mode": "brand",
+            "colorsPreference": { "mode": "brand", "customColors": [], "paletteStyle": [] },
+            "fontGroupPreference": { "mode": "brand", "fontGroups": [] },
+            "currentbId": "b_ssQ7X36zjro",
+            "theme": ["light"], "frameStyle": [], "backdropStyle": [], "focus": ["image"], "imageStyle": []
+          }
+        }
+      },
+      {
+        "name": "Website Hero Banner – Comfort. Safety. Sustainability.",
+        "data": {
+          "type": "website",
+          "subtype": "website-standard",
+          "dimension": { "width": 1920, "height": 1080 },
+          "prompt": "Design a Website Hero Banner (1920 × 1080 px). The headline should read \"Comfort. Safety. Sustainability.\" followed by \"Baby care products lovingly designed for every stage of early childhood.\" Display a beautifully styled nursery with natural sunlight, soft fabrics, wooden toys, and a happy baby interacting with parents. Keep the hero image centered with products naturally integrated throughout the scene. A CTA reading \"Explore Miniora.\"",
+          "assets": { "images": [], "logos": [] },
+          "language": "english",
+          "numOfVariants": 4,
+          "outputFormat": ["jpg"],
+          "settings": {
+            "mode": "brand",
+            "colorsPreference": { "mode": "brand", "customColors": [], "paletteStyle": [] },
+            "fontGroupPreference": { "mode": "brand", "fontGroups": [] },
+            "currentbId": "b_ssQ7X36zjro",
+            "theme": ["light"], "frameStyle": [], "backdropStyle": [], "focus": ["image"], "imageStyle": []
+          }
+        }
+      },
+      {
+        "name": "Blog Banner – Eco-Friendly Lifestyle for Your Baby",
+        "data": {
+          "type": "website",
+          "subtype": "website-standard",
+          "dimension": { "width": 1200, "height": 630 },
+          "prompt": "Design a blog banner (1200 × 630 px) introducing an article about eco-conscious parenting. The headline should read \"Building an Eco-Friendly Lifestyle for Your Baby\" with supporting text \"Simple choices that support your child and the environment.\" Display reusable baby products, natural toys, organic clothing, and plants arranged inside a Scandinavian-inspired nursery. Include icons representing sustainability, reusable products, nature, and baby care. Highlight Eco Choices, Natural Living, Reusable Essentials, and Healthy Homes. Finish with the CTA \"Learn More.\"",
+          "assets": { "images": [], "logos": [] },
+          "language": "english",
+          "numOfVariants": 4,
+          "outputFormat": ["jpg"],
+          "settings": {
+            "mode": "brand",
+            "colorsPreference": { "mode": "brand", "customColors": [], "paletteStyle": [] },
+            "fontGroupPreference": { "mode": "brand", "fontGroups": [] },
+            "currentbId": "b_ssQ7X36zjro",
+            "theme": ["light"], "frameStyle": [], "backdropStyle": [], "focus": ["image"], "imageStyle": []
+          }
+        }
+      }
+    ],
+    "designs-from-content": []
+  },
+  "b_sVXXU7E5atx": {
+    "designs-from-prompt": [
+      {
+        "name": "Landing Page Hero – Comfort Without Compromise",
+        "data": {
+          "type": "website",
+          "subtype": "website-standard",
+          "dimension": { "width": 1920, "height": 1080 },
+          "prompt": "Create a Landing Page Hero banner (1920 × 1080 px), introducing the signature KraftHaus Living Modern Lounge Chair. The headline should read \"Comfort Without Compromise.\" Add supporting text \"Expertly crafted furniture designed to bring warmth, durability, and understated luxury into every home.\" Display the lounge chair as the centerpiece of an elegant executive lounge featuring premium materials, architectural interiors, large windows, and soft natural daylight. Maintain generous whitespace around the product while emphasizing craftsmanship through subtle close-up details of wood finishes and upholstery. Use walnut brown, warm ivory, soft beige, charcoal gray, matte black, and muted bronze accents. Include icons representing premium materials, handcrafted quality, ergonomic comfort, sustainability, and modern living. Highlight German Craftsmanship, Solid Wood Frame, Premium Upholstery, Executive Comfort, and Timeless Design. Finish with a prominent CTA reading \"Experience KraftHaus Living.\"",
+          "assets": { "images": [], "logos": [] },
+          "language": "english",
+          "numOfVariants": 4,
+          "outputFormat": ["jpg"],
+          "settings": {
+            "mode": "brand",
+            "currentbId": "b_sVXXU7E5atx",
+            "colorsPreference": { "mode": "brand", "customColors": [], "paletteStyle": [] },
             "fontGroupPreference": { "mode": "brand", "fontGroups": [] },
             "theme": ["light"], "frameStyle": [], "backdropStyle": [], "focus": ["image"], "imageStyle": []
           }
         }
       },
       {
-        "name": "Social Media",
+        "name": "Holiday Sale Campaign – Gift of Timeless Comfort",
         "data": {
-          "type": "twitter",
-          "subtype": "twitter-post",
-          "dimension": { "width": 1024, "height": 512 },
-          "prompt": "Title: Bask in the Sun, Subtext: Let natural light flood your space with our designs., Button: Get a Quote",
-          "assets": {
-            "images": [
-              { "url": "https://media.hellosivi.com/system/sample-brands/solid-home/photo-1.jpg", "imagePreference": { "crop": true, "removeBg": false } }
-            ],
-            "logos": []
-          },
-          "fonts": [],
+          "type": "website",
+          "subtype": "website-standard",
+          "dimension": { "width": 1920, "height": 900 },
+          "prompt": "Design a custom holiday sale campaign banner 1920 × 900 px, featuring the KraftHaus Living lounge chair as a premium gift for home enthusiasts. The headline should read \"Give the Gift of Timeless Comfort.\" Add supporting text \"Celebrate the season with furniture crafted to last for generations.\" Display the chair inside a beautifully decorated contemporary living room with subtle seasonal décor, warm lighting, and elegant accessories. Use warm walnut, ivory, muted gold, charcoal gray, and soft beige. Include icons representing gifting, comfort, craftsmanship, premium quality, and home interiors. Highlight Holiday Collection, Luxury Living, Built to Last, and Elegant Design. Sale ends by 25 Dec 2026. Finish with the CTA \"Explore Holiday Offers.\"",
+          "assets": { "images": [], "logos": [] },
           "language": "english",
-          "numOfVariants": 3,
+          "numOfVariants": 4,
           "outputFormat": ["jpg"],
           "settings": {
-            "mode": "custom",
-            "colorsPreference": {
-              "mode": "custom",
-              "customColors": [
-                { "primary": false, "color": "#2F5693", "addedBy": "user" },
-                { "primary": false, "color": "#0372CD", "addedBy": "user" },
-                { "primary": false, "color": "#9BCBEB", "addedBy": "user" }
-              ],
-              "paletteStyle": []
-            },
+            "mode": "brand",
+            "currentbId": "b_sVXXU7E5atx",
+            "colorsPreference": { "mode": "brand", "customColors": [], "paletteStyle": [] },
             "fontGroupPreference": { "mode": "brand", "fontGroups": [] },
-            "theme": [], "frameStyle": [], "backdropStyle": [], "focus": [], "imageStyle": []
+            "theme": ["light"], "frameStyle": [], "backdropStyle": [], "focus": ["image"], "imageStyle": []
           }
         }
       },
       {
-        "name": "Brand Awareness",
+        "name": "Pinterest Board Cover – Premium Lounge Chairs",
+        "data": {
+          "type": "pinterest",
+          "subtype": "pinterest-pin-small",
+          "dimension": { "width": 600, "height": 600 },
+          "prompt": "Build a Pinterest Board cover (600 × 600 px). The title should read \"Premium lounge chairs.\" Display a beautifully curated Scandinavian-inspired living room with the chair placed beside a wooden side table, textured rug, books, and natural greenery. Only text display should be the title. No more texts.",
+          "assets": { "images": [], "logos": [] },
+          "language": "english",
+          "numOfVariants": 4,
+          "outputFormat": ["jpg"],
+          "settings": {
+            "mode": "brand",
+            "currentbId": "b_sVXXU7E5atx",
+            "colorsPreference": { "mode": "brand", "customColors": [], "paletteStyle": [] },
+            "fontGroupPreference": { "mode": "brand", "fontGroups": [] },
+            "theme": ["light"], "frameStyle": [], "backdropStyle": [], "focus": ["image"], "imageStyle": []
+          }
+        }
+      },
+      {
+        "name": "Google Display Skyscraper – Comfort That Defines Modern Living",
+        "data": {
+          "type": "displayAds",
+          "subtype": "displayAds-fat-skyscraper",
+          "dimension": { "width": 120, "height": 600 },
+          "prompt": "Make a Google Display Skyscraper ad (120 × 600 px), promoting the KraftHaus Living Modern Lounge Chair. The headline should read \"Comfort That Defines Modern Living.\" Add supporting text \"Precision German craftsmanship. Premium upholstery. Timeless comfort for every space.\" Display the lounge chair as the hero product. Include a prominent CTA reading \"Free Shipping Available.\"",
+          "assets": { "images": [], "logos": [] },
+          "language": "english",
+          "numOfVariants": 4,
+          "outputFormat": ["jpg"],
+          "settings": {
+            "mode": "brand",
+            "currentbId": "b_sVXXU7E5atx",
+            "colorsPreference": { "mode": "brand", "customColors": [], "paletteStyle": [] },
+            "fontGroupPreference": { "mode": "brand", "fontGroups": [] },
+            "theme": ["light"], "frameStyle": [], "backdropStyle": [], "focus": ["image"], "imageStyle": []
+          }
+        }
+      },
+      {
+        "name": "Instagram Reel Cover – One Chair. Endless Comfort.",
+        "data": {
+          "type": "instagram",
+          "subtype": "instagram-post",
+          "dimension": { "width": 1080, "height": 1920 },
+          "prompt": "Start designing an Instagram Reel Cover (1080 × 1920 px) promoting the KraftHaus Living Modern Lounge Chair. The headline should read \"One Chair. Endless Comfort.\" Add supporting text \"See how timeless craftsmanship transforms modern interiors.\" Display the lounge chair inside an elegant contemporary living room transitioning into multiple styled spaces such as a reading corner, executive office, and luxury apartment, suggesting versatility and premium living. Keep the chair prominently positioned while maintaining a balanced composition that leaves room for engaging text overlays. Use warm walnut wood tones, ivory, charcoal gray, beige, matte black, and subtle bronze highlights to create a luxurious atmosphere. Maintain cinematic lighting, clean composition, realistic lifestyle photography, and an elegant premium aesthetic optimized for high engagement on Instagram Reels.",
+          "assets": { "images": [], "logos": [] },
+          "language": "english",
+          "numOfVariants": 4,
+          "outputFormat": ["jpg"],
+          "settings": {
+            "mode": "brand",
+            "currentbId": "b_sVXXU7E5atx",
+            "colorsPreference": { "mode": "brand", "customColors": [], "paletteStyle": [] },
+            "fontGroupPreference": { "mode": "brand", "fontGroups": [] },
+            "theme": ["light"], "frameStyle": [], "backdropStyle": [], "focus": ["image"], "imageStyle": []
+          }
+        }
+      }
+    ],
+    "designs-from-content": []
+  },
+  "b_sfZeStxbrvs": {
+    "designs-from-prompt": [
+      {
+        "name": "Google Display Ad (German) – Your Next Funding Partner",
+        "data": {
+          "type": "displayAds",
+          "subtype": "displayAds-inline-rectangle",
+          "dimension": { "width": 300, "height": 250 },
+          "prompt": "Design a Google Display Ad in German (300 × 250 px) promoting Northveil Venture Capital. The headline should read \"Your Next Funding Partner.\" Add supporting text \"Supporting ambitious founders building scalable technology companies.\" Display founders confidently presenting investor-ready products with subtle business and technology visuals. Maintain a clean premium composition optimized for small display sizes. Use navy blue, white, silver, and muted teal. Include icons representing funding, startups, AI, SaaS, and cloud infrastructure. Highlight Founder Focused, Growth Capital, Strategic Support, and Fast Decisions. Finish with the CTA \"Apply Today.\"",
+          "assets": { "images": [], "logos": [] },
+          "language": "german",
+          "numOfVariants": 4,
+          "outputFormat": ["jpg"],
+          "settings": {
+            "mode": "brand",
+            "currentbId": "b_sfZeStxbrvs",
+            "colorsPreference": { "mode": "brand", "customColors": [], "paletteStyle": [] },
+            "fontGroupPreference": { "mode": "brand", "fontGroups": [] },
+            "theme": ["light"], "frameStyle": [], "backdropStyle": [], "focus": ["image"], "imageStyle": []
+          }
+        }
+      },
+      {
+        "name": "Twitter/X Post – Funding Visionary Startups",
+        "data": {
+          "type": "twitter",
+          "subtype": "twitter-post",
+          "dimension": { "width": 1600, "height": 900 },
+          "prompt": "Design Twitter/X Post (1600 × 900 px), announcing startup investment opportunities. The headline should read \"Funding Visionary Startups.\" Add supporting text \"We invest in founders solving meaningful problems through scalable technology.\" Display an ambitious founder pitching to investors inside a premium meeting space with digital product prototypes visible on surrounding screens. Keep the founder centered while investors appear naturally engaged. Use navy blue, white, silver gray, soft cyan, and deep charcoal. Include icons representing venture capital, innovation, AI, software, and entrepreneurship. Highlight Founder First, Growth Capital, Industry Expertise, and Global Connections. Finish with the CTA \"Submit Your Pitch.\"",
+          "assets": { "images": [], "logos": [] },
+          "language": "english",
+          "numOfVariants": 4,
+          "outputFormat": ["jpg"],
+          "settings": {
+            "mode": "brand",
+            "currentbId": "b_sfZeStxbrvs",
+            "colorsPreference": { "mode": "brand", "customColors": [], "paletteStyle": [] },
+            "fontGroupPreference": { "mode": "brand", "fontGroups": [] },
+            "theme": ["light"], "frameStyle": [], "backdropStyle": [], "focus": ["image"], "imageStyle": []
+          }
+        }
+      },
+      {
+        "name": "YouTube Thumbnail – What Investors Really Look For",
+        "data": {
+          "type": "youtube",
+          "subtype": "youtube-thumbnail-small",
+          "dimension": { "width": 1280, "height": 720 },
+          "prompt": "Design a YouTube Thumbnail (1280 × 720 px). The headline should read \"What Investors Really Look For.\" Add supporting text \"Inside the mindset of modern venture capital firms.\" Display an experienced investor reviewing startup pitches while digital dashboards and financial projections appear naturally in the background. Keep the investor on one side with bold messaging on the opposite side. Use deep navy, white, silver gray, and blue highlights. Include icons representing investment, startups, analytics, AI, and business growth. Highlight Funding Advice, Pitch Tips, Founder Insights, and Investor Perspective. Finish with the CTA \"Watch Now.\"",
+          "assets": { "images": [], "logos": [] },
+          "language": "english",
+          "numOfVariants": 4,
+          "outputFormat": ["jpg"],
+          "settings": {
+            "mode": "brand",
+            "currentbId": "b_sfZeStxbrvs",
+            "colorsPreference": { "mode": "brand", "customColors": [], "paletteStyle": [] },
+            "fontGroupPreference": { "mode": "brand", "fontGroups": [] },
+            "theme": ["light"], "frameStyle": [], "backdropStyle": [], "focus": ["image"], "imageStyle": []
+          }
+        }
+      },
+      {
+        "name": "LinkedIn Event Banner – Founder & Innovation Summit 2026",
+        "data": {
+          "type": "linkedin",
+          "subtype": "linkedIn-banner",
+          "dimension": { "width": 1600, "height": 900 },
+          "prompt": "Design a LinkedIn Event Banner (1600 × 900 px), promoting Northveil's annual founder summit. The headline should read \"Founder & Innovation Summit 2026.\" Add supporting text \"Connecting visionary founders, investors, CTOs, and technology leaders.\" Display a keynote speaker addressing an audience of startup founders while networking sessions take place in the background. Arrange the event information clearly with agenda, keynote speakers, venue, and registration. Use navy, white, silver, and subtle blue gradients. Include icons representing calendar, speakers, startups, networking, and innovation. Highlight Founder Networking, Investor Access, Startup Showcase, and AI Innovation. Finish with a CTA reading \"Reserve Your Seat.\"",
+          "assets": { "images": [], "logos": [] },
+          "language": "english",
+          "numOfVariants": 4,
+          "outputFormat": ["jpg"],
+          "settings": {
+            "mode": "brand",
+            "currentbId": "b_sfZeStxbrvs",
+            "colorsPreference": { "mode": "brand", "customColors": [], "paletteStyle": [] },
+            "fontGroupPreference": { "mode": "brand", "fontGroups": [] },
+            "theme": ["light"], "frameStyle": [], "backdropStyle": [], "focus": ["image"], "imageStyle": []
+          }
+        }
+      },
+      {
+        "name": "Email Signature – The Founder Perspective",
+        "data": {
+          "type": "email",
+          "subtype": "wide",
+          "dimension": { "width": 600, "height": 150 },
+          "prompt": "Design an Email Signature (600 × 150 px), promoting Northveil Venture Capital's founder interview series. Include the headline \"The Founder Perspective\" followed by the supporting message \"Conversations with entrepreneurs building tomorrow's most influential technology companies.\" Feature a clean, premium layout with a subtle visual of founders and investors in conversation inside a modern workspace or podcast studio, ensuring the imagery complements rather than overwhelms the signature. Position the brand logo, sender details, and contact information prominently while maintaining generous whitespace for excellent email readability. Use a sophisticated color palette of midnight navy, white, silver gray, muted teal, and subtle blue accents. Include minimal icons for podcast, venture capital, founders, AI, innovation, website, email, LinkedIn, and calendar. Highlight Founder Stories, Investment Insights, and Technology Leadership in a concise promotional strip. Add a compact CTA reading \"Listen to the Latest Episode\" with a secondary CTA \"Explore Our Portfolio.\" Maintain a clean, executive-level appearance optimized for Outlook, Gmail, Apple Mail, and other professional email clients.",
+          "assets": { "images": [], "logos": [] },
+          "language": "english",
+          "numOfVariants": 4,
+          "outputFormat": ["jpg"],
+          "settings": {
+            "mode": "brand",
+            "currentbId": "b_sfZeStxbrvs",
+            "colorsPreference": { "mode": "brand", "customColors": [], "paletteStyle": [] },
+            "fontGroupPreference": { "mode": "brand", "fontGroups": [] },
+            "theme": ["light"], "frameStyle": [], "backdropStyle": [], "focus": ["image"], "imageStyle": []
+          }
+        }
+      }
+    ],
+    "designs-from-content": []
+  },
+  "b_sdfCxqhtlQ5": {
+    "designs-from-prompt": [
+      {
+        "name": "YouTube Thumbnail – Build AI Software Faster",
+        "data": {
+          "type": "youtube",
+          "subtype": "youtube-thumbnail-small",
+          "dimension": { "width": 1280, "height": 720 },
+          "prompt": "Design a premium YouTube thumbnail with a bold, modern technology aesthetic and a strong visual hierarchy. The composition features a dark navy gradient background with subtle glowing grid patterns and abstract AI network lines. A large geometric blue gradient panel occupies the left side, containing the bold headline \"Build AI Software Faster\" in large white geometric sans-serif typography. Beneath the headline is a smaller supporting line reading \"Custom Development • Intelligent Automation • Enterprise Ready.\" The right side showcases a futuristic laptop displaying glowing code interfaces and AI workflow diagrams, surrounded by floating holographic UI elements and cyan connection lines. Small floating technology icons representing APIs, cloud computing, automation, AI, databases, and DevOps are subtly integrated into the background without creating clutter. The color palette is limited to deep navy, blue, light blue, and white. Typography is bold geometric sans-serif with clear hierarchy. Flat modern design with subtle depth, soft lighting, clean gradients, minimal visual noise, high contrast, and optimized for YouTube thumbnail readability. No illustrations, no cartoon style, no excessive effects.",
+          "assets": { "images": [], "logos": [] },
+          "language": "english",
+          "numOfVariants": 4,
+          "outputFormat": ["jpg"],
+          "settings": {
+            "mode": "brand",
+            "currentbId": "b_sdfCxqhtlQ5",
+            "colorsPreference": { "mode": "brand", "customColors": [], "paletteStyle": [] },
+            "fontGroupPreference": { "mode": "brand", "fontGroups": [] },
+            "theme": ["dark"], "frameStyle": [], "backdropStyle": [], "focus": ["image"], "imageStyle": []
+          }
+        }
+      },
+      {
+        "name": "Facebook Event Banner – AI Innovation Summit 2030",
+        "data": {
+          "type": "facebook",
+          "subtype": "facebook-cover",
+          "dimension": { "width": 1920, "height": 1080 },
+          "prompt": "Design a professional Facebook event banner with a clean enterprise technology aesthetic and structured geometric composition. The background features a dark blue digital grid fading into a Seattle skyline silhouette with subtle AI network connections. The center contains a large horizontal blue glass morphism panel displaying the headline \"AI Innovation Summit 2030\" in bold white typography. A short supporting paragraph appears below in smaller white text. The lower section includes event information arranged in four evenly spaced information blocks showing date, venue, speakers, and registration using simple outline icons. The right side displays abstract AI circuitry, cloud architecture graphics, and connected data nodes. Use FlowMint brand colors with minimal gradients and generous whitespace. Corporate, enterprise-focused, clean edges, good quality layout.",
+          "assets": { "images": [], "logos": [] },
+          "language": "english",
+          "numOfVariants": 4,
+          "outputFormat": ["jpg"],
+          "settings": {
+            "mode": "brand",
+            "currentbId": "b_sdfCxqhtlQ5",
+            "colorsPreference": { "mode": "brand", "customColors": [], "paletteStyle": [] },
+            "fontGroupPreference": { "mode": "brand", "fontGroups": [] },
+            "theme": ["dark"], "frameStyle": [], "backdropStyle": [], "focus": ["image"], "imageStyle": []
+          }
+        }
+      },
+      {
+        "name": "LinkedIn Webinar Post – Master Intelligent Automation",
+        "data": {
+          "type": "linkedin",
+          "subtype": "linkedIn-post",
+          "dimension": { "width": 1200, "height": 628 },
+          "prompt": "Design a modern LinkedIn webinar post using bold geometric sections and a sophisticated enterprise layout. The top section contains a wide cobalt-blue banner with the headline \"Master Intelligent Automation\". Below, a professional business portrait is placed inside a blue frame with subtle shadow. The left side presents webinar information using structured cards with icons for date, duration, speaker, and registration. The background consists of layered abstract wave patterns, AI neural networks, and subtle coding elements. The bottom section includes a prominent FlowMint call-to-action button reading \"Reserve Your Seat\". Maintain FlowMint's blue palette, clean typography, subtle gradients, and modern SaaS design language.",
+          "assets": { "images": [], "logos": [] },
+          "language": "english",
+          "numOfVariants": 4,
+          "outputFormat": ["jpg"],
+          "settings": {
+            "mode": "brand",
+            "currentbId": "b_sdfCxqhtlQ5",
+            "colorsPreference": { "mode": "brand", "customColors": [], "paletteStyle": [] },
+            "fontGroupPreference": { "mode": "brand", "fontGroups": [] },
+            "theme": ["light"], "frameStyle": [], "backdropStyle": [], "focus": ["image"], "imageStyle": []
+          }
+        }
+      },
+      {
+        "name": "Podcast Cover – Future of Intelligent Software",
+        "data": {
+          "type": "website",
+          "subtype": "website-large-square",
+          "dimension": { "width": 600, "height": 600 },
+          "prompt": "Design a podcast cover with a premium enterprise AI visual identity. The background uses a smooth navy-to-blue gradient with glowing digital particles. The right features a large circular waveform surrounding a microphone icon made from geometric line art. The title \"Future of Intelligent Software\" appears in bold white typography occupying the upper half. Flat design, balanced spacing, clean geometric composition, optimized for podcast platforms.",
+          "assets": { "images": [], "logos": [] },
+          "language": "english",
+          "numOfVariants": 4,
+          "outputFormat": ["jpg"],
+          "settings": {
+            "mode": "brand",
+            "currentbId": "b_sdfCxqhtlQ5",
+            "colorsPreference": { "mode": "brand", "customColors": [], "paletteStyle": [] },
+            "fontGroupPreference": { "mode": "brand", "fontGroups": [] },
+            "theme": ["dark"], "frameStyle": [], "backdropStyle": [], "focus": ["image"], "imageStyle": []
+          }
+        }
+      },
+      {
+        "name": "Twitter/X Profile Banner – Transforming Businesses",
+        "data": {
+          "type": "twitter",
+          "subtype": "twitter-cover",
+          "dimension": { "width": 1500, "height": 500 },
+          "prompt": "Design a sleek Twitter/X profile banner with a futuristic SaaS branding style. The left section displays the FlowMint logo with the tagline: \"Transforming Businesses Through Intelligent Automation.\" The right section features a large blue abstract digital wave symbolizing data movement and automation. Use layered gradients, subtle glowing connections, clean whitespace, and strong typography hierarchy.",
+          "assets": { "images": [], "logos": [] },
+          "language": "english",
+          "numOfVariants": 4,
+          "outputFormat": ["jpg"],
+          "settings": {
+            "mode": "brand",
+            "currentbId": "b_sdfCxqhtlQ5",
+            "colorsPreference": { "mode": "brand", "customColors": [], "paletteStyle": [] },
+            "fontGroupPreference": { "mode": "brand", "fontGroups": [] },
+            "theme": ["light"], "frameStyle": [], "backdropStyle": [], "focus": ["image"], "imageStyle": []
+          }
+        }
+      },
+      {
+        "name": "Google Display Skyscraper – AI Development Without Complexity",
         "data": {
           "type": "displayAds",
           "subtype": "displayAds-half-page-ad",
           "dimension": { "width": 300, "height": 600 },
-          "prompt": "Navigating Real Estate, Simplified. Your trusted partner for buying and selling property. Learn More",
-          "assets": {
-            "images": [
-              { "url": "https://media.hellosivi.com/system/sample-brands/solid-home/photo-2.jpg", "imagePreference": { "crop": true, "removeBg": false } }
-            ],
-            "logos": [
-              { "url": "https://media.hellosivi.com/system/sample-brands/solid-home/solid-home-logo.png", "logoStyles": ["direct", "neutral"] }
-            ]
-          },
+          "prompt": "Design a high-converting 300 x 600 Google display ad features the headline: \"AI Development Without Complexity\" and a CTA button reading \"Book a Demo\" is positioned prominently. Blue gradients, white background elements, clean spacing, modern SaaS appearance.",
+          "assets": { "images": [], "logos": [] },
           "language": "english",
           "numOfVariants": 4,
           "outputFormat": ["jpg"],
           "settings": {
-            "mode": "custom",
-            "colorsPreference": {
-              "mode": "custom",
-              "customColors": [
-                { "primary": false, "color": "#2F5693", "addedBy": "user" },
-                { "primary": false, "color": "#0372CD", "addedBy": "user" }
-              ],
-              "paletteStyle": []
-            },
-            "fontGroupPreference": { "mode": "brand", "fontGroups": [] },
-            "theme": ["dark"], "frameStyle": [], "backdropStyle": [], "focus": [], "imageStyle": []
-          }
-        }
-      }
-    ],
-    "designs-from-content": [
-      {
-        "name": "Taco Tuesday Offer",
-        "data": {
-          "type": "instagram",
-          "subtype": "instagram-post",
-          "dimension": { "width": 1080, "height": 1080 },
-          "content": {
-            "supertext": "Taco Tuesday",
-            "title": "Alberto's Taco",
-            "subtext": "Bold, authentic Mexican flavors made fresh, fast, and always satisfying",
-            "offer": "Up to 50% Off All Tacos",
-            "button": "Order Now"
-          },
-          "assets": {
-            "images": [
-              { "url": "https://media.hellosivi.com/system/sample-brands/albertos-taco/photo-1.png", "imagePreference": { "crop": true, "removeBg": false } },
-              { "url": "https://media.hellosivi.com/system/sample-brands/albertos-taco/photo-2.png", "imagePreference": { "crop": true, "removeBg": false } }
-            ],
-            "logos": [
-              { "url": "https://media.hellosivi.com/system/sample-brands/albertos-taco/albertos-taco-logo.png", "logoStyles": ["direct", "neutral"] }
-            ]
-          },
-          "language": "english",
-          "numOfVariants": 3,
-          "outputFormat": ["jpg"],
-          "settings": {
-            "mode": "custom",
-            "colorsPreference": { "mode": "custom", "customColors": ["#A12324", "#527A00", "#B3892D"], "paletteStyle": [] },
+            "mode": "brand",
+            "currentbId": "b_sdfCxqhtlQ5",
+            "colorsPreference": { "mode": "brand", "customColors": [], "paletteStyle": [] },
             "fontGroupPreference": { "mode": "brand", "fontGroups": [] },
             "theme": ["light"], "frameStyle": [], "backdropStyle": [], "focus": ["image"], "imageStyle": []
           }
         }
       },
       {
-        "name": "Blossom & Bloom Showcase",
-        "data": {
-          "type": "website",
-          "subtype": "website-large-square",
-          "dimension": { "width": 600, "height": 600 },
-          "content": {
-            "supertext": "Fresh Arrivals",
-            "title": "Blossom & Bloom",
-            "subtext": "Fresh flowers that make every occasion feel special",
-            "bulletlist": ["Same-day delivery", "Handpicked blooms", "Custom arrangements"],
-            "button": "View Collection"
-          },
-          "assets": {
-            "images": [
-              { "url": "https://media.hellosivi.com/system/sample-brands/blossom-bloom/photo-1.jpg", "imagePreference": { "crop": true, "removeBg": false } },
-              { "url": "https://media.hellosivi.com/system/sample-brands/blossom-bloom/photo-2.jpg", "imagePreference": { "crop": true, "removeBg": false } }
-            ],
-            "logos": [
-              { "url": "https://media.hellosivi.com/system/sample-brands/blossom-bloom/blossom-bloom-logo.png", "logoStyles": ["direct", "neutral"] }
-            ]
-          },
-          "language": "english",
-          "numOfVariants": 3,
-          "outputFormat": ["jpg"],
-          "settings": {
-            "mode": "custom",
-            "colorsPreference": { "mode": "custom", "customColors": ["#D34D75", "#4AD3A9", "#FFC84D"], "paletteStyle": [] },
-            "fontGroupPreference": { "mode": "brand", "fontGroups": [] },
-            "theme": ["light"], "frameStyle": [], "backdropStyle": [], "focus": ["image"], "imageStyle": []
-          }
-        }
-      }
-    ]
-  },
-  "sivi": {
-    "designs-from-prompt": [
-      {
-        "name": "Sivi Product Promo",
-        "data": {
-          "type": "linkedin",
-          "subtype": "linkedin-post",
-          "dimension": { "width": 1200, "height": 627 },
-          "prompt": "Sivi AI — Turn Text into Designs. Generate multi-format visual content from a single prompt. Try it free today.",
-          "assets": {
-            "images": [],
-            "logos": [
-              { "url": "/sivi-logo.png", "logoStyles": ["direct", "neutral"] }
-            ]
-          },
-          "language": "english",
-          "numOfVariants": 3,
-          "outputFormat": ["jpg"],
-          "settings": {
-            "mode": "custom",
-            "colorsPreference": {
-              "mode": "custom",
-              "customColors": [
-                { "primary": false, "color": "#00E0FF", "addedBy": "user" },
-                { "primary": false, "color": "#00A8FF", "addedBy": "user" },
-                { "primary": false, "color": "#8B5CF6", "addedBy": "user" }
-              ],
-              "paletteStyle": []
-            },
-            "fontGroupPreference": { "mode": "brand", "fontGroups": [] },
-            "theme": ["dark"], "frameStyle": [], "backdropStyle": [], "focus": [], "imageStyle": []
-          }
-        }
-      },
-      {
-        "name": "Sivi Feature Highlight",
+        "name": "Google Display Leaderboard – Future-Proof Your Business with AI",
         "data": {
           "type": "displayAds",
-          "subtype": "displayAds-medium-rectangle",
-          "dimension": { "width": 300, "height": 250 },
-          "prompt": "Design at Scale. Sivi generates 100+ variations in minutes. Boost your creative output.",
-          "assets": {
-            "images": [],
-            "logos": [
-              { "url": "/sivi-logo.png", "logoStyles": ["direct", "neutral"] }
-            ]
-          },
+          "subtype": "displayAds-inline-rectangle",
+          "dimension": { "width": 728, "height": 90 },
+          "prompt": "Design a premium Google Display Leaderboard ad. The left side contains the headline \"Future-Proof Your Business with AI.\" The right side features a prominent CTA button alongside the FlowMint logo. Background uses layered blue gradients with abstract cloud computing visuals. Optimized for readability at small sizes.",
+          "assets": { "images": [], "logos": [] },
           "language": "english",
           "numOfVariants": 4,
           "outputFormat": ["jpg"],
           "settings": {
-            "mode": "custom",
-            "colorsPreference": {
-              "mode": "custom",
-              "customColors": [
-                { "primary": false, "color": "#00E0FF", "addedBy": "user" },
-                { "primary": false, "color": "#8B5CF6", "addedBy": "user" }
-              ],
-              "paletteStyle": []
-            },
+            "mode": "brand",
+            "currentbId": "b_sdfCxqhtlQ5",
+            "colorsPreference": { "mode": "brand", "customColors": [], "paletteStyle": [] },
             "fontGroupPreference": { "mode": "brand", "fontGroups": [] },
-            "theme": ["light"], "frameStyle": [], "backdropStyle": [], "focus": [], "imageStyle": []
-          }
-        }
-      }
-    ],
-    "designs-from-content": [
-      {
-        "name": "Sivi Launch Announcement",
-        "data": {
-          "type": "instagram",
-          "subtype": "instagram-post",
-          "dimension": { "width": 1080, "height": 1080 },
-          "content": {
-            "supertext": "New Release",
-            "title": "Sivi AI 2.0",
-            "subtext": "Now with multi-format design generation from a single prompt",
-            "bulletlist": ["100+ variations", "Brand-aware designs", "Editable SVG output"],
-            "button": "Get Started"
-          },
-          "assets": {
-            "images": [],
-            "logos": [
-              { "url": "/sivi-logo.png", "logoStyles": ["direct", "neutral"] }
-            ]
-          },
-          "language": "english",
-          "numOfVariants": 3,
-          "outputFormat": ["jpg"],
-          "settings": {
-            "mode": "custom",
-            "colorsPreference": { "mode": "custom", "customColors": ["#00E0FF", "#00A8FF", "#8B5CF6"], "paletteStyle": [] },
-            "fontGroupPreference": { "mode": "brand", "fontGroups": [] },
-            "theme": ["dark"], "frameStyle": [], "backdropStyle": [], "focus": [], "imageStyle": []
+            "theme": ["light"], "frameStyle": [], "backdropStyle": [], "focus": ["image"], "imageStyle": []
           }
         }
       },
       {
-        "name": "Sivi Webinar Promo",
+        "name": "LinkedIn Recruitment Banner – We're Hiring AI Engineers",
         "data": {
           "type": "linkedin",
-          "subtype": "linkedin-post",
-          "dimension": { "width": 1200, "height": 627 },
-          "content": {
-            "supertext": "Live Webinar",
-            "title": "Design Automation with Sivi AI",
-            "subtext": "Learn how to scale your creative production with AI-powered design generation",
-            "button": "Register Now"
-          },
-          "assets": {
-            "images": [],
-            "logos": [
-              { "url": "/sivi-logo.png", "logoStyles": ["direct", "neutral"] }
-            ]
-          },
-          "language": "english",
-          "numOfVariants": 3,
-          "outputFormat": ["jpg"],
-          "settings": {
-            "mode": "custom",
-            "colorsPreference": { "mode": "custom", "customColors": ["#00E0FF", "#8B5CF6"], "paletteStyle": [] },
-            "fontGroupPreference": { "mode": "brand", "fontGroups": [] },
-            "theme": ["light"], "frameStyle": [], "backdropStyle": [], "focus": [], "imageStyle": []
-          }
-        }
-      }
-    ]
-  },
-  "bookmyshow": {
-    "designs-from-prompt": [
-      {
-        "name": "Movie Now Showing",
-        "data": {
-          "type": "instagram",
-          "subtype": "instagram-post",
-          "dimension": { "width": 1080, "height": 1080 },
-          "prompt": "Now Showing — Dune: Part Two. Book your tickets now on BookMyShow. IMAX & 4DX available.",
-          "assets": {
-            "images": [],
-            "logos": [
-              { "url": "/brand_logo.png", "logoStyles": ["direct", "neutral"] }
-            ]
-          },
-          "language": "english",
-          "numOfVariants": 3,
-          "outputFormat": ["jpg"],
-          "settings": {
-            "mode": "custom",
-            "colorsPreference": {
-              "mode": "custom",
-              "customColors": [
-                { "primary": false, "color": "#E53945", "addedBy": "user" },
-                { "primary": false, "color": "#555555", "addedBy": "user" }
-              ],
-              "paletteStyle": []
-            },
-            "fontGroupPreference": { "mode": "brand", "fontGroups": [] },
-            "theme": ["dark"], "frameStyle": [], "backdropStyle": [], "focus": [], "imageStyle": []
-          }
-        }
-      },
-      {
-        "name": "Weekend Events Promo",
-        "data": {
-          "type": "facebook",
-          "subtype": "facebook-post",
-          "dimension": { "width": 1200, "height": 630 },
-          "prompt": "Live Events This Weekend — Stand-up Comedy, Music Concerts, Theatre Plays. Book now on BookMyShow.",
-          "assets": {
-            "images": [],
-            "logos": [
-              { "url": "/brand_logo.png", "logoStyles": ["direct", "neutral"] }
-            ]
-          },
+          "subtype": "linkedIn-banner",
+          "dimension": { "width": 1584, "height": 396 },
+          "prompt": "Design a professional LinkedIn recruitment banner for AI engineers with a clean technology employer branding style. The background shows developers collaborating inside a modern workspace with subtle transparency. Large headline: \"We're Hiring AI Engineers.\" Supporting bulleted text explains Innovation: Build modern, scalable applications using full-stack technologies and cloud platforms., Remote collaboration: Enjoy the flexibility of working remotely while collaborating with a dynamic team, and Enterprise projects: Work on impactful projects in a culture that values innovation and creativity. FlowMint branding remains subtle yet visible.",
+          "assets": { "images": [], "logos": [] },
           "language": "english",
           "numOfVariants": 4,
           "outputFormat": ["jpg"],
           "settings": {
-            "mode": "custom",
-            "colorsPreference": {
-              "mode": "custom",
-              "customColors": [
-                { "primary": false, "color": "#E53945", "addedBy": "user" },
-                { "primary": false, "color": "#555555", "addedBy": "user" }
-              ],
-              "paletteStyle": []
-            },
+            "mode": "brand",
+            "currentbId": "b_sdfCxqhtlQ5",
+            "colorsPreference": { "mode": "brand", "customColors": [], "paletteStyle": [] },
             "fontGroupPreference": { "mode": "brand", "fontGroups": [] },
-            "theme": ["light"], "frameStyle": [], "backdropStyle": [], "focus": [], "imageStyle": []
-          }
-        }
-      }
-    ],
-    "designs-from-content": [
-      {
-        "name": "Blockbuster Movie Release",
-        "data": {
-          "type": "instagram",
-          "subtype": "instagram-post",
-          "dimension": { "width": 1080, "height": 1080 },
-          "content": {
-            "supertext": "Now Booking",
-            "title": "Dune: Part Two",
-            "subtext": "Experience the epic continuation of the Dune saga",
-            "bulletlist": ["IMAX Available", "4DX Shows", "Multiple Languages"],
-            "button": "Book Tickets"
-          },
-          "assets": {
-            "images": [],
-            "logos": [
-              { "url": "/brand_logo.png", "logoStyles": ["direct", "neutral"] }
-            ]
-          },
-          "language": "english",
-          "numOfVariants": 3,
-          "outputFormat": ["jpg"],
-          "settings": {
-            "mode": "custom",
-            "colorsPreference": { "mode": "custom", "customColors": ["#E53945", "#555555"], "paletteStyle": [] },
-            "fontGroupPreference": { "mode": "brand", "fontGroups": [] },
-            "theme": ["dark"], "frameStyle": [], "backdropStyle": [], "focus": [], "imageStyle": []
+            "theme": ["light"], "frameStyle": [], "backdropStyle": [], "focus": ["image"], "imageStyle": []
           }
         }
       },
       {
-        "name": "Comedy Show Promo",
+        "name": "Email Newsletter – The Future of Digital Transformation",
         "data": {
-          "type": "facebook",
-          "subtype": "facebook-post",
-          "dimension": { "width": 1200, "height": 630 },
-          "content": {
-            "supertext": "Live This Weekend",
-            "title": "Comedy Night Live",
-            "subtext": "India's funniest comedians on one stage",
-            "button": "Book Now"
-          },
-          "assets": {
-            "images": [],
-            "logos": [
-              { "url": "/brand_logo.png", "logoStyles": ["direct", "neutral"] }
-            ]
-          },
+          "type": "email",
+          "subtype": "wide",
+          "dimension": { "width": 1400, "height": 600 },
+          "prompt": "Design a modern enterprise email newsletter of custom size (1400 × 600 px) The top section should feature the FlowMint logo: https://images.hellosivi.com/fit-in/200x200/logos/sbhvzzz6Wrx.png alongside the headline \"The Future of Digital Transformation Starts Here,\" followed by the supporting message \"Discover how AI-driven software, intelligent automation, and cloud-native solutions help engineering teams build faster, scale smarter, and innovate confidently.\" Use a clean white background with deep navy (#06163A), vibrant blue (#3070FF), light blue (#C4D6FF), and subtle cyan accents to create a premium enterprise technology appearance with generous spacing. The hero image should showcase a modern enterprise technology dashboard displaying interconnected cloud infrastructure, with subtle glowing data connections. Below the hero section, include three highlighted solution cards titled \"Cloud Engineering,\" \"Intelligent Automation,\" and \"Enterprise AI,\" each containing a one-line description and a clean outline icon representing cloud infrastructure, workflow automation, and artificial intelligence. Place a prominent primary CTA button reading \"Book a Free Strategy Session\" directly below the featured insight for readers seeking additional information. Maintain a structured composition with clear visual separation between sections, consistent spacing, balanced alignment, minimal gradients, modern enterprise aesthetics, subtle depth, clean imagery, and a professional SaaS-focused presentation optimized for high email readability and conversion.",
+          "assets": { "images": [], "logos": [] },
           "language": "english",
-          "numOfVariants": 3,
+          "numOfVariants": 4,
           "outputFormat": ["jpg"],
           "settings": {
-            "mode": "custom",
-            "colorsPreference": { "mode": "custom", "customColors": ["#E53945", "#555555"], "paletteStyle": [] },
+            "mode": "brand",
+            "currentbId": "b_sdfCxqhtlQ5",
+            "colorsPreference": { "mode": "brand", "customColors": [], "paletteStyle": [] },
             "fontGroupPreference": { "mode": "brand", "fontGroups": [] },
-            "theme": ["light"], "frameStyle": [], "backdropStyle": [], "focus": [], "imageStyle": []
+            "theme": ["light"], "frameStyle": [], "backdropStyle": [], "focus": ["image"], "imageStyle": []
+          }
+        }
+      },
+      {
+        "name": "Reddit Ad – Introducing FlowMint AI Platform",
+        "data": {
+          "type": "reddit",
+          "subtype": "reddit-ad",
+          "dimension": { "width": 1200, "height": 628 },
+          "prompt": "Design a Reddit ad for product launch announcement poster with a futuristic software product aesthetic. Headline: \"Introducing FlowMint AI Platform\" A supporting paragraph and bottom contains three feature cards highlighting AI development, cloud integration, and workflow automation. Minimal gradients, modern enterprise styling.",
+          "assets": { "images": [], "logos": [] },
+          "language": "english",
+          "numOfVariants": 4,
+          "outputFormat": ["jpg"],
+          "settings": {
+            "mode": "brand",
+            "currentbId": "b_sdfCxqhtlQ5",
+            "colorsPreference": { "mode": "brand", "customColors": [], "paletteStyle": [] },
+            "fontGroupPreference": { "mode": "brand", "fontGroups": [] },
+            "theme": ["light"], "frameStyle": [], "backdropStyle": [], "focus": ["image"], "imageStyle": []
           }
         }
       }
-    ]
+    ],
+    "designs-from-content": []
+  },
+  "b_s4gjTzyXW4I": {
+    "designs-from-prompt": [
+      {
+        "name": "Snapchat Ad – Your Skin's Daily Hydration Starts Here",
+        "data": {
+          "type": "instagram",
+          "subtype": "instagram-post",
+          "dimension": { "width": 1080, "height": 1920 },
+          "prompt": "Design a Snapchat Ad (1080 × 1920 px) promoting HYLURA's Korean-inspired hydration skincare collection. The headline should read \"Your Skin's Daily Hydration Starts Here.\" Add supporting text \"Experience deep hydration, a stronger skin barrier, and a naturally radiant glow with every routine.\" Display a premium HYLURA serum bottle as the hero product surrounded by flowing water, translucent glass textures, fresh botanical elements, and luminous dewy skin, creating a luxurious spa-inspired atmosphere. Keep the composition vertically optimized with the hero product occupying the center while leaving clear space at the top and bottom for Snapchat interface elements. Use a sophisticated palette of pearl white, crystal aqua, icy blue, soft silver, translucent glass tones, and subtle blush accents to communicate freshness and premium skincare. Include icons representing hydration, dermatologist-tested formulas, clean beauty, skin barrier protection, and cruelty-free skincare. Highlight Deep Hydration, Korean Skincare Innovation, Visible Radiance, Suitable for Daily Use, and Premium Ingredients. Include a limited-time promotional message reading \"Exclusive Snapchat Offer – Save 20% Today.\" Finish with a prominent CTA reading \"Swipe Up to Shop\" and a secondary message \"Limited-Time Beauty Event.\" Maintain realistic product photography, clean luxury beauty styling, elegant lighting, generous whitespace, and a premium editorial composition optimized for high engagement and mobile-first viewing.",
+          "assets": { "images": [], "logos": [] },
+          "language": "english",
+          "numOfVariants": 4,
+          "outputFormat": ["jpg"],
+          "settings": {
+            "mode": "brand",
+            "currentbId": "b_s4gjTzyXW4I",
+            "colorsPreference": { "mode": "brand", "customColors": [], "paletteStyle": [] },
+            "fontGroupPreference": { "mode": "brand", "fontGroups": [] },
+            "theme": ["light"], "frameStyle": [], "backdropStyle": [], "focus": ["image"], "imageStyle": []
+          }
+        }
+      },
+      {
+        "name": "YouTube Thumbnail (Korean) – The Secret Behind Korean Glass Skin",
+        "data": {
+          "type": "youtube",
+          "subtype": "youtube-thumbnail-small",
+          "dimension": { "width": 1280, "height": 720 },
+          "prompt": "Create a YouTube Thumbnail in Korean language (1280 × 720 px), promoting an educational skincare video. The headline should read \"The Secret Behind Korean Glass Skin.\" Add supporting text \"Discover the hydration routine trusted for healthier, radiant skin.\" Display a glowing model holding a HYLURA serum bottle alongside premium skincare products arranged on reflective surfaces with flowing water and soft natural lighting. Keep the face and hero product as the primary focus while maintaining strong readability. Use pearl white, icy blue, aqua, silver, and soft blush. Include icons representing hydration, skincare, beauty, glow, and self-care. Highlight Glass Skin Routine, Hydration Tips, Daily Ritual, and Visible Results. Finish with the CTA \"Watch the Routine.\"",
+          "assets": { "images": [], "logos": [] },
+          "language": "korean",
+          "numOfVariants": 4,
+          "outputFormat": ["jpg"],
+          "settings": {
+            "mode": "brand",
+            "currentbId": "b_s4gjTzyXW4I",
+            "colorsPreference": { "mode": "brand", "customColors": [], "paletteStyle": [] },
+            "fontGroupPreference": { "mode": "brand", "fontGroups": [] },
+            "theme": ["light"], "frameStyle": [], "backdropStyle": [], "focus": ["image"], "imageStyle": []
+          }
+        }
+      },
+      {
+        "name": "Pinterest Pin – Create Your Perfect Hydration Routine",
+        "data": {
+          "type": "pinterest",
+          "subtype": "pinterest-pin-small",
+          "dimension": { "width": 600, "height": 900 },
+          "prompt": "Design a Pinterest Pin (600 × 900 px) showcasing luxury skincare inspiration. The headline should read \"Create Your Perfect Hydration Routine.\" Add supporting text \"Simple daily rituals inspired by Korean skincare science.\" Display HYLURA products elegantly arranged beside fresh flowers, towels, water, mirrors, and skincare accessories in a luxurious vanity setting. Use pearl white, aqua, silver, pastel blue, and blush tones. Include icons representing skincare, hydration, self-care, beauty, and wellness. Highlight Morning Routine, Night Routine, Skin Barrier, and Healthy Glow. Finish with the CTA \"Explore Beauty Tips.\"",
+          "assets": { "images": [], "logos": [] },
+          "language": "english",
+          "numOfVariants": 4,
+          "outputFormat": ["jpg"],
+          "settings": {
+            "mode": "brand",
+            "currentbId": "b_s4gjTzyXW4I",
+            "colorsPreference": { "mode": "brand", "customColors": [], "paletteStyle": [] },
+            "fontGroupPreference": { "mode": "brand", "fontGroups": [] },
+            "theme": ["light"], "frameStyle": [], "backdropStyle": [], "focus": ["image"], "imageStyle": []
+          }
+        }
+      },
+      {
+        "name": "Email Newsletter – Your Skin Deserves Daily Hydration",
+        "data": {
+          "type": "email",
+          "subtype": "rectangle",
+          "dimension": { "width": 600, "height": 450 },
+          "prompt": "Design a responsive Email Newsletter (600 × 450 px) introducing HYLURA's hydration-focused skincare routine. The headline should read \"Your Skin Deserves Daily Hydration.\" Add supporting text \"Explore skincare rituals inspired by modern Korean beauty innovation.\" Display beautifully lit product photography alongside glowing skin lifestyle imagery inside a clean spa-inspired environment. Organize sections into Featured Products, Skincare Routine, Ingredient Spotlight, and Customer Favorites. Use white backgrounds with aqua blue, pearl silver, soft lavender, and pale blush accents. Include icons representing face care, hydration, eye care, lip care, hair care, and sustainability. Highlight Complete Skincare Routine, Visible Radiance, Barrier Protection, and Clean Ingredients. Include a primary CTA \"Build Your Routine\" and a secondary CTA \"Explore Products.\"",
+          "assets": { "images": [], "logos": [] },
+          "language": "english",
+          "numOfVariants": 4,
+          "outputFormat": ["jpg"],
+          "settings": {
+            "mode": "brand",
+            "currentbId": "b_s4gjTzyXW4I",
+            "colorsPreference": { "mode": "brand", "customColors": [], "paletteStyle": [] },
+            "fontGroupPreference": { "mode": "brand", "fontGroups": [] },
+            "theme": ["light"], "frameStyle": [], "backdropStyle": [], "focus": ["image"], "imageStyle": []
+          }
+        }
+      },
+      {
+        "name": "Amazon Product Banner – Healthy Skin Starts with Hydration",
+        "data": {
+          "type": "amazon",
+          "subtype": "amazon-square",
+          "dimension": { "width": 300, "height": 300 },
+          "prompt": "Design an Amazon Product Banner (300 × 300 px) showcasing HYLURA's skincare range. The headline should read \"Healthy Skin Starts with Hydration.\" Add supporting text \"Science-backed skincare inspired by Korean beauty rituals.\" Display multiple HYLURA products elegantly arranged with water splashes, glass textures, soft towels, and fresh botanical ingredients while maintaining premium product visibility. Use pearl white, icy blue, translucent aqua, silver gray, and soft pastel pink. Include icons representing hydration, skin barrier, cruelty-free, dermatologist tested, and premium ingredients. Highlight Hydrating Formula, Clean Beauty, Daily Routine, and Visible Results. Finish with the CTA \"Shop the Routine.\"",
+          "assets": { "images": [], "logos": [] },
+          "language": "english",
+          "numOfVariants": 4,
+          "outputFormat": ["jpg"],
+          "settings": {
+            "mode": "brand",
+            "currentbId": "b_s4gjTzyXW4I",
+            "colorsPreference": { "mode": "brand", "customColors": [], "paletteStyle": [] },
+            "fontGroupPreference": { "mode": "brand", "fontGroups": [] },
+            "theme": ["light"], "frameStyle": [], "backdropStyle": [], "focus": ["image"], "imageStyle": []
+          }
+        }
+      }
+    ],
+    "designs-from-content": []
+  },
+  "b_sEd1oqGz9Al": {
+    "designs-from-prompt": [
+      {
+        "name": "YouTube Shorts Thumbnail – The Story Nobody Told You",
+        "data": {
+          "type": "youtube",
+          "subtype": "youtube-thumbnail-small",
+          "dimension": { "width": 1280, "height": 720 },
+          "prompt": "Design a professional YouTube Shorts thumbnail (1280 × 720 px, 16:9) with a cinematic technology-event atmosphere that immediately captures attention from developers and startup founders. The main headline should read \"The Story Nobody Told You\" with the supporting text \"Real builders. Real failures. Real breakthroughs.\" Use a dramatic hero image of a lone developer standing under a red spotlight inside a dark auditorium while blurred audience silhouettes remain in the background. Keep the composition left-aligned for the headline and right-aligned for the hero subject with strong visual balance. Use a color palette of black, deep charcoal, rich red, white, and subtle crimson highlights. Add small icons representing innovation, microphone, startup, coding, and networking. Include a CTA reading \"Watch Now\" in the lower-right corner. Highlight phrases including Founder Stories, Lessons Learned, and Tech Community. Maintain generous negative space and strong contrast for maximum thumbnail visibility.",
+          "assets": { "images": [], "logos": [] },
+          "language": "english",
+          "numOfVariants": 4,
+          "outputFormat": ["jpg"],
+          "settings": {
+            "mode": "brand",
+            "currentbId": "b_sEd1oqGz9Al",
+            "colorsPreference": { "mode": "brand", "customColors": [], "paletteStyle": [] },
+            "fontGroupPreference": { "mode": "brand", "fontGroups": [] },
+            "theme": ["dark"], "frameStyle": [], "backdropStyle": [], "focus": ["image"], "imageStyle": []
+          }
+        }
+      },
+      {
+        "name": "Twitter/X Header – Every Builder Has A Story Worth Sharing",
+        "data": {
+          "type": "twitter",
+          "subtype": "twitter-cover",
+          "dimension": { "width": 1500, "height": 500 },
+          "prompt": "Design a Twitter/X Header (1500 × 500 px) introducing the Break The Circle movement for developers and entrepreneurs. The headline should read \"Every Builder Has A Story Worth Sharing.\" Display multiple professionals walking toward a brightly lit stage symbolizing opportunity and visibility. Arrange the logo on the right and supporting message \"Helping hidden builders find their audience.\" on the left. Use a dark background with red accent lighting and clean white highlights. Add icons representing collaboration, coding, startups, mentorship, and innovation. Highlight Community, Founder Network, and Live Events.",
+          "assets": { "images": [], "logos": [] },
+          "language": "english",
+          "numOfVariants": 4,
+          "outputFormat": ["jpg"],
+          "settings": {
+            "mode": "brand",
+            "currentbId": "b_sEd1oqGz9Al",
+            "colorsPreference": { "mode": "brand", "customColors": [], "paletteStyle": [] },
+            "fontGroupPreference": { "mode": "brand", "fontGroups": [] },
+            "theme": ["dark"], "frameStyle": [], "backdropStyle": [], "focus": ["image"], "imageStyle": []
+          }
+        }
+      },
+      {
+        "name": "Instagram Post (Spanish) – Meet the Creators Who Changed Their History",
+        "data": {
+          "type": "instagram",
+          "subtype": "instagram-post",
+          "dimension": { "width": 1080, "height": 1080 },
+          "prompt": "Create a developer meetup ad for Instagram in Spanish, promoting a networking event for developers, CTOs, software engineers, and startup founders in Madrid, Spain. The main headline should read \"Meet the Creators Who Changed Their History,\" followed by the supporting message \"Connect with developers, founders, and technology leaders who are driving innovation in Spain.\" Display a contemporary auditorium in Madrid with developers networking after an inspiring keynote session, featuring dramatic red stage lighting and a vibrant yet professional atmosphere. Arrange the event details below, including Date, Time, Location: Madrid, Spain; Agenda; Speakers; and Networking Session in a clean, structured layout. Includes simple icons representing a calendar, coding, networking, startup founders, discussions, and location. Highlight key sections including Real Startup Stories, Open Networking, Developer Community, and Live Q&A. Include a visible registration section with the CTA \"Reserve your Place\" and a secondary message \"Limited Places – Register Today.\" Maintain a clean, modern composition with generous spacing, strong visual hierarchy, cinematic event photography, subtle lighting effects, and a premium technology conference aesthetic optimized for both digital promotion and presentation displays.",
+          "assets": { "images": [], "logos": [] },
+          "language": "spanish",
+          "numOfVariants": 4,
+          "outputFormat": ["jpg"],
+          "settings": {
+            "mode": "brand",
+            "currentbId": "b_sEd1oqGz9Al",
+            "colorsPreference": { "mode": "brand", "customColors": [], "paletteStyle": [] },
+            "fontGroupPreference": { "mode": "brand", "fontGroups": [] },
+            "theme": ["dark"], "frameStyle": [], "backdropStyle": [], "focus": ["image"], "imageStyle": []
+          }
+        }
+      },
+      {
+        "name": "Google Display Ad – Founder Sessions",
+        "data": {
+          "type": "displayAds",
+          "subtype": "displayAds-inline-rectangle",
+          "dimension": { "width": 300, "height": 250 },
+          "prompt": "I need a Google display advertisement (300 × 250 px) for a founder sessions. Highlight developer stories and founder talks.",
+          "assets": { "images": [], "logos": [] },
+          "language": "english",
+          "numOfVariants": 4,
+          "outputFormat": ["jpg"],
+          "settings": {
+            "mode": "brand",
+            "currentbId": "b_sEd1oqGz9Al",
+            "colorsPreference": { "mode": "brand", "customColors": [], "paletteStyle": [] },
+            "fontGroupPreference": { "mode": "brand", "fontGroups": [] },
+            "theme": ["light"], "frameStyle": [], "backdropStyle": [], "focus": ["image"], "imageStyle": []
+          }
+        }
+      },
+      {
+        "name": "WhatsApp Promotion – Exclusive Membership Renewal",
+        "data": {
+          "type": "whatsapp",
+          "subtype": "whatsapp-post",
+          "dimension": { "width": 800, "height": 800 },
+          "prompt": "Quick WhatsApp promotion creatives for exclusive membership renewal to Break The Circle 2026 is closing soon. Only 127 membership renewals remain. Unlock 25% savings on membership fees with code BREAK26. Offer expires tonight. Secure Your Membership.",
+          "assets": { "images": [], "logos": [] },
+          "language": "english",
+          "numOfVariants": 4,
+          "outputFormat": ["jpg"],
+          "settings": {
+            "mode": "brand",
+            "currentbId": "b_sEd1oqGz9Al",
+            "colorsPreference": { "mode": "brand", "customColors": [], "paletteStyle": [] },
+            "fontGroupPreference": { "mode": "brand", "fontGroups": [] },
+            "theme": ["light"], "frameStyle": [], "backdropStyle": [], "focus": ["image"], "imageStyle": []
+          }
+        }
+      }
+    ],
+    "designs-from-content": []
   }
 }

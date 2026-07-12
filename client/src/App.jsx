@@ -216,11 +216,15 @@ function App({ variant = 'playground' }) {
     setSelectedExample(exampleValue)
     setSelectedHistoryId('')
     setPrefilledFormData(exampleData || null)
+    const exampleBId = exampleData?.settings?.currentbId
+    if (exampleBId && setSelectedBId && exampleBId !== selectedBId) {
+      setSelectedBId(exampleBId)
+    }
     if (flowKey && flowKey !== 'auto' && flowKey !== activeFlow) {
       setActiveFlow(flowKey)
     }
     setFormKey((k) => k + 1)
-  }, [activeFlow, setActiveFlow])
+  }, [activeFlow, setActiveFlow, setSelectedBId, selectedBId])
 
   const handleHistorySelect = useCallback(async (historyId) => {
     if (!historyId) {

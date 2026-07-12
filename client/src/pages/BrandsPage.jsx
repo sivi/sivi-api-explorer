@@ -12,6 +12,12 @@ function resolveColors(brand) {
   return brand.colors || brand.brandColors || []
 }
 
+function resolveColorValue(color) {
+  if (typeof color === 'string') return color
+  if (color && typeof color === 'object') return color.color || color.hex || color.primary || ''
+  return String(color)
+}
+
 function BrandCard({ brand, onSelect, index }) {
   const logo = resolveLogo(brand)
   const colors = resolveColors(brand)
@@ -40,14 +46,17 @@ function BrandCard({ brand, onSelect, index }) {
 
       {colors.length > 0 && (
         <div className="brand-list-card-palette">
-          {colors.map((color, colorIndex) => (
-            <div
-              key={colorIndex}
-              className="brand-list-card-color"
-              style={{ backgroundColor: color }}
-              title={color}
-            />
-          ))}
+          {colors.map((color, colorIndex) => {
+            const colorValue = resolveColorValue(color)
+            return (
+              <div
+                key={colorIndex}
+                className={`brand-list-card-color ${color && color.primary ? 'brand-list-card-color-primary' : ''}`}
+                style={{ backgroundColor: colorValue }}
+                title={colorValue}
+              />
+            )
+          })}
         </div>
       )}
 
