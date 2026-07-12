@@ -19,7 +19,7 @@ import {
   isBlockAlwaysPresent,
 } from '../data/contentBlockTypes';
 
-const DesignsFromContentForm = ({ onSubmit, initialData }) => {
+const DesignsFromContentForm = ({ onSubmit, initialData, selectedBId }) => {
   const SIVI_MIN_DIMENSION = 150;
   const SIVI_MAX_DIMENSION = 2000;
 
@@ -37,8 +37,9 @@ const DesignsFromContentForm = ({ onSubmit, initialData }) => {
     },
     settings: {
       mode: 'custom',
+      currentbId: '',
       genMode: 'compose',
-      designModel: 'auto',
+      designModel: 'sivi-gen-28h-pro',
       colorsPreference: {
         mode: 'custom',
         customColors: [],
@@ -81,13 +82,25 @@ const DesignsFromContentForm = ({ onSubmit, initialData }) => {
   }, [formData.settings?.genMode, formData.type]);
 
   useEffect(() => {
+    if (selectedBId && selectedBId !== 'auto') {
+      setFormData(prev => ({
+        ...prev,
+        settings: {
+          ...prev.settings,
+          currentbId: selectedBId,
+        },
+      }));
+    }
+  }, [selectedBId]);
+
+  useEffect(() => {
     if (initialData) {
       const loadedType = initialData.type || '';
       const isImagine = isImagineType(loadedType);
       const inferredGenMode = initialData.settings?.genMode || initialData.dimensionMode || (isImagine ? 'imagine' : 'compose');
       const inferredDesignModel = initialData.settings?.designModel || (isImagine
         ? Object.keys(imagineModels).find(key => imagineModels[key].types.includes(loadedType)) || Object.keys(imagineModels)[0]
-        : 'auto');
+        : 'sivi-gen-28h-pro');
       const loadedColors = initialData.settings?.colorsPreference?.customColors;
       setFormData(prev => ({
         ...prev,
@@ -141,7 +154,7 @@ const DesignsFromContentForm = ({ onSubmit, initialData }) => {
         type: 'displayAds',
         subtype: firstSubtype,
         dimension: dims ? { width: dims.width, height: dims.height } : { width: 300, height: 600 },
-        settings: { ...prev.settings, genMode: 'compose', designModel: 'auto' }
+        settings: { ...prev.settings, genMode: 'compose', designModel: 'sivi-gen-28h-pro' }
       }));
     } else {
       const firstModel = Object.keys(imagineModels)[0];
@@ -389,7 +402,7 @@ const DesignsFromContentForm = ({ onSubmit, initialData }) => {
         <div className="required-field">
           <SelectInput
             label="Design Model"
-            value={formData.settings?.designModel ?? 'auto'}
+            value={formData.settings?.designModel ?? 'sivi-gen-28h-pro'}
             onChange={handleModelChange}
             options={Object.entries(composeModels).map(([key, model]) => ({
               value: key,
@@ -649,6 +662,28 @@ const DesignsFromContentForm = ({ onSubmit, initialData }) => {
         min={1}
         max={10}
       />
+
+      <h3 className="form-section-title">Mode</h3>
+      <SelectInput
+        label="Mode"
+        value={formData.settings?.mode ?? 'custom'}
+        onChange={(value) => setFormData(prev => ({ ...prev, settings: { ...prev.settings, mode: value } }))}
+        options={[
+          { value: 'auto', label: 'Auto' },
+          { value: 'brand', label: 'Brand' },
+          { value: 'custom', label: 'Custom' },
+        ]}
+      />
+      {formData.settings?.mode === 'brand' && (
+        <div className="required-field">
+          <TextInput
+            label="Brand ID"
+            value={formData.settings.currentbId || ''}
+            onChange={(value) => setFormData(prev => ({ ...prev, settings: { ...prev.settings, currentbId: value } }))}
+            placeholder="Enter brand ID"
+          />
+        </div>
+      )}
 
       <h3 className="form-section-title">Colors</h3>
       {(formData.settings?.colorsPreference?.customColors || []).map((color, index) => (

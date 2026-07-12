@@ -20,7 +20,7 @@ import FontListPanel from '~/features/fonts/components/FontListPanel';
 import FontUploadForm from '~/features/fonts/components/FontUploadForm';
 import { FLOW_KEY_MAP } from '~/config/flows.js';
 
-export default function FlowForm({ activeFlow, formKey, onSubmit, initialFormData }) {
+export default function FlowForm({ activeFlow, formKey, onSubmit, initialFormData, selectedBId }) {
   switch (activeFlow) {
     case 'designs-from-prompt':
       return (
@@ -36,6 +36,7 @@ export default function FlowForm({ activeFlow, formKey, onSubmit, initialFormDat
           key={formKey}
           onSubmit={onSubmit}
           initialData={initialFormData}
+          selectedBId={selectedBId}
         />
       );
     case 'content-from-prompt':

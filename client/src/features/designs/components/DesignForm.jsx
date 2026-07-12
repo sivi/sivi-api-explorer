@@ -34,7 +34,7 @@ const DesignForm = ({ onSubmit, initialData }) => {
     settings: {
       mode: 'custom',
       genMode: 'compose',
-      designModel: 'auto',
+      designModel: 'sivi-gen-28h-pro',
       currentbId: '',
       colorsPreference: {
         mode: 'custom',
@@ -68,7 +68,7 @@ const DesignForm = ({ onSubmit, initialData }) => {
       const inferredGenMode = initialData.settings?.genMode || initialData.dimensionMode || (isImagine ? 'imagine' : 'compose');
       const inferredDesignModel = initialData.settings?.designModel || (isImagine
         ? Object.keys(imagineModels).find(key => imagineModels[key].types.includes(loadedType)) || Object.keys(imagineModels)[0]
-        : 'auto');
+        : 'sivi-gen-28h-pro');
       const loadedColors = initialData.settings?.colorsPreference?.customColors;
       setFormData(prev => ({
         ...prev,
@@ -240,7 +240,7 @@ const DesignForm = ({ onSubmit, initialData }) => {
         type: 'displayAds',
         subtype: firstSubtype,
         dimension: dims ? { width: dims.width, height: dims.height } : { width: 300, height: 600 },
-        settings: { ...prev.settings, genMode: 'compose', designModel: 'auto' }
+        settings: { ...prev.settings, genMode: 'compose', designModel: 'sivi-gen-28h-pro' }
       }));
     } else {
       const firstModel = Object.keys(imagineModels)[0];
@@ -358,7 +358,7 @@ const DesignForm = ({ onSubmit, initialData }) => {
           <div className="required-field">
             <SelectInput
               label="Design Model"
-              value={formData.settings?.designModel ?? 'auto'}
+              value={formData.settings?.designModel ?? 'sivi-gen-28h-pro'}
               onChange={handleModelChange}
               options={Object.entries(composeModels).map(([key, model]) => ({
                 value: key,

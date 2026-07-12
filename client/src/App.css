@@ -138,6 +138,8 @@ body {
   display: flex;
   align-items: center;
   gap: 24px;
+  margin-left: 24px;
+  min-width: 0;
 }
 
 .flow-selector,
@@ -173,6 +175,13 @@ body {
   padding-right: 32px;
   min-width: 180px;
   cursor: pointer;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.preset-selector .preset-dropdown {
+  max-width: 260px;
 }
 
 .preset-dropdown:focus {
@@ -1165,6 +1174,9 @@ body {
 
   .preset-dropdown {
     min-width: 140px;
+  }
+
+  .preset-selector .preset-dropdown {
     max-width: 180px;
   }
 
@@ -1190,6 +1202,7 @@ body {
     align-items: flex-end;
     width: 100%;
     margin-top: 12px;
+    margin-left: 0;
   }
 
   .flow-selector,

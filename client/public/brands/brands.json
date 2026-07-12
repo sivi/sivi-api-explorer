@@ -1,6 +1,6 @@
 {
-  "b_ssQ7X36zjro": {
-    "bId": "b_ssQ7X36zjro",
+  "b_s2YFwn9Iyjc": {
+    "bId": "b_s2YFwn9Iyjc",
     "brandName": "Miniora",
     "brandDescription": "Miniora is a baby care brand designed for comfort, safety, and sustainability. Our range includes soft toys, baby bath essentials, and baby wear, all made from eco-friendly and baby skin-friendly materials.\n\nEach product is crafted with gentle fabrics and non-toxic materials to ensure maximum softness, safety, and comfort for delicate baby skin. With a focus on quality and sustainable choices, Miniora creates products that are safe for babies and kind to the planet.",
     "brandUrl": null,
@@ -103,330 +103,8 @@
       "https://media.hellosivi.com/photos/scMGvdI09PD.jpg"
     ]
   },
-  "b_sVXXU7E5atx": {
-    "bId": "b_sVXXU7E5atx",
-    "brandName": "Kraft Haus Living.com",
-    "brandDescription": "Designed for those who appreciate understated luxury, the KraftHaus Living Modern Lounge Chair blends precision German craftsmanship with contemporary comfort. Its solid wood frame offers lasting strength, while the premium upholstered seat provides exceptional support for everyday living.\n\nClean lines, balanced proportions, and a thoughtfully engineered structure make this chair a perfect addition to modern living rooms, reading corners, or executive spaces. Every detail reflects durability, comfort, and timeless design—crafted to elevate your space without excess.\n\nExperience comfort that la",
-    "brandUrl": null,
-    "brandColors": [
-      {
-        "color": "#4b2614",
-        "primary": false,
-        "addedBy": "user"
-      },
-      {
-        "color": "#caab75",
-        "primary": false,
-        "addedBy": "user"
-      },
-      {
-        "color": "#f2ac3a",
-        "primary": false,
-        "addedBy": "user"
-      },
-      {
-        "color": "#dbdbdb",
-        "primary": false,
-        "addedBy": "user"
-      },
-      {
-        "color": "rgba(25, 25, 25, 1)",
-        "primary": false,
-        "addedBy": "user"
-      }
-    ],
-    "brandFonts": [
-      [
-        {
-          "id": "cEXwzg9DR7Y",
-          "name": "Hepta Slab SemiBold",
-          "addedBy": "system",
-          "type": "heading",
-          "imageUrl": "https://media.hellosivi.com/system/fonts/ns/preview/cEXwzg9DR7Y.png"
-        },
-        {
-          "id": "cKIe63ODELS",
-          "name": "HostGrotesk SemiBold",
-          "addedBy": "user",
-          "type": "subHeading",
-          "imageUrl": "https://media.hellosivi.com/user-data/cf575e80-1bee-11ee-a72b-195290331943/fonts/ns/preview/cKIe63ODELS.png"
-        },
-        {
-          "id": "clRmfOLtio3",
-          "name": "HostGrotesk Regular",
-          "addedBy": "user",
-          "type": "body",
-          "imageUrl": "https://media.hellosivi.com/user-data/cf575e80-1bee-11ee-a72b-195290331943/fonts/ns/preview/clRmfOLtio3.png"
-        }
-      ]
-    ],
-    "brandPersona": {
-      "industry": "home_garden",
-      "emotions": [
-        "love",
-        "smart",
-        "trust",
-        "desire",
-        "happy"
-      ],
-      "audience": [
-        "home owners",
-        "design enthusiasts",
-        "luxury consumers",
-        "modern professionals"
-      ],
-      "designTags": [
-        "modern lounge",
-        "solid wood",
-        "clean lines",
-        "premium upholstery",
-        "german craftsmanship",
-        "understated luxury"
-      ]
-    },
-    "brandLogos": [
-      "https://media.hellosivi.com/logos/swIfBy0IB29.png"
-    ],
-    "brandImages": [
-      "https://media.hellosivi.com/system/generated-images/sivi/278ca51a3a262e6627a2015f033efd9d.jpeg",
-      "https://media.hellosivi.com/system/generated-images/sivi/8736bad03bf2620a543226742911f341.jpeg",
-      "https://media.hellosivi.com/photos/sjYR7FWZtBJ.jpg",
-      "https://media.hellosivi.com/photos/sGCzu84XJkQ.png",
-      "https://media.hellosivi.com/photos/sSK6jhjEQSn.jpg",
-      "https://media.hellosivi.com/photos/smyDX5M8ghN.jpg",
-      "https://media.hellosivi.com/system/generated-images/sivi/786b3580a4b8ea8e684c21c701d3ab78.png",
-      "https://media.hellosivi.com/system/generated-images/sivi/2b52af21abbdc6950c42bbcd532a884c.png",
-      "https://media.hellosivi.com/photos/sDOtmFJ0JbB.png",
-      "https://media.hellosivi.com/system/generated-images/sivi/569768e1092ded7c6ebfb6bf52c2bc4e.jpeg",
-      "https://media.hellosivi.com/system/generated-images/sivi/7c925a03c660aa2da2cfcd1cbd71de73.jpeg",
-      "https://media.hellosivi.com/system/generated-images/sivi/5ba0974be8cdd87fec875e13f0d023b2.jpeg",
-      "https://media.hellosivi.com/system/generated-images/sivi/c1b78b50d1bda680a2795921e7a81455.jpeg",
-      "https://media.hellosivi.com/photos/sw7Z7u5hMl3.jpg",
-      "https://media.hellosivi.com/system/generated-images/sivi/f29ac1474be2089f1727b09311c19c33.jpeg",
-      "https://media.hellosivi.com/system/generated-images/sivi/4f9dc7751578ccbb4d0438f88823e265.jpeg",
-      "https://media.hellosivi.com/system/generated-images/sivi/a898341fe7daa78f0c32cbadd199b1b8.png",
-      "https://media.hellosivi.com/system/generated-images/sivi/397cb4c060ca0ed2fc2a525d965a4d8d.png",
-      "https://media.hellosivi.com/system/generated-images/sivi/79e6252e2fa99042f3fb7df8c21fde12.jpeg",
-      "https://media.hellosivi.com/system/generated-images/sivi/349fdaf3721937fc068d8f1a37389172.jpeg",
-      "https://media.hellosivi.com/system/generated-images/sivi/7f38e444e3a43a4ced42d5c39a9abdbc.jpeg",
-      "https://media.hellosivi.com/system/generated-images/sivi/1813d8bfcb16b1ff73def94ce23171fe.jpeg",
-      "https://media.hellosivi.com/photos/sdqy4b1Cm0Y.png",
-      "https://media.hellosivi.com/system/generated-images/sivi/b8ee0cf53b3f00cd77f5f8d8ebd86d4f.jpeg",
-      "https://media.hellosivi.com/system/generated-images/sivi/4a0247d78ce9c19402c18a3627f526ab.jpeg",
-      "https://media.hellosivi.com/system/generated-images/sivi/86d2ecebf8bc3450ce88aa1574bedabb.jpeg",
-      "https://media.hellosivi.com/photos/sZGf02y3uwY.jpg"
-    ]
-  },
-  "b_sfZeStxbrvs": {
-    "bId": "b_sfZeStxbrvs",
-    "brandName": "Northveil Venture Capital",
-    "brandDescription": "Northveil Venture Capital is a forward-thinking investment firm dedicated to supporting innovative startups and high-growth companies. With a focus on emerging technologies and scalable business models, Northveil partners with visionary founders to turn bold ideas into successful enterprises. Beyond capital, the firm provides strategic guidance, industry connections, and operational expertise to help businesses accelerate growth and create lasting market impact. Northveil Venture Capital is committed to building the next generation of transformative companies.",
-    "brandUrl": null,
-    "brandColors": [
-      {
-        "color": "#00332f",
-        "primary": true,
-        "addedBy": "user"
-      },
-      {
-        "color": "#46a69d",
-        "primary": false,
-        "addedBy": "user"
-      },
-      {
-        "color": "#d4a954",
-        "primary": false,
-        "addedBy": "user"
-      },
-      {
-        "color": "#f8f7f3",
-        "primary": false,
-        "addedBy": "user"
-      },
-      {
-        "color": "rgba(20, 33, 50, 1)",
-        "primary": false,
-        "addedBy": "user"
-      }
-    ],
-    "brandFonts": [
-      [
-        {
-          "id": "cTa57qRc1nI",
-          "name": "Lora Bold",
-          "addedBy": "system",
-          "type": "heading",
-          "imageUrl": "https://media.hellosivi.com/system/fonts/ns/preview/cTa57qRc1nI.png"
-        },
-        {
-          "id": "coZi8fQHhJh",
-          "name": "LoraMedium",
-          "addedBy": "user",
-          "type": "subHeading",
-          "imageUrl": "https://media.hellosivi.com/user-data/cf575e80-1bee-11ee-a72b-195290331943/fonts/ns/preview/coZi8fQHhJh.png"
-        },
-        {
-          "id": "zQGDYbaxVF",
-          "name": "Inter 18pt Medium",
-          "addedBy": "google",
-          "type": "body",
-          "imageUrl": "https://media.hellosivi.com/system/fonts/ns/preview/zQGDYbaxVF.png"
-        }
-      ]
-    ],
-    "brandPersona": {
-      "industry": "business_consulting",
-      "emotions": [
-        "smart",
-        "trust",
-        "excited"
-      ],
-      "audience": [
-        "startups",
-        "investors"
-      ],
-      "designTags": [
-        "growth strategy",
-        "tech investment",
-        "startup support",
-        "business innovation",
-        "venture growth",
-        "capital investment"
-      ]
-    },
-    "brandLogos": [
-      "https://media.hellosivi.com/logos/stofgo69Fl7.png",
-      "https://media.hellosivi.com/logos/sD6Dtx2DlnQ.png",
-      "https://media.hellosivi.com/logos/snb4CRrEJNt.png",
-      "https://media.hellosivi.com/logos/sKv9F7qJpiv.png",
-      "https://media.hellosivi.com/logos/stI31EkSUPQ.png",
-      "https://media.hellosivi.com/logos/sAArdpjdgK3.png",
-      "https://media.hellosivi.com/logos/sZ13IBFHaOi.jpg",
-      "https://media.hellosivi.com/logos/sWFyUmDWX0R.png"
-    ],
-    "brandImages": [
-      "https://media.hellosivi.com/photos/sZEpRSbKtD8.jpg",
-      "https://media.hellosivi.com/photos/shJ8rPseUZC.jpg",
-      "https://media.hellosivi.com/photos/sbg49PWDMHC.jpg",
-      "https://media.hellosivi.com/system/generated-images/sivi/e6cda2a6f3b04acfd308192f1574b1c4.jpeg",
-      "https://media.hellosivi.com/photos/sEkFION2cz0.jpg",
-      "https://media.hellosivi.com/photos/s7Fr6VL5MIk.jpg",
-      "https://media.hellosivi.com/photos/sNpWw5Hz3QM.png",
-      "https://media.hellosivi.com/photos/st6RhlQCTtn.jpg",
-      "https://media.hellosivi.com/system/generated-images/sivi/263b9654b623f79b6b25f73860380abf.jpeg",
-      "https://media.hellosivi.com/photos/smknfye9RhZ.png",
-      "https://media.hellosivi.com/system/generated-images/sivi/19b075713dd090b0d10d08b7cbfaee9f.jpeg",
-      "https://media.hellosivi.com/photos/s3h5dI0zc4k.jpg",
-      "https://media.hellosivi.com/photos/sdzyy4sdoXc.jpg",
-      "https://media.hellosivi.com/photos/s0HB0qH2rd9.png",
-      "https://media.hellosivi.com/photos/s2XWgax38jJ.png",
-      "https://media.hellosivi.com/photos/sSNSFKvepD9.png",
-      "https://media.hellosivi.com/photos/sbzzqtuBe8a.jpg",
-      "https://media.hellosivi.com/photos/sx4Pz0WXaBi.jpg",
-      "https://media.hellosivi.com/photos/sgiQJyfj6t5.png",
-      "https://media.hellosivi.com/photos/sApk4pwaygZ.png",
-      "https://media.hellosivi.com/photos/si6a3GFoRr9.png",
-      "https://media.hellosivi.com/system/generated-images/sivi/bff76296b67905e6c79bc2673c46b8f6.png",
-      "https://media.hellosivi.com/system/generated-images/sivi/76b01abdc81acef7ab084c6463d467f7.jpeg",
-      "https://media.hellosivi.com/system/generated-images/sivi/16b8b33e736b0b8d3c311391dc9c3d3b.png",
-      "https://media.hellosivi.com/photos/729ba93cbaef27ceda1a31e714ce966a.jpeg",
-      "https://media.hellosivi.com/system/generated-images/sivi/948d41887ac6cf2ff64333a47b125cf9.png",
-      "https://media.hellosivi.com/photos/sIUDA5GW8Sn.jpg",
-      "https://media.hellosivi.com/photos/sSZKjzB9ies.jpg",
-      "https://media.hellosivi.com/photos/suQKcWmOI6O.jpg"
-    ]
-  },
-  "b_sdfCxqhtlQ5": {
-    "bId": "b_sdfCxqhtlQ5",
-    "brandName": "FlowMint ",
-    "brandDescription": "FlowMint is a Seattle-based technology company dedicated to transforming businesses through innovation and intelligent automation. We specialize in custom software development, AI-driven solutions, and digital transformation strategies that empower organizations to operate smarter, faster, and more efficiently. At FlowMint, we combine cutting-edge technology with human-centered design to create seamless digital experiences that drive growth, optimize operations, and future-proof your business. Our mission is to make complex technology simple, accessible, and impactful for companies of all size",
-    "brandUrl": null,
-    "brandColors": [
-      {
-        "color": "#3070ff",
-        "primary": false,
-        "addedBy": "user"
-      },
-      {
-        "color": "#c4d6ff",
-        "primary": false,
-        "addedBy": "user"
-      },
-      {
-        "color": "rgba(6, 22, 58, 1)",
-        "primary": false,
-        "addedBy": "user"
-      }
-    ],
-    "brandFonts": [
-      [
-        {
-          "id": "cPWG8wlsGjH",
-          "name": "Sora SemiBold",
-          "addedBy": "google",
-          "type": "heading",
-          "imageUrl": "https://media.hellosivi.com/system/fonts/ns/preview/cPWG8wlsGjH.png"
-        },
-        {
-          "id": "cA8DH7HUuIa",
-          "name": "Sora Medium",
-          "addedBy": "system",
-          "type": "subHeading",
-          "imageUrl": "https://media.hellosivi.com/system/fonts/ns/preview/cA8DH7HUuIa.png"
-        },
-        {
-          "id": "c0wuK6Aue6W",
-          "name": "Plus Jakarta Sans Regular",
-          "addedBy": "system",
-          "type": "body",
-          "imageUrl": "https://media.hellosivi.com/system/fonts/ns/preview/c0wuK6Aue6W.png"
-        }
-      ]
-    ],
-    "brandPersona": {
-      "industry": "technology",
-      "emotions": [
-        "smart",
-        "trust",
-        "cool"
-      ],
-      "audience": [
-        "businesses",
-        "enterprises"
-      ],
-      "designTags": [
-        "clean design",
-        "tech solutions",
-        "digital transformation",
-        "ai driven",
-        "software development",
-        "seamless experience"
-      ]
-    },
-    "brandLogos": [
-      "https://media.hellosivi.com/logos/sVci3qFBCGS.png",
-      "https://media.hellosivi.com/logos/sjczNMRcURY.png",
-      "https://media.hellosivi.com/logos/sbhvzzz6Wrx.png"
-    ],
-    "brandImages": [
-      "https://media.hellosivi.com/system/generated-images/sivi/1a75be929f72d0abc4c21db0fe3255bd.png",
-      "https://media.hellosivi.com/photos/sxcYJUgNsKq.png",
-      "https://media.hellosivi.com/photos/sEL7QMswJSr.jpg",
-      "https://media.hellosivi.com/photos/sT6WUyjwjYF.jpg",
-      "https://media.hellosivi.com/photos/s7ainpKSrii.png",
-      "https://media.hellosivi.com/photos/sp153qdTbxA.png",
-      "https://media.hellosivi.com/photos/sAZ4kr99Mr4.jpg",
-      "https://media.hellosivi.com/photos/sUes1yJyOny.png",
-      "https://media.hellosivi.com/photos/sVfLWL513Ti.png",
-      "https://media.hellosivi.com/system/generated-images/sivi/393ab26992be9ea728f86e67bcd79b2c.png",
-      "https://media.hellosivi.com/photos/styVU0KIhQa.png",
-      "https://media.hellosivi.com/photos/s8i6Ud6hPlP.png",
-      "https://media.hellosivi.com/photos/sYHIGlqUjrF.png"
-    ],
-    "logoBackground": "light"
-  },
-  "b_s4gjTzyXW4I": {
-    "bId": "b_s4gjTzyXW4I",
+  "b_smimyDcZAWw": {
+    "bId": "b_smimyDcZAWw",
     "brandName": "HYLURA",
     "brandDescription": "Hydration is the foundation of healthy, radiant beauty.\n\nInspired by modern Korean skincare innovation, HYLURA creates products that deliver deep hydration, strengthen the skin barrier, and enhance natural radiance through thoughtfully formulated ingredients and elevated daily rituals.\n\nCombining skincare science with contemporary beauty aesthetics, HYLURA offers a complete ecosystem of face care, lip care, eye care, hair care, and targeted treatment products designed for modern consumers seeking visible results and luxurious experiences.",
     "brandUrl": null,
@@ -559,6 +237,328 @@
       "https://media.hellosivi.com/system/generated-images/sivi/5472565601d7e183060e82ae1f358b3e.jpeg",
       "https://media.hellosivi.com/system/generated-images/sivi/518707f9efe1e1ca75bf5fa9dcabaa8d.jpeg"
     ]
+  },
+  "b_s1Vd8gwj35g": {
+    "bId": "b_s1Vd8gwj35g",
+    "brandName": "Kraft Haus Living.com",
+    "brandDescription": "Designed for those who appreciate understated luxury, the KraftHaus Living Modern Lounge Chair blends precision German craftsmanship with contemporary comfort. Its solid wood frame offers lasting strength, while the premium upholstered seat provides exceptional support for everyday living.\n\nClean lines, balanced proportions, and a thoughtfully engineered structure make this chair a perfect addition to modern living rooms, reading corners, or executive spaces. Every detail reflects durability, comfort, and timeless design—crafted to elevate your space without excess.\n\nExperience comfort that la",
+    "brandUrl": null,
+    "brandColors": [
+      {
+        "color": "#4b2614",
+        "primary": false,
+        "addedBy": "user"
+      },
+      {
+        "color": "#caab75",
+        "primary": false,
+        "addedBy": "user"
+      },
+      {
+        "color": "#f2ac3a",
+        "primary": false,
+        "addedBy": "user"
+      },
+      {
+        "color": "#dbdbdb",
+        "primary": false,
+        "addedBy": "user"
+      },
+      {
+        "color": "rgba(25, 25, 25, 1)",
+        "primary": false,
+        "addedBy": "user"
+      }
+    ],
+    "brandFonts": [
+      [
+        {
+          "id": "cEXwzg9DR7Y",
+          "name": "Hepta Slab SemiBold",
+          "addedBy": "system",
+          "type": "heading",
+          "imageUrl": "https://media.hellosivi.com/system/fonts/ns/preview/cEXwzg9DR7Y.png"
+        },
+        {
+          "id": "cKIe63ODELS",
+          "name": "HostGrotesk SemiBold",
+          "addedBy": "user",
+          "type": "subHeading",
+          "imageUrl": "https://media.hellosivi.com/user-data/cf575e80-1bee-11ee-a72b-195290331943/fonts/ns/preview/cKIe63ODELS.png"
+        },
+        {
+          "id": "clRmfOLtio3",
+          "name": "HostGrotesk Regular",
+          "addedBy": "user",
+          "type": "body",
+          "imageUrl": "https://media.hellosivi.com/user-data/cf575e80-1bee-11ee-a72b-195290331943/fonts/ns/preview/clRmfOLtio3.png"
+        }
+      ]
+    ],
+    "brandPersona": {
+      "industry": "home_garden",
+      "emotions": [
+        "love",
+        "smart",
+        "trust",
+        "desire",
+        "happy"
+      ],
+      "audience": [
+        "home owners",
+        "design enthusiasts",
+        "luxury consumers",
+        "modern professionals"
+      ],
+      "designTags": [
+        "modern lounge",
+        "solid wood",
+        "clean lines",
+        "premium upholstery",
+        "german craftsmanship",
+        "understated luxury"
+      ]
+    },
+    "brandLogos": [
+      "https://media.hellosivi.com/logos/swIfBy0IB29.png"
+    ],
+    "brandImages": [
+      "https://media.hellosivi.com/system/generated-images/sivi/278ca51a3a262e6627a2015f033efd9d.jpeg",
+      "https://media.hellosivi.com/system/generated-images/sivi/8736bad03bf2620a543226742911f341.jpeg",
+      "https://media.hellosivi.com/photos/sjYR7FWZtBJ.jpg",
+      "https://media.hellosivi.com/photos/sGCzu84XJkQ.png",
+      "https://media.hellosivi.com/photos/sSK6jhjEQSn.jpg",
+      "https://media.hellosivi.com/photos/smyDX5M8ghN.jpg",
+      "https://media.hellosivi.com/system/generated-images/sivi/786b3580a4b8ea8e684c21c701d3ab78.png",
+      "https://media.hellosivi.com/system/generated-images/sivi/2b52af21abbdc6950c42bbcd532a884c.png",
+      "https://media.hellosivi.com/photos/sDOtmFJ0JbB.png",
+      "https://media.hellosivi.com/system/generated-images/sivi/569768e1092ded7c6ebfb6bf52c2bc4e.jpeg",
+      "https://media.hellosivi.com/system/generated-images/sivi/7c925a03c660aa2da2cfcd1cbd71de73.jpeg",
+      "https://media.hellosivi.com/system/generated-images/sivi/5ba0974be8cdd87fec875e13f0d023b2.jpeg",
+      "https://media.hellosivi.com/system/generated-images/sivi/c1b78b50d1bda680a2795921e7a81455.jpeg",
+      "https://media.hellosivi.com/photos/sw7Z7u5hMl3.jpg",
+      "https://media.hellosivi.com/system/generated-images/sivi/f29ac1474be2089f1727b09311c19c33.jpeg",
+      "https://media.hellosivi.com/system/generated-images/sivi/4f9dc7751578ccbb4d0438f88823e265.jpeg",
+      "https://media.hellosivi.com/system/generated-images/sivi/a898341fe7daa78f0c32cbadd199b1b8.png",
+      "https://media.hellosivi.com/system/generated-images/sivi/397cb4c060ca0ed2fc2a525d965a4d8d.png",
+      "https://media.hellosivi.com/system/generated-images/sivi/79e6252e2fa99042f3fb7df8c21fde12.jpeg",
+      "https://media.hellosivi.com/system/generated-images/sivi/349fdaf3721937fc068d8f1a37389172.jpeg",
+      "https://media.hellosivi.com/system/generated-images/sivi/7f38e444e3a43a4ced42d5c39a9abdbc.jpeg",
+      "https://media.hellosivi.com/system/generated-images/sivi/1813d8bfcb16b1ff73def94ce23171fe.jpeg",
+      "https://media.hellosivi.com/photos/sdqy4b1Cm0Y.png",
+      "https://media.hellosivi.com/system/generated-images/sivi/b8ee0cf53b3f00cd77f5f8d8ebd86d4f.jpeg",
+      "https://media.hellosivi.com/system/generated-images/sivi/4a0247d78ce9c19402c18a3627f526ab.jpeg",
+      "https://media.hellosivi.com/system/generated-images/sivi/86d2ecebf8bc3450ce88aa1574bedabb.jpeg",
+      "https://media.hellosivi.com/photos/sZGf02y3uwY.jpg"
+    ]
+  },
+  "b_s1AN3jePPgm": {
+    "bId": "b_s1AN3jePPgm",
+    "brandName": "Northveil Venture Capital",
+    "brandDescription": "Northveil Venture Capital is a forward-thinking investment firm dedicated to supporting innovative startups and high-growth companies. With a focus on emerging technologies and scalable business models, Northveil partners with visionary founders to turn bold ideas into successful enterprises. Beyond capital, the firm provides strategic guidance, industry connections, and operational expertise to help businesses accelerate growth and create lasting market impact. Northveil Venture Capital is committed to building the next generation of transformative companies.",
+    "brandUrl": null,
+    "brandColors": [
+      {
+        "color": "#00332f",
+        "primary": true,
+        "addedBy": "user"
+      },
+      {
+        "color": "#46a69d",
+        "primary": false,
+        "addedBy": "user"
+      },
+      {
+        "color": "#d4a954",
+        "primary": false,
+        "addedBy": "user"
+      },
+      {
+        "color": "#f8f7f3",
+        "primary": false,
+        "addedBy": "user"
+      },
+      {
+        "color": "rgba(20, 33, 50, 1)",
+        "primary": false,
+        "addedBy": "user"
+      }
+    ],
+    "brandFonts": [
+      [
+        {
+          "id": "cTa57qRc1nI",
+          "name": "Lora Bold",
+          "addedBy": "system",
+          "type": "heading",
+          "imageUrl": "https://media.hellosivi.com/system/fonts/ns/preview/cTa57qRc1nI.png"
+        },
+        {
+          "id": "coZi8fQHhJh",
+          "name": "LoraMedium",
+          "addedBy": "user",
+          "type": "subHeading",
+          "imageUrl": "https://media.hellosivi.com/user-data/cf575e80-1bee-11ee-a72b-195290331943/fonts/ns/preview/coZi8fQHhJh.png"
+        },
+        {
+          "id": "zQGDYbaxVF",
+          "name": "Inter 18pt Medium",
+          "addedBy": "google",
+          "type": "body",
+          "imageUrl": "https://media.hellosivi.com/system/fonts/ns/preview/zQGDYbaxVF.png"
+        }
+      ]
+    ],
+    "brandPersona": {
+      "industry": "business_consulting",
+      "emotions": [
+        "smart",
+        "trust",
+        "excited"
+      ],
+      "audience": [
+        "startups",
+        "investors"
+      ],
+      "designTags": [
+        "growth strategy",
+        "tech investment",
+        "startup support",
+        "business innovation",
+        "venture growth",
+        "capital investment"
+      ]
+    },
+    "brandLogos": [
+      "https://media.hellosivi.com/logos/stofgo69Fl7.png",
+      "https://media.hellosivi.com/logos/sD6Dtx2DlnQ.png",
+      "https://media.hellosivi.com/logos/snb4CRrEJNt.png",
+      "https://media.hellosivi.com/logos/sKv9F7qJpiv.png",
+      "https://media.hellosivi.com/logos/stI31EkSUPQ.png",
+      "https://media.hellosivi.com/logos/sAArdpjdgK3.png",
+      "https://media.hellosivi.com/logos/sZ13IBFHaOi.jpg",
+      "https://media.hellosivi.com/logos/sWFyUmDWX0R.png"
+    ],
+    "brandImages": [
+      "https://media.hellosivi.com/photos/sZEpRSbKtD8.jpg",
+      "https://media.hellosivi.com/photos/shJ8rPseUZC.jpg",
+      "https://media.hellosivi.com/photos/sbg49PWDMHC.jpg",
+      "https://media.hellosivi.com/system/generated-images/sivi/e6cda2a6f3b04acfd308192f1574b1c4.jpeg",
+      "https://media.hellosivi.com/photos/sEkFION2cz0.jpg",
+      "https://media.hellosivi.com/photos/s7Fr6VL5MIk.jpg",
+      "https://media.hellosivi.com/photos/sNpWw5Hz3QM.png",
+      "https://media.hellosivi.com/photos/st6RhlQCTtn.jpg",
+      "https://media.hellosivi.com/system/generated-images/sivi/263b9654b623f79b6b25f73860380abf.jpeg",
+      "https://media.hellosivi.com/photos/smknfye9RhZ.png",
+      "https://media.hellosivi.com/system/generated-images/sivi/19b075713dd090b0d10d08b7cbfaee9f.jpeg",
+      "https://media.hellosivi.com/photos/s3h5dI0zc4k.jpg",
+      "https://media.hellosivi.com/photos/sdzyy4sdoXc.jpg",
+      "https://media.hellosivi.com/photos/s0HB0qH2rd9.png",
+      "https://media.hellosivi.com/photos/s2XWgax38jJ.png",
+      "https://media.hellosivi.com/photos/sSNSFKvepD9.png",
+      "https://media.hellosivi.com/photos/sbzzqtuBe8a.jpg",
+      "https://media.hellosivi.com/photos/sx4Pz0WXaBi.jpg",
+      "https://media.hellosivi.com/photos/sgiQJyfj6t5.png",
+      "https://media.hellosivi.com/photos/sApk4pwaygZ.png",
+      "https://media.hellosivi.com/photos/si6a3GFoRr9.png",
+      "https://media.hellosivi.com/system/generated-images/sivi/bff76296b67905e6c79bc2673c46b8f6.png",
+      "https://media.hellosivi.com/system/generated-images/sivi/76b01abdc81acef7ab084c6463d467f7.jpeg",
+      "https://media.hellosivi.com/system/generated-images/sivi/16b8b33e736b0b8d3c311391dc9c3d3b.png",
+      "https://media.hellosivi.com/photos/729ba93cbaef27ceda1a31e714ce966a.jpeg",
+      "https://media.hellosivi.com/system/generated-images/sivi/948d41887ac6cf2ff64333a47b125cf9.png",
+      "https://media.hellosivi.com/photos/sIUDA5GW8Sn.jpg",
+      "https://media.hellosivi.com/photos/sSZKjzB9ies.jpg",
+      "https://media.hellosivi.com/photos/suQKcWmOI6O.jpg"
+    ]
+  },
+  "b_s1q5eok25ds": {
+    "bId": "b_s1q5eok25ds",
+    "brandName": "FlowMint ",
+    "brandDescription": "FlowMint is a Seattle-based technology company dedicated to transforming businesses through innovation and intelligent automation. We specialize in custom software development, AI-driven solutions, and digital transformation strategies that empower organizations to operate smarter, faster, and more efficiently. At FlowMint, we combine cutting-edge technology with human-centered design to create seamless digital experiences that drive growth, optimize operations, and future-proof your business. Our mission is to make complex technology simple, accessible, and impactful for companies of all size",
+    "brandUrl": null,
+    "brandColors": [
+      {
+        "color": "#3070ff",
+        "primary": false,
+        "addedBy": "user"
+      },
+      {
+        "color": "#c4d6ff",
+        "primary": false,
+        "addedBy": "user"
+      },
+      {
+        "color": "rgba(6, 22, 58, 1)",
+        "primary": false,
+        "addedBy": "user"
+      }
+    ],
+    "brandFonts": [
+      [
+        {
+          "id": "cPWG8wlsGjH",
+          "name": "Sora SemiBold",
+          "addedBy": "google",
+          "type": "heading",
+          "imageUrl": "https://media.hellosivi.com/system/fonts/ns/preview/cPWG8wlsGjH.png"
+        },
+        {
+          "id": "cA8DH7HUuIa",
+          "name": "Sora Medium",
+          "addedBy": "system",
+          "type": "subHeading",
+          "imageUrl": "https://media.hellosivi.com/system/fonts/ns/preview/cA8DH7HUuIa.png"
+        },
+        {
+          "id": "c0wuK6Aue6W",
+          "name": "Plus Jakarta Sans Regular",
+          "addedBy": "system",
+          "type": "body",
+          "imageUrl": "https://media.hellosivi.com/system/fonts/ns/preview/c0wuK6Aue6W.png"
+        }
+      ]
+    ],
+    "brandPersona": {
+      "industry": "technology",
+      "emotions": [
+        "smart",
+        "trust",
+        "cool"
+      ],
+      "audience": [
+        "businesses",
+        "enterprises"
+      ],
+      "designTags": [
+        "clean design",
+        "tech solutions",
+        "digital transformation",
+        "ai driven",
+        "software development",
+        "seamless experience"
+      ]
+    },
+    "brandLogos": [
+      "https://media.hellosivi.com/logos/sVci3qFBCGS.png",
+      "https://media.hellosivi.com/logos/sjczNMRcURY.png",
+      "https://media.hellosivi.com/logos/sbhvzzz6Wrx.png"
+    ],
+    "brandImages": [
+      "https://media.hellosivi.com/system/generated-images/sivi/1a75be929f72d0abc4c21db0fe3255bd.png",
+      "https://media.hellosivi.com/photos/sxcYJUgNsKq.png",
+      "https://media.hellosivi.com/photos/sEL7QMswJSr.jpg",
+      "https://media.hellosivi.com/photos/sT6WUyjwjYF.jpg",
+      "https://media.hellosivi.com/photos/s7ainpKSrii.png",
+      "https://media.hellosivi.com/photos/sp153qdTbxA.png",
+      "https://media.hellosivi.com/photos/sAZ4kr99Mr4.jpg",
+      "https://media.hellosivi.com/photos/sUes1yJyOny.png",
+      "https://media.hellosivi.com/photos/sVfLWL513Ti.png",
+      "https://media.hellosivi.com/system/generated-images/sivi/393ab26992be9ea728f86e67bcd79b2c.png",
+      "https://media.hellosivi.com/photos/styVU0KIhQa.png",
+      "https://media.hellosivi.com/photos/s8i6Ud6hPlP.png",
+      "https://media.hellosivi.com/photos/sYHIGlqUjrF.png"
+    ],
+    "logoBackground": "light"
   },
   "b_sp7yYcqj675": {
     "bId": "b_sp7yYcqj675",

@@ -397,6 +397,7 @@ function App({ variant = 'playground' }) {
               formKey={formKey}
               onSubmit={handleFlowSubmit}
               initialFormData={initialFormData}
+              selectedBId={selectedBId}
             />
           </div>
         </aside>

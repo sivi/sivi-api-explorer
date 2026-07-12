@@ -3,7 +3,7 @@
     "designs-from-prompt": [],
     "designs-from-content": []
   },
-  "b_ssQ7X36zjro": {
+  "b_s2YFwn9Iyjc": {
     "designs-from-prompt": [
       {
         "name": "Amazon Store Banner – Sustainable Baby Essentials",
@@ -35,7 +35,7 @@
               "mode": "brand",
               "fontGroups": []
             },
-            "currentbId": "b_ssQ7X36zjro",
+            "currentbId": "b_s2YFwn9Iyjc",
             "theme": [
               "light"
             ],
@@ -78,7 +78,7 @@
               "mode": "brand",
               "fontGroups": []
             },
-            "currentbId": "b_ssQ7X36zjro",
+            "currentbId": "b_s2YFwn9Iyjc",
             "theme": [
               "light"
             ],
@@ -121,7 +121,7 @@
               "mode": "brand",
               "fontGroups": []
             },
-            "currentbId": "b_ssQ7X36zjro",
+            "currentbId": "b_s2YFwn9Iyjc",
             "theme": [
               "light"
             ],
@@ -164,7 +164,7 @@
               "mode": "brand",
               "fontGroups": []
             },
-            "currentbId": "b_ssQ7X36zjro",
+            "currentbId": "b_s2YFwn9Iyjc",
             "theme": [
               "light"
             ],
@@ -207,7 +207,7 @@
               "mode": "brand",
               "fontGroups": []
             },
-            "currentbId": "b_ssQ7X36zjro",
+            "currentbId": "b_s2YFwn9Iyjc",
             "theme": [
               "light"
             ],
@@ -221,9 +221,244 @@
         }
       }
     ],
-    "designs-from-content": []
+    "designs-from-content": [
+      {
+        "name": "Facebook Ad – What's Really Inside Your Baby's Toy?",
+        "data": {
+          "type": "facebook",
+          "subtype": "facebook-ad",
+          "dimension": {
+            "width": 1200,
+            "height": 628
+          },
+          "content": {
+            "title": "What's really inside your baby's toy?",
+            "text": "Most plastic toys hide chemicals you can't see. Miniora doesn't.",
+            "button": "Check What's Inside"
+          },
+          "assets": {
+            "images": [
+              {
+                "url": "https://media.hellosivi.com/photos/sJVrE6L9DO2.png"
+              }
+            ],
+            "logos": [
+              {
+                "url": "https://media.hellosivi.com/logos/sMzKzUSesPY.png",
+                "logoStyles": ["direct", "outline"]
+              }
+            ]
+          },
+          "language": "english",
+          "numOfVariants": 4,
+          "outputFormat": [
+            "jpg"
+          ],
+          "settings": {
+            "mode": "brand",
+            "currentbId": "b_s2YFwn9Iyjc",
+            "colorsPreference": {
+              "mode": "brand",
+              "customColors": [],
+              "paletteStyle": []
+            },
+            "fontGroupPreference": {
+              "mode": "brand",
+              "fontGroups": []
+            },
+            "theme": [
+              "colorful",
+              "light"
+            ],
+            "frameStyle": [
+              "plain"
+            ],
+            "backdropStyle": [
+              "imagery",
+              "artistic",
+              "minimalist"
+            ],
+            "focus": [
+              "neutral",
+              "image"
+            ],
+            "imageStyle": [
+              "container",
+              "section-with-container",
+              "section"
+            ]
+          }
+        }
+      },
+      {
+        "name": "Instagram Story – Babies Put Toys in Their Mouth",
+        "data": {
+          "type": "instagram",
+          "subtype": "instagram-story",
+          "dimension": {
+            "width": 1080,
+            "height": 1920
+          },
+          "content": {
+            "title": "Babies put toys in their mouth over 80 times a day.",
+            "text": "Every Miniora toy is BPA-free and built for exactly that.",
+            "button": "Shop Safe Toys"
+          },
+          "assets": {
+            "images": [
+              {
+                "url": "https://media.hellosivi.com/photos/ssq4vtKS0lA.jpg"
+              }
+            ],
+            "logos": [
+              {
+                "url": "https://media.hellosivi.com/logos/spQXkFEvwAd.png",
+                "logoStyles": ["direct", "outline"]
+              }
+            ]
+          },
+          "language": "english",
+          "numOfVariants": 4,
+          "outputFormat": [
+            "jpg"
+          ],
+          "settings": {
+            "mode": "brand",
+            "currentbId": "b_s2YFwn9Iyjc",
+            "colorsPreference": {
+              "mode": "brand",
+              "customColors": [],
+              "paletteStyle": []
+            },
+            "fontGroupPreference": {
+              "mode": "brand",
+              "fontGroups": []
+            },
+            "theme": [
+              "colorful",
+              "light"
+            ],
+            "frameStyle": [
+              "plain"
+            ],
+            "backdropStyle": [
+              "imagery",
+              "artistic",
+              "minimalist"
+            ],
+            "focus": [
+              "neutral",
+              "image"
+            ],
+            "imageStyle": [
+              "cover-with-linear-gradient",
+              "cover",
+              "cover-with-overlay"
+            ],
+            "vectorStyle": {
+              "cornerRadius": [
+                "pill",
+                "rounded"
+              ],
+              "complexity": [
+                "low"
+              ],
+              "vectorType": [
+                "accent",
+                "fill"
+              ],
+              "shapes": [
+                "rectangle",
+                "circle"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "name": "Instagram Ad – 3 Reasons Our Colors Feel Different",
+        "data": {
+          "type": "instagram",
+          "subtype": "instagram-ad",
+          "dimension": {
+            "width": 1080,
+            "height": 1080
+          },
+          "content": {
+            "title": "3 reasons our colors feel different...",
+            "bulletlist": [
+              "Inspired by mango, berry, and apple tones",
+              "Soft satin finish, not harsh gloss",
+              "Calming, not chemical"
+            ],
+            "button": "Explore Miniora Colors"
+          },
+          "assets": {
+            "images": [
+              {
+                "url": "https://media.hellosivi.com/photos/sY9qoJFdWD8.jpg"
+              }
+            ]
+          },
+          "language": "english",
+          "numOfVariants": 4,
+          "outputFormat": [
+            "jpg"
+          ],
+          "settings": {
+            "mode": "brand",
+            "currentbId": "b_s2YFwn9Iyjc",
+            "colorsPreference": {
+              "mode": "brand",
+              "customColors": [],
+              "paletteStyle": []
+            },
+            "fontGroupPreference": {
+              "mode": "brand",
+              "fontGroups": []
+            },
+            "theme": [
+              "colorful",
+              "light"
+            ],
+            "frameStyle": [
+              "plain"
+            ],
+            "backdropStyle": [
+              "imagery",
+              "artistic",
+              "minimalist"
+            ],
+            "focus": [
+              "neutral",
+              "image"
+            ],
+            "imageStyle": [
+              "section"
+            ],
+            "vectorStyle": {
+              "cornerRadius": [
+                "pill",
+                "rounded"
+              ],
+              "complexity": [
+                "low"
+              ],
+              "vectorType": [
+                "accent",
+                "fill"
+              ],
+              "shapes": [
+                "rectangle",
+                "circle"
+              ]
+            }
+          }
+        }
+      }
+    ]
   },
-  "b_sVXXU7E5atx": {
+  "b_s1Vd8gwj35g": {
     "designs-from-prompt": [
       {
         "name": "Landing Page Hero – Comfort Without Compromise",
@@ -246,7 +481,7 @@
           ],
           "settings": {
             "mode": "brand",
-            "currentbId": "b_sVXXU7E5atx",
+            "currentbId": "b_s1Vd8gwj35g",
             "colorsPreference": {
               "mode": "brand",
               "customColors": [],
@@ -289,7 +524,7 @@
           ],
           "settings": {
             "mode": "brand",
-            "currentbId": "b_sVXXU7E5atx",
+            "currentbId": "b_s1Vd8gwj35g",
             "colorsPreference": {
               "mode": "brand",
               "customColors": [],
@@ -332,7 +567,7 @@
           ],
           "settings": {
             "mode": "brand",
-            "currentbId": "b_sVXXU7E5atx",
+            "currentbId": "b_s1Vd8gwj35g",
             "colorsPreference": {
               "mode": "brand",
               "customColors": [],
@@ -375,7 +610,7 @@
           ],
           "settings": {
             "mode": "brand",
-            "currentbId": "b_sVXXU7E5atx",
+            "currentbId": "b_s1Vd8gwj35g",
             "colorsPreference": {
               "mode": "brand",
               "customColors": [],
@@ -418,7 +653,7 @@
           ],
           "settings": {
             "mode": "brand",
-            "currentbId": "b_sVXXU7E5atx",
+            "currentbId": "b_s1Vd8gwj35g",
             "colorsPreference": {
               "mode": "brand",
               "customColors": [],
@@ -443,7 +678,7 @@
     ],
     "designs-from-content": []
   },
-  "b_sfZeStxbrvs": {
+  "b_s1AN3jePPgm": {
     "designs-from-prompt": [
       {
         "name": "Google Display Ad (German) – Your Next Funding Partner",
@@ -466,7 +701,7 @@
           ],
           "settings": {
             "mode": "brand",
-            "currentbId": "b_sfZeStxbrvs",
+            "currentbId": "b_s1AN3jePPgm",
             "colorsPreference": {
               "mode": "brand",
               "customColors": [],
@@ -509,7 +744,7 @@
           ],
           "settings": {
             "mode": "brand",
-            "currentbId": "b_sfZeStxbrvs",
+            "currentbId": "b_s1AN3jePPgm",
             "colorsPreference": {
               "mode": "brand",
               "customColors": [],
@@ -552,7 +787,7 @@
           ],
           "settings": {
             "mode": "brand",
-            "currentbId": "b_sfZeStxbrvs",
+            "currentbId": "b_s1AN3jePPgm",
             "colorsPreference": {
               "mode": "brand",
               "customColors": [],
@@ -595,7 +830,7 @@
           ],
           "settings": {
             "mode": "brand",
-            "currentbId": "b_sfZeStxbrvs",
+            "currentbId": "b_s1AN3jePPgm",
             "colorsPreference": {
               "mode": "brand",
               "customColors": [],
@@ -638,7 +873,7 @@
           ],
           "settings": {
             "mode": "brand",
-            "currentbId": "b_sfZeStxbrvs",
+            "currentbId": "b_s1AN3jePPgm",
             "colorsPreference": {
               "mode": "brand",
               "customColors": [],
@@ -663,7 +898,7 @@
     ],
     "designs-from-content": []
   },
-  "b_sdfCxqhtlQ5": {
+  "b_s1q5eok25ds": {
     "designs-from-prompt": [
       {
         "name": "YouTube Thumbnail – Build AI Software Faster",
@@ -686,7 +921,7 @@
           ],
           "settings": {
             "mode": "brand",
-            "currentbId": "b_sdfCxqhtlQ5",
+            "currentbId": "b_s1q5eok25ds",
             "colorsPreference": {
               "mode": "brand",
               "customColors": [],
@@ -729,7 +964,7 @@
           ],
           "settings": {
             "mode": "brand",
-            "currentbId": "b_sdfCxqhtlQ5",
+            "currentbId": "b_s1q5eok25ds",
             "colorsPreference": {
               "mode": "brand",
               "customColors": [],
@@ -772,7 +1007,7 @@
           ],
           "settings": {
             "mode": "brand",
-            "currentbId": "b_sdfCxqhtlQ5",
+            "currentbId": "b_s1q5eok25ds",
             "colorsPreference": {
               "mode": "brand",
               "customColors": [],
@@ -815,7 +1050,7 @@
           ],
           "settings": {
             "mode": "brand",
-            "currentbId": "b_sdfCxqhtlQ5",
+            "currentbId": "b_s1q5eok25ds",
             "colorsPreference": {
               "mode": "brand",
               "customColors": [],
@@ -858,7 +1093,7 @@
           ],
           "settings": {
             "mode": "brand",
-            "currentbId": "b_sdfCxqhtlQ5",
+            "currentbId": "b_s1q5eok25ds",
             "colorsPreference": {
               "mode": "brand",
               "customColors": [],
@@ -901,7 +1136,7 @@
           ],
           "settings": {
             "mode": "brand",
-            "currentbId": "b_sdfCxqhtlQ5",
+            "currentbId": "b_s1q5eok25ds",
             "colorsPreference": {
               "mode": "brand",
               "customColors": [],
@@ -944,7 +1179,7 @@
           ],
           "settings": {
             "mode": "brand",
-            "currentbId": "b_sdfCxqhtlQ5",
+            "currentbId": "b_s1q5eok25ds",
             "colorsPreference": {
               "mode": "brand",
               "customColors": [],
@@ -987,7 +1222,7 @@
           ],
           "settings": {
             "mode": "brand",
-            "currentbId": "b_sdfCxqhtlQ5",
+            "currentbId": "b_s1q5eok25ds",
             "colorsPreference": {
               "mode": "brand",
               "customColors": [],
@@ -1030,7 +1265,7 @@
           ],
           "settings": {
             "mode": "brand",
-            "currentbId": "b_sdfCxqhtlQ5",
+            "currentbId": "b_s1q5eok25ds",
             "colorsPreference": {
               "mode": "brand",
               "customColors": [],
@@ -1073,7 +1308,7 @@
           ],
           "settings": {
             "mode": "brand",
-            "currentbId": "b_sdfCxqhtlQ5",
+            "currentbId": "b_s1q5eok25ds",
             "colorsPreference": {
               "mode": "brand",
               "customColors": [],
@@ -1098,7 +1333,7 @@
     ],
     "designs-from-content": []
   },
-  "b_s4gjTzyXW4I": {
+  "b_smimyDcZAWw": {
     "designs-from-prompt": [
       {
         "name": "Snapchat Ad – Your Skin's Daily Hydration Starts Here",
@@ -1121,7 +1356,7 @@
           ],
           "settings": {
             "mode": "brand",
-            "currentbId": "b_s4gjTzyXW4I",
+            "currentbId": "b_smimyDcZAWw",
             "colorsPreference": {
               "mode": "brand",
               "customColors": [],
@@ -1164,7 +1399,7 @@
           ],
           "settings": {
             "mode": "brand",
-            "currentbId": "b_s4gjTzyXW4I",
+            "currentbId": "b_smimyDcZAWw",
             "colorsPreference": {
               "mode": "brand",
               "customColors": [],
@@ -1207,7 +1442,7 @@
           ],
           "settings": {
             "mode": "brand",
-            "currentbId": "b_s4gjTzyXW4I",
+            "currentbId": "b_smimyDcZAWw",
             "colorsPreference": {
               "mode": "brand",
               "customColors": [],
@@ -1250,7 +1485,7 @@
           ],
           "settings": {
             "mode": "brand",
-            "currentbId": "b_s4gjTzyXW4I",
+            "currentbId": "b_smimyDcZAWw",
             "colorsPreference": {
               "mode": "brand",
               "customColors": [],
@@ -1293,7 +1528,7 @@
           ],
           "settings": {
             "mode": "brand",
-            "currentbId": "b_s4gjTzyXW4I",
+            "currentbId": "b_smimyDcZAWw",
             "colorsPreference": {
               "mode": "brand",
               "customColors": [],
