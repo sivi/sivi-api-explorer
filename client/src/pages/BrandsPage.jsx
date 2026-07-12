@@ -23,6 +23,7 @@ function BrandCard({ brand, onSelect, index }) {
   const colors = resolveColors(brand)
   const name = brand.brandName || brand.name || 'Brand'
   const description = brand.brandDescription || brand.description
+  const logoBackground = brand.logoBackground || null
 
   return (
     <div
@@ -38,7 +39,9 @@ function BrandCard({ brand, onSelect, index }) {
       <div className="brand-list-card-shine" />
       <div className="brand-list-card-top">
         {logo ? (
-          <img src={logo} alt={`${name} logo`} className="brand-list-card-logo" />
+          <div className={logoBackground ? `brand-list-card-logo-bg brand-list-card-logo-bg-${logoBackground}` : ''}>
+            <img src={logo} alt={`${name} logo`} className="brand-list-card-logo" />
+          </div>
         ) : (
           <span className="brand-list-card-logo-placeholder">{name[0]}</span>
         )}

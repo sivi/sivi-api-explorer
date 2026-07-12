@@ -1,2334 +1,1047 @@
 {
   "b_ssQ7X36zjro": {
-  "_id": {
-    "$oid": "69a91d2818e8072d2aab5eef"
-  },
-  "bId": "b_ssQ7X36zjro",
-  "brandDescription": "Miniora is a baby care brand designed for comfort, safety, and sustainability. Our range includes soft toys, baby bath essentials, and baby wear, all made from eco-friendly and baby skin-friendly materials.\n\nEach product is crafted with gentle fabrics and non-toxic materials to ensure maximum softness, safety, and comfort for delicate baby skin. With a focus on quality and sustainable choices, Miniora creates products that are safe for babies and kind to the planet.",
-  "brandExtractedHistory": [
-    {
-      "type": "business",
-      "urlType": "website",
-      "date": 1772690723
-    }
-  ],
-  "brandName": "Miniora",
-  "bsId": "sfdVQh1arD0",
-  "colors": [
-    {
-      "color": "#d13e2c",
-      "primary": true,
-      "addedBy": "user"
-    },
-    {
-      "color": "#f46f50",
-      "primary": false,
-      "addedBy": "user"
-    },
-    {
-      "color": "#fbbd4c",
-      "primary": false,
-      "addedBy": "user"
-    },
-    {
-      "color": "#e4e1da",
-      "primary": false,
-      "addedBy": "user"
-    },
-    {
-      "color": "#ffffff",
-      "primary": false,
-      "addedBy": "user"
-    }
-  ],
-  "contentMetaInfo": {
-    "audience": [
-      "new parents",
-      "eco conscious"
-    ],
-    "designTags": [
-      "baby care",
-      "soft fabrics",
-      "eco friendly",
-      "gentle touch",
-      "safe materials",
-      "baby comfort"
-    ],
-    "emotions": [
-      "love",
-      "trust",
-      "happy"
-    ],
-    "imageContainerComponentTypes": {
-      "cornerRadius": [
-        "rounded"
-      ],
-      "numberOfLayers": [
-        "low"
-      ],
-      "vectorShapes": [
-        "rectangle",
-        "organic"
-      ],
-      "vectorStyles": [
-        "fill",
-        "simple decor"
-      ]
-    },
-    "industry": "childcare",
-    "textComponentTypes": {
-      "cornerRadius": [
-        "rounded"
-      ],
-      "numberOfLayers": [
-        "low"
-      ],
-      "vectorShapes": [
-        "rectangle",
-        "organic"
-      ],
-      "vectorStyles": [
-        "fill",
-        "simple decor"
-      ]
-    },
-    "tones": [
-      "playful",
-      "modern",
-      "minimal"
-    ]
-  },
-  "createdOn": 1772690723,
-  "fontGroups": [
-    [
+    "bId": "b_ssQ7X36zjro",
+    "brandName": "Miniora",
+    "brandDescription": "Miniora is a baby care brand designed for comfort, safety, and sustainability. Our range includes soft toys, baby bath essentials, and baby wear, all made from eco-friendly and baby skin-friendly materials.\n\nEach product is crafted with gentle fabrics and non-toxic materials to ensure maximum softness, safety, and comfort for delicate baby skin. With a focus on quality and sustainable choices, Miniora creates products that are safe for babies and kind to the planet.",
+    "brandUrl": null,
+    "brandColors": [
       {
-        "type": "heading",
-        "id": "cyRcoOkVPaw",
-        "name": "FredokaOne Regular",
-        "wId": "",
-        "addedBy": "system"
+        "color": "#d13e2c",
+        "primary": true,
+        "addedBy": "user"
       },
       {
-        "type": "subHeading",
-        "id": "c0p2GlC4odr",
-        "name": "Nunito SemiBold",
-        "wId": "",
-        "addedBy": "google"
+        "color": "#f46f50",
+        "primary": false,
+        "addedBy": "user"
       },
       {
-        "type": "body",
-        "id": "cB81D798uYU",
-        "name": "Nunito Medium",
-        "wId": "",
-        "addedBy": "google"
+        "color": "#fbbd4c",
+        "primary": false,
+        "addedBy": "user"
+      },
+      {
+        "color": "#e4e1da",
+        "primary": false,
+        "addedBy": "user"
+      },
+      {
+        "color": "#ffffff",
+        "primary": false,
+        "addedBy": "user"
       }
-    ]
-  ],
-  "imageGenPreference": {
-    "mode": "brand",
-    "model": "auto",
-    "imageStyles": [
-      {
-        "name": "Photo",
-        "value": "photo",
-        "description": "Ultra-realistic photograph, natural lighting, true-to-life colors, realistic skin and surface textures, shallow depth of field, DSLR quality, cinematic composition, high detail, no stylization.",
-        "system": "SYSTEM",
-        "isSelected": true,
-        "sampleImages": []
-      }
-    ]
-  },
-  "language": {
-    "languageName": "english",
-    "languageCode": "en"
-  },
-  "lastExtractedTime": 1772690723,
-  "promptGenStatus": {
-    "buildPromptStatus": "in-progress",
-    "quickPromptStatus": "pending"
-  },
-  "styles": {
-    "theme": [
-      "colorful",
-      "light"
     ],
-    "frameStyle": [
-      "plain"
-    ],
-    "backdropStyle": [
-      "imagery",
-      "artistic",
-      "minimalist"
-    ],
-    "focus": [
-      "neutral",
-      "image"
-    ],
-    "imageStyle": [
-      "cover-with-linear-gradient",
-      "cover",
-      "container",
-      "section-with-container",
-      "section"
-    ],
-    "vectorStyle": {
-      "cornerRadius": [
-        "pill",
-        "rounded"
-      ],
-      "complexity": [
-        "low"
-      ],
-      "vectorType": [
-        "accent",
-        "fill"
-      ],
-      "shapes": [
-        "rectangle",
-        "circle"
-      ],
-      "useFor": []
-    }
-  },
-  "textGenPreference": {
-    "mode": "brand",
-    "model": "auto",
-    "amountOfText": [
-      "short"
-    ],
-    "messageStyles": [
-      "caring",
-      "gentle",
-      "reassuring"
-    ],
-    "sampleTextMessages": [
-      {
-        "id": "s8Ayffwa0AH",
-        "isSelected": true
-      },
-      {
-        "id": "sJda4rJ0R4B",
-        "isSelected": true
-      },
-      {
-        "id": "s4R41Mb75ul",
-        "isSelected": true
-      }
-    ]
-  },
-  "updatedOn": 1783693585,
-  "wId": "cf575e80-1bee-11ee-a72b-195290331943",
-  "websiteUrl": "",
-  "componentGroupIds": {
-    "photo": [
-      "cg_689a6237e061a6b906fba9bdedc90d6c",
-      "cg_e947040a01a28e409f137c63e9878827",
-      "cg_ab6b9ecdce9c3ff71f8f1cbd70556c56",
-      "cg_deee62d29d7efe0fb765f235ee4afb16"
-    ],
-    "button": [
-      "cg_0af5a78453162204fc969c06eec54ebf",
-      "cg_4ba3c290d86fc5fb84ba5411ef07bf32"
-    ],
-    "title": [
-      "cg_78ad8ff0daacdd42d58fdc406b73d502",
-      "cg_a3b4f49d23137f7772d245fd739527b0"
-    ],
-    "offer": [
-      "cg_9df4369651c4212733e7efe9f49b38a4",
-      "cg_4098b5610060b38982370ab4c03d49c8"
-    ],
-    "product": [
-      "cg_ee14811b75f63a64be2a0aeb94a9c795",
-      "cg_c42d4db891325960db40b7137fec1991",
-      "cg_6f254cb0534d266c4ca49254f5c5269d",
-      "cg_03dc6ea9716fca560179b43a20ff3ae8",
-      "cg_8bc0921f6abaacfb6c11107928124587",
-      "cg_5649ea8eb6243fd9534e60c917d773ce",
-      "cg_a8203033b237c48cdb36f2d64d35d16d"
-    ]
-  },
-  "dynamicComponentGroupIds": {
-    "title": [
-      "cg_99c0297ef2f96eb77415a4a8415a9dd4",
-      "cg_2b5d613c4756fd023dea5a4862eb038b",
-      "cg_4a2f98481c0d6679c80d59eb378bc7a2"
-    ]
-  },
-  "status": "complete",
-  "clIds": [
-    "cl_bvRtiNx05"
-  ],
-  "primaryLogoIds": [
-    "cf575e80-1bee-11ee-a72b-195290331943----b_ssQ7X36zjro__local__sxIv3c1UQiC.png",
-    "cf575e80-1bee-11ee-a72b-195290331943----b_ssQ7X36zjro__local__sA1Z1hBiYYY.png"
-  ],
-  "contactDetails": {
-    "email": "",
-    "phoneNumber": "",
-    "address": "",
-    "twitter": "",
-    "instagram": "",
-    "linkedin": "",
-    "facebook": ""
-  }
-},
-"b_sVXXU7E5atx": {
-  "_id": {
-    "$oid": "69a815d218e8072d2aab0b2d"
-  },
-  "bId": "b_sVXXU7E5atx",
-  "brandDescription": "Designed for those who appreciate understated luxury, the KraftHaus Living Modern Lounge Chair blends precision German craftsmanship with contemporary comfort. Its solid wood frame offers lasting strength, while the premium upholstered seat provides exceptional support for everyday living.\n\nClean lines, balanced proportions, and a thoughtfully engineered structure make this chair a perfect addition to modern living rooms, reading corners, or executive spaces. Every detail reflects durability, comfort, and timeless design—crafted to elevate your space without excess.\n\nExperience comfort that la",
-  "brandExtractedHistory": [
-    {
-      "type": "business",
-      "urlType": "website",
-      "date": 1772623309
-    }
-  ],
-  "brandName": "Kraft Haus Living.com",
-  "bsId": "sBKNDDDRc2v",
-  "colors": [
-    {
-      "color": "#4b2614",
-      "primary": false,
-      "addedBy": "user"
-    },
-    {
-      "color": "#caab75",
-      "primary": false,
-      "addedBy": "user"
-    },
-    {
-      "color": "#f2ac3a",
-      "primary": false,
-      "addedBy": "user"
-    },
-    {
-      "color": "#dbdbdb",
-      "primary": false,
-      "addedBy": "user"
-    },
-    {
-      "color": "rgba(25, 25, 25, 1)",
-      "primary": false,
-      "addedBy": "user"
-    }
-  ],
-  "contentMetaInfo": {
-    "audience": [
-      "home owners",
-      "design enthusiasts",
-      "luxury consumers",
-      "modern professionals"
-    ],
-    "designTags": [
-      "modern lounge",
-      "solid wood",
-      "clean lines",
-      "premium upholstery",
-      "german craftsmanship",
-      "understated luxury"
-    ],
-    "emotions": [
-      "love",
-      "smart",
-      "trust",
-      "desire",
-      "happy"
-    ],
-    "imageContainerComponentTypes": {
-      "cornerRadius": [
-        "rounded"
-      ],
-      "numberOfLayers": [
-        "low"
-      ],
-      "vectorShapes": [
-        "rectangle",
-        "oval"
-      ],
-      "vectorStyles": [
-        "outline",
-        "simple decor"
-      ]
-    },
-    "industry": "home_garden",
-    "textComponentTypes": {
-      "cornerRadius": [
-        "rounded"
-      ],
-      "numberOfLayers": [
-        "low"
-      ],
-      "vectorShapes": [
-        "rectangle",
-        "line"
-      ],
-      "vectorStyles": [
-        "fill",
-        "simple decor"
-      ]
-    },
-    "tones": [
-      "luxurious",
-      "modern",
-      "professional",
-      "minimal",
-      "classic"
-    ]
-  },
-  "createdOn": 1772623309,
-  "fontGroups": [
-    [
-      {
-        "id": "cEXwzg9DR7Y",
-        "name": "Hepta Slab SemiBold",
-        "wId": "",
-        "addedBy": "system",
-        "type": "heading"
-      },
-      {
-        "id": "cKIe63ODELS",
-        "name": "HostGrotesk SemiBold",
-        "wId": "cf575e80-1bee-11ee-a72b-195290331943",
-        "addedBy": "user",
-        "type": "subHeading"
-      },
-      {
-        "id": "clRmfOLtio3",
-        "name": "HostGrotesk Regular",
-        "wId": "cf575e80-1bee-11ee-a72b-195290331943",
-        "addedBy": "user",
-        "type": "body"
-      }
-    ]
-  ],
-  "imageGenPreference": {
-    "mode": "brand",
-    "model": "auto",
-    "imageStyles": [
-      {
-        "name": "Photo",
-        "value": "photo",
-        "description": "Ultra-realistic photograph, natural lighting, true-to-life colors, realistic skin and surface textures, shallow depth of field, DSLR quality, cinematic composition, high detail, no stylization.",
-        "system": "SYSTEM",
-        "isSelected": true,
-        "sampleImages": []
-      }
-    ]
-  },
-  "language": {
-    "languageName": "english",
-    "languageCode": "en"
-  },
-  "lastExtractedTime": 1772623309,
-  "promptGenStatus": {
-    "buildPromptStatus": "done",
-    "quickPromptStatus": "pending"
-  },
-  "styles": {
-    "theme": [
-      "colorful",
-      "dark",
-      "light"
-    ],
-    "frameStyle": [
-      "box",
-      "plain"
-    ],
-    "backdropStyle": [],
-    "focus": [
-      "image"
-    ],
-    "imageStyle": [
-      "section-with-container",
-      "container",
-      "section",
-      "cover-with-overlay",
-      "cover-with-linear-gradient",
-      "cover"
-    ],
-    "vectorStyle": {
-      "cornerRadius": [
-        "sharp"
-      ],
-      "complexity": [
-        "low"
-      ],
-      "vectorType": [
-        "accent",
-        "fill"
-      ],
-      "shapes": [
-        "rectangle"
-      ],
-      "useFor": []
-    }
-  },
-  "textGenPreference": {
-    "mode": "brand",
-    "model": "auto",
-    "amountOfText": [
-      "short"
-    ],
-    "messageStyles": [
-      "sophisticated",
-      "elegant",
-      "refined",
-      "timeless",
-      "comfortable"
-    ],
-    "sampleTextMessages": [
-      {
-        "id": "s84XYrkTXsw",
-        "isSelected": true
-      },
-      {
-        "id": "sweIG8UAAJR",
-        "isSelected": true
-      },
-      {
-        "id": "sZXEAvUZ5pE",
-        "isSelected": true
-      }
-    ]
-  },
-  "updatedOn": 1783692601,
-  "wId": "cf575e80-1bee-11ee-a72b-195290331943",
-  "websiteUrl": "",
-  "status": "complete",
-  "clIds": [
-    "cl_ZpyAo0jUb"
-  ],
-  "genModePreference": {
-    "compose": [
-      {
-        "type": "design",
-        "model": "auto",
-        "size": {
-          "mode": "auto",
-          "medium": "amazon",
-          "type": "amazon-ad",
-          "dimension": {
-            "width": 300,
-            "height": 250
-          },
-          "name": "Amazon Ad"
+    "brandFonts": [
+      [
+        {
+          "id": "cyRcoOkVPaw",
+          "name": "FredokaOne Regular",
+          "addedBy": "system",
+          "type": "heading",
+          "imageUrl": "https://media.hellosivi.com/system/fonts/ns/preview/cyRcoOkVPaw.png"
+        },
+        {
+          "id": "c0p2GlC4odr",
+          "name": "Nunito SemiBold",
+          "addedBy": "google",
+          "type": "subHeading",
+          "imageUrl": "https://media.hellosivi.com/system/fonts/ns/preview/c0p2GlC4odr.png"
+        },
+        {
+          "id": "cB81D798uYU",
+          "name": "Nunito Medium",
+          "addedBy": "google",
+          "type": "body",
+          "imageUrl": "https://media.hellosivi.com/system/fonts/ns/preview/cB81D798uYU.png"
         }
+      ]
+    ],
+    "brandPersona": {
+      "industry": "childcare",
+      "emotions": [
+        "love",
+        "trust",
+        "happy"
+      ],
+      "audience": [
+        "new parents",
+        "eco conscious"
+      ],
+      "designTags": [
+        "baby care",
+        "soft fabrics",
+        "eco friendly",
+        "gentle touch",
+        "safe materials",
+        "baby comfort"
+      ]
+    },
+    "brandLogos": [
+      "https://media.hellosivi.com/logos/spQXkFEvwAd.png",
+      "https://media.hellosivi.com/logos/sFguzmnzdyL.png",
+      "https://media.hellosivi.com/logos/s0PXN1Y0lpr.png",
+      "https://media.hellosivi.com/logos/sCbKsG51K7v.png",
+      "https://media.hellosivi.com/logos/sA1Z1hBiYYY.png",
+      "https://media.hellosivi.com/logos/sMzKzUSesPY.png",
+      "https://media.hellosivi.com/logos/sTxTlJGLhNm.png"
+    ],
+    "brandImages": [
+      "https://media.hellosivi.com/photos/snXyoqGU09E.jpg",
+      "https://media.hellosivi.com/photos/sKfSa1ozCY6.png",
+      "https://media.hellosivi.com/photos/s0f74ITtY4A.png",
+      "https://media.hellosivi.com/photos/sY9qoJFdWD8.jpg",
+      "https://media.hellosivi.com/photos/sE1AzQ1GA01.jpg",
+      "https://media.hellosivi.com/photos/strTXMZAHcE.png",
+      "https://media.hellosivi.com/photos/ssq4vtKS0lA.jpg",
+      "https://media.hellosivi.com/photos/sJVrE6L9DO2.png",
+      "https://media.hellosivi.com/system/generated-images/sivi/ad277ec45c4284a96573b578d73b2ca3.png",
+      "https://media.hellosivi.com/system/generated-images/sivi/8cf690db42d05f80beacb4de1614ae47.png",
+      "https://media.hellosivi.com/photos/smkHer2S9G5.jpg",
+      "https://media.hellosivi.com/photos/snznbhUeSwV.jpg",
+      "https://media.hellosivi.com/photos/saiRBF0YRuK.jpg",
+      "https://media.hellosivi.com/photos/sxzWCBpVUWR.jpg",
+      "https://media.hellosivi.com/photos/scMGvdI09PD.jpg"
+    ]
+  },
+  "b_sVXXU7E5atx": {
+    "bId": "b_sVXXU7E5atx",
+    "brandName": "Kraft Haus Living.com",
+    "brandDescription": "Designed for those who appreciate understated luxury, the KraftHaus Living Modern Lounge Chair blends precision German craftsmanship with contemporary comfort. Its solid wood frame offers lasting strength, while the premium upholstered seat provides exceptional support for everyday living.\n\nClean lines, balanced proportions, and a thoughtfully engineered structure make this chair a perfect addition to modern living rooms, reading corners, or executive spaces. Every detail reflects durability, comfort, and timeless design—crafted to elevate your space without excess.\n\nExperience comfort that la",
+    "brandUrl": null,
+    "brandColors": [
+      {
+        "color": "#4b2614",
+        "primary": false,
+        "addedBy": "user"
+      },
+      {
+        "color": "#caab75",
+        "primary": false,
+        "addedBy": "user"
+      },
+      {
+        "color": "#f2ac3a",
+        "primary": false,
+        "addedBy": "user"
+      },
+      {
+        "color": "#dbdbdb",
+        "primary": false,
+        "addedBy": "user"
+      },
+      {
+        "color": "rgba(25, 25, 25, 1)",
+        "primary": false,
+        "addedBy": "user"
       }
     ],
-    "decompose": [
-      {
-        "type": "design",
-        "model": "auto",
-        "size": {
-          "mode": "auto",
-          "medium": "amazon",
-          "type": "amazon-ad",
-          "dimension": {
-            "width": 300,
-            "height": 250
-          },
-          "name": "Amazon Ad"
+    "brandFonts": [
+      [
+        {
+          "id": "cEXwzg9DR7Y",
+          "name": "Hepta Slab SemiBold",
+          "addedBy": "system",
+          "type": "heading",
+          "imageUrl": "https://media.hellosivi.com/system/fonts/ns/preview/cEXwzg9DR7Y.png"
+        },
+        {
+          "id": "cKIe63ODELS",
+          "name": "HostGrotesk SemiBold",
+          "addedBy": "user",
+          "type": "subHeading",
+          "imageUrl": "https://media.hellosivi.com/user-data/cf575e80-1bee-11ee-a72b-195290331943/fonts/ns/preview/cKIe63ODELS.png"
+        },
+        {
+          "id": "clRmfOLtio3",
+          "name": "HostGrotesk Regular",
+          "addedBy": "user",
+          "type": "body",
+          "imageUrl": "https://media.hellosivi.com/user-data/cf575e80-1bee-11ee-a72b-195290331943/fonts/ns/preview/clRmfOLtio3.png"
         }
+      ]
+    ],
+    "brandPersona": {
+      "industry": "home_garden",
+      "emotions": [
+        "love",
+        "smart",
+        "trust",
+        "desire",
+        "happy"
+      ],
+      "audience": [
+        "home owners",
+        "design enthusiasts",
+        "luxury consumers",
+        "modern professionals"
+      ],
+      "designTags": [
+        "modern lounge",
+        "solid wood",
+        "clean lines",
+        "premium upholstery",
+        "german craftsmanship",
+        "understated luxury"
+      ]
+    },
+    "brandLogos": [
+      "https://media.hellosivi.com/logos/swIfBy0IB29.png"
+    ],
+    "brandImages": [
+      "https://media.hellosivi.com/system/generated-images/sivi/278ca51a3a262e6627a2015f033efd9d.jpeg",
+      "https://media.hellosivi.com/system/generated-images/sivi/8736bad03bf2620a543226742911f341.jpeg",
+      "https://media.hellosivi.com/photos/sjYR7FWZtBJ.jpg",
+      "https://media.hellosivi.com/photos/sGCzu84XJkQ.png",
+      "https://media.hellosivi.com/photos/sSK6jhjEQSn.jpg",
+      "https://media.hellosivi.com/photos/smyDX5M8ghN.jpg",
+      "https://media.hellosivi.com/system/generated-images/sivi/786b3580a4b8ea8e684c21c701d3ab78.png",
+      "https://media.hellosivi.com/system/generated-images/sivi/2b52af21abbdc6950c42bbcd532a884c.png",
+      "https://media.hellosivi.com/photos/sDOtmFJ0JbB.png",
+      "https://media.hellosivi.com/system/generated-images/sivi/569768e1092ded7c6ebfb6bf52c2bc4e.jpeg",
+      "https://media.hellosivi.com/system/generated-images/sivi/7c925a03c660aa2da2cfcd1cbd71de73.jpeg",
+      "https://media.hellosivi.com/system/generated-images/sivi/5ba0974be8cdd87fec875e13f0d023b2.jpeg",
+      "https://media.hellosivi.com/system/generated-images/sivi/c1b78b50d1bda680a2795921e7a81455.jpeg",
+      "https://media.hellosivi.com/photos/sw7Z7u5hMl3.jpg",
+      "https://media.hellosivi.com/system/generated-images/sivi/f29ac1474be2089f1727b09311c19c33.jpeg",
+      "https://media.hellosivi.com/system/generated-images/sivi/4f9dc7751578ccbb4d0438f88823e265.jpeg",
+      "https://media.hellosivi.com/system/generated-images/sivi/a898341fe7daa78f0c32cbadd199b1b8.png",
+      "https://media.hellosivi.com/system/generated-images/sivi/397cb4c060ca0ed2fc2a525d965a4d8d.png",
+      "https://media.hellosivi.com/system/generated-images/sivi/79e6252e2fa99042f3fb7df8c21fde12.jpeg",
+      "https://media.hellosivi.com/system/generated-images/sivi/349fdaf3721937fc068d8f1a37389172.jpeg",
+      "https://media.hellosivi.com/system/generated-images/sivi/7f38e444e3a43a4ced42d5c39a9abdbc.jpeg",
+      "https://media.hellosivi.com/system/generated-images/sivi/1813d8bfcb16b1ff73def94ce23171fe.jpeg",
+      "https://media.hellosivi.com/photos/sdqy4b1Cm0Y.png",
+      "https://media.hellosivi.com/system/generated-images/sivi/b8ee0cf53b3f00cd77f5f8d8ebd86d4f.jpeg",
+      "https://media.hellosivi.com/system/generated-images/sivi/4a0247d78ce9c19402c18a3627f526ab.jpeg",
+      "https://media.hellosivi.com/system/generated-images/sivi/86d2ecebf8bc3450ce88aa1574bedabb.jpeg",
+      "https://media.hellosivi.com/photos/sZGf02y3uwY.jpg"
+    ]
+  },
+  "b_sfZeStxbrvs": {
+    "bId": "b_sfZeStxbrvs",
+    "brandName": "Northveil Venture Capital",
+    "brandDescription": "Northveil Venture Capital is a forward-thinking investment firm dedicated to supporting innovative startups and high-growth companies. With a focus on emerging technologies and scalable business models, Northveil partners with visionary founders to turn bold ideas into successful enterprises. Beyond capital, the firm provides strategic guidance, industry connections, and operational expertise to help businesses accelerate growth and create lasting market impact. Northveil Venture Capital is committed to building the next generation of transformative companies.",
+    "brandUrl": null,
+    "brandColors": [
+      {
+        "color": "#00332f",
+        "primary": true,
+        "addedBy": "user"
       },
       {
-        "type": "image",
-        "model": "auto",
-        "size": {
-          "mode": "auto",
-          "medium": "nano-banana",
-          "type": "nano-banana-1:1-1k",
-          "dimension": {
-            "width": 1024,
-            "height": 1024
-          },
-          "name": "1:1"
+        "color": "#46a69d",
+        "primary": false,
+        "addedBy": "user"
+      },
+      {
+        "color": "#d4a954",
+        "primary": false,
+        "addedBy": "user"
+      },
+      {
+        "color": "#f8f7f3",
+        "primary": false,
+        "addedBy": "user"
+      },
+      {
+        "color": "rgba(20, 33, 50, 1)",
+        "primary": false,
+        "addedBy": "user"
+      }
+    ],
+    "brandFonts": [
+      [
+        {
+          "id": "cTa57qRc1nI",
+          "name": "Lora Bold",
+          "addedBy": "system",
+          "type": "heading",
+          "imageUrl": "https://media.hellosivi.com/system/fonts/ns/preview/cTa57qRc1nI.png"
+        },
+        {
+          "id": "coZi8fQHhJh",
+          "name": "LoraMedium",
+          "addedBy": "user",
+          "type": "subHeading",
+          "imageUrl": "https://media.hellosivi.com/user-data/cf575e80-1bee-11ee-a72b-195290331943/fonts/ns/preview/coZi8fQHhJh.png"
+        },
+        {
+          "id": "zQGDYbaxVF",
+          "name": "Inter 18pt Medium",
+          "addedBy": "google",
+          "type": "body",
+          "imageUrl": "https://media.hellosivi.com/system/fonts/ns/preview/zQGDYbaxVF.png"
         }
+      ]
+    ],
+    "brandPersona": {
+      "industry": "business_consulting",
+      "emotions": [
+        "smart",
+        "trust",
+        "excited"
+      ],
+      "audience": [
+        "startups",
+        "investors"
+      ],
+      "designTags": [
+        "growth strategy",
+        "tech investment",
+        "startup support",
+        "business innovation",
+        "venture growth",
+        "capital investment"
+      ]
+    },
+    "brandLogos": [
+      "https://media.hellosivi.com/logos/stofgo69Fl7.png",
+      "https://media.hellosivi.com/logos/sD6Dtx2DlnQ.png",
+      "https://media.hellosivi.com/logos/snb4CRrEJNt.png",
+      "https://media.hellosivi.com/logos/sKv9F7qJpiv.png",
+      "https://media.hellosivi.com/logos/stI31EkSUPQ.png",
+      "https://media.hellosivi.com/logos/sAArdpjdgK3.png",
+      "https://media.hellosivi.com/logos/sZ13IBFHaOi.jpg",
+      "https://media.hellosivi.com/logos/sWFyUmDWX0R.png"
+    ],
+    "brandImages": [
+      "https://media.hellosivi.com/photos/sZEpRSbKtD8.jpg",
+      "https://media.hellosivi.com/photos/shJ8rPseUZC.jpg",
+      "https://media.hellosivi.com/photos/sbg49PWDMHC.jpg",
+      "https://media.hellosivi.com/system/generated-images/sivi/e6cda2a6f3b04acfd308192f1574b1c4.jpeg",
+      "https://media.hellosivi.com/photos/sEkFION2cz0.jpg",
+      "https://media.hellosivi.com/photos/s7Fr6VL5MIk.jpg",
+      "https://media.hellosivi.com/photos/sNpWw5Hz3QM.png",
+      "https://media.hellosivi.com/photos/st6RhlQCTtn.jpg",
+      "https://media.hellosivi.com/system/generated-images/sivi/263b9654b623f79b6b25f73860380abf.jpeg",
+      "https://media.hellosivi.com/photos/smknfye9RhZ.png",
+      "https://media.hellosivi.com/system/generated-images/sivi/19b075713dd090b0d10d08b7cbfaee9f.jpeg",
+      "https://media.hellosivi.com/photos/s3h5dI0zc4k.jpg",
+      "https://media.hellosivi.com/photos/sdzyy4sdoXc.jpg",
+      "https://media.hellosivi.com/photos/s0HB0qH2rd9.png",
+      "https://media.hellosivi.com/photos/s2XWgax38jJ.png",
+      "https://media.hellosivi.com/photos/sSNSFKvepD9.png",
+      "https://media.hellosivi.com/photos/sbzzqtuBe8a.jpg",
+      "https://media.hellosivi.com/photos/sx4Pz0WXaBi.jpg",
+      "https://media.hellosivi.com/photos/sgiQJyfj6t5.png",
+      "https://media.hellosivi.com/photos/sApk4pwaygZ.png",
+      "https://media.hellosivi.com/photos/si6a3GFoRr9.png",
+      "https://media.hellosivi.com/system/generated-images/sivi/bff76296b67905e6c79bc2673c46b8f6.png",
+      "https://media.hellosivi.com/system/generated-images/sivi/76b01abdc81acef7ab084c6463d467f7.jpeg",
+      "https://media.hellosivi.com/system/generated-images/sivi/16b8b33e736b0b8d3c311391dc9c3d3b.png",
+      "https://media.hellosivi.com/photos/729ba93cbaef27ceda1a31e714ce966a.jpeg",
+      "https://media.hellosivi.com/system/generated-images/sivi/948d41887ac6cf2ff64333a47b125cf9.png",
+      "https://media.hellosivi.com/photos/sIUDA5GW8Sn.jpg",
+      "https://media.hellosivi.com/photos/sSZKjzB9ies.jpg",
+      "https://media.hellosivi.com/photos/suQKcWmOI6O.jpg"
+    ]
+  },
+  "b_sdfCxqhtlQ5": {
+    "bId": "b_sdfCxqhtlQ5",
+    "brandName": "FlowMint ",
+    "brandDescription": "FlowMint is a Seattle-based technology company dedicated to transforming businesses through innovation and intelligent automation. We specialize in custom software development, AI-driven solutions, and digital transformation strategies that empower organizations to operate smarter, faster, and more efficiently. At FlowMint, we combine cutting-edge technology with human-centered design to create seamless digital experiences that drive growth, optimize operations, and future-proof your business. Our mission is to make complex technology simple, accessible, and impactful for companies of all size",
+    "brandUrl": null,
+    "brandColors": [
+      {
+        "color": "#3070ff",
+        "primary": false,
+        "addedBy": "user"
+      },
+      {
+        "color": "#c4d6ff",
+        "primary": false,
+        "addedBy": "user"
+      },
+      {
+        "color": "rgba(6, 22, 58, 1)",
+        "primary": false,
+        "addedBy": "user"
       }
     ],
-    "imagine": [
-      {
-        "type": "image",
-        "model": "nano-banana-pro:1k",
-        "size": {
-          "mode": "auto",
-          "medium": "nano-banana",
-          "type": "nano-banana-1:1-1k",
-          "dimension": {
-            "width": 1024,
-            "height": 1024
-          },
-          "name": "1:1"
+    "brandFonts": [
+      [
+        {
+          "id": "cPWG8wlsGjH",
+          "name": "Sora SemiBold",
+          "addedBy": "google",
+          "type": "heading",
+          "imageUrl": "https://media.hellosivi.com/system/fonts/ns/preview/cPWG8wlsGjH.png"
+        },
+        {
+          "id": "cA8DH7HUuIa",
+          "name": "Sora Medium",
+          "addedBy": "system",
+          "type": "subHeading",
+          "imageUrl": "https://media.hellosivi.com/system/fonts/ns/preview/cA8DH7HUuIa.png"
+        },
+        {
+          "id": "c0wuK6Aue6W",
+          "name": "Plus Jakarta Sans Regular",
+          "addedBy": "system",
+          "type": "body",
+          "imageUrl": "https://media.hellosivi.com/system/fonts/ns/preview/c0wuK6Aue6W.png"
         }
+      ]
+    ],
+    "brandPersona": {
+      "industry": "technology",
+      "emotions": [
+        "smart",
+        "trust",
+        "cool"
+      ],
+      "audience": [
+        "businesses",
+        "enterprises"
+      ],
+      "designTags": [
+        "clean design",
+        "tech solutions",
+        "digital transformation",
+        "ai driven",
+        "software development",
+        "seamless experience"
+      ]
+    },
+    "brandLogos": [
+      "https://media.hellosivi.com/logos/sVci3qFBCGS.png",
+      "https://media.hellosivi.com/logos/sjczNMRcURY.png",
+      "https://media.hellosivi.com/logos/sbhvzzz6Wrx.png"
+    ],
+    "brandImages": [
+      "https://media.hellosivi.com/system/generated-images/sivi/1a75be929f72d0abc4c21db0fe3255bd.png",
+      "https://media.hellosivi.com/photos/sxcYJUgNsKq.png",
+      "https://media.hellosivi.com/photos/sEL7QMswJSr.jpg",
+      "https://media.hellosivi.com/photos/sT6WUyjwjYF.jpg",
+      "https://media.hellosivi.com/photos/s7ainpKSrii.png",
+      "https://media.hellosivi.com/photos/sp153qdTbxA.png",
+      "https://media.hellosivi.com/photos/sAZ4kr99Mr4.jpg",
+      "https://media.hellosivi.com/photos/sUes1yJyOny.png",
+      "https://media.hellosivi.com/photos/sVfLWL513Ti.png",
+      "https://media.hellosivi.com/system/generated-images/sivi/393ab26992be9ea728f86e67bcd79b2c.png",
+      "https://media.hellosivi.com/photos/styVU0KIhQa.png",
+      "https://media.hellosivi.com/photos/s8i6Ud6hPlP.png",
+      "https://media.hellosivi.com/photos/sYHIGlqUjrF.png"
+    ],
+    "logoBackground": "light"
+  },
+  "b_s4gjTzyXW4I": {
+    "bId": "b_s4gjTzyXW4I",
+    "brandName": "HYLURA",
+    "brandDescription": "Hydration is the foundation of healthy, radiant beauty.\n\nInspired by modern Korean skincare innovation, HYLURA creates products that deliver deep hydration, strengthen the skin barrier, and enhance natural radiance through thoughtfully formulated ingredients and elevated daily rituals.\n\nCombining skincare science with contemporary beauty aesthetics, HYLURA offers a complete ecosystem of face care, lip care, eye care, hair care, and targeted treatment products designed for modern consumers seeking visible results and luxurious experiences.",
+    "brandUrl": null,
+    "brandColors": [
+      {
+        "color": "#5c3f97",
+        "primary": false,
+        "addedBy": "user"
+      },
+      {
+        "color": "#ff73a1",
+        "primary": false,
+        "addedBy": "user"
+      },
+      {
+        "color": "#ffffff",
+        "primary": false,
+        "addedBy": "user"
+      },
+      {
+        "color": "#e7dbff",
+        "primary": false,
+        "addedBy": "user"
+      },
+      {
+        "color": "#f5a6c0",
+        "primary": false,
+        "addedBy": "user"
+      },
+      {
+        "color": "rgba(20, 20, 20, 1)",
+        "primary": false,
+        "addedBy": "user"
       }
+    ],
+    "brandFonts": [
+      [
+        {
+          "id": "cFZ9VcfUITu",
+          "name": "NanumMyeongjoExtraBold",
+          "addedBy": "user",
+          "type": "heading",
+          "imageUrl": "https://media.hellosivi.com/user-data/cf575e80-1bee-11ee-a72b-195290331943/fonts/ns/preview/cFZ9VcfUITu.png"
+        },
+        {
+          "id": "cCOnN1MmbeH",
+          "name": "GothicA1 SemiBold",
+          "addedBy": "user",
+          "type": "subHeading",
+          "imageUrl": "https://media.hellosivi.com/user-data/cf575e80-1bee-11ee-a72b-195290331943/fonts/ns/preview/cCOnN1MmbeH.png"
+        },
+        {
+          "id": "cERDvNCTneC",
+          "name": "GothicA1 Medium",
+          "addedBy": "user",
+          "type": "body",
+          "imageUrl": "https://media.hellosivi.com/user-data/cf575e80-1bee-11ee-a72b-195290331943/fonts/ns/preview/cERDvNCTneC.png"
+        }
+      ],
+      [
+        {
+          "id": "cvZYA2GmbKc",
+          "name": "Judson Bold",
+          "addedBy": "system",
+          "type": "heading",
+          "imageUrl": "https://media.hellosivi.com/system/fonts/ns/preview/cvZYA2GmbKc.png"
+        },
+        {
+          "id": "c2ktc66bvDi",
+          "name": "FunnelSans Medium",
+          "addedBy": "user",
+          "type": "subHeading",
+          "imageUrl": "https://media.hellosivi.com/user-data/cf575e80-1bee-11ee-a72b-195290331943/fonts/ns/preview/c2ktc66bvDi.png"
+        },
+        {
+          "id": "carpChaNrPO",
+          "name": "FunnelSans Regular",
+          "addedBy": "user",
+          "type": "body",
+          "imageUrl": "https://media.hellosivi.com/user-data/cf575e80-1bee-11ee-a72b-195290331943/fonts/ns/preview/carpChaNrPO.png"
+        }
+      ]
+    ],
+    "brandPersona": {
+      "industry": "beauty_cosmetics",
+      "emotions": [
+        "trust",
+        "smart",
+        "cool",
+        "desire"
+      ],
+      "audience": [
+        "skincare enthusiasts",
+        "modern professionals",
+        "luxury seekers",
+        "beauty conscious",
+        "wellness focused"
+      ],
+      "designTags": [
+        "clean aesthetic",
+        "glass skin",
+        "minimalist packaging",
+        "scientific beauty",
+        "modern korean",
+        "radiant glow"
+      ]
+    },
+    "brandLogos": [
+      "https://media.hellosivi.com/logos/sCNk4d3rweQ.png",
+      "https://media.hellosivi.com/logos/sZnO4CBXONA.png",
+      "https://media.hellosivi.com/logos/sN73LRUP2W3.png",
+      "https://media.hellosivi.com/logos/syLUJ62NKFK.png",
+      "https://media.hellosivi.com/logos/snFJ1FfMsdU.png",
+      "https://media.hellosivi.com/logos/sULTqbMqKvi.png",
+      "https://media.hellosivi.com/logos/sjoV1NvVbS0.png",
+      "https://media.hellosivi.com/logos/sMwQ5D5UNAK.png"
+    ],
+    "brandImages": [
+      "https://media.hellosivi.com/photos/s8wcbMr3Rs5.png",
+      "https://media.hellosivi.com/photos/s9JmFq3OMTW.jpg",
+      "https://media.hellosivi.com/photos/sweaXWTltpi.jpg",
+      "https://media.hellosivi.com/photos/suQdfmEREyb.png",
+      "https://media.hellosivi.com/photos/soFpZDYFDuu.png",
+      "https://media.hellosivi.com/photos/smqvDkPpsM3.png",
+      "https://media.hellosivi.com/photos/sFLvedJozsz.jpg",
+      "https://media.hellosivi.com/photos/s28OBrWBcVa.png",
+      "https://media.hellosivi.com/system/generated-images/sivi/495d696d9a8a888b332d040e864b0380.jpeg",
+      "https://media.hellosivi.com/system/generated-images/sivi/16d0c66106fdc88ff1d2017563489878.jpeg",
+      "https://media.hellosivi.com/photos/sYTCl9Zt6Ec.jpg",
+      "https://media.hellosivi.com/system/generated-images/sivi/5472565601d7e183060e82ae1f358b3e.jpeg",
+      "https://media.hellosivi.com/system/generated-images/sivi/518707f9efe1e1ca75bf5fa9dcabaa8d.jpeg"
     ]
   },
-  "contactDetails": {
-    "email": "",
-    "phoneNumber": "",
-    "address": "",
-    "twitter": "",
-    "instagram": "",
-    "linkedin": "",
-    "facebook": ""
+  "b_sp7yYcqj675": {
+    "bId": "b_sp7yYcqj675",
+    "brandName": "PeopleOne",
+    "brandDescription": "PeopleOne is an American community-first digital bank built to serve the everyday people who keep the country moving, the hourly workers, small business owners, gig workers, young families, and first-generation savers who've long been overlooked by traditional banking. We believe financial access is not a privilege, it's a right.",
+    "brandUrl": null,
+    "brandColors": [
+      {
+        "color": "#0052b2",
+        "primary": false,
+        "addedBy": "user"
+      },
+      {
+        "color": "#00234c",
+        "primary": false,
+        "addedBy": "user"
+      },
+      {
+        "color": "#f9ce44",
+        "primary": false,
+        "addedBy": "user"
+      },
+      {
+        "color": "#f1f1f1",
+        "primary": false,
+        "addedBy": "user"
+      }
+    ],
+    "brandFonts": [
+      [
+        {
+          "id": "cNlhDMglM1Y",
+          "name": "Spline Sans Bold",
+          "addedBy": "system",
+          "type": "heading",
+          "imageUrl": "https://media.hellosivi.com/system/fonts/ns/preview/cNlhDMglM1Y.png"
+        },
+        {
+          "id": "cc9jXeC1KTJ",
+          "name": "FigtreeSemiBold",
+          "addedBy": "user",
+          "type": "subHeading",
+          "imageUrl": "https://media.hellosivi.com/user-data/cf575e80-1bee-11ee-a72b-195290331943/fonts/ns/preview/cc9jXeC1KTJ.png"
+        },
+        {
+          "id": "cqCIGij5Umt",
+          "name": "FigtreeMedium",
+          "addedBy": "user",
+          "type": "body",
+          "imageUrl": "https://media.hellosivi.com/user-data/cf575e80-1bee-11ee-a72b-195290331943/fonts/ns/preview/cqCIGij5Umt.png"
+        }
+      ]
+    ],
+    "brandPersona": {
+      "industry": "banking",
+      "emotions": [
+        "trust",
+        "smart",
+        "love",
+        "happy"
+      ],
+      "audience": [
+        "hourly workers",
+        "gig workers",
+        "small business",
+        "young families",
+        "first-generation savers",
+        "everyday people"
+      ],
+      "designTags": [
+        "community banking",
+        "financial inclusion",
+        "digital wallet",
+        "modern finance",
+        "human centric",
+        "secure savings"
+      ]
+    },
+    "brandLogos": [
+      "https://media.hellosivi.com/logos/sgcTwYAK56S.png",
+      "https://media.hellosivi.com/logos/sxHnFpP85iz.png",
+      "https://media.hellosivi.com/logos/s7ELXzntzij.png",
+      "https://media.hellosivi.com/logos/spmaEdHYlay.png",
+      "https://media.hellosivi.com/logos/sU1owx085ZC.png",
+      "https://media.hellosivi.com/logos/sDPJKlrnFVs.png",
+      "https://media.hellosivi.com/logos/sByalbHCOOL.png",
+      "https://media.hellosivi.com/logos/sT3MLWkyC7y.png"
+    ],
+    "brandImages": [
+      "https://media.hellosivi.com/photos/sCByjsxPsEj.png",
+      "https://media.hellosivi.com/photos/sNeTLuIqTwN.jpg",
+      "https://media.hellosivi.com/photos/snStWALA4lN.png",
+      "https://media.hellosivi.com/photos/sstXUATmgMp.png",
+      "https://media.hellosivi.com/photos/s62GxVvvKDK.png",
+      "https://media.hellosivi.com/photos/sE2BcXYZGPz.webp",
+      "https://media.hellosivi.com/photos/sGOdM2crRwK.png",
+      "https://media.hellosivi.com/photos/sdPBlu5LnDh.png",
+      "https://media.hellosivi.com/photos/spWaOU0rutz.png",
+      "https://media.hellosivi.com/photos/stbxr1CaY5H.png",
+      "https://media.hellosivi.com/photos/stq3ecHsrWA.png",
+      "https://media.hellosivi.com/photos/sBTUAk8xeGt.png",
+      "https://media.hellosivi.com/photos/se2oOOQG35c.png",
+      "https://media.hellosivi.com/photos/shNBGmxFeRB.png"
+    ]
+  },
+  "b_sEd1oqGz9Al": {
+    "bId": "b_sEd1oqGz9Al",
+    "brandName": "Break The Circle",
+    "brandDescription": "There are people walking past you every single day, in coffee shops, in office hallways, in classrooms, who carry stories that could change your life. Stories of building something from nothing. Of being told to sit down, then standing up anyway. Of finding purpose on the other side of a failure nobody knows about.\n\nBut they never got a stage. So nobody knows their name.\n\nBreak The Circle exists to fix that.\nWe find the knowledgeable but overlooked. The brilliant but unheard. The people who earned their wisdom the hard way, through rejection, sacrifice, and reinvention.",
+    "brandUrl": null,
+    "brandColors": [
+      {
+        "color": "#c50000",
+        "primary": false,
+        "addedBy": "user"
+      },
+      {
+        "color": "#ffffff",
+        "primary": false,
+        "addedBy": "user"
+      },
+      {
+        "color": "rgba(0, 0, 0, 1)",
+        "primary": false,
+        "addedBy": "user"
+      }
+    ],
+    "brandFonts": [
+      [
+        {
+          "id": "cOy7PQIOug6",
+          "name": "Montserrat ExtraBold",
+          "addedBy": "system",
+          "type": "heading",
+          "imageUrl": "https://media.hellosivi.com/system/fonts/ns/preview/cOy7PQIOug6.png"
+        },
+        {
+          "id": "c9V4bMn4HGc",
+          "name": "Montserrat SemiBold",
+          "addedBy": "system",
+          "type": "subHeading",
+          "imageUrl": "https://media.hellosivi.com/system/fonts/ns/preview/c9V4bMn4HGc.png"
+        },
+        {
+          "id": "cQetfriihio",
+          "name": "Montserrat Medium",
+          "addedBy": "system",
+          "type": "body",
+          "imageUrl": "https://media.hellosivi.com/system/fonts/ns/preview/cQetfriihio.png"
+        }
+      ],
+      [
+        {
+          "id": "cKXiX0IKbJE",
+          "name": "FigtreeExtraBold",
+          "addedBy": "user",
+          "type": "heading",
+          "imageUrl": "https://media.hellosivi.com/user-data/cf575e80-1bee-11ee-a72b-195290331943/fonts/ns/preview/cKXiX0IKbJE.png"
+        },
+        {
+          "id": "cc9jXeC1KTJ",
+          "name": "FigtreeSemiBold",
+          "addedBy": "user",
+          "type": "subHeading",
+          "imageUrl": "https://media.hellosivi.com/user-data/cf575e80-1bee-11ee-a72b-195290331943/fonts/ns/preview/cc9jXeC1KTJ.png"
+        },
+        {
+          "id": "cqCIGij5Umt",
+          "name": "FigtreeMedium",
+          "addedBy": "user",
+          "type": "body",
+          "imageUrl": "https://media.hellosivi.com/user-data/cf575e80-1bee-11ee-a72b-195290331943/fonts/ns/preview/cqCIGij5Umt.png"
+        }
+      ]
+    ],
+    "brandPersona": {
+      "industry": "entertainment",
+      "emotions": [
+        "curious",
+        "trust",
+        "smart",
+        "excited"
+      ],
+      "audience": [
+        "aspiring creators",
+        "lifelong learners",
+        "hidden talents",
+        "thought leaders",
+        "curious minds",
+        "ambitious professionals"
+      ],
+      "designTags": [
+        "urban portrait",
+        "abstract circle",
+        "minimalist typography",
+        "authentic human",
+        "modern contrast",
+        "dynamic motion"
+      ]
+    },
+    "brandLogos": [
+      "https://media.hellosivi.com/logos/sNK3C0kCLZ9.png",
+      "https://media.hellosivi.com/logos/s9q1nAh6BqH.png",
+      "https://media.hellosivi.com/logos/sLpjmxoeMAR.png",
+      "https://media.hellosivi.com/logos/s3VLmEboBCE.png",
+      "https://media.hellosivi.com/logos/seoW4L0dvPn.png",
+      "https://media.hellosivi.com/logos/s0eSHArgBqR.png",
+      "https://media.hellosivi.com/logos/suJmyZp4cuo.png",
+      "https://media.hellosivi.com/logos/szAPZUUhQv7.png",
+      "https://media.hellosivi.com/logos/sxjmmCuDXfO.png",
+      "https://media.hellosivi.com/logos/sW4kwT6oBb0.png"
+    ],
+    "brandImages": [
+      "https://media.hellosivi.com/photos/sGoM9xieq4A.jpg",
+      "https://media.hellosivi.com/photos/sbb01jNEIps.jpg",
+      "https://media.hellosivi.com/photos/sDdLntZ3QJs.jpg",
+      "https://media.hellosivi.com/photos/syJ9funqxaq.png",
+      "https://media.hellosivi.com/photos/sVupVFipv1T.png",
+      "https://media.hellosivi.com/photos/sv0nFEDYiXY.png",
+      "https://media.hellosivi.com/photos/sfGxY2NOl8F.png",
+      "https://media.hellosivi.com/photos/s0WsOQa63BD.png",
+      "https://media.hellosivi.com/photos/sa5dz7Mxom8.png",
+      "https://media.hellosivi.com/photos/sArkGuQFEi9.png",
+      "https://media.hellosivi.com/photos/si9VAb9f6MF.png",
+      "https://media.hellosivi.com/photos/sa04rqLvqlS.png",
+      "https://media.hellosivi.com/photos/sGnkoxR7UlQ.png",
+      "https://media.hellosivi.com/photos/suILlyAsI3W.png",
+      "https://media.hellosivi.com/photos/soXDnk5HNvB.png"
+    ]
+  },
+  "b_sDiq6L3Z9qn": {
+    "bId": "b_sDiq6L3Z9qn",
+    "brandName": "Thread Riot",
+    "brandDescription": "Thread Riot is where comfort starts a rebellion. Born from the belief that what you wear should feel as good as it looks, we craft premium handmade pieces in pure wool and cotton, built for the ones who move fast, think loud, and never settle for ordinary.\nFrom hoodies to track pants, every stitch is intentional. Every fit is made to be lived in. No shortcuts, no synthetics — just real fabric, real craft, and real energy.\nThis is streetwear that means something. Welcome to the riot.",
+    "brandUrl": null,
+    "brandColors": [
+      {
+        "color": "#19532b",
+        "primary": true,
+        "addedBy": "user"
+      },
+      {
+        "color": "#f86015",
+        "primary": false,
+        "addedBy": "user"
+      },
+      {
+        "color": "#9abc05",
+        "primary": false,
+        "addedBy": "user"
+      },
+      {
+        "color": "#f3e8cc",
+        "primary": false,
+        "addedBy": "user"
+      }
+    ],
+    "brandFonts": [
+      [
+        {
+          "id": "c63CYFEVaPr",
+          "name": "Fraunces 72pt SemiBold Italic",
+          "addedBy": "system",
+          "type": "heading",
+          "imageUrl": "https://media.hellosivi.com/system/fonts/ns/preview/c63CYFEVaPr.png"
+        },
+        {
+          "id": "cisekqwQ9oQ",
+          "name": "Arimo Bold",
+          "addedBy": "system",
+          "type": "subHeading",
+          "imageUrl": "https://media.hellosivi.com/system/fonts/ns/preview/cisekqwQ9oQ.png"
+        },
+        {
+          "id": "cfwY4QncoNG",
+          "name": "Arimo Regular",
+          "addedBy": "system",
+          "type": "body",
+          "imageUrl": "https://media.hellosivi.com/system/fonts/ns/preview/cfwY4QncoNG.png"
+        }
+      ]
+    ],
+    "brandPersona": {
+      "industry": "fashion",
+      "emotions": [
+        "excited",
+        "cool",
+        "smart"
+      ],
+      "audience": [
+        "urban youth",
+        "streetwear enthusiasts",
+        "conscious consumers",
+        "trend setters",
+        "creative professionals",
+        "active adults"
+      ],
+      "designTags": [
+        "urban streetwear",
+        "premium wool",
+        "handmade craft",
+        "raw texture",
+        "bold typography",
+        "modern rebel"
+      ]
+    },
+    "brandLogos": [
+      "https://media.hellosivi.com/logos/skDHE7qtHqG.png",
+      "https://media.hellosivi.com/logos/sdTFKmgsUX7.png",
+      "https://media.hellosivi.com/logos/sRXBGzOrWoP.png",
+      "https://media.hellosivi.com/logos/sEXVfflp5ae.png",
+      "https://media.hellosivi.com/logos/sPcBlJVZl4l.png",
+      "https://media.hellosivi.com/logos/sMSYvurGKuu.png",
+      "https://media.hellosivi.com/logos/sazv5NiSWwG.png",
+      "https://media.hellosivi.com/logos/s9iaEmSqgYe.png"
+    ],
+    "brandImages": [
+      "https://media.hellosivi.com/photos/sWtViRYqRg0.png",
+      "https://media.hellosivi.com/photos/sFsff93jYIF.png",
+      "https://media.hellosivi.com/photos/sKWDGdXzIFR.jpg",
+      "https://media.hellosivi.com/photos/sJWxFLqiTpQ.jpg",
+      "https://media.hellosivi.com/photos/4302b0dc1155cb69e88236c9a3523dbd.jpeg",
+      "https://media.hellosivi.com/photos/sCBtSWX6so0.jpg",
+      "https://media.hellosivi.com/photos/s2qGRJUwLjh.jpg",
+      "https://media.hellosivi.com/photos/synOcTnXOZw.jpg",
+      "https://media.hellosivi.com/photos/sppAMTEdYCK.jpg",
+      "https://media.hellosivi.com/photos/sJA0jQdHGvp.jpg",
+      "https://media.hellosivi.com/photos/sN8WHJvytzq.jpg",
+      "https://media.hellosivi.com/photos/s46CP5jXWdy.jpg",
+      "https://media.hellosivi.com/photos/sxVDdeZsX3T.jpg",
+      "https://media.hellosivi.com/photos/sYQvz9LoECu.jpg",
+      "https://media.hellosivi.com/photos/sW2ik5LvRBQ.jpg",
+      "https://media.hellosivi.com/photos/sISU7MJfQRp.jpg",
+      "https://media.hellosivi.com/photos/sXLC7ruDFW1.jpg",
+      "https://media.hellosivi.com/photos/s8pgsYztFnA.jpg",
+      "https://media.hellosivi.com/photos/sfW9QpAaSzQ.jpg",
+      "https://media.hellosivi.com/photos/s7t6TovbEXH.jpg",
+      "https://media.hellosivi.com/photos/sKpsXUf11Jc.jpg",
+      "https://media.hellosivi.com/photos/skHgeXISDF2.png",
+      "https://media.hellosivi.com/photos/s823gXDDkDk.jpg",
+      "https://media.hellosivi.com/photos/sfYeuVrZkJy.jpg",
+      "https://media.hellosivi.com/photos/st1zVotQGXx.jpg",
+      "https://media.hellosivi.com/photos/sAFY2uGlhXV.jpg",
+      "https://media.hellosivi.com/photos/sD3fPp9L6AL.jpg",
+      "https://media.hellosivi.com/photos/sKA4pa4lSCO.png",
+      "https://media.hellosivi.com/photos/sSpMa0hpqq0.png"
+    ]
+  },
+  "b_sFrEAwryIe6": {
+    "bId": "b_sFrEAwryIe6",
+    "brandName": "No rest club",
+    "brandDescription": "No Rest Club is an unapologetic, high-intensity fitness brand built for people who push past limits, every single day. Designed for both men and women, the brand focuses on three core pillars: weight loss, inch loss, and body building. It's not just a gym, it's a mindset. Whether you're trimming down, sculpting up, or fueling your grind with their in-house whey protein, No Rest Club is where discipline meets results. The brand speaks in the language of effort, grit, and transformation, raw, bold, and zero tolerance for excuses.",
+    "brandUrl": null,
+    "brandColors": [
+      {
+        "color": "#6440ec",
+        "primary": true,
+        "addedBy": "user"
+      },
+      {
+        "color": "#000000",
+        "primary": false,
+        "addedBy": "user"
+      },
+      {
+        "color": "#c6ff34",
+        "primary": false,
+        "addedBy": "user"
+      },
+      {
+        "color": "#0d4037",
+        "primary": false,
+        "addedBy": "user"
+      },
+      {
+        "color": "#f0f0f0",
+        "primary": false,
+        "addedBy": "user"
+      }
+    ],
+    "brandFonts": [
+      [
+        {
+          "id": "cim6HLr7VIx",
+          "name": "Orbitron Black",
+          "addedBy": "system",
+          "type": "heading",
+          "imageUrl": "https://media.hellosivi.com/system/fonts/ns/preview/cim6HLr7VIx.png"
+        },
+        {
+          "id": "cLy4hE75sIe",
+          "name": "Darker Grotesque Bold",
+          "addedBy": "system",
+          "type": "subHeading",
+          "imageUrl": "https://media.hellosivi.com/system/fonts/ns/preview/cLy4hE75sIe.png"
+        },
+        {
+          "id": "cY1o1xioD1J",
+          "name": "Darker Grotesque Medium",
+          "addedBy": "system",
+          "type": "body",
+          "imageUrl": "https://media.hellosivi.com/system/fonts/ns/preview/cY1o1xioD1J.png"
+        }
+      ]
+    ],
+    "brandPersona": {
+      "industry": "fitness_wellness",
+      "emotions": [
+        "excited",
+        "smart",
+        "cool",
+        "desire"
+      ],
+      "audience": [
+        "hardcore athletes",
+        "body builders",
+        "fitness enthusiasts",
+        "goal seekers",
+        "active adults",
+        "weight lifters"
+      ],
+      "designTags": [
+        "gritty texture",
+        "bold typography",
+        "high contrast",
+        "industrial gym",
+        "muscle definition",
+        "dynamic motion"
+      ]
+    },
+    "brandLogos": [
+      "https://media.hellosivi.com/logos/sApQkWRUY3y.png",
+      "https://media.hellosivi.com/logos/sUBYTzYpAMY.png",
+      "https://media.hellosivi.com/logos/skkF5AlZata.png",
+      "https://media.hellosivi.com/logos/s2MkvEMXgEa.png",
+      "https://media.hellosivi.com/logos/sXb2dtgItdh.png",
+      "https://media.hellosivi.com/logos/sR3CoegXlQg.png",
+      "https://media.hellosivi.com/logos/s5NPBF6C6cv.png"
+    ],
+    "brandImages": [
+      "https://media.hellosivi.com/photos/spKEZJr9Uzt.jpg",
+      "https://media.hellosivi.com/photos/soo5Bgpzm6r.jpg",
+      "https://media.hellosivi.com/photos/sYZddI7TLPF.jpg",
+      "https://media.hellosivi.com/photos/sQn8vdlbDN0.jpg",
+      "https://media.hellosivi.com/photos/spSQXHoItbT.jpg",
+      "https://media.hellosivi.com/photos/sWD37qzWFxl.png",
+      "https://media.hellosivi.com/photos/sQ8Zyr7S0SA.png",
+      "https://media.hellosivi.com/photos/sltMCZJzCHS.jpg",
+      "https://media.hellosivi.com/photos/sbgnrtXDfVO.png",
+      "https://media.hellosivi.com/system/generated-images/sivi/d5f198f919dae66f18741fe42726a60e.jpeg",
+      "https://media.hellosivi.com/system/generated-images/sivi/10d9030a82dca7191e48aee379e77a52.jpeg",
+      "https://media.hellosivi.com/photos/354350b44a0647ad394cf0444aa733bf.jpeg",
+      "https://media.hellosivi.com/photos/sFWOBqs3xmd.jpg",
+      "https://media.hellosivi.com/photos/scXQQLry0Qj.jpg",
+      "https://media.hellosivi.com/photos/s96Wu6nwcDl.jpg",
+      "https://media.hellosivi.com/photos/siIZqEhUqKc.jpg",
+      "https://media.hellosivi.com/photos/srcO39JsgGY.jpg",
+      "https://media.hellosivi.com/photos/sBryF3wdH2t.jpg",
+      "https://media.hellosivi.com/photos/sZjteJrNG55.jpg",
+      "https://media.hellosivi.com/photos/sKBuv8CQbZc.jpg",
+      "https://media.hellosivi.com/photos/s3OdaF911pZ.jpg",
+      "https://media.hellosivi.com/photos/sZ7WwWKtVwp.jpg",
+      "https://media.hellosivi.com/photos/sYQAPOmipE0.jpg",
+      "https://media.hellosivi.com/photos/s98TxzbHMdi.jpg",
+      "https://media.hellosivi.com/photos/sly3K7gwAqe.jpg",
+      "https://media.hellosivi.com/photos/s680yiJUwMm.png",
+      "https://media.hellosivi.com/photos/sckMKHoOyz5.png",
+      "https://media.hellosivi.com/photos/spkluUeZM6c.png",
+      "https://media.hellosivi.com/photos/s7pb0aPb0st.png",
+      "https://media.hellosivi.com/photos/sXAkELDdwfN.png",
+      "https://media.hellosivi.com/photos/sPEBfhezWGf.png",
+      "https://media.hellosivi.com/photos/sTjq5RFpYQu.png",
+      "https://media.hellosivi.com/photos/sir9PL72Amy.png",
+      "https://media.hellosivi.com/photos/shmmly9qSVX.png",
+      "https://media.hellosivi.com/photos/sYkbYI0NRHH.png",
+      "https://media.hellosivi.com/photos/sVyG5nKtotE.png",
+      "https://media.hellosivi.com/photos/si5Yfeu5aUf.png",
+      "https://media.hellosivi.com/photos/suYNkLeY7pf.png",
+      "https://media.hellosivi.com/photos/sXCnNI9jzMh.png",
+      "https://media.hellosivi.com/photos/sYvOjhuZOQN.png",
+      "https://media.hellosivi.com/photos/sUipGOTW8VV.png",
+      "https://media.hellosivi.com/photos/szY7eqKPnC7.png"
+    ],
+    "logoBackground": "light"
   }
-},
-"b_sfZeStxbrvs":{
-  "_id": {
-    "$oid": "69afa74a18e8072d2aad90d3"
-  },
-  "bId": "b_sfZeStxbrvs",
-  "brandDescription": "Northveil Venture Capital is a forward-thinking investment firm dedicated to supporting innovative startups and high-growth companies. With a focus on emerging technologies and scalable business models, Northveil partners with visionary founders to turn bold ideas into successful enterprises. Beyond capital, the firm provides strategic guidance, industry connections, and operational expertise to help businesses accelerate growth and create lasting market impact. Northveil Venture Capital is committed to building the next generation of transformative companies.",
-  "brandExtractedHistory": [
-    {
-      "type": "business",
-      "urlType": "website",
-      "date": 1773119301
-    }
-  ],
-  "brandName": "Northveil Venture Capital",
-  "bsId": "s9aOIDtZRXF",
-  "colors": [
-    {
-      "color": "#00332f",
-      "primary": true,
-      "addedBy": "user"
-    },
-    {
-      "color": "#46a69d",
-      "primary": false,
-      "addedBy": "user"
-    },
-    {
-      "color": "#d4a954",
-      "primary": false,
-      "addedBy": "user"
-    },
-    {
-      "color": "#f8f7f3",
-      "primary": false,
-      "addedBy": "user"
-    },
-    {
-      "color": "rgba(20, 33, 50, 1)",
-      "primary": false,
-      "addedBy": "user"
-    }
-  ],
-  "contentMetaInfo": {
-    "audience": [
-      "startups",
-      "investors"
-    ],
-    "designTags": [
-      "growth strategy",
-      "tech investment",
-      "startup support",
-      "business innovation",
-      "venture growth",
-      "capital investment"
-    ],
-    "emotions": [
-      "smart",
-      "trust",
-      "excited"
-    ],
-    "imageContainerComponentTypes": {
-      "cornerRadius": [
-        "sharp"
-      ],
-      "numberOfLayers": [
-        "medium"
-      ],
-      "vectorShapes": [
-        "circle",
-        "polygon"
-      ],
-      "vectorStyles": [
-        "outline",
-        "symbolic decor"
-      ]
-    },
-    "industry": "business_consulting",
-    "textComponentTypes": {
-      "cornerRadius": [
-        "rounded"
-      ],
-      "numberOfLayers": [
-        "low"
-      ],
-      "vectorShapes": [
-        "rectangle",
-        "line"
-      ],
-      "vectorStyles": [
-        "fill",
-        "simple decor"
-      ]
-    },
-    "tones": [
-      "professional",
-      "modern"
-    ]
-  },
-  "createdOn": 1773119301,
-  "fontGroups": [
-    [
-      {
-        "type": "heading",
-        "id": "cTa57qRc1nI",
-        "name": "Lora Bold",
-        "wId": "",
-        "addedBy": "system"
-      },
-      {
-        "type": "subHeading",
-        "id": "coZi8fQHhJh",
-        "name": "LoraMedium",
-        "wId": "cf575e80-1bee-11ee-a72b-195290331943",
-        "addedBy": "user"
-      },
-      {
-        "type": "body",
-        "id": "zQGDYbaxVF",
-        "name": "Inter 18pt Medium",
-        "wId": "",
-        "addedBy": "google"
-      }
-    ]
-  ],
-  "imageGenPreference": {
-    "mode": "brand",
-    "model": "auto",
-    "imageStyles": [
-      {
-        "name": "Photo",
-        "value": "photo",
-        "description": "Ultra-realistic photograph, natural lighting, true-to-life colors, realistic skin and surface textures, shallow depth of field, DSLR quality, cinematic composition, high detail, no stylization.",
-        "system": "SYSTEM",
-        "isSelected": true,
-        "sampleImages": []
-      }
-    ]
-  },
-  "language": {
-    "languageName": "english",
-    "languageCode": "en"
-  },
-  "lastExtractedTime": 1773119301,
-  "promptGenStatus": {
-    "buildPromptStatus": "done",
-    "quickPromptStatus": "pending"
-  },
-  "styles": {
-    "theme": [
-      "colorful",
-      "light",
-      "dark"
-    ],
-    "frameStyle": [
-      "plain"
-    ],
-    "backdropStyle": [
-      "imagery",
-      "minimalist"
-    ],
-    "focus": [
-      "image",
-      "neutral"
-    ],
-    "imageStyle": [
-      "section-with-container",
-      "container",
-      "cover-with-overlay",
-      "section",
-      "cover-with-linear-gradient",
-      "cover"
-    ],
-    "vectorStyle": {
-      "cornerRadius": [
-        "rounded"
-      ],
-      "complexity": [
-        "low"
-      ],
-      "vectorType": [
-        "accent",
-        "fill"
-      ],
-      "shapes": [
-        "circle",
-        "rectangle"
-      ],
-      "useFor": []
-    }
-  },
-  "textGenPreference": {
-    "mode": "brand",
-    "model": "auto",
-    "amountOfText": [
-      "short"
-    ],
-    "messageStyles": [
-      "strategic",
-      "innovative",
-      "growth-oriented"
-    ],
-    "sampleTextMessages": [
-      {
-        "id": "sIuh0bNky2A",
-        "isSelected": true
-      },
-      {
-        "id": "sxQJbsFM4eJ",
-        "isSelected": true
-      },
-      {
-        "id": "s7d8Uxfqbe9",
-        "isSelected": true
-      }
-    ]
-  },
-  "updatedOn": 1782819335,
-  "wId": "cf575e80-1bee-11ee-a72b-195290331943",
-  "websiteUrl": "",
-  "contactDetails": {
-    "email": "",
-    "phoneNumber": "",
-    "address": "",
-    "twitter": "",
-    "instagram": "",
-    "linkedin": "",
-    "facebook": ""
-  },
-  "componentGroupIds": {
-    "title": [
-      "cg_c688e11ef94f54cf528197351bd91190",
-      "cg_020d88fd6237cf4c5503107a3459c2e4",
-      "cg_af0ebf66f2c43de44b95a683ce6f1d95"
-    ],
-    "button": [
-      "cg_b2d2d622ac9dce1fad2c33daa050c559",
-      "cg_946487cd89d2a6b9c8ebbebe7ae29558"
-    ],
-    "offer": [
-      "cg_d96c0916637f4a392ebf47a19424c682",
-      "cg_5a7d3330a7ebc3b69036f6ed2176ce30",
-      "cg_386a9a712963fea83cada818a89b5a2b",
-      "cg_e57cac9fb52515f0abdb45462243e122",
-      "cg_eb0b3ed044f6fab7690ff1a715a2d245"
-    ],
-    "photo": [
-      "cg_43de187c97e85c22ef0151ff07827c90",
-      "cg_95199cc8daf3ad1d5ce07a8f2497cad1",
-      "cg_36d4ad8432acba3aaf58d399230d59d1"
-    ],
-    "person": [
-      "cg_c7e306d7ecbc6ab8a2498426682a59af",
-      "cg_fc3123395e3c5ae0d63ba1ff837c37e5",
-      "cg_8115126a51860c091afbb1f47a0aab10",
-      "cg_9d8136e873b44cc6ccff83a590292584"
-    ]
-  },
-  "dynamicComponentGroupIds": {
-    "photo": [
-      "cg_9e7a4eb713a4ef605bd3e9c8453f26b1",
-      "cg_628ddb9248e14b8e9cc2530a85638fd0",
-      "cg_21b0b5749464f26030dd867f8ad8836e",
-      "cg_073dfbf2c8ea9c993ebcf5d3567ec2b7",
-      "cg_bea5aafe94987a99ce5f26ee60ab87b1",
-      "cg_668173a204a6021aa5a0a5404e06e795",
-      "cg_00eb59baa7f7224624bef61e89f24057"
-    ]
-  },
-  "status": "complete",
-  "clIds": [
-    "cl_Gh02d8AkG"
-  ],
-  "primaryLogoIds": [
-    "cf575e80-1bee-11ee-a72b-195290331943----b_sfZeStxbrvs__local__sD6Dtx2DlnQ.png"
-  ]
-},
-"b_sdfCxqhtlQ5": {
-  "_id": {
-    "$oid": "69aeb6e218e8072d2aad42a4"
-  },
-  "bId": "b_sdfCxqhtlQ5",
-  "brandDescription": "FlowMint is a Seattle-based technology company dedicated to transforming businesses through innovation and intelligent automation. We specialize in custom software development, AI-driven solutions, and digital transformation strategies that empower organizations to operate smarter, faster, and more efficiently. At FlowMint, we combine cutting-edge technology with human-centered design to create seamless digital experiences that drive growth, optimize operations, and future-proof your business. Our mission is to make complex technology simple, accessible, and impactful for companies of all size",
-  "brandExtractedHistory": [
-    {
-      "type": "business",
-      "urlType": "website",
-      "date": 1773057757
-    }
-  ],
-  "brandName": "FlowMint ",
-  "bsId": "slUwRMHD43I",
-  "colors": [
-    {
-      "color": "#3070ff",
-      "primary": false,
-      "addedBy": "user"
-    },
-    {
-      "color": "#c4d6ff",
-      "primary": false,
-      "addedBy": "user"
-    },
-    {
-      "color": "rgba(6, 22, 58, 1)",
-      "primary": false,
-      "addedBy": "user"
-    }
-  ],
-  "contentMetaInfo": {
-    "audience": [
-      "businesses",
-      "enterprises"
-    ],
-    "designTags": [
-      "clean design",
-      "tech solutions",
-      "digital transformation",
-      "ai driven",
-      "software development",
-      "seamless experience"
-    ],
-    "emotions": [
-      "smart",
-      "trust",
-      "cool"
-    ],
-    "imageContainerComponentTypes": {
-      "cornerRadius": [
-        "rounded"
-      ],
-      "numberOfLayers": [
-        "low"
-      ],
-      "vectorShapes": [
-        "rectangle",
-        "circle"
-      ],
-      "vectorStyles": [
-        "outline",
-        "simple decor"
-      ]
-    },
-    "industry": "technology",
-    "textComponentTypes": {
-      "cornerRadius": [
-        "rounded"
-      ],
-      "numberOfLayers": [
-        "low"
-      ],
-      "vectorShapes": [
-        "rectangle",
-        "line"
-      ],
-      "vectorStyles": [
-        "fill",
-        "simple decor"
-      ]
-    },
-    "tones": [
-      "professional",
-      "modern",
-      "minimal"
-    ]
-  },
-  "createdOn": 1773057757,
-  "fontGroups": [
-    [
-      {
-        "type": "heading",
-        "id": "cPWG8wlsGjH",
-        "name": "Sora SemiBold",
-        "wId": "",
-        "addedBy": "google"
-      },
-      {
-        "type": "subHeading",
-        "id": "cA8DH7HUuIa",
-        "name": "Sora Medium",
-        "wId": "",
-        "addedBy": "system"
-      },
-      {
-        "type": "body",
-        "id": "c0wuK6Aue6W",
-        "name": "Plus Jakarta Sans Regular",
-        "wId": "",
-        "addedBy": "system"
-      }
-    ]
-  ],
-  "imageGenPreference": {
-    "mode": "brand",
-    "model": "auto",
-    "imageStyles": [
-      {
-        "name": "Photo",
-        "value": "photo",
-        "description": "Ultra-realistic photograph, natural lighting, true-to-life colors, realistic skin and surface textures, shallow depth of field, DSLR quality, cinematic composition, high detail, no stylization.",
-        "system": "SYSTEM",
-        "isSelected": true,
-        "sampleImages": []
-      }
-    ]
-  },
-  "language": {
-    "languageName": "english",
-    "languageCode": "en"
-  },
-  "lastExtractedTime": 1773057757,
-  "promptGenStatus": {
-    "buildPromptStatus": "done",
-    "quickPromptStatus": "pending"
-  },
-  "styles": {
-    "theme": [
-      "dark",
-      "colorful",
-      "light"
-    ],
-    "frameStyle": [
-      "plain"
-    ],
-    "backdropStyle": [
-      "imagery",
-      "minimalist",
-      "artistic"
-    ],
-    "focus": [
-      "image"
-    ],
-    "imageStyle": [
-      "section-with-container",
-      "container",
-      "cover-with-overlay",
-      "cover-with-linear-gradient",
-      "section",
-      "cover"
-    ],
-    "vectorStyle": {
-      "cornerRadius": [
-        "rounded"
-      ],
-      "complexity": [
-        "low"
-      ],
-      "vectorType": [
-        "fill"
-      ],
-      "shapes": [
-        "rectangle",
-        "circle"
-      ],
-      "useFor": []
-    }
-  },
-  "textGenPreference": {
-    "mode": "brand",
-    "model": "auto",
-    "amountOfText": [
-      "short"
-    ],
-    "messageStyles": [
-      "concise",
-      "informative",
-      "confident"
-    ],
-    "sampleTextMessages": [
-      {
-        "id": "ssx4iDxRHZQ",
-        "isSelected": true
-      },
-      {
-        "id": "sLj5Ge7iXnU",
-        "isSelected": true
-      },
-      {
-        "id": "sn7XDA20qm1",
-        "isSelected": true
-      }
-    ]
-  },
-  "updatedOn": 1783695329,
-  "wId": "cf575e80-1bee-11ee-a72b-195290331943",
-  "websiteUrl": "",
-  "contactDetails": {
-    "email": "",
-    "phoneNumber": "",
-    "address": "",
-    "twitter": "",
-    "instagram": "",
-    "linkedin": "",
-    "facebook": ""
-  },
-  "componentGroupIds": {
-    "title": [
-      "cg_020d88fd6237cf4c5503107a3459c2e4",
-      "cg_7c0de937446af58c1ec50236a922cfc5",
-      "cg_80bf76de488799791a4883b217232b67",
-      "cg_6981b674aec819871df0506d25427587",
-      "cg_af0ebf66f2c43de44b95a683ce6f1d95"
-    ],
-    "button": [
-      "cg_12fc3d5acfca1e974029d3c796acda3b"
-    ]
-  },
-  "status": "complete",
-  "primaryLogoIds": [
-    "cf575e80-1bee-11ee-a72b-195290331943----b_sdfCxqhtlQ5__local__sbhvzzz6Wrx.png"
-  ],
-  "clIds": [
-    "cl_ksPl1TYl0"
-  ]
-},
-"b_s4gjTzyXW4I":{
-  "_id": {
-    "$oid": "6a393567cf8e1e80a740dd6a"
-  },
-  "bId": "b_s4gjTzyXW4I",
-  "brandDescription": "Hydration is the foundation of healthy, radiant beauty.\n\nInspired by modern Korean skincare innovation, HYLURA creates products that deliver deep hydration, strengthen the skin barrier, and enhance natural radiance through thoughtfully formulated ingredients and elevated daily rituals.\n\nCombining skincare science with contemporary beauty aesthetics, HYLURA offers a complete ecosystem of face care, lip care, eye care, hair care, and targeted treatment products designed for modern consumers seeking visible results and luxurious experiences.",
-  "brandExtractedHistory": [
-    {
-      "type": "business",
-      "urlType": "website",
-      "date": 1782134109
-    }
-  ],
-  "brandName": "HYLURA",
-  "bsId": "sBFubx9bnSO",
-  "clIds": [
-    "cl_yX84t-1nY"
-  ],
-  "colors": [
-    {
-      "color": "#5c3f97",
-      "primary": false,
-      "addedBy": "user"
-    },
-    {
-      "color": "#ff73a1",
-      "primary": false,
-      "addedBy": "user"
-    },
-    {
-      "color": "#ffffff",
-      "primary": false,
-      "addedBy": "user"
-    },
-    {
-      "color": "#e7dbff",
-      "primary": false,
-      "addedBy": "user"
-    },
-    {
-      "color": "#f5a6c0",
-      "primary": false,
-      "addedBy": "user"
-    },
-    {
-      "color": "rgba(20, 20, 20, 1)",
-      "primary": false,
-      "addedBy": "user"
-    }
-  ],
-  "contentMetaInfo": {
-    "audience": [
-      "skincare enthusiasts",
-      "modern professionals",
-      "luxury seekers",
-      "beauty conscious",
-      "wellness focused"
-    ],
-    "designTags": [
-      "clean aesthetic",
-      "glass skin",
-      "minimalist packaging",
-      "scientific beauty",
-      "modern korean",
-      "radiant glow"
-    ],
-    "emotions": [
-      "trust",
-      "smart",
-      "cool",
-      "desire"
-    ],
-    "imageContainerComponentTypes": {
-      "cornerRadius": "rounded",
-      "numberOfLayers": "medium",
-      "vectorShapes": [
-        "oval",
-        "organic"
-      ],
-      "vectorStyles": [
-        "fill"
-      ]
-    },
-    "industry": "beauty_cosmetics",
-    "textComponentTypes": {
-      "cornerRadius": "sharp",
-      "numberOfLayers": "low",
-      "vectorShapes": [
-        "line",
-        "rectangle"
-      ],
-      "vectorStyles": [
-        "outline",
-        "simple decor"
-      ]
-    },
-    "tones": [
-      "luxurious",
-      "modern",
-      "minimal",
-      "professional"
-    ]
-  },
-  "createdBy": "user",
-  "createdOn": 1782134109,
-  "fontGroups": [
-    [
-      {
-        "id": "cFZ9VcfUITu",
-        "name": "NanumMyeongjoExtraBold",
-        "wId": "cf575e80-1bee-11ee-a72b-195290331943",
-        "addedBy": "user",
-        "type": "heading"
-      },
-      {
-        "id": "cCOnN1MmbeH",
-        "name": "GothicA1 SemiBold",
-        "wId": "cf575e80-1bee-11ee-a72b-195290331943",
-        "addedBy": "user",
-        "type": "subHeading"
-      },
-      {
-        "id": "cERDvNCTneC",
-        "name": "GothicA1 Medium",
-        "wId": "cf575e80-1bee-11ee-a72b-195290331943",
-        "addedBy": "user",
-        "type": "body"
-      }
-    ],
-    [
-      {
-        "type": "heading",
-        "id": "cvZYA2GmbKc",
-        "name": "Judson Bold",
-        "wId": "",
-        "addedBy": "system"
-      },
-      {
-        "type": "subHeading",
-        "id": "c2ktc66bvDi",
-        "name": "FunnelSans Medium",
-        "wId": "cf575e80-1bee-11ee-a72b-195290331943",
-        "addedBy": "user"
-      },
-      {
-        "type": "body",
-        "id": "carpChaNrPO",
-        "name": "FunnelSans Regular",
-        "wId": "cf575e80-1bee-11ee-a72b-195290331943",
-        "addedBy": "user"
-      }
-    ]
-  ],
-  "imageGenPreference": {
-    "mode": "brand",
-    "model": "auto",
-    "selectedImgStyleIds": [
-      "sivi_photo",
-      "sivi_3d",
-      "sivi_line_art"
-    ],
-    "imageStyles": []
-  },
-  "language": {
-    "languageName": "english",
-    "languageCode": "en"
-  },
-  "lastExtractedTime": 1782134109,
-  "promptGenStatus": {
-    "buildPromptStatus": "done",
-    "quickPromptStatus": "pending"
-  },
-  "status": "complete",
-  "styles": {
-    "theme": [
-      "colorful",
-      "dark",
-      "light"
-    ],
-    "frameStyle": [
-      "plain"
-    ],
-    "backdropStyle": [],
-    "focus": [
-      "image"
-    ],
-    "imageStyle": [
-      "section-with-container",
-      "container",
-      "section",
-      "cover-with-linear-gradient",
-      "cover-with-overlay",
-      "cover"
-    ],
-    "vectorStyle": {
-      "cornerRadius": [
-        "pill",
-        "rounded"
-      ],
-      "complexity": [
-        "low"
-      ],
-      "vectorType": [
-        "fill"
-      ],
-      "shapes": [
-        "circle",
-        "rectangle"
-      ],
-      "useFor": []
-    }
-  },
-  "textGenPreference": {
-    "mode": "brand",
-    "model": "auto",
-    "amountOfText": [
-      "short"
-    ],
-    "messageStyles": [
-      "sophisticated",
-      "empowering",
-      "scientific",
-      "elegant"
-    ],
-    "sampleTextMessages": [
-      {
-        "id": "spMi8odlbe1",
-        "isSelected": true
-      },
-      {
-        "id": "stsgousnV5V",
-        "isSelected": true
-      },
-      {
-        "id": "s1GrK0ZHO61",
-        "isSelected": true
-      }
-    ]
-  },
-  "updatedOn": 1782135986,
-  "wId": "cf575e80-1bee-11ee-a72b-195290331943",
-  "websiteUrl": "",
-  "primaryLogoIds": [],
-  "contactDetails": {
-    "email": "",
-    "phoneNumber": "",
-    "address": "",
-    "twitter": "",
-    "instagram": "",
-    "linkedin": "",
-    "facebook": ""
-  }
-},
-"b_sgLOC8hjLo2":{
-  "_id": {
-    "$oid": "69aea41a18e8072d2aad3935"
-  },
-  "bId": "b_sgLOC8hjLo2",
-  "brandDescription": "Hill & Home Builders specializes in designing and constructing homes in hill regions and sloping landscapes. The brand focuses on creating strong, elegant, and classic architecture that adapts naturally to uneven terrains.\n\nWith a deep understanding of hill-side construction and structural stability, Hill & Home Builders delivers homes that combine durability, aesthetics, and harmony with the natural landscape, turning challenging hill terrains into beautifully crafted living spaces.",
-  "brandExtractedHistory": [
-    {
-      "type": "business",
-      "urlType": "website",
-      "date": 1773052949
-    }
-  ],
-  "brandName": "Hill & Home Builders",
-  "bsId": "s1BAQCWqnEQ",
-  "colors": [
-    {
-      "color": "#feae13",
-      "primary": false,
-      "addedBy": "user"
-    },
-    {
-      "color": "#00376b",
-      "primary": false,
-      "addedBy": "user"
-    },
-    {
-      "color": "#001432",
-      "primary": false,
-      "addedBy": "user"
-    },
-    {
-      "color": "#ebb551",
-      "primary": false,
-      "addedBy": "user"
-    },
-    {
-      "color": "#0a0a0a",
-      "primary": false,
-      "addedBy": "user"
-    },
-    {
-      "color": "rgba(246, 246, 246, 1)",
-      "primary": false,
-      "addedBy": "user"
-    }
-  ],
-  "contentMetaInfo": {
-    "audience": [
-      "home buyers",
-      "luxury seekers"
-    ],
-    "designTags": [
-      "hill terrain",
-      "home design",
-      "classic architecture",
-      "structural stability",
-      "elegant design",
-      "natural landscape"
-    ],
-    "emotions": [
-      "trust",
-      "love",
-      "happy"
-    ],
-    "imageContainerComponentTypes": {
-      "cornerRadius": [
-        "rounded"
-      ],
-      "numberOfLayers": [
-        "low"
-      ],
-      "vectorShapes": [
-        "rectangle",
-        "oval"
-      ],
-      "vectorStyles": [
-        "outline",
-        "simple decor"
-      ]
-    },
-    "industry": "real_estate_mortgage",
-    "textComponentTypes": {
-      "cornerRadius": [
-        "rounded"
-      ],
-      "numberOfLayers": [
-        "low"
-      ],
-      "vectorShapes": [
-        "rectangle",
-        "line"
-      ],
-      "vectorStyles": [
-        "fill",
-        "simple decor"
-      ]
-    },
-    "tones": [
-      "professional",
-      "classic",
-      "luxurious"
-    ]
-  },
-  "createdOn": 1773052949,
-  "fontGroups": [
-    [
-      {
-        "type": "heading",
-        "id": "cKjMY2eF194",
-        "name": "FrankRuhl Libre Medium",
-        "wId": "",
-        "addedBy": "google"
-      },
-      {
-        "type": "subHeading",
-        "id": "cg7gdop5R0S",
-        "name": "MonaSans SemiBold",
-        "wId": "cf575e80-1bee-11ee-a72b-195290331943",
-        "addedBy": "user"
-      },
-      {
-        "type": "body",
-        "id": "c38dRRe5MUO",
-        "name": "MonaSans Regular",
-        "wId": "cf575e80-1bee-11ee-a72b-195290331943",
-        "addedBy": "user"
-      }
-    ]
-  ],
-  "imageGenPreference": {
-    "mode": "brand",
-    "model": "auto",
-    "imageStyles": [
-      {
-        "name": "Photo",
-        "value": "photo",
-        "description": "Ultra-realistic photograph, natural lighting, true-to-life colors, realistic skin and surface textures, shallow depth of field, DSLR quality, cinematic composition, high detail, no stylization.",
-        "system": "SYSTEM",
-        "isSelected": true,
-        "sampleImages": []
-      }
-    ]
-  },
-  "language": {
-    "languageName": "english",
-    "languageCode": "en"
-  },
-  "lastExtractedTime": 1773052949,
-  "promptGenStatus": {
-    "buildPromptStatus": "done",
-    "quickPromptStatus": "pending"
-  },
-  "styles": {
-    "theme": [
-      "colorful",
-      "dark",
-      "light"
-    ],
-    "frameStyle": [
-      "plain"
-    ],
-    "backdropStyle": [
-      "imagery",
-      "artistic"
-    ],
-    "focus": [
-      "neutral",
-      "image"
-    ],
-    "imageStyle": [
-      "section-with-container",
-      "container",
-      "cover-with-linear-gradient",
-      "cover",
-      "section"
-    ],
-    "vectorStyle": {
-      "cornerRadius": [
-        "rounded",
-        "sharp"
-      ],
-      "complexity": [
-        "low"
-      ],
-      "vectorType": [
-        "fill"
-      ],
-      "shapes": [
-        "circle",
-        "rectangle"
-      ],
-      "useFor": []
-    }
-  },
-  "textGenPreference": {
-    "mode": "brand",
-    "model": "auto",
-    "amountOfText": [
-      "short"
-    ],
-    "messageStyles": [
-      "sophisticated",
-      "reliable",
-      "elegant"
-    ],
-    "sampleTextMessages": [
-      {
-        "id": "sNYznl3cBCU",
-        "isSelected": true
-      },
-      {
-        "id": "sfPbjRwC6DY",
-        "isSelected": true
-      },
-      {
-        "id": "sYCOdI9zhCN",
-        "isSelected": true
-      }
-    ]
-  },
-  "updatedOn": 1783694058,
-  "wId": "cf575e80-1bee-11ee-a72b-195290331943",
-  "websiteUrl": "",
-  "contactDetails": {
-    "email": "",
-    "phoneNumber": "",
-    "address": "",
-    "twitter": "",
-    "instagram": "",
-    "linkedin": "",
-    "facebook": ""
-  },
-  "dynamicComponentGroupIds": {
-    "title": [
-      "cg_9251d8bf66fa48d747b6cb69acc27f6e",
-      "cg_a34236a9277d6426ffd02177ecab140d"
-    ],
-    "photo": [
-      "cg_073dfbf2c8ea9c993ebcf5d3567ec2b7",
-      "cg_4cd9cfd3da0cf46aea83ef8be3208658",
-      "cg_9e7a4eb713a4ef605bd3e9c8453f26b1",
-      "cg_628ddb9248e14b8e9cc2530a85638fd0",
-      "cg_668173a204a6021aa5a0a5404e06e795"
-    ],
-    "others": [
-      "cg_87a282b4f496fe89c14cc97216dbe5c9"
-    ]
-  },
-  "componentGroupIds": {
-    "button": [
-      "cg_b2d2d622ac9dce1fad2c33daa050c559",
-      "cg_946487cd89d2a6b9c8ebbebe7ae29558"
-    ],
-    "others": [],
-    "title": [
-      "cg_c688e11ef94f54cf528197351bd91190",
-      "cg_df2e8942da4c586a8233303ba81c3711",
-      "cg_e5f8d65bb5e3495307e50fec68a31f07",
-      "cg_237a1b178e24d2cc334596203b05a9fb",
-      "cg_af0ebf66f2c43de44b95a683ce6f1d95",
-      "cg_020d88fd6237cf4c5503107a3459c2e4"
-    ],
-    "photo": [
-      "cg_655c26dba26920ff495d03bba80d22ed",
-      "cg_deee62d29d7efe0fb765f235ee4afb16",
-      "cg_79b33f324fe0bf3fcf68d08920fa2d29",
-      "cg_d28ce6f3e7be3ffe15d98ac0b2c1a0e3",
-      "cg_67caa0794693092694a541000012dd63"
-    ]
-  },
-  "status": "complete",
-  "primaryLogoIds": [
-    "cf575e80-1bee-11ee-a72b-195290331943----b_sgLOC8hjLo2__local__sbRj3AkUUZk.png"
-  ],
-  "clIds": [
-    "cl_ruGQ-HPwj"
-  ]
-},
-"b_sp7yYcqj675":{
-  "_id": {
-    "$oid": "6a044ed91c55385be51f52bb"
-  },
-  "bId": "b_sp7yYcqj675",
-  "brandDescription": "PeopleOne is an American community-first digital bank built to serve the everyday people who keep the country moving, the hourly workers, small business owners, gig workers, young families, and first-generation savers who've long been overlooked by traditional banking. We believe financial access is not a privilege, it's a right.",
-  "brandExtractedHistory": [
-    {
-      "type": "business",
-      "urlType": "website",
-      "date": 1778667218
-    }
-  ],
-  "brandName": "PeopleOne",
-  "bsId": "scCVt98KRTm",
-  "clIds": [
-    "cl_RHbUBIq-9"
-  ],
-  "colors": [
-    {
-      "color": "#0052b2",
-      "primary": false,
-      "addedBy": "user"
-    },
-    {
-      "color": "#00234c",
-      "primary": false,
-      "addedBy": "user"
-    },
-    {
-      "color": "#f9ce44",
-      "primary": false,
-      "addedBy": "user"
-    },
-    {
-      "color": "#f1f1f1",
-      "primary": false,
-      "addedBy": "user"
-    }
-  ],
-  "contentMetaInfo": {
-    "audience": [
-      "hourly workers",
-      "gig workers",
-      "small business",
-      "young families",
-      "first-generation savers",
-      "everyday people"
-    ],
-    "designTags": [
-      "community banking",
-      "financial inclusion",
-      "digital wallet",
-      "modern finance",
-      "human centric",
-      "secure savings"
-    ],
-    "emotions": [
-      "trust",
-      "smart",
-      "love",
-      "happy"
-    ],
-    "imageContainerComponentTypes": {
-      "cornerRadius": "rounded",
-      "numberOfLayers": "medium",
-      "vectorShapes": [
-        "organic",
-        "rectangle"
-      ],
-      "vectorStyles": [
-        "outline",
-        "simple decor"
-      ]
-    },
-    "industry": "banking",
-    "textComponentTypes": {
-      "cornerRadius": "rounded",
-      "numberOfLayers": "low",
-      "vectorShapes": [
-        "rectangle",
-        "circle"
-      ],
-      "vectorStyles": [
-        "fill",
-        "simple decor"
-      ]
-    },
-    "tones": [
-      "modern",
-      "professional",
-      "minimal"
-    ]
-  },
-  "createdBy": "user",
-  "createdOn": 1778667218,
-  "fontGroups": [
-    [
-      {
-        "id": "cNlhDMglM1Y",
-        "name": "Spline Sans Bold",
-        "wId": "",
-        "addedBy": "system",
-        "type": "heading"
-      },
-      {
-        "id": "cc9jXeC1KTJ",
-        "name": "FigtreeSemiBold",
-        "wId": "cf575e80-1bee-11ee-a72b-195290331943",
-        "addedBy": "user",
-        "type": "subHeading"
-      },
-      {
-        "id": "cqCIGij5Umt",
-        "name": "FigtreeMedium",
-        "wId": "cf575e80-1bee-11ee-a72b-195290331943",
-        "addedBy": "user",
-        "type": "body"
-      }
-    ]
-  ],
-  "imageGenPreference": {
-    "mode": "brand",
-    "model": "auto",
-    "selectedImgStyleIds": [
-      "sivi_photo",
-      "sivi_line_art"
-    ],
-    "imageStyles": []
-  },
-  "language": {
-    "languageName": "english",
-    "languageCode": "en"
-  },
-  "lastExtractedTime": 1778667218,
-  "promptGenStatus": {
-    "buildPromptStatus": "done",
-    "quickPromptStatus": "pending"
-  },
-  "status": "complete",
-  "styles": {
-    "theme": [
-      "colorful",
-      "dark"
-    ],
-    "frameStyle": [
-      "box",
-      "plain"
-    ],
-    "backdropStyle": [],
-    "focus": [
-      "neutral",
-      "image"
-    ],
-    "imageStyle": [
-      "content-free-form",
-      "section-with-container",
-      "section",
-      "cover-with-overlay",
-      "cover-with-linear-gradient",
-      "cover"
-    ],
-    "vectorStyle": {
-      "cornerRadius": [
-        "pill",
-        "rounded"
-      ],
-      "complexity": [
-        "medium",
-        "low"
-      ],
-      "vectorType": [
-        "accent",
-        "fill"
-      ],
-      "shapes": [
-        "polygon",
-        "rectangle"
-      ],
-      "useFor": [
-        "text"
-      ]
-    }
-  },
-  "textGenPreference": {
-    "mode": "brand",
-    "model": "auto",
-    "amountOfText": [
-      "short"
-    ],
-    "messageStyles": [
-      "empowering",
-      "inclusive",
-      "transparent",
-      "reliable"
-    ],
-    "sampleTextMessages": [
-      {
-        "id": "s5Ykc3XzRr4",
-        "isSelected": true
-      },
-      {
-        "id": "s6G9XgqoGP4",
-        "isSelected": true
-      },
-      {
-        "id": "s6jTPUkjtm8",
-        "isSelected": true
-      }
-    ]
-  },
-  "updatedOn": 1783695555,
-  "wId": "cf575e80-1bee-11ee-a72b-195290331943",
-  "websiteUrl": "",
-  "primaryLogoIds": [
-    "cf575e80-1bee-11ee-a72b-195290331943----b_sp7yYcqj675__local__sDPJKlrnFVs.png",
-    "cf575e80-1bee-11ee-a72b-195290331943----b_sp7yYcqj675__local__sgcTwYAK56S.png"
-  ],
-  "contactDetails": {
-    "email": "",
-    "phoneNumber": "",
-    "address": "",
-    "twitter": "",
-    "instagram": "",
-    "linkedin": "",
-    "facebook": ""
-  }
-},
-"b_sEd1oqGz9Al": {
-  "_id": {
-    "$oid": "6a05824f1c55385be51fbbab"
-  },
-  "bId": "b_sEd1oqGz9Al",
-  "brandDescription": "There are people walking past you every single day, in coffee shops, in office hallways, in classrooms, who carry stories that could change your life. Stories of building something from nothing. Of being told to sit down, then standing up anyway. Of finding purpose on the other side of a failure nobody knows about.\n\nBut they never got a stage. So nobody knows their name.\n\nBreak The Circle exists to fix that.\nWe find the knowledgeable but overlooked. The brilliant but unheard. The people who earned their wisdom the hard way, through rejection, sacrifice, and reinvention.",
-  "brandExtractedHistory": [
-    {
-      "type": "business",
-      "urlType": "website",
-      "date": 1778745927
-    }
-  ],
-  "brandName": "Break The Circle",
-  "bsId": "s1MRCo3qt1L",
-  "clIds": [
-    "cl_GSBu7hiLP"
-  ],
-  "colors": [
-    {
-      "color": "#c50000",
-      "primary": false,
-      "addedBy": "user"
-    },
-    {
-      "color": "#ffffff",
-      "primary": false,
-      "addedBy": "user"
-    },
-    {
-      "color": "rgba(0, 0, 0, 1)",
-      "primary": false,
-      "addedBy": "user"
-    }
-  ],
-  "contentMetaInfo": {
-    "audience": [
-      "aspiring creators",
-      "lifelong learners",
-      "hidden talents",
-      "thought leaders",
-      "curious minds",
-      "ambitious professionals"
-    ],
-    "designTags": [
-      "urban portrait",
-      "abstract circle",
-      "minimalist typography",
-      "authentic human",
-      "modern contrast",
-      "dynamic motion"
-    ],
-    "emotions": [
-      "curious",
-      "trust",
-      "smart",
-      "excited"
-    ],
-    "imageContainerComponentTypes": {
-      "cornerRadius": "asymmetric",
-      "numberOfLayers": "medium",
-      "vectorShapes": [
-        "organic",
-        "circle"
-      ],
-      "vectorStyles": [
-        "fill",
-        "symbolic decor"
-      ]
-    },
-    "industry": "entertainment",
-    "textComponentTypes": {
-      "cornerRadius": "rounded",
-      "numberOfLayers": "low",
-      "vectorShapes": [
-        "circle",
-        "line"
-      ],
-      "vectorStyles": [
-        "outline",
-        "symbolic decor"
-      ]
-    },
-    "tones": [
-      "modern",
-      "minimal",
-      "professional"
-    ]
-  },
-  "createdBy": "user",
-  "createdOn": 1778745927,
-  "fontGroups": [
-    [
-      {
-        "id": "cOy7PQIOug6",
-        "name": "Montserrat ExtraBold",
-        "wId": "",
-        "addedBy": "system",
-        "type": "heading"
-      },
-      {
-        "id": "c9V4bMn4HGc",
-        "name": "Montserrat SemiBold",
-        "wId": "",
-        "addedBy": "system",
-        "type": "subHeading"
-      },
-      {
-        "id": "cQetfriihio",
-        "name": "Montserrat Medium",
-        "wId": "",
-        "addedBy": "system",
-        "type": "body"
-      }
-    ],
-    [
-      {
-        "id": "cKXiX0IKbJE",
-        "name": "FigtreeExtraBold",
-        "wId": "cf575e80-1bee-11ee-a72b-195290331943",
-        "addedBy": "user",
-        "type": "heading"
-      },
-      {
-        "id": "cc9jXeC1KTJ",
-        "name": "FigtreeSemiBold",
-        "wId": "cf575e80-1bee-11ee-a72b-195290331943",
-        "addedBy": "user",
-        "type": "subHeading"
-      },
-      {
-        "id": "cqCIGij5Umt",
-        "name": "FigtreeMedium",
-        "wId": "cf575e80-1bee-11ee-a72b-195290331943",
-        "addedBy": "user",
-        "type": "body"
-      }
-    ]
-  ],
-  "imageGenPreference": {
-    "mode": "brand",
-    "model": "auto",
-    "selectedImgStyleIds": [
-      "sivi_photo",
-      "sivi_line_art"
-    ],
-    "imageStyles": []
-  },
-  "language": {
-    "languageName": "english",
-    "languageCode": "en"
-  },
-  "lastExtractedTime": 1778745927,
-  "promptGenStatus": {
-    "buildPromptStatus": "in-progress",
-    "quickPromptStatus": "pending"
-  },
-  "status": "complete",
-  "styles": {
-    "theme": [
-      "light",
-      "colorful",
-      "dark"
-    ],
-    "frameStyle": [
-      "box",
-      "plain"
-    ],
-    "backdropStyle": [],
-    "focus": [
-      "neutral",
-      "image"
-    ],
-    "imageStyle": [
-      "mask",
-      "section",
-      "container",
-      "cover-with-overlay",
-      "cover-with-linear-gradient",
-      "cover"
-    ],
-    "vectorStyle": {
-      "cornerRadius": [
-        "sharp"
-      ],
-      "complexity": [
-        "medium",
-        "low"
-      ],
-      "vectorType": [
-        "outline",
-        "fill"
-      ],
-      "shapes": [
-        "rectangle"
-      ],
-      "useFor": [
-        "text"
-      ]
-    }
-  },
-  "textGenPreference": {
-    "mode": "brand",
-    "model": "auto",
-    "amountOfText": [
-      "short"
-    ],
-    "messageStyles": [
-      "empowering",
-      "authentic",
-      "inspirational",
-      "direct"
-    ],
-    "sampleTextMessages": [
-      {
-        "id": "sooax2LrZKx",
-        "isSelected": false
-      },
-      {
-        "id": "s7e1L6ynUNI",
-        "isSelected": false
-      },
-      {
-        "id": "spCAOxh13yf",
-        "isSelected": false
-      },
-      {
-        "id": "9qNOVYsPy",
-        "isSelected": true
-      }
-    ]
-  },
-  "updatedOn": 1779252123,
-  "wId": "cf575e80-1bee-11ee-a72b-195290331943",
-  "websiteUrl": "",
-  "primaryLogoIds": [
-    "cf575e80-1bee-11ee-a72b-195290331943----b_sEd1oqGz9Al__local__sW4kwT6oBb0.png"
-  ],
-  "contactDetails": {
-    "email": "",
-    "phoneNumber": "",
-    "address": "",
-    "twitter": "",
-    "instagram": "",
-    "linkedin": "",
-    "facebook": ""
-  }
-},
-"b_sDiq6L3Z9qn": {
-  "_id": {
-    "$oid": "69f5a816e8ba10961e47da4c"
-  },
-  "bId": "b_sDiq6L3Z9qn",
-  "brandDescription": "Thread Riot is where comfort starts a rebellion. Born from the belief that what you wear should feel as good as it looks, we craft premium handmade pieces in pure wool and cotton, built for the ones who move fast, think loud, and never settle for ordinary.\nFrom hoodies to track pants, every stitch is intentional. Every fit is made to be lived in. No shortcuts, no synthetics — just real fabric, real craft, and real energy.\nThis is streetwear that means something. Welcome to the riot.",
-  "brandExtractedHistory": [
-    {
-      "type": "business",
-      "urlType": "website",
-      "date": 1777707023
-    }
-  ],
-  "brandName": "Thread Riot",
-  "bsId": "sMQsL11FndO",
-  "clIds": [
-    "cl_8ClFPVjLm"
-  ],
-  "colors": [
-    {
-      "color": "#19532b",
-      "primary": true,
-      "addedBy": "user"
-    },
-    {
-      "color": "#f86015",
-      "primary": false,
-      "addedBy": "user"
-    },
-    {
-      "color": "#9abc05",
-      "primary": false,
-      "addedBy": "user"
-    },
-    {
-      "color": "#f3e8cc",
-      "primary": false,
-      "addedBy": "user"
-    }
-  ],
-  "contentMetaInfo": {
-    "audience": [
-      "urban youth",
-      "streetwear enthusiasts",
-      "conscious consumers",
-      "trend setters",
-      "creative professionals",
-      "active adults"
-    ],
-    "designTags": [
-      "urban streetwear",
-      "premium wool",
-      "handmade craft",
-      "raw texture",
-      "bold typography",
-      "modern rebel"
-    ],
-    "emotions": [
-      "excited",
-      "cool",
-      "smart"
-    ],
-    "imageContainerComponentTypes": {
-      "cornerRadius": "sharp",
-      "numberOfLayers": "low",
-      "vectorShapes": [
-        "organic",
-        "rectangle"
-      ],
-      "vectorStyles": [
-        "outline",
-        "simple decor"
-      ]
-    },
-    "industry": "fashion",
-    "textComponentTypes": {
-      "cornerRadius": "sharp",
-      "numberOfLayers": "medium",
-      "vectorShapes": [
-        "rectangle",
-        "polygon"
-      ],
-      "vectorStyles": [
-        "fill",
-        "symbolic decor"
-      ]
-    },
-    "tones": [
-      "modern",
-      "minimal",
-      "maximal"
-    ]
-  },
-  "createdBy": "user",
-  "createdOn": 1777707023,
-  "fontGroups": [
-    [
-      {
-        "id": "c63CYFEVaPr",
-        "name": "Fraunces 72pt SemiBold Italic",
-        "wId": "",
-        "addedBy": "system",
-        "type": "heading"
-      },
-      {
-        "id": "cisekqwQ9oQ",
-        "name": "Arimo Bold",
-        "wId": "",
-        "addedBy": "system",
-        "type": "subHeading"
-      },
-      {
-        "id": "cfwY4QncoNG",
-        "name": "Arimo Regular",
-        "wId": "",
-        "addedBy": "system",
-        "type": "body"
-      }
-    ]
-  ],
-  "imageGenPreference": {
-    "mode": "brand",
-    "model": "auto",
-    "selectedImgStyleIds": [
-      "sivi_photo",
-      "sivi_neon",
-      "sivi_line_art"
-    ],
-    "imageStyles": []
-  },
-  "language": {
-    "languageName": "english",
-    "languageCode": "en"
-  },
-  "lastExtractedTime": 1777707023,
-  "promptGenStatus": {
-    "buildPromptStatus": "pending",
-    "quickPromptStatus": "pending"
-  },
-  "status": "complete",
-  "styles": {
-    "theme": [
-      "light",
-      "colorful",
-      "dark"
-    ],
-    "frameStyle": [
-      "box",
-      "plain"
-    ],
-    "backdropStyle": [],
-    "focus": [
-      "neutral",
-      "image"
-    ],
-    "imageStyle": [
-      "cutout-with-vectors",
-      "mask",
-      "container",
-      "section-with-container",
-      "section",
-      "cover-with-linear-gradient",
-      "cover",
-      "cover-with-overlay"
-    ],
-    "vectorStyle": {
-      "cornerRadius": [
-        "sharp"
-      ],
-      "complexity": [
-        "medium",
-        "low"
-      ],
-      "vectorType": [
-        "symbol",
-        "accent",
-        "fill"
-      ],
-      "shapes": [
-        "polygon",
-        "organic",
-        "circle",
-        "rectangle"
-      ],
-      "useFor": [
-        "background",
-        "container",
-        "text"
-      ]
-    }
-  },
-  "textGenPreference": {
-    "mode": "brand",
-    "model": "auto",
-    "amountOfText": [
-      "short"
-    ],
-    "messageStyles": [
-      "bold",
-      "rebellious",
-      "authentic",
-      "energetic"
-    ],
-    "sampleTextMessages": [
-      {
-        "id": "sxHY5NWGLQx",
-        "isSelected": true
-      },
-      {
-        "id": "svuiAmkcaGQ",
-        "isSelected": true
-      },
-      {
-        "id": "sCRKHwBwlKq",
-        "isSelected": true
-      }
-    ]
-  },
-  "updatedOn": 1783694863,
-  "wId": "cf575e80-1bee-11ee-a72b-195290331943",
-  "websiteUrl": "",
-  "contactDetails": {
-    "email": "",
-    "phoneNumber": "",
-    "address": "",
-    "twitter": "",
-    "instagram": "",
-    "linkedin": "",
-    "facebook": ""
-  },
-  "primaryLogoIds": [
-    "cf575e80-1bee-11ee-a72b-195290331943----b_sDiq6L3Z9qn__local__sEXVfflp5ae.png"
-  ]
-}
 }
