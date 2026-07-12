@@ -235,7 +235,7 @@ export const imagineDesignTypes = {
 export const composeModels = {
   'auto': { label: 'Auto Model' },
   'sivi-gen-28h-lite': { label: 'Sivi Gen-2.8H Lite' },
-  'sivi-gen-28h-pro': { label: 'Sivi Gen-2.8H Pro' },
+  'sivi-gen-28h': { label: 'Sivi Gen-2.8H Pro' },
   'sivi-gen-28h-max': { label: 'Sivi Gen-2.8H Max' },
   'sivi-gen-27': { label: 'Sivi Gen-2.7' },
 };

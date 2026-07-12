@@ -12,6 +12,14 @@ import {
 import { designTypes, composeModels, imagineModels, getSubtypesForType, getFilteredSubtypesForModel, getDimensionsForSubtype, requiresCustomDimensions, isImagineType } from '../data/designTypes';
 import { getLanguageOptions } from '~/utils/languages';
 
+const normalizeAssets = (assets) => {
+  if (!assets || typeof assets !== 'object') return { images: [], logos: [] };
+  return {
+    images: Array.isArray(assets.images) ? assets.images : [],
+    logos: Array.isArray(assets.logos) ? assets.logos : [],
+  };
+};
+
 const DesignForm = ({ onSubmit, initialData }) => {
   const SIVI_MIN_DIMENSION = 150;
   const SIVI_MAX_DIMENSION = 2000;
@@ -34,7 +42,7 @@ const DesignForm = ({ onSubmit, initialData }) => {
     settings: {
       mode: 'custom',
       genMode: 'compose',
-      designModel: 'sivi-gen-28h-pro',
+      designModel: 'sivi-gen-28h',
       currentbId: '',
       colorsPreference: {
         mode: 'custom',
@@ -68,12 +76,12 @@ const DesignForm = ({ onSubmit, initialData }) => {
       const inferredGenMode = initialData.settings?.genMode || initialData.dimensionMode || (isImagine ? 'imagine' : 'compose');
       const inferredDesignModel = initialData.settings?.designModel || (isImagine
         ? Object.keys(imagineModels).find(key => imagineModels[key].types.includes(loadedType)) || Object.keys(imagineModels)[0]
-        : 'sivi-gen-28h-pro');
+        : 'sivi-gen-28h');
       const loadedColors = initialData.settings?.colorsPreference?.customColors;
       setFormData(prev => ({
         ...prev,
         ...initialData,
-        assets: initialData.assets || prev.assets,
+        assets: normalizeAssets(initialData.assets),
         dimension: initialData.dimension || prev.dimension,
         settings: {
           ...prev.settings,
@@ -175,7 +183,7 @@ const DesignForm = ({ onSubmit, initialData }) => {
       ...prev,
       assets: {
         ...prev.assets,
-        images: [...prev.assets.images, { url: '', imagePreference: { crop: false, removeBg: false } }]
+        images: [...(prev.assets?.images || []), { url: '', imagePreference: { crop: false, removeBg: false } }]
       }
     }));
   };
@@ -185,7 +193,7 @@ const DesignForm = ({ onSubmit, initialData }) => {
       ...prev,
       assets: {
         ...prev.assets,
-        images: prev.assets.images.map((img, i) => i === index ? newImage : img)
+        images: (prev.assets?.images || []).map((img, i) => i === index ? newImage : img)
       }
     }));
   };
@@ -195,7 +203,7 @@ const DesignForm = ({ onSubmit, initialData }) => {
       ...prev,
       assets: {
         ...prev.assets,
-        images: prev.assets.images.filter((_, i) => i !== index)
+        images: (prev.assets?.images || []).filter((_, i) => i !== index)
       }
     }));
   };
@@ -205,7 +213,7 @@ const DesignForm = ({ onSubmit, initialData }) => {
       ...prev,
       assets: {
         ...prev.assets,
-        logos: [...prev.assets.logos, { url: '', logoStyles: [] }]
+        logos: [...(prev.assets?.logos || []), { url: '', logoStyles: [] }]
       }
     }));
   };
@@ -215,7 +223,7 @@ const DesignForm = ({ onSubmit, initialData }) => {
       ...prev,
       assets: {
         ...prev.assets,
-        logos: prev.assets.logos.map((logo, i) => i === index ? newLogo : logo)
+        logos: (prev.assets?.logos || []).map((logo, i) => i === index ? newLogo : logo)
       }
     }));
   };
@@ -225,7 +233,7 @@ const DesignForm = ({ onSubmit, initialData }) => {
       ...prev,
       assets: {
         ...prev.assets,
-        logos: prev.assets.logos.filter((_, i) => i !== index)
+        logos: (prev.assets?.logos || []).filter((_, i) => i !== index)
       }
     }));
   };
@@ -240,7 +248,7 @@ const DesignForm = ({ onSubmit, initialData }) => {
         type: 'displayAds',
         subtype: firstSubtype,
         dimension: dims ? { width: dims.width, height: dims.height } : { width: 300, height: 600 },
-        settings: { ...prev.settings, genMode: 'compose', designModel: 'sivi-gen-28h-pro' }
+        settings: { ...prev.settings, genMode: 'compose', designModel: 'sivi-gen-28h' }
       }));
     } else {
       const firstModel = Object.keys(imagineModels)[0];
@@ -335,8 +343,8 @@ const DesignForm = ({ onSubmit, initialData }) => {
     };
 
     const apiAssets = {
-      images: formData.assets.images,
-      logos: formData.assets.logos.map(url => typeof url === 'string' ? { url, logoStyles: ['direct', 'neutral'] } : url),
+      images: formData.assets?.images || [],
+      logos: (formData.assets?.logos || []).map(url => typeof url === 'string' ? { url, logoStyles: ['direct', 'neutral'] } : url),
     };
 
     onSubmit({ ...formData, settings: apiSettings, assets: apiAssets });
@@ -358,7 +366,7 @@ const DesignForm = ({ onSubmit, initialData }) => {
           <div className="required-field">
             <SelectInput
               label="Design Model"
-              value={formData.settings?.designModel ?? 'sivi-gen-28h-pro'}
+              value={formData.settings?.designModel ?? 'sivi-gen-28h'}
               onChange={handleModelChange}
               options={Object.entries(composeModels).map(([key, model]) => ({
                 value: key,
@@ -470,7 +478,7 @@ const DesignForm = ({ onSubmit, initialData }) => {
       <div className="form-field">
         <label className="form-label">Images</label>
         <div className="asset-list">
-          {formData.assets.images.map((image, index) => (
+          {(formData.assets?.images || []).map((image, index) => (
             <div key={index} className="asset-card">
               <button
                 type="button"
@@ -523,7 +531,7 @@ const DesignForm = ({ onSubmit, initialData }) => {
       <div className="form-field">
         <label className="form-label">Logos</label>
         <div className="asset-list">
-          {formData.assets.logos.map((logo, index) => (
+          {(formData.assets?.logos || []).map((logo, index) => (
             <div key={index} className="asset-card">
               <button
                 type="button"

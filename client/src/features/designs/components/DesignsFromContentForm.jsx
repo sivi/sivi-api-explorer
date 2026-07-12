@@ -19,6 +19,14 @@ import {
   isBlockAlwaysPresent,
 } from '../data/contentBlockTypes';
 
+const normalizeAssets = (assets) => {
+  if (!assets || typeof assets !== 'object') return { images: [], logos: [] };
+  return {
+    images: Array.isArray(assets.images) ? assets.images : [],
+    logos: Array.isArray(assets.logos) ? assets.logos : [],
+  };
+};
+
 const DesignsFromContentForm = ({ onSubmit, initialData, selectedBId }) => {
   const SIVI_MIN_DIMENSION = 150;
   const SIVI_MAX_DIMENSION = 2000;
@@ -39,7 +47,7 @@ const DesignsFromContentForm = ({ onSubmit, initialData, selectedBId }) => {
       mode: 'custom',
       currentbId: '',
       genMode: 'compose',
-      designModel: 'sivi-gen-28h-pro',
+      designModel: 'sivi-gen-28h',
       colorsPreference: {
         mode: 'custom',
         customColors: [],
@@ -100,7 +108,7 @@ const DesignsFromContentForm = ({ onSubmit, initialData, selectedBId }) => {
       const inferredGenMode = initialData.settings?.genMode || initialData.dimensionMode || (isImagine ? 'imagine' : 'compose');
       const inferredDesignModel = initialData.settings?.designModel || (isImagine
         ? Object.keys(imagineModels).find(key => imagineModels[key].types.includes(loadedType)) || Object.keys(imagineModels)[0]
-        : 'sivi-gen-28h-pro');
+        : 'sivi-gen-28h');
       const loadedColors = initialData.settings?.colorsPreference?.customColors;
       setFormData(prev => ({
         ...prev,
@@ -124,6 +132,7 @@ const DesignsFromContentForm = ({ onSubmit, initialData, selectedBId }) => {
             ...(initialData.settings?.fontGroupPreference || {}),
           },
         },
+        assets: normalizeAssets(initialData.assets),
       }));
     }
   }, [initialData]);
@@ -154,7 +163,7 @@ const DesignsFromContentForm = ({ onSubmit, initialData, selectedBId }) => {
         type: 'displayAds',
         subtype: firstSubtype,
         dimension: dims ? { width: dims.width, height: dims.height } : { width: 300, height: 600 },
-        settings: { ...prev.settings, genMode: 'compose', designModel: 'sivi-gen-28h-pro' }
+        settings: { ...prev.settings, genMode: 'compose', designModel: 'sivi-gen-28h' }
       }));
     } else {
       const firstModel = Object.keys(imagineModels)[0];
@@ -296,7 +305,7 @@ const DesignsFromContentForm = ({ onSubmit, initialData, selectedBId }) => {
   };
 
   const handleLogoChange = (index, value) => {
-    const newLogos = [...formData.assets.logos];
+    const newLogos = [...(formData.assets?.logos || [])];
     const existing = newLogos[index];
     newLogos[index] = typeof existing === 'object' && existing !== null
       ? { ...existing, url: value }
@@ -307,14 +316,37 @@ const DesignsFromContentForm = ({ onSubmit, initialData, selectedBId }) => {
   const addLogo = () => {
     setFormData(prev => ({
       ...prev,
-      assets: { ...prev.assets, logos: [...prev.assets.logos, ''] }
+      assets: { ...prev.assets, logos: [...(prev.assets?.logos || []), ''] }
     }));
   };
 
   const removeLogo = (index) => {
     setFormData(prev => ({
       ...prev,
-      assets: { ...prev.assets, logos: prev.assets.logos.filter((_, i) => i !== index) }
+      assets: { ...prev.assets, logos: (prev.assets?.logos || []).filter((_, i) => i !== index) }
+    }));
+  };
+
+  const handleImageChange = (index, value) => {
+    const newImages = [...(formData.assets?.images || [])];
+    const existing = newImages[index];
+    newImages[index] = typeof existing === 'object' && existing !== null
+      ? { ...existing, url: value }
+      : value;
+    setFormData(prev => ({ ...prev, assets: { ...prev.assets, images: newImages } }));
+  };
+
+  const addImage = () => {
+    setFormData(prev => ({
+      ...prev,
+      assets: { ...prev.assets, images: [...(prev.assets?.images || []), ''] }
+    }));
+  };
+
+  const removeImage = (index) => {
+    setFormData(prev => ({
+      ...prev,
+      assets: { ...prev.assets, images: (prev.assets?.images || []).filter((_, i) => i !== index) }
     }));
   };
 
@@ -368,8 +400,8 @@ const DesignsFromContentForm = ({ onSubmit, initialData, selectedBId }) => {
     };
 
     const apiAssets = {
-      images: formData.assets.images,
-      logos: formData.assets.logos.map(url => typeof url === 'string' ? { url, logoStyles: ['direct', 'neutral'] } : url),
+      images: formData.assets?.images || [],
+      logos: (formData.assets?.logos || []).map(url => typeof url === 'string' ? { url, logoStyles: ['direct', 'neutral'] } : url),
     };
 
     onSubmit({ ...formData, content: cleanedContent, settings: apiSettings, assets: apiAssets });
@@ -402,7 +434,7 @@ const DesignsFromContentForm = ({ onSubmit, initialData, selectedBId }) => {
         <div className="required-field">
           <SelectInput
             label="Design Model"
-            value={formData.settings?.designModel ?? 'sivi-gen-28h-pro'}
+            value={formData.settings?.designModel ?? 'sivi-gen-28h'}
             onChange={handleModelChange}
             options={Object.entries(composeModels).map(([key, model]) => ({
               value: key,
@@ -698,8 +730,22 @@ const DesignsFromContentForm = ({ onSubmit, initialData, selectedBId }) => {
       ))}
       <button type="button" className="add-btn" onClick={addColor}>Add Color</button>
 
+      <h3 className="form-section-title">Images</h3>
+      {(formData.assets?.images || []).map((image, index) => (
+        <div key={index} className="logo-row">
+          <UrlInput
+            label={`Image URL ${index + 1}`}
+            value={typeof image === 'string' ? image : image?.url || ''}
+            onChange={(v) => handleImageChange(index, v)}
+            placeholder="https://example.com/image.png"
+          />
+          <button type="button" className="asset-remove" title="Remove" onClick={() => removeImage(index)}>×</button>
+        </div>
+      ))}
+      <button type="button" className="add-btn" onClick={addImage}>Add Image</button>
+
       <h3 className="form-section-title">Logos</h3>
-      {formData.assets.logos.map((logo, index) => (
+      {(formData.assets?.logos || []).map((logo, index) => (
         <div key={index} className="logo-row">
           <UrlInput
             label={`Logo URL ${index + 1}`}
