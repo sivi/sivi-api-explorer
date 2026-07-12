@@ -1551,7 +1551,128 @@
         }
       }
     ],
-    "designs-from-content": []
+    "designs-from-content": [
+      {
+        "name": "Instagram Portrait Ad – New Launch Serum",
+        "data": {
+          "type": "custom",
+          "subtype": "custom",
+          "dimension": {
+            "width": 1080,
+            "height": 1350
+          },
+          "content": {
+            "caption": "New Launch",
+            "title": "Your Skin's Daily Drink",
+            "subtext": "Niacinamide + Hyaluronic Acid Serum",
+            "text": "Two powerhouse ingredients. One lightweight serum. Deep hydration, improved texture, and visibly healthier skin.",
+            "button": "Shop the Serum"
+          },
+          "assets": {
+            "images": [
+              {
+                "url": "https://media.hellosivi.com/photos/sYTCl9Zt6Ec.jpg"
+              }
+            ],
+            "logos": []
+          },
+          "language": "english",
+          "numOfVariants": 4,
+          "outputFormat": [
+            "jpg"
+          ],
+          "settings": {
+            "mode": "custom",
+            "currentbId": "b_smimyDcZAWw",
+            "genMode": "compose",
+            "designModel": "sivi-gen-28h",
+            "colorsPreference": {
+              "mode": "brand",
+              "customColors": [],
+              "paletteStyle": []
+            },
+            "fontGroupPreference": {
+              "mode": "brand",
+              "fontGroups": []
+            },
+            "theme": [
+              "colorful",
+              "dark",
+              "light"
+            ],
+            "frameStyle": [
+              "plain"
+            ],
+            "backdropStyle": [],
+            "focus": [
+              "image"
+            ],
+            "imageStyle": [
+              "cover-with-linear-gradient",
+              "cover-with-overlay",
+              "cover"
+            ]
+          }
+        }
+      },
+      {
+        "name": "Custom Portrait Ad – 20% Off Today Only",
+        "data": {
+          "type": "custom",
+          "subtype": "custom",
+          "dimension": {
+            "width": 600,
+            "height": 1200
+          },
+          "content": {
+            "title": "20% Off Today Only",
+            "subtext": "Your Skin Deserves This",
+            "button": "Grab the Deal"
+          },
+          "assets": {
+            "images": [
+              {
+                "url": "https://media.hellosivi.com/photos/s28OBrWBcVa.png"
+              },
+              {
+                "url": "https://media.hellosivi.com/backgrounds/sfsnOtHDQdj.jpg"
+              }
+            ],
+            "logos": [
+              {
+                "url": "https://media.hellosivi.com/logos/sMwQ5D5UNAK.png",
+                "logoStyles": ["direct", "outline"]
+              }
+            ]
+          },
+          "language": "english",
+          "numOfVariants": 4,
+          "outputFormat": [
+            "jpg"
+          ],
+          "settings": {
+            "mode": "brand",
+            "currentbId": "b_smimyDcZAWw",
+            "genMode": "compose",
+            "designModel": "sivi-gen-28h",
+            "colorsPreference": {
+              "mode": "brand",
+              "customColors": [],
+              "paletteStyle": []
+            },
+            "fontGroupPreference": {
+              "mode": "brand",
+              "fontGroups": []
+            },
+            "theme": [],
+            "frameStyle": [],
+            "backdropStyle": [],
+            "focus": [],
+            "imageStyle": []
+          }
+        }
+      }
+    ]
   },
   "b_sEd1oqGz9Al": {
     "designs-from-prompt": [
