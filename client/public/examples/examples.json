@@ -1068,7 +1068,178 @@
         }
       }
     ],
-    "designs-from-content": []
+    "designs-from-content": [
+      {
+        "name": "Facebook Ad – Most pitch decks fail before slide 3",
+        "data": {
+          "type": "facebook",
+          "subtype": "facebook-ad",
+          "dimension": {
+            "width": 1200,
+            "height": 628
+          },
+          "content": {
+            "title": "Most pitch decks fail before slide 3",
+            "bulletlist": [
+              "Investors decide in the first 90 seconds",
+              "It's the narrative, not the numbers",
+              "Northveil works with founders before the raise"
+            ],
+            "button": "Read the Founder Fundraising Guide."
+          },
+          "assets": {
+            "images": [
+              {
+                "url": "https://media.hellosivi.com/photos/s0HB0qH2rd9.png"
+              }
+            ],
+            "logos": [
+              {
+                "url": "https://media.hellosivi.com/logos/sKv9F7qJpiv.png",
+                "logoStyles": ["direct", "outline"]
+              }
+            ]
+          },
+          "language": "english",
+          "numOfVariants": 4,
+          "outputFormat": [
+            "jpg"
+          ],
+          "settings": {
+            "mode": "brand",
+            "currentbId": "b_s1AN3jePPgm",
+            "genMode": "compose",
+            "designModel": "sivi-gen-28h",
+            "colorsPreference": {
+              "mode": "brand",
+              "customColors": [],
+              "paletteStyle": []
+            },
+            "fontGroupPreference": {
+              "mode": "brand",
+              "fontGroups": []
+            },
+            "theme": [],
+            "frameStyle": [],
+            "backdropStyle": [],
+            "focus": [],
+            "imageStyle": []
+          }
+        }
+      },
+      {
+        "name": "Instagram Portrait Ad – The 7 Questions Every Investor Is Silently Asking",
+        "data": {
+          "type": "instagram",
+          "subtype": "instagram-portrait-ad",
+          "dimension": {
+            "width": 1080,
+            "height": 1350
+          },
+          "content": {
+            "title": "The 7 questions every investor is silently asking.",
+            "bulletlist": [
+              "Is this market big enough to matter",
+              "Can this team execute under pressure",
+              "Why now, and why you"
+            ],
+            "button": "Download the framework."
+          },
+          "assets": {
+            "images": [
+              {
+                "url": "https://media.hellosivi.com/photos/smknfye9RhZ.png"
+              }
+            ],
+            "logos": [
+              {
+                "url": "https://media.hellosivi.com/logos/sKv9F7qJpiv.png",
+                "logoStyles": ["direct", "outline"]
+              }
+            ]
+          },
+          "language": "english",
+          "numOfVariants": 4,
+          "outputFormat": [
+            "jpg"
+          ],
+          "settings": {
+            "mode": "brand",
+            "currentbId": "b_s1AN3jePPgm",
+            "genMode": "compose",
+            "designModel": "sivi-gen-28h",
+            "colorsPreference": {
+              "mode": "brand",
+              "customColors": [],
+              "paletteStyle": []
+            },
+            "fontGroupPreference": {
+              "mode": "brand",
+              "fontGroups": []
+            },
+            "theme": [],
+            "frameStyle": [],
+            "backdropStyle": [],
+            "focus": [],
+            "imageStyle": []
+          }
+        }
+      },
+      {
+        "name": "Website Blog Banner – 92% of seed decks get rejected on the first read",
+        "data": {
+          "type": "website",
+          "subtype": "website-blog-banner",
+          "dimension": {
+            "width": 1200,
+            "height": 630
+          },
+          "content": {
+            "title": "92% of seed decks get rejected on the first read.",
+            "text": "Here's what separates the funded 8%",
+            "button": "Read the breakdown."
+          },
+          "assets": {
+            "images": [
+              {
+                "url": "https://media.hellosivi.com/photos/sdzyy4sdoXc.jpg"
+              }
+            ],
+            "logos": [
+              {
+                "url": "https://media.hellosivi.com/logos/snb4CRrEJNt.png",
+                "logoStyles": ["direct", "outline"]
+              }
+            ]
+          },
+          "language": "english",
+          "numOfVariants": 4,
+          "outputFormat": [
+            "jpg"
+          ],
+          "settings": {
+            "mode": "brand",
+            "currentbId": "b_s1AN3jePPgm",
+            "genMode": "compose",
+            "designModel": "sivi-gen-28h",
+            "colorsPreference": {
+              "mode": "brand",
+              "customColors": [],
+              "paletteStyle": []
+            },
+            "fontGroupPreference": {
+              "mode": "brand",
+              "fontGroups": []
+            },
+            "theme": [],
+            "frameStyle": [],
+            "backdropStyle": [],
+            "focus": [],
+            "imageStyle": []
+          }
+        }
+      }
+    ]
   },
   "b_s1q5eok25ds": {
     "designs-from-prompt": [
@@ -1503,7 +1674,208 @@
         }
       }
     ],
-    "designs-from-content": []
+    "designs-from-content": [
+      {
+        "name": "Facebook Ad – You don't need a PhD to build AI",
+        "data": {
+          "type": "facebook",
+          "subtype": "facebook-ad",
+          "dimension": {
+            "width": 1200,
+            "height": 628
+          },
+          "content": {
+            "title": "You don't need a PhD to build AI.",
+            "text": "Our free ebook breaks it all down. Step by step. Build, train, and deploy your own AI model... no fluff, no gatekeeping.",
+            "button": "Download Free Ebook"
+          },
+          "assets": {
+            "images": [
+              {
+                "url": "https://media.hellosivi.com/photos/sVfLWL513Ti.png"
+              }
+            ],
+            "logos": [
+              {
+                "url": "https://media.hellosivi.com/logos/sbhvzzz6Wrx.png",
+                "logoStyles": ["direct", "outline"]
+              }
+            ]
+          },
+          "language": "english",
+          "numOfVariants": 4,
+          "outputFormat": [
+            "jpg"
+          ],
+          "settings": {
+            "mode": "custom",
+            "currentbId": "b_s1q5eok25ds",
+            "genMode": "compose",
+            "designModel": "auto",
+            "colorsPreference": {
+              "mode": "brand",
+              "customColors": [],
+              "paletteStyle": []
+            },
+            "fontGroupPreference": {
+              "mode": "brand",
+              "fontGroups": []
+            },
+            "theme": [
+              "dark",
+              "colorful",
+              "light"
+            ],
+            "frameStyle": [
+              "plain"
+            ],
+            "backdropStyle": [
+              "imagery",
+              "minimalist",
+              "artistic"
+            ],
+            "focus": [
+              "image"
+            ],
+            "imageStyle": [
+              "section-with-container",
+              "container",
+              "section"
+            ]
+          }
+        }
+      },
+      {
+        "name": "Instagram Portrait Ad – Your first step into AI starts here",
+        "data": {
+          "type": "instagram",
+          "subtype": "instagram-portrait-ad",
+          "dimension": {
+            "width": 1080,
+            "height": 1350
+          },
+          "content": {
+            "title": "Your first step into AI starts here.",
+            "text": "Built for students who want to learn, connect, and build. Come curious. Leave with direction and a network.",
+            "bulletlist": [
+              "Free to attend — no ticket, no catch",
+              "Hands-on sessions with real AI tools",
+              "Connect with engineers and founders hiring now"
+            ],
+            "button": "Join the Student Meetup",
+            "subtext": "Register Free — Limited Seats",
+            "email": "students@flowmint.io"
+          },
+          "assets": {
+            "images": [
+              {
+                "url": "https://media.hellosivi.com/photos/sUes1yJyOny.png"
+              }
+            ],
+            "logos": [
+              {
+                "url": "https://media.hellosivi.com/logos/sbhvzzz6Wrx.png",
+                "logoStyles": ["direct", "outline"]
+              }
+            ]
+          },
+          "language": "english",
+          "numOfVariants": 4,
+          "outputFormat": [
+            "jpg"
+          ],
+          "settings": {
+            "mode": "custom",
+            "currentbId": "b_s1q5eok25ds",
+            "genMode": "compose",
+            "designModel": "auto",
+            "colorsPreference": {
+              "mode": "brand",
+              "customColors": [],
+              "paletteStyle": []
+            },
+            "fontGroupPreference": {
+              "mode": "brand",
+              "fontGroups": []
+            },
+            "theme": [
+              "dark",
+              "colorful",
+              "light"
+            ],
+            "frameStyle": [
+              "plain"
+            ],
+            "backdropStyle": [
+              "imagery",
+              "minimalist",
+              "artistic"
+            ],
+            "focus": [
+              "image"
+            ],
+            "imageStyle": [
+              "section-with-container",
+              "container"
+            ]
+          }
+        }
+      },
+      {
+        "name": "Instagram Ad – Innovate. Automate. Elevate.",
+        "data": {
+          "type": "instagram",
+          "subtype": "instagram-ad",
+          "dimension": {
+            "width": 1080,
+            "height": 1080
+          },
+          "content": {
+            "title": "Innovate. Automate. Elevate.",
+            "text": "Flowmint turns ideas into seamless digital experiences with custom software and AI-driven solutions.",
+            "button": "Discover Our Services"
+          },
+          "assets": {
+            "images": [
+              {
+                "url": "https://media.hellosivi.com/photos/sEL7QMswJSr.jpg"
+              }
+            ],
+            "logos": [
+              {
+                "url": "https://media.hellosivi.com/logos/sjczNMRcURY.png",
+                "logoStyles": ["direct", "outline"]
+              }
+            ]
+          },
+          "language": "english",
+          "numOfVariants": 4,
+          "outputFormat": [
+            "jpg"
+          ],
+          "settings": {
+            "mode": "brand",
+            "currentbId": "b_s1q5eok25ds",
+            "genMode": "compose",
+            "designModel": "auto",
+            "colorsPreference": {
+              "mode": "brand",
+              "customColors": [],
+              "paletteStyle": []
+            },
+            "fontGroupPreference": {
+              "mode": "brand",
+              "fontGroups": []
+            },
+            "theme": [],
+            "frameStyle": [],
+            "backdropStyle": [],
+            "focus": [],
+            "imageStyle": []
+          }
+        }
+      }
+    ]
   },
   "b_smimyDcZAWw": {
     "designs-from-prompt": [
