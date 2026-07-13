@@ -1711,7 +1711,7 @@
             "mode": "custom",
             "currentbId": "b_s1q5eok25ds",
             "genMode": "compose",
-            "designModel": "auto",
+            "designModel": "sivi-gen-28h",
             "colorsPreference": {
               "mode": "brand",
               "customColors": [],
@@ -1788,7 +1788,7 @@
             "mode": "custom",
             "currentbId": "b_s1q5eok25ds",
             "genMode": "compose",
-            "designModel": "auto",
+            "designModel": "sivi-gen-28h",
             "colorsPreference": {
               "mode": "brand",
               "customColors": [],
@@ -1857,7 +1857,7 @@
             "mode": "brand",
             "currentbId": "b_s1q5eok25ds",
             "genMode": "compose",
-            "designModel": "auto",
+            "designModel": "sivi-gen-28h",
             "colorsPreference": {
               "mode": "brand",
               "customColors": [],
@@ -2503,6 +2503,182 @@
         }
       }
     ],
-    "designs-from-content": []
+    "designs-from-content": [
+      {
+        "name": "YouTube Shorts Thumbnail – HE STOOD UP",
+        "data": {
+          "type": "youtube",
+          "subtype": "youtube-shorts-thumbnail",
+          "dimension": {
+            "width": 1080,
+            "height": 1920
+          },
+          "content": {
+            "title": "HE STOOD UP",
+            "text": "A story of courage and defiance.",
+            "button": "Watch the full story"
+          },
+          "assets": {
+            "images": [
+              {
+                "url": "https://media.hellosivi.com/photos/sa5dz7Mxom8.png"
+              }
+            ],
+            "logos": [
+              {
+                "url": "https://media.hellosivi.com/logos/sW4kwT6oBb0.png"
+              }
+            ]
+          },
+          "language": "english",
+          "numOfVariants": 4,
+          "outputFormat": [
+            "jpg"
+          ],
+          "settings": {
+            "mode": "brand",
+            "currentbId": "b_sEd1oqGz9Al",
+            "genMode": "compose",
+            "designModel": "sivi-gen-28h",
+            "colorsPreference": {
+              "mode": "brand",
+              "customColors": [],
+              "paletteStyle": []
+            },
+            "fontGroupPreference": {
+              "mode": "brand",
+              "fontGroups": []
+            },
+            "theme": [],
+            "frameStyle": [],
+            "backdropStyle": [],
+            "focus": [],
+            "imageStyle": []
+          }
+        }
+      },
+      {
+        "name": "YouTube Thumbnail – The Pain That Made Him Millions",
+        "data": {
+          "type": "youtube",
+          "subtype": "youtube-thumbnail",
+          "dimension": {
+            "width": 1280,
+            "height": 720
+          },
+          "content": {
+            "text": "Break The Circle · Ep 07",
+            "title": "The Pain That Made Him Millions",
+            "subtext": "Hidden story · Brutal truth · Raw lessons"
+          },
+          "assets": {
+            "images": [
+              {
+                "url": "https://media.hellosivi.com/photos/s0WsOQa63BD.png"
+              }
+            ],
+            "logos": [
+              {
+                "url": "https://media.hellosivi.com/logos/sxjmmCuDXfO.png"
+              }
+            ]
+          },
+          "language": "english",
+          "numOfVariants": 4,
+          "outputFormat": [
+            "jpg"
+          ],
+          "settings": {
+            "mode": "brand",
+            "currentbId": "b_sEd1oqGz9Al",
+            "genMode": "compose",
+            "designModel": "sivi-gen-28h",
+            "colorsPreference": {
+              "mode": "brand",
+              "customColors": [],
+              "paletteStyle": []
+            },
+            "fontGroupPreference": {
+              "mode": "brand",
+              "fontGroups": []
+            },
+            "theme": [],
+            "frameStyle": [],
+            "backdropStyle": [],
+            "focus": [],
+            "imageStyle": []
+          }
+        }
+      },
+      {
+        "name": "YouTube Thumbnail – HE BUILT HIS OWN STAGE",
+        "data": {
+          "type": "youtube",
+          "subtype": "youtube-thumbnail",
+          "dimension": {
+            "width": 1280,
+            "height": 720
+          },
+          "content": {
+            "title": "HE BUILT HIS OWN STAGE",
+            "subtext": "The untold story of a pioneer."
+          },
+          "assets": {
+            "images": [
+              {
+                "url": "https://media.hellosivi.com/photos/si9VAb9f6MF.png"
+              }
+            ],
+            "logos": [
+              {
+                "url": "https://media.hellosivi.com/logos/sNK3C0kCLZ9.png",
+                "logoStyles": ["direct", "outline"]
+              }
+            ]
+          },
+          "language": "english",
+          "numOfVariants": 4,
+          "outputFormat": [
+            "jpg"
+          ],
+          "settings": {
+            "mode": "brand",
+            "currentbId": "b_sEd1oqGz9Al",
+            "genMode": "compose",
+            "designModel": "sivi-gen-28h",
+            "colorsPreference": {
+              "mode": "brand",
+              "customColors": [],
+              "paletteStyle": []
+            },
+            "fontGroupPreference": {
+              "mode": "brand",
+              "fontGroups": []
+            },
+            "theme": [
+              "colorful",
+              "dark"
+            ],
+            "frameStyle": [
+              "box",
+              "plain"
+            ],
+            "backdropStyle": [],
+            "focus": [
+              "neutral",
+              "image"
+            ],
+            "imageStyle": [
+              "mask",
+              "section-with-container",
+              "section",
+              "cover-with-overlay",
+              "cover-with-linear-gradient",
+              "cover"
+            ]
+          }
+        }
+      }
+    ]
   }
 }
