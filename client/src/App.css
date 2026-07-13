@@ -632,6 +632,25 @@ body {
   display: none;
 }
 
+/* Sticky footer for design forms */
+.form-sticky-footer {
+  position: sticky;
+  bottom: 0;
+  padding: 16px 0;
+  margin-top: 8px;
+  background: rgba(10, 10, 18, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  z-index: 10;
+}
+
+.form-sticky-footer .submit-button,
+.form-sticky-footer .ai-studio-button {
+  margin: 0;
+  width: 100%;
+}
+
 /* Form section titles */
 .form-section-title {
   font-size: 15px;
@@ -2584,6 +2603,27 @@ body {
   cursor: not-allowed;
   transform: none;
   box-shadow: none;
+}
+
+/* Add buttons across all forms */
+.add-btn,
+.add-button {
+  background: rgba(99, 102, 241, 0.15);
+  color: #c7d2fe;
+  border: 1px solid rgba(99, 102, 241, 0.35);
+  border-radius: 8px;
+  padding: 10px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.add-btn:hover,
+.add-button:hover {
+  background: rgba(99, 102, 241, 0.25);
+  border-color: rgba(99, 102, 241, 0.55);
+  color: #e0e7ff;
 }
 
 /* View More / View Less toggle for optional content */

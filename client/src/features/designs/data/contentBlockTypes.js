@@ -12,7 +12,7 @@ export const CONTENT_CATEGORIES = {
   },
   cta: {
     label: 'Call-to-Action Blocks',
-    required: true,
+    required: false,
     blocks: {
       button: { label: 'Button', placeholder: 'e.g. Shop Now', inputType: 'text' },
       coupon: { label: 'Coupon', placeholder: 'e.g. BONUS20', inputType: 'text' },

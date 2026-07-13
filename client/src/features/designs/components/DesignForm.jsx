@@ -700,9 +700,11 @@ const DesignForm = ({ onSubmit, initialData }) => {
         />
       </div>
 
-      <button type="submit" className="ai-studio-button">
-        Generate Designs
-      </button>
+      <div className="form-sticky-footer">
+        <button type="submit" className="ai-studio-button">
+          Generate Designs
+        </button>
+      </div>
     </form>
   );
 };

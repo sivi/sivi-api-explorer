@@ -353,21 +353,12 @@ const DesignsFromContentForm = ({ onSubmit, initialData, selectedBId }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const textBlockKeys = Object.keys(CONTENT_CATEGORIES.text.blocks);
-    const ctaBlockKeys = Object.keys(CONTENT_CATEGORIES.cta.blocks);
     const hasTextContent = textBlockKeys.some(key => {
-      const val = formData.content[key];
-      return typeof val === 'string' && val.trim();
-    });
-    const hasCtaContent = ctaBlockKeys.some(key => {
       const val = formData.content[key];
       return typeof val === 'string' && val.trim();
     });
     if (!hasTextContent) {
       message.error('At least one text-based content block with content is required');
-      return;
-    }
-    if (!hasCtaContent) {
-      message.error('At least one call-to-action content block with content is required');
       return;
     }
     if (formData.settings?.genMode === 'compose' && formData.type === 'custom') {
@@ -758,7 +749,9 @@ const DesignsFromContentForm = ({ onSubmit, initialData, selectedBId }) => {
       ))}
       <button type="button" className="add-btn" onClick={addLogo}>Add Logo</button>
 
-      <button type="submit" className="submit-button">Generate Designs</button>
+      <div className="form-sticky-footer">
+        <button type="submit" className="submit-button">Generate Designs</button>
+      </div>
     </form>
   );
 };
