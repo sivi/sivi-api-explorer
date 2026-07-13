@@ -313,9 +313,16 @@ export const imagineDesignTypes = {
 // Design models for Compose mode (from supported-models.md)
 export const composeModels = {
   'auto': { label: 'Auto Model' },
+  'sivi-gen-3-preview': { label: 'Sivi Gen-3 Preview' },
+  'sivi-gen-3-pro-preview': { label: 'Sivi Gen-3 Pro Preview' },
+  'sivi-gen-3-pro-fast-preview': { label: 'Sivi Gen-3 Pro Fast Preview' },
+  'sivi-gen-3h-lite-preview': { label: 'Sivi Gen-3H Lite Preview' },
+  'sivi-gen-3h-preview': { label: 'Sivi Gen-3H Pro Preview' },
+  'sivi-gen-3h-max-preview': { label: 'Sivi Gen-3H Max Preview' },
   'sivi-gen-28h-lite': { label: 'Sivi Gen-2.8H Lite' },
   'sivi-gen-28h': { label: 'Sivi Gen-2.8H Pro' },
   'sivi-gen-28h-max': { label: 'Sivi Gen-2.8H Max' },
+  'sivi-gen-28-vlg': { label: 'Sivi Gen-2.8 VLG' },
   'sivi-gen-27': { label: 'Sivi Gen-2.7' },
 };
 
