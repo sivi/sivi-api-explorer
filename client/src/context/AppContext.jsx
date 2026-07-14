@@ -24,7 +24,12 @@ export function AppProvider({ children }) {
   // can run in parallel without a single global flag.
   const [pollingFlows, setPollingFlows] = useState(new Set());
   const [history, setHistory] = useState([]);
-  const [activeFlow, setActiveFlow] = useState('designs-from-prompt');
+  const [activeFlow, setActiveFlow] = useState(() => {
+    if (typeof window !== 'undefined' && window.location.pathname === '/explorer') {
+      return 'designs-from-content';
+    }
+    return 'designs-from-prompt';
+  });
   const [pendingFlowAction, setPendingFlowAction] = useState(null);
   const pendingHistoryIdRef = useRef(null);
 

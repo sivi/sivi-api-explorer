@@ -36,6 +36,7 @@ const DesignsFromContentForm = ({ onSubmit, initialData, selectedBId }) => {
     subtype: 'displayAds-half-page-ad',
     dimension: { width: 300, height: 600 },
     content: { ...DEFAULT_CONTENT },
+    designInstructions: [],
     language: 'english',
     numOfVariants: 4,
     outputFormat: ['jpg'],
@@ -117,6 +118,9 @@ const DesignsFromContentForm = ({ onSubmit, initialData, selectedBId }) => {
           ? { ...DEFAULT_CONTENT, ...initialData.content }
           : { ...DEFAULT_CONTENT },
         dimension: initialData.dimension || prev.dimension,
+        designInstructions: Array.isArray(initialData.designInstructions)
+          ? initialData.designInstructions
+          : prev.designInstructions,
         settings: {
           ...prev.settings,
           ...(initialData.settings || {}),
@@ -222,6 +226,30 @@ const DesignsFromContentForm = ({ onSubmit, initialData, selectedBId }) => {
     setFormData(prev => ({
       ...prev,
       content: { ...prev.content, [field]: value }
+    }));
+  };
+
+  const MAX_DESIGN_INSTRUCTIONS = 4;
+
+  const handleDesignInstructionChange = (index, value) => {
+    setFormData(prev => {
+      const newInstructions = [...(prev.designInstructions || [])];
+      newInstructions[index] = value;
+      return { ...prev, designInstructions: newInstructions };
+    });
+  };
+
+  const addDesignInstruction = () => {
+    setFormData(prev => ({
+      ...prev,
+      designInstructions: [...(prev.designInstructions || []), '']
+    }));
+  };
+
+  const removeDesignInstruction = (index) => {
+    setFormData(prev => ({
+      ...prev,
+      designInstructions: (prev.designInstructions || []).filter((_, i) => i !== index)
     }));
   };
 
@@ -383,6 +411,10 @@ const DesignsFromContentForm = ({ onSubmit, initialData, selectedBId }) => {
       return acc;
     }, {});
 
+    const cleanedDesignInstructions = (formData.designInstructions || [])
+      .map(item => (typeof item === 'string' ? item.trim() : ''))
+      .filter(Boolean);
+
     const { colorsPreference, fontGroupPreference, ...restSettings } = formData.settings;
     const apiSettings = {
       ...restSettings,
@@ -395,7 +427,13 @@ const DesignsFromContentForm = ({ onSubmit, initialData, selectedBId }) => {
       logos: (formData.assets?.logos || []).map(url => typeof url === 'string' ? { url, logoStyles: ['direct', 'neutral'] } : url),
     };
 
-    onSubmit({ ...formData, content: cleanedContent, settings: apiSettings, assets: apiAssets });
+    onSubmit({
+      ...formData,
+      content: cleanedContent,
+      designInstructions: cleanedDesignInstructions,
+      settings: apiSettings,
+      assets: apiAssets,
+    });
   };
 
   const composeTypeOptions = Object.entries(designTypes)
@@ -670,6 +708,28 @@ const DesignsFromContentForm = ({ onSubmit, initialData, selectedBId }) => {
           </button>
         </>
       )}
+
+      <h3 className="form-section-title">Design Instructions</h3>
+      {(formData.designInstructions || []).map((instruction, index) => (
+        <div key={index} className="logo-row">
+          <TextAreaInput
+            label={`Instruction ${index + 1}`}
+            value={instruction}
+            onChange={(v) => handleDesignInstructionChange(index, v)}
+            placeholder="e.g. Use the provided inspiration for layout and imagery style"
+            rows={3}
+          />
+          <button type="button" className="asset-remove" title="Remove" onClick={() => removeDesignInstruction(index)}>×</button>
+        </div>
+      ))}
+      <button
+        type="button"
+        className="add-btn"
+        onClick={addDesignInstruction}
+        disabled={(formData.designInstructions || []).length >= MAX_DESIGN_INSTRUCTIONS}
+      >
+        Add Instruction
+      </button>
 
       <h3 className="form-section-title">Preferences</h3>
       <SelectInput

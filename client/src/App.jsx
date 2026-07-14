@@ -34,6 +34,7 @@ function App({ variant = 'playground' }) {
   const [formKey, setFormKey] = useState(0)
   const [selectedHistoryId, setSelectedHistoryId] = useState('')
   const [prefilledFormData, setPrefilledFormData] = useState(null)
+  const explorerDefaultSetRef = useRef(false)
 
   const {
     apiResponse,
@@ -62,13 +63,16 @@ function App({ variant = 'playground' }) {
   const panels = usePanels()
   const webhook = useWebhookConfig()
 
-  // Explorer: read bId from URL query param on mount
+  // Explorer: read bId from URL query param on mount and default to the
+  // designs-from-content flow so that "Design from content" is the landing UI.
   useEffect(() => {
-    if (!isExplorer) return
+    if (!isExplorer || explorerDefaultSetRef.current) return
+    explorerDefaultSetRef.current = true
     const params = new URLSearchParams(window.location.search)
     const bId = params.get('bId')
     if (bId && setSelectedBId) setSelectedBId(bId)
-  }, [isExplorer, setSelectedBId])
+    setActiveFlow('designs-from-content')
+  }, [isExplorer, setSelectedBId, setActiveFlow])
 
   // Feature-specific hooks
   const {

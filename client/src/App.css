@@ -2626,6 +2626,12 @@ body {
   color: #e0e7ff;
 }
 
+.add-btn:disabled,
+.add-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
 /* View More / View Less toggle for optional content */
 .toggle-optional-btn {
   background: transparent;
