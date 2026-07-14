@@ -320,7 +320,6 @@ export const composeModels = {
   'sivi-gen-3h-preview': { label: 'Sivi Gen-3H Pro Preview' },
   'sivi-gen-3h-max-preview': { label: 'Sivi Gen-3H Max Preview' },
   'sivi-gen-3h-lite': { label: 'Sivi Gen-3H Lite' },
-  'sivi-gen-3h': { label: 'Sivi Gen-3H Pro' },
   'sivi-gen-3h-max': { label: 'Sivi Gen-3H Max' },
   'sivi-gen-28-vlg': { label: 'Sivi Gen-2.8 VLG' },
   'sivi-gen-27': { label: 'Sivi Gen-2.7' },
