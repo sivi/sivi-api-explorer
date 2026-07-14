@@ -6,7 +6,7 @@ const FEATURES = [
   {
     icon: '🎨',
     title: 'Design Generation',
-    desc: 'Generate stunning designs from text prompts using Sivi\'s Large Design Model (LDM).',
+    desc: 'Generate photoshop-like layered designs from text prompts using Sivi\'s Large Design Model (LDM).',
   },
   {
     icon: '⚡',
@@ -78,7 +78,7 @@ export default function LandingPage() {
       <section className="landing-hero">
         <a
           className="landing-google-io-banner"
-          href="https://sivi.ai"
+          href="https://sivi.ai/io"
           target="_blank"
           rel="noreferrer"
         >
